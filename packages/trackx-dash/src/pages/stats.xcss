@@ -1,0 +1,4 @@
+.stats-col {
+  flex-grow: 1;
+  overflow: hidden; // ensure graph resize observer triggers for wide viewports
+}

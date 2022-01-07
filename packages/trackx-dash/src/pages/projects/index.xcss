@@ -1,0 +1,11 @@
+.icon-plus {
+  vertical-align: -1px;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.5rem;
+  stroke-width: 3px;
+}
+
+.project-card {
+  min-height: 7rem;
+}

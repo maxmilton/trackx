@@ -1,0 +1,7 @@
+# litestream replicate --config=./litestream.yml
+
+dbs:
+  - path: ./db_data/trackx.db
+    replicas:
+      - url: gcs://trackx-db-replica/trackx.db
+        sync-interval: 3m

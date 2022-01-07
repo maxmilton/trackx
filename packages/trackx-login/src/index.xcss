@@ -1,0 +1,56 @@
+@import '../../trackx-dash/src/css/fonts.xcss';
+
+/**
+* Packages
+*/
+
+@import '@ekscss/framework';
+@import '@ekscss/framework/addon/pretty.xcss';
+@import '@ekscss/framework/addon/alert.xcss';
+@import '@ekscss/framework/addon/card.xcss';
+@import '@ekscss/framework/addon/dark.xcss';
+
+/**
+* Dash app
+*/
+
+@import '../../trackx-dash/src/css/button.xcss';
+@import '../../trackx-dash/src/css/dark.xcss';
+
+/**
+* Login app
+*/
+
+// Same as packages/trackx-dash/src/css/global.xcss
+@media ${x.app.media.xs} {
+  html {
+    font-size: 16px;
+  }
+}
+
+// Same as packages/trackx-dash/src/css/global.xcss
+a {
+  font-weight: ${x.textWeightMedium};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+#login {
+  width: 24.5rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+#submit {
+  margin: 0.4rem 0 2rem;
+}
+
+footer {
+  #apply: .muted, .fss, .tc;
+  margin: 5rem 0;
+}

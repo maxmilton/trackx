@@ -1,0 +1,21 @@
+.link-help {
+  vertical-align: -0.125em;
+
+  & > .icon-help {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.sessions-card {
+  // Prevent jitter when loading sessions data
+  min-height: 27.66rem;
+}
+
+.project-list-item {
+  border-top: 1px solid ${x.color.dark3};
+
+  &:nth-child(even) {
+    background: ${x.fn.color(x.color.dark1).mix(x.fn.color(x.color.dark2), 0.4)};
+  }
+}

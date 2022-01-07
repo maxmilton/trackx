@@ -1,0 +1,36 @@
+.pa35 {
+  padding: 1.5em;
+}
+
+@media ${x.media.ns} {
+  .issue-main {
+    overflow: hidden;
+  }
+
+  .ns-card-body {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media ${x.media.l} {
+  .issue-sidebar {
+    width: 360px;
+    margin-left: 2rem;
+  }
+}
+
+.event-meta {
+  display: grid;
+  grid-template-columns: fit-content(40%) auto;
+}
+
+.event-meta-title {
+  margin: 0.8rem 0.5rem 0.8rem 0;
+  font-weight: ${x.textWeightMedium};
+}
+
+.event-meta-data {
+  margin: 0.3rem 0;
+  padding: 0.5rem 0.8rem;
+  background-color: ${x.color.dark2};
+}

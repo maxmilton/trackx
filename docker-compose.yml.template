@@ -1,0 +1,71 @@
+services:
+  nginx:
+    image: nginx:1
+    container_name: trackx-nginx
+    network_mode: 'host'
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+      - NET_BIND_SERVICE
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:rw,noexec,nodev,nosuid,size=56m
+      - /var/run:rw,noexec,nodev,nosuid,size=64k
+    volumes:
+      - type: bind
+        source: /opt/trackx/etc/nginx
+        target: /etc/nginx
+        read_only: true
+      - type: bind
+        source: /opt/trackx/var/dash
+        target: /var/www/dashtrackxapp/html
+        read_only: true
+      - type: bind
+        source: /opt/trackx/var/dash/errors
+        target: /var/www/apitrackxapp/html
+        read_only: true
+    stop_grace_period: 30s
+    restart: always
+    healthcheck:
+      test: ['CMD', 'service', 'nginx', 'status']
+      interval: 5m
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  api:
+    build:
+      context: ./packages/trackx-api/dist
+      dockerfile: ../Dockerfile
+    image: trackx-api
+    depends_on:
+      - nginx
+    container_name: trackx-api
+    network_mode: 'host'
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nodev,nosuid,size=28m
+    environment:
+      NODE_ENV: production
+      CONFIG_PATH: /data/trackx.config.js
+    volumes:
+      - type: bind
+        source: /opt/trackx/var/db
+        target: /data/db
+      - type: bind
+        source: /opt/trackx/etc/trackx.config.js
+        target: /data/trackx.config.js
+        read_only: true
+    stop_grace_period: 40s
+    restart: always
+    healthcheck:
+      test: ['CMD', '/usr/bin/node', 'check.js', 'http://127.0.0.1:8000/health']
+      interval: 1m30s
+      timeout: 4s
+      retries: 3
+      start_period: 30s

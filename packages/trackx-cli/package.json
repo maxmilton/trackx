@@ -1,0 +1,32 @@
+{
+  "name": "trackx-cli",
+  "version": "0.3.0",
+  "repository": "maxmilton/trackx",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=14"
+  },
+  "bin": {
+    "trackx": "dist/cli.js"
+  },
+  "main": "dist/cli.js",
+  "scripts": {
+    "build": "pnpm run prebuild && NODE_ENV=${NODE_ENV:-'production'} node build.mjs",
+    "dev": "BUILD_WATCH=1 NODE_ENV=development node build.mjs",
+    "prebuild": "rm -rf dist",
+    "trackx": "NODE_ENV=development node -r source-map-support/register ./dist/cli.js --config ../trackx-api/trackx.config.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "7.4.6",
+    "kleur": "4.1.4",
+    "sade": "1.8.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "7.4.2",
+    "@types/sade": "1.7.4",
+    "git-ref": "0.3.1",
+    "source-map-support": "0.5.21"
+  }
+}

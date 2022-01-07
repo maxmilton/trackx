@@ -1,0 +1,52 @@
+// https://code.visualstudio.com/docs/editor/debugging#_launch-configurations
+// https://github.com/Microsoft/vscode-recipes/tree/master/debugging-jest-tests
+// https://github.com/microsoft/vscode-recipes/issues/205#issuecomment-533645097
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach by Process ID",
+      "type": "pwa-node",
+      "processId": "${command:PickProcess}",
+      "request": "attach",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"],
+      "smartStep": true
+    },
+    {
+      "name": "Jest All",
+      "type": "pwa-node",
+      "request": "launch",
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/jest/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": ["--runInBand"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true
+    },
+    {
+      "name": "Jest Current File",
+      "type": "pwa-node",
+      "request": "launch",
+      "sourceMaps": true,
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/jest/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": [
+        "--runTestsByPath",
+        "${relativeFile}",
+        "--config",
+        "jest.config.cjs"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true
+    }
+  ]
+}

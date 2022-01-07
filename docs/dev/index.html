@@ -1,0 +1,80 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>TrackX Docs</title>
+<meta name=description content="Simple JavaScript exception tracking.">
+<meta name=viewport content="width=device-width">
+<link href=favicon.svg rel=icon>
+<link href=https://fonts.googleapis.com rel=preconnect>
+<link href=https://fonts.gstatic.com rel=preconnect crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel=stylesheet>
+<link href=/dev/node_modules/microdoc/microdoc.css rel=stylesheet>
+<link href=/dev/node_modules/microdoc/plugin/prism.css rel=stylesheet>
+<script src=/dev/node_modules/trackx/default.js crossorigin></script>
+<script>window.trackx&&(trackx.setup("http://localhost:5000/api/v1/qf34kkqi23i"),trackx.ping());</script>
+<script src=https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js data-manual defer></script>
+<script src=https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js defer></script>
+<script src=/dev/node_modules/microdoc/microdoc.js defer></script>
+<script src=/dev/node_modules/microdoc/plugin/dark-mode.js defer></script>
+<script src=/dev/node_modules/microdoc/plugin/search.js defer></script>
+<script src=/dev/node_modules/microdoc/plugin/prevnext.js defer></script>
+<style>
+  :root { font-family: Inter, sans-serif; }
+  /* FIXME: Remove once microdoc has this by default */
+  @media (max-width: 60rem) {
+    :root { font-size: 1.125rem; }
+  }
+
+  ol > li + li { margin-top: 0.5rem; }
+
+  .button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .button:hover,
+  .button:focus {
+    filter: invert(1);
+  }
+
+  .tag {
+    display: inline-block;
+    vertical-align: 2px;
+    padding: 1px 2px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    color: var(--color-muted);
+    font-size: 0.7rem;
+  }
+</style>
+<script>
+  var microdoc = {
+    routes: [
+      "introduction.md",
+      { path: "privacy-and-user-data.md", name: "Privacy & User Data"},
+      { path: "getting-started", children: [
+        "installation.md",
+        "configuration.md"
+      ]},
+      { path: "guides", children: [
+        "tracking-errors.md",
+        "tracking-sessions.md",
+        "tracking-browser-reports.md",
+        "using-the-dash.md"
+      ]},
+      { path: "advanced-guides", children: [
+        "architecture.md",
+        "database-compression.md",
+        { path: "event-api.md", name: "Event API" },
+        "using-an-event-proxy.md",
+        "development.md"
+      ]}
+    ],
+    afterRouteLoad: () => Prism.highlightAll(),
+    darkMode: matchMedia('(prefers-color-scheme:dark)').matches
+  }
+</script>
+<noscript>You need to enable JavaScript to run this app.</noscript>

@@ -1,0 +1,76 @@
+.search > .icon-search {
+  position: absolute;
+  top: 0.43rem;
+  left: 0.6rem;
+  color: ${x.color.gray4};
+}
+
+.button-cancel-search {
+  position: absolute;
+  right: 0;
+  padding: ${x.button.paddingY} 0.7rem;
+  border-color: transparent;
+  color: ${x.color.orange5};
+  background: transparent;
+}
+
+#search {
+  padding: ${x.input.paddingY} 2.6rem;
+}
+
+.results-table {
+  border: 1px solid ${x.color.dark3};
+  border-radius: ${x.radius};
+  background: ${x.color.dark1};
+
+  @media ${x.app.media.xs} {
+    th,
+    td {
+      padding-right: 0.5em;
+      padding-left: 0.5em;
+    }
+  }
+
+  // Inspired by https://adamlynch.com/flexible-data-tables-with-css-grid/
+  table& {
+    display: grid;
+    grid-template-columns: auto min-content min-content;
+    min-width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead,
+  tbody,
+  tr {
+    display: contents;
+  }
+
+  th,
+  td {
+    overflow: hidden;
+  }
+
+  th {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    padding: 0.2em 1em;
+    border-bottom: 1px solid ${x.color.dark3};
+    color: ${x.color.gray4};
+    font-weight: ${x.textWeightMedium};
+    background: ${x.color.dark2};
+  }
+
+  td {
+    padding: 0.6em 1em;
+    border-bottom: 1px solid ${x.color.dark3};
+  }
+
+  tr:nth-child(even) > td {
+    background: ${x.fn.color(x.color.dark1) .mix(x.fn.color(x.color.dark2), 0.2)};
+  }
+
+  tr:last-of-type > td {
+    border: 0;
+  }
+}

@@ -1,0 +1,57 @@
+#logo {
+  padding: 1rem 0.5rem;
+}
+
+.logo-img {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-left: 1rem;
+  padding: 1rem 0.5rem;
+  color: ${x.color.text};
+  font-size: 1.25rem; // 20px @ 16px, 21.25px @ 17px base font size
+  font-weight: ${x.textWeightMedium};
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &[aria-current] {
+    color: ${x.color.text};
+    text-decoration: underline;
+    text-decoration-color: ${x.color.primary};
+    text-decoration-thickness: 3px;
+  }
+}
+
+.button-subnav {
+  padding: 0.4rem;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${x.color.primary};
+  }
+
+  .icon-dots-vertical {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+}
+
+#subnav {
+  z-index: 5;
+  padding: 0.5rem 0;
+  background: ${x.color.dark2};
+  box-shadow: 0 3px 10px 5px ${x.color.shadow};
+
+  & > .nav-item {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 1.25rem;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@trackx/stack-trace-parser",
+  "version": "0.0.4",
+  "type": "module",
+  "description": "Parse a stack trace then enrich using its source map",
+  "repository": "maxmilton/trackx",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm run prebuild && node build.mjs && pnpm run postbuild",
+    "dev": "BUILD_WATCH=1 node build.mjs",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "prebuild": "rm -rf dist"
+  },
+  "dependencies": {
+    "data-uri-to-buffer": "^4.0.0",
+    "httpie": "^2.0.0-next.13",
+    "source-map": "^0.7.3"
+  }
+}

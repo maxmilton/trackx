@@ -1,0 +1,4 @@
+.footer {
+  #apply: .muted, .fss, .tc;
+  margin: 5rem 0;
+}

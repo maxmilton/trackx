@@ -1,0 +1,88 @@
+{
+  "name": "trackx",
+  "version": "0.2.1",
+  "description": "Simple JavaScript exception tracking",
+  "repository": "maxmilton/trackx",
+  "homepage": "https://docs.trackx.app",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "main": "default.js",
+  "module": "default.mjs",
+  "exports": {
+    ".": {
+      "import": "./default.mjs",
+      "require": "./default.js",
+      "types": "./default.d.ts"
+    },
+    "./compat": {
+      "import": "./compat.mjs",
+      "require": "./compat.js",
+      "types": "./compat.d.ts"
+    },
+    "./extended": {
+      "import": "./extended.mjs",
+      "require": "./extended.js",
+      "types": "./extended.d.ts"
+    },
+    "./lite": {
+      "import": "./lite.mjs",
+      "require": "./lite.js",
+      "types": "./lite.d.ts"
+    },
+    "./modern": {
+      "import": "./modern.mjs",
+      "require": "./modern.js",
+      "types": "./modern.d.ts"
+    },
+    "./node": {
+      "import": "./node.mjs",
+      "require": "./node.js",
+      "types": "./node.d.ts"
+    },
+    "./types": "./types.ts",
+    "./package.json": "./package.json"
+  },
+  "browser": "default.js",
+  "types": "default.d.ts",
+  "files": [
+    "compat.*",
+    "default.*",
+    "extended.*",
+    "lite.*",
+    "modern.*",
+    "node.*",
+    "types.ts"
+  ],
+  "keywords": [
+    "crash-reporting",
+    "error-handling",
+    "error-log",
+    "error-monitoring",
+    "error-reporting",
+    "exception-handler",
+    "logging",
+    "trackx-client"
+  ],
+  "scripts": {
+    "build": "pnpm run prebuild && rollup -c",
+    "dev": "rollup -c -w",
+    "prebuild": "rm -rf compat.* default.* extended.* lite.* modern.* node.* || true"
+  },
+  "dependencies": {
+    "@ungap/global-this": "^0.4.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "0.21.3",
+    "@rollup/plugin-commonjs": "21.0.1",
+    "@rollup/plugin-node-resolve": "13.1.3",
+    "@rollup/plugin-replace": "3.0.1",
+    "@types/ungap__global-this": "0.3.1",
+    "esbuild": "0.14.10",
+    "esbuild-minify-templates": "0.7.2",
+    "rollup": "2.63.0",
+    "rollup-plugin-dts": "4.1.0",
+    "rollup-plugin-esbuild": "4.8.2",
+    "rollup-plugin-terser": "7.0.2",
+    "trackx": "."
+  }
+}

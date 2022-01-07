@@ -1,0 +1,50 @@
+{
+  "css.validate": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.associations": {
+    "*.xcss": "scss"
+  },
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "prettier.ignorePath": ".gitignore",
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
+  "[css]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+      "source.formatDocument",
+      "source.fixAll.stylelint"
+    ]
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+      "source.sortImports",
+      "source.formatDocument",
+      "source.fixAll.eslint"
+    ]
+  },
+  "[scss]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+      "source.formatDocument",
+      "source.fixAll.stylelint"
+    ]
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+      "source.sortImports",
+      "source.formatDocument",
+      "source.fixAll.eslint"
+    ]
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+      "source.sortImports",
+      "source.formatDocument",
+      "source.fixAll.eslint"
+    ]
+  }
+}

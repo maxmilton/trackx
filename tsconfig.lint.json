@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["**/*", "**/.*.cjs", "**/*.mjs"],
+  "exclude": [
+    "**/dist",
+    "**/node_modules",
+    "coverage",
+    "./packages/trackx/compat.*",
+    "./packages/trackx/default.*",
+    "./packages/trackx/extended.*",
+    "./packages/trackx/lite.*",
+    "./packages/trackx/modern.*",
+    "./packages/trackx/node.*"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+
+    "strict": true,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // TODO: Handle errors better then remove this
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": [
+    "**/dist",
+    "**/node_modules",
+    "**/test",
+    "**/*.config.js",
+    "**/build.js",
+    "**/build.mjs",
+    "coverage"
+  ]
+}

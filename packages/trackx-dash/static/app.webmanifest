@@ -1,0 +1,9 @@
+{
+  "name": "TrackX",
+  "short_name": "TrackX",
+  "background_color": "#11181c",
+  "theme_color": "#ff66a1",
+  "display": "minimal-ui",
+  "start_url": "/",
+  "icons": [{ "src": "/google-touch-icon.png", "sizes": "512x512" }]
+}

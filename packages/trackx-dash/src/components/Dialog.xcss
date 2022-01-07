@@ -1,0 +1,27 @@
+.scroll-lock {
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog-backdrop {
+  background: ${x.fn.color(x.color.black).alpha(0.5)};
+}
+
+.dialog {
+  top: 100px;
+  overflow-y: auto;
+  margin: 1rem auto;
+  border-radius: ${x.radius};
+  background-color: ${x.color.dark1};
+  box-shadow: ${x.card.shadow};
+}
+
+.dialog-footer {
+  display: flex;
+  padding-top: 1.5em;
+  border-top: 1px solid ${x.hrColor};
+
+  & > .button:first-of-type {
+    margin-left: auto;
+  }
+}

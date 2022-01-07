@@ -1,0 +1,10 @@
+@import '@ekscss/framework/addon/float.xcss';
+
+.test-color-grid {
+  grid-template-columns: repeat(5, 100px);
+}
+
+.test-color {
+  width: 100px;
+  height: 100px;
+}

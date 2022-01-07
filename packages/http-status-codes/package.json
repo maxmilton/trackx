@@ -1,0 +1,11 @@
+{
+  "name": "@trackx/http-status-codes",
+  "version": "0.1.0",
+  "description": "HTTP response status codes in a typed enum",
+  "repository": "maxmilton/trackx",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts"
+}

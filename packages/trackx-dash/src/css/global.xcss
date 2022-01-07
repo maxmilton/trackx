@@ -1,0 +1,97 @@
+@media ${x.app.media.xs} {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  // Prevent jump between changing routes or loading page data
+  overflow-y: scroll;
+}
+
+a {
+  font-weight: ${x.textWeightMedium};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* SVG Icons */
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+}
+
+.icon-search {
+  pointer-events: none;
+}
+
+.icon-external-link {
+  display: inline-block;
+  vertical-align: -0.2em;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.flip-icon > .icon { transform: scaleX(-1); }
+
+/* Utils */
+
+// "flex shrink no/none"
+.fsn { flex-shrink: 0; }
+
+// "display flex center end"
+.dfce {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.aib { align-items: baseline; }
+.ais { align-items: flex-start; }
+
+@media ${x.media.l} {
+  .l-dfb {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .l-w50 { width: 50%; }
+}
+
+.clip {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clamp {
+  display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+// "align vertical bottom"
+.avb { align-items: flex-end; }
+// "align horizontal middle"
+.ahm { justify-content: center; }
+
+// font weights
+.fwl { font-weight: ${x.textWeightLight}; }
+.fwn { font-weight: ${x.textWeight}; }
+.fwm { font-weight: ${x.textWeightMedium}; }
+.fwh { font-weight: ${x.textWeightHeavy}; }
+
+.tnum { font-variant-numeric: tabular-nums; }

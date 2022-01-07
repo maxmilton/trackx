@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Wrapper script to run the trackx-cli tool.
+
+set -Eeuo pipefail
+
+CONFIG_PATH=/opt/trackx/etc/trackx.config.js
+TRACKX_DB_DIR=/opt/trackx/var/db
+DOCKER_IMAGE=trackx-api
+
+test -d "$TRACKX_DB_DIR" || mkdir -p "$TRACKX_DB_DIR"
+test "$(stat -c '%u' "$TRACKX_DB_DIR")" = "5063" || sudo chown 5063:5063 "$TRACKX_DB_DIR"
+test "$(stat -c '%u' "$CONFIG_PATH")" = "5063" || sudo chown 5063:5063 "$CONFIG_PATH"
+
+docker run \
+  --rm \
+  --interactive \
+  --tty \
+  --read-only \
+  --cap-drop ALL \
+  --security-opt no-new-privileges \
+  --env CONFIG_PATH="/data/trackx.config.js" \
+  --mount type=bind,src="$CONFIG_PATH",dst=/data/trackx.config.js,readonly \
+  --mount type=bind,src="$TRACKX_DB_DIR",dst=/data/db/ \
+  "$DOCKER_IMAGE" /usr/bin/node cli.js "$@"

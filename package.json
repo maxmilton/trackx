@@ -1,0 +1,79 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "pnpm run -r build",
+    "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.{css,xcss}'",
+    "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
+    "lint:ts": "tsc --project ./tsconfig.lint.json",
+    "serve": "docker compose --file docker-compose.dev.yml up --build",
+    "setup": "./scripts/dev-setup.sh",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "@babel/core": "7.16.7",
+    "@babel/plugin-transform-modules-commonjs": "7.16.7",
+    "@babel/preset-typescript": "7.16.7",
+    "@maxmilton/stylelint-config": "0.0.9",
+    "@types/jest": "27.4.0",
+    "@types/node": "17.0.8",
+    "@typescript-eslint/eslint-plugin": "5.9.0",
+    "@typescript-eslint/parser": "5.9.0",
+    "babel-preset-solid": "1.3.1",
+    "esbuild": "0.14.10",
+    "eslint": "8.6.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "16.1.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jest": "25.3.4",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-unicorn": "40.0.0",
+    "jest": "27.4.7",
+    "jest-resolve": "27.4.6",
+    "prettier": "2.5.1",
+    "prettier-plugin-pkg": "0.11.1",
+    "prettier-plugin-sh": "0.8.1",
+    "prettier-plugin-sql": "0.4.1",
+    "stylelint": "14.2.0",
+    "stylelint-config-standard": "24.0.0",
+    "typescript": "4.5.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "packages/*/src/**/*.{cjs,js,jsx,mjs,ts,tsx}"
+    ],
+    "coverageProvider": "v8",
+    "coverageReporters": [
+      "text",
+      "lcovonly"
+    ],
+    "resolver": "./jest-resolver.js",
+    "testRegex": "(/__tests__/.*|\\.test)\\.tsx?$",
+    "transformIgnorePatterns": [
+      "node_modules/(?!solid-js.*|.*(?<=.[tj]sx))$"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "singleQuote": true,
+    "trailingComma": "all",
+    "plugins": [
+      "./node_modules/prettier-plugin-pkg",
+      "./node_modules/prettier-plugin-sh",
+      "./node_modules/prettier-plugin-sql"
+    ]
+  },
+  "stylelint": {
+    "reportInvalidScopeDisables": true,
+    "reportNeedlessDisables": true,
+    "extends": [
+      "stylelint-config-standard",
+      "@maxmilton/stylelint-config"
+    ],
+    "ignoreFiles": [
+      "**/dist/**",
+      "**/node_modules/**"
+    ]
+  }
+}

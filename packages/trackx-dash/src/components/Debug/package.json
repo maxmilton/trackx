@@ -1,0 +1,9 @@
+{
+  "name": "debug-component-no-side-effects",
+  "version": "0.0.0",
+  "main": "./Debug.tsx",
+  "dependencies": {
+    "solid-js": "*"
+  },
+  "sideEffects": false
+}

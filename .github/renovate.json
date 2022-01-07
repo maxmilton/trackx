@@ -1,0 +1,16 @@
+{
+  "extends": ["github>maxmilton/renovate-config"],
+  "packageRules": [
+    {
+      "matchPaths": [
+        "packages/*/package.json",
+        "!packages/trackx-*/package.json"
+      ],
+      "extends": ["config:js-lib", "github>maxmilton/renovate-config"]
+    },
+    {
+      "matchPaths": ["packages/trackx-*/package.json"],
+      "extends": ["config:js-app", "github>maxmilton/renovate-config"]
+    }
+  ]
+}

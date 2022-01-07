@@ -1,0 +1,18 @@
+.code-block-wrapper {
+  position: relative;
+}
+
+.button-copy {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  // TODO: Automatically reduce calc during CSS optimisation
+  padding: calc(${x.button.paddingY} / 1.1) ${x.button.paddingX};
+  opacity: 0;
+  transition: opacity ${x.tooltip.animateSpeed} ${x.tooltip.animateTiming};
+
+  .code-block-wrapper:hover > &,
+  .code-block-wrapper:focus-within > & {
+    opacity: 1;
+  }
+}

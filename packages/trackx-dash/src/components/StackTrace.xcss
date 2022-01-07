@@ -1,0 +1,58 @@
+.stack {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.frame {
+  border: 1px solid ${x.color.dark4};
+  border-bottom-width: 0;
+
+  &:first-of-type {
+    border-top-left-radius: ${x.radius};
+    border-top-right-radius: ${x.radius};
+  }
+
+  &:last-of-type {
+    border-bottom-width: 1px;
+    border-bottom-right-radius: ${x.radius};
+    border-bottom-left-radius: ${x.radius};
+  }
+}
+
+.frame-meta {
+  padding: 0.28rem 0.28rem 0.28rem 0.7rem;
+  // font-weight: 450;
+  background-color: ${x.color.dark2};
+}
+
+.button-expand {
+  flex-shrink: 0;
+  padding: 0.2rem 1rem;
+}
+
+.expanded > .icon-chevron-down {
+  transform: scaleY(-1);
+}
+
+.frame-code {
+  // FIXME: This fixes the .error-line overflow background not full-width but
+  // doesn't feel like a great solution
+  display: grid;
+
+  overflow-x: auto; // stylelint-disable-line declaration-empty-line-before
+  max-width: 100%;
+  padding-left: 0;
+  border-top: 1px solid ${x.color.dark5};
+  color: ${x.color.white};
+  text-indent: 1em;
+  white-space: pre;
+  background-color: ${x.codeBlock.backgroundColor};
+  list-style-position: inside;
+  list-style-type: decimal-leading-zero;
+}
+
+.error-line {
+  border: 2px solid ${x.color.rose3};
+  text-indent: calc(1em - 2px); // counteract the 2px border
+  background: ${x.fn.color(x.color.rose1).alpha(0.1)};
+}

@@ -1,0 +1,38 @@
+services:
+  nginx:
+    image: nginx:1
+    container_name: trackx-nginx
+    network_mode: 'host'
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+      - NET_BIND_SERVICE
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:rw,noexec,nodev,nosuid,size=56m
+      - /var/run:rw,noexec,nodev,nosuid,size=64k
+    volumes:
+      - type: bind
+        source: ./packages/trackx-api/nginx/conf
+        target: /etc/nginx/conf
+        read_only: true
+      - type: bind
+        source: ./packages/trackx-api/nginx/mime.types
+        target: /etc/nginx/mime.types
+        read_only: true
+      - type: bind
+        source: ./packages/trackx-api/nginx/dev/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+      - type: bind
+        source: ./packages/trackx-api/nginx/dev/default.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+      - type: bind
+        source: ./packages/trackx-dash/dist
+        target: /usr/share/nginx/html
+        read_only: true
+    stop_grace_period: 30s

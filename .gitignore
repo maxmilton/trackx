@@ -1,0 +1,25 @@
+*-lock.json*
+*.lock
+*.log
+*.tar.gz
+/coverage/
+dist
+node_modules
+
+# Automatically generated
+/packages/trackx-api/src/routes/__ROUTE_MANIFEST__.ts
+# SQLite extension (large binary)
+/packages/trackx-api/libsqlite_zstd.so
+# Development database
+/packages/trackx-api/trackx.db*
+
+# trackx build output (in package root dir for clean CDN URLs)
+/packages/trackx/compat.*
+/packages/trackx/default.*
+/packages/trackx/extended.*
+/packages/trackx/lite.*
+/packages/trackx/modern.*
+/packages/trackx/node.*
+
+# User configuration
+docker-compose.yml

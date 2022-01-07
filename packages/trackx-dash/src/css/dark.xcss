@@ -1,0 +1,32 @@
+.input {
+  color: ${x.color.white};
+}
+
+.button,
+.select,
+.input,
+.textarea {
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${x.color.white};
+  }
+}
+
+.card {
+  border: 1px solid ${x.color.dark2};
+}
+
+// To give emphasis when a block background colour is the same as its
+// surrounding background; for a better visual distinction e.g., .code-block
+.border-dark {
+  border: 1px solid ${x.color.dark3};
+}
+
+[data-tooltip][aria-label] {
+  &::before {
+    // -webkit-font-smoothing: auto;
+    // -moz-osx-font-smoothing: auto;
+    font-weight: ${x.textWeightMedium};
+  }
+}

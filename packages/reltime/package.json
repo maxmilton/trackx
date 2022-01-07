@@ -1,0 +1,19 @@
+{
+  "name": "@trackx/reltime",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Get a human-readable time relative to a past or future date",
+  "repository": "maxmilton/trackx",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm run prebuild && node build.mjs && pnpm run postbuild",
+    "dev": "BUILD_WATCH=1 node build.mjs",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "prebuild": "rm -rf dist"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,18 @@
+@import 'uplot/dist/uPlot.min.css';
+
+.graph {
+  // Counteract right padding of graph (prevents labels being cut off)
+  margin-right: -10px;
+}
+
+.u-select {
+  background: ${x.fn.color(x.color.light1).alpha(0.2)};
+}
+
+.u-legend {
+  font-size: 90%;
+
+  .u-value {
+    font-size: 1rem;
+  }
+}

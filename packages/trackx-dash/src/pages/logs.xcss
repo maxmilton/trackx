@@ -1,0 +1,53 @@
+.paginated-table-wrapper {
+  border: 1px solid ${x.color.dark3};
+  border-radius: ${x.radius};
+  background: ${x.color.dark1};
+}
+
+.paginated-table-nav {
+  border-bottom: 1px solid ${x.color.dark3};
+}
+
+.paginated-table {
+  width: fit-content;
+
+  & > thead {
+    border-bottom: 2px solid ${x.color.dark3};
+  }
+
+  td {
+    white-space: nowrap;
+  }
+
+  tr:nth-child(even) > td {
+    background: ${x.fn.color(x.color.dark1).mix(x.fn.color(x.color.dark2), 0.5)};
+  }
+}
+
+/* stylelint-disable no-descending-specificity */
+
+.table-denied-event,
+.table-denied-ping {
+  td:nth-child(2) {
+    font-family: ${x.fontStackMonospace};
+  }
+
+  td:nth-child(3) {
+    text-align: right;
+  }
+}
+
+.table-denied-dash {
+  td:nth-child(2) {
+    text-align: right;
+  }
+}
+
+// FIXME: Remove bellow; temp for development of event ingest pipeline
+.table-perf-event td {
+  text-align: right;
+
+  &:first-child {
+    text-align: left;
+  }
+}
