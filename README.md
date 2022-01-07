@@ -4,6 +4,9 @@
 
 # TrackX ![](./packages/trackx-dash/static/favicon-32x32.png)
 
+WIP
+
+<!--
 > ![Status](https://img.shields.io/badge/status-alpha-red) Warning: This is alpha software. Test thoroughly before using in production! Please report any bugs you find! Before version `1.0.0` there may be backwards incompatible changes.
 
 Simple JavaScript exception tracking with a real-time monitoring dashboard.
@@ -46,12 +49,13 @@ TODO: Write me:
 - Node.js Support
   - `v8.9.0` and above tested, but the node client may work in older versions too
   - Deno support is in the works (use modern client)
+-->
 
 ## Bugs
 
-Please report any bugs you encounter on the [GitHub issue tracker](https://github.com/maxmilton/trackx/issues).
+Report any bugs you encounter on the [GitHub issue tracker](https://github.com/maxmilton/trackx/issues).
 
-If you have questions or need help, start a [discussion on GitHub](https://github.com/maxmilton/trackx/discussions).
+If you have questions or need help, [ask in our community](https://github.com/maxmilton/trackx/discussions).
 
 ## Changelog
 
