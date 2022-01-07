@@ -25,4 +25,4 @@ TODO: Write me:
 
 ## Repo structure
 
-![Visualization of this repo](./assets/repo-structure-diagram.svg)
+TODO: Write me
