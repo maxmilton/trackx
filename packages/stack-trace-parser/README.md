@@ -16,4 +16,4 @@ MIT. See [LICENCE](https://github.com/MaxMilton/trackx/blob/master/LICENCE).
 
 ---
 
-© 2021 [Max Milton](https://maxmilton.com)
+© 2022 [Max Milton](https://maxmilton.com)

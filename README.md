@@ -69,4 +69,4 @@ The [alert light icon](https://github.com/twitter/twemoji/blob/master/assets/svg
 
 ---
 
-© 2021 [Max Milton](https://maxmilton.com)
+© 2022 [Max Milton](https://maxmilton.com)

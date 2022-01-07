@@ -167,4 +167,4 @@ Example:
 
 ---
 
-© 2021 [Max Milton](https://maxmilton.com)
+© 2022 [Max Milton](https://maxmilton.com)
