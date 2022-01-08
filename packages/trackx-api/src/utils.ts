@@ -1,12 +1,14 @@
+import type { Database } from 'better-sqlite3';
 import crypto from 'crypto';
 import { diary, enable } from 'diary';
 import { sprintf } from 'diary/utils';
+import fs from 'fs';
 import type { IncomingMessage, ServerResponse } from 'http';
 import { dim, red, yellow } from 'kleur/colors';
 import { customAlphabet, nanoid } from 'nanoid';
 import type { Server, Socket } from 'net';
 import path from 'path';
-import type { Request } from 'polka';
+import type { Polka, Request } from 'polka';
 import type { Cookie } from 'tough-cookie';
 import { sendEvent } from 'trackx/node';
 import { EventType, OnErrorHandler } from 'trackx/types';
@@ -322,3 +324,35 @@ export const getServerStop = (server: Server) => {
     });
   });
 };
+
+function fileExists(filepath: string) {
+  try {
+    return fs.statSync(filepath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+// TODO: Decide if we want to keep support for plugins. At the moment it's only
+// used for trackx-demo. If we keep then document the interface.
+export function loadPlugin(filepath: string, app: Polka, db: Database): void {
+  const pluginPath = path.resolve(__dirname, filepath);
+
+  if (fileExists(pluginPath)) {
+    logger.debug('Loading plugin...');
+
+    try {
+      // eslint-disable-next-line
+      require(pluginPath).default({
+        app,
+        db,
+        config,
+        logger,
+      });
+    } catch (error) {
+      logger.error(error);
+    }
+  } else {
+    logger.debug('No plugin found');
+  }
+}

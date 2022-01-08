@@ -16,9 +16,7 @@
 // data type conversion happens
 
 import { json, text } from '@polka/parse';
-import fs from 'fs';
 import http from 'http';
-import path from 'path';
 import polka from 'polka';
 import * as trackx from 'trackx/node';
 import { db } from './db';
@@ -27,7 +25,11 @@ import { raw } from './parser';
 import { session } from './routes/dash/sess';
 import { routes } from './routes/__ROUTE_MANIFEST__';
 import {
-  config, getServerStop, handleError, logger,
+  config,
+  getServerStop,
+  handleError,
+  loadPlugin,
+  logger,
 } from './utils';
 
 const HOST = process.env.HOST || config.HOST;
@@ -108,6 +110,8 @@ for (const route of routes) {
   }
 }
 
+loadPlugin('plugin.js', app, db);
+
 app.listen(PORT, HOST, () => {
   logger.info(`Running on ${origin}`);
 
@@ -115,42 +119,3 @@ app.listen(PORT, HOST, () => {
   // actual server is running first to accept the request!
   trackx.ping();
 });
-
-// Plugin loader
-
-// TODO: Decide if we want to keep support for plugins. At the moment it's only
-// used for trackx-demo. If we keep then document the interface + provide types.
-
-// export type Plugin = (context: {
-//   app: typeof app;
-//   db: typeof db;
-//   config: typeof config;
-//   logger: typeof logger;
-// }) => void;
-
-function loadPlugin(filepath: string) {
-  try {
-    // eslint-disable-next-line
-    const plugin = require(filepath).default;
-    if (typeof plugin === 'function') {
-      plugin({
-        app,
-        db,
-        config,
-        logger,
-      });
-    }
-  } catch (error) {
-    logger.error(error);
-  }
-}
-
-try {
-  const pluginPath = path.join(__dirname, 'plugin.js');
-  fs.statSync(pluginPath);
-
-  logger.debug('Loading plugin...');
-  loadPlugin(pluginPath);
-} catch (error) {
-  logger.debug('No plugin found', error);
-}

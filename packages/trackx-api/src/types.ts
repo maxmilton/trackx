@@ -1,3 +1,6 @@
+import type { Database } from 'better-sqlite3';
+import type { Diary } from 'diary';
+import type { Polka } from 'polka';
 import type { EventMeta, EventType } from 'trackx/types';
 
 export interface TrackXAPIConfig {
@@ -330,3 +333,12 @@ export interface Logs {
   // FIXME: Remove; temp for development of event ingest pipeline
   perf_event: EventPerfLog[];
 }
+
+// TODO: Remove if we decide to remove plugin support completely
+/** TrackX API plugin. */
+export type Plugin = (context: {
+  app: Polka;
+  db: Database;
+  config: TrackXAPIConfig;
+  logger: Diary;
+}) => void;
