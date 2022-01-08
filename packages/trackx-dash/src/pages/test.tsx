@@ -413,10 +413,17 @@ export const TestPage: Component = () => {
         <button
           class="button js-single"
           onClick={() => {
-            fetch('/fake-endpoint');
+            fetch('http://example.com/404');
           }}
         >
-          Uunhandled fetch CSP error
+          CSP connect-src violation
+        </button>
+        <button
+          class="button js-single"
+          // @ts-expect-error - Intentional
+          onclick="alert('test')"
+        >
+          CSP script-src violation
         </button>
         <button
           class="button js-single"
