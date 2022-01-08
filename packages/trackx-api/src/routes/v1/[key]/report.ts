@@ -20,7 +20,6 @@ import {
   updateSessionGraphStmt,
   updateSessionStmt,
 } from '../../../db';
-import type { RawBodyRequest } from '../../../parser';
 import type {
   EventInternal,
   IssueInternal,
@@ -40,22 +39,21 @@ import {
   UID_SHORT_LENGTH,
 } from '../../../utils';
 
-interface IncomingReportData {
-  name: string;
-  meta: {
-    body: any;
-    headers: any;
-    params: any;
-  };
-}
+const VALID_MIME_TYPES = [
+  'application/csp-report',
+  'application/expect-ct-report+json',
+  'application/json',
+  'application/reports+json',
+];
 
 function addReport(
   key: string,
   origin: string,
   ip: string,
   ua: string,
-  contentType: string,
-  payload: IncomingReportData,
+  mimeType: string,
+  // body: Record<string, unknown>,
+  body: object,
 ) {
   const project = getProjectByKeyStmt.get(key) as ProjectInternal | undefined;
 
@@ -67,37 +65,66 @@ function addReport(
     throw new AppError('Invalid origin', Status.FORBIDDEN);
   }
 
-  // FIXME: Extract only the relevant data from the payload
-  //  ↳ REF: https://report-uri.com
+  // FIXME: Extract only the relevant data from the payload and discard the
+  // rest, especially that which may contain PII e.g., user-agent
 
   // TODO: Regardless of report type, validate the data before saving to DB
 
+  // XXX: REF: https://report-uri.com
   // XXX: REF: https://web.dev/reporting-api/
 
+  let type = EventType.UnknownReport;
+  let uri: string | undefined;
+  let name: string | undefined;
+  let message: string | undefined;
+
   // TODO: Extract the relevant data points e.g., name, message, uri
-  switch (contentType) {
-    // Reporting API v1
+  switch (mimeType) {
+    // Reporting API v0 and v1
     case 'application/reports+json':
-      // - Single report per payload
-      // - May be one of many different types of report
-      // - Data structure differs depending on report type
+      if (Array.isArray(body)) {
+        // FIXME: Handle multiple reports in a single payload
+        // FIXME:!
+      } else {
+        // @ts-expect-error - FIXME:!
+        uri = body['document-uri'] || body.document_uri;
+      }
       break;
-    // CSP Level 2 Reports
+    // Content Security Policy Level 2 and 3 Reports
+    // https://www.w3.org/TR/CSP2/
+    // https://www.w3.org/TR/CSP3/
     case 'application/csp-report':
-      // - Can contain multiple reports per payload
-      // - Standardised report data structure
+      // @ts-expect-error - FIXME:!
+      if (body['csp-report']) {
+        type = EventType.CSPReport;
+        // @ts-expect-error - FIXME:!
+        // eslint-disable-next-line no-param-reassign
+        body = body['csp-report'];
+        // @ts-expect-error - FIXME:!
+        uri = body['document-uri'];
+        name = 'CSP Violation';
+      } else {
+        throw new AppError('Invalid report', Status.BAD_REQUEST);
+      }
       break;
     // Certificate Transparency Reports
+    // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
     case 'application/expect-ct-report+json':
-      // TODO: Need more research!
-      break;
-    // TODO: Apparenently some older browsers use 'application/json' for CSP reports
-    case 'application/json':
+      // @ts-expect-error - FIXME:!
+      if (body['expect-ct-report']) {
+        type = EventType.CTReport;
+        // @ts-expect-error - FIXME:!
+        // eslint-disable-next-line no-param-reassign
+        body = body['expect-ct-report'];
+        // @ts-expect-error - FIXME:!
+        uri = `${body.scheme || 'https'}://${body.host}:${body.port}`;
+        name = 'Certificate Transparency Report';
+      } else {
+        throw new AppError('Invalid report', Status.BAD_REQUEST);
+      }
       break;
     default:
-      // TODO: Need to determine if there's an actual report in the body or
-      // else reject the request
-      break;
+      throw new AppError('Invalid report', Status.BAD_REQUEST);
   }
 
   const parser = uaParser.setUA(ua);
@@ -109,25 +136,21 @@ function addReport(
     // @ts-expect-error - set later
     issue_id: undefined,
     ts: Date.now(),
-    // FIXME: Can one payload contain multiple reports? Will we need to multiplex?
-    type: payload.meta.body?.['csp-report']
-      ? EventType.CSPReport
-      : EventType.UnknownReport,
+    type,
     data: {
-      name: payload.name,
-      message: undefined,
-      uri: undefined,
+      name,
+      message,
+      uri,
       os: uaOs.name,
       os_v: uaOs.version,
       agent: uaBrowser.name,
       agent_v: uaBrowser.version,
-      meta: payload.meta,
+      // body_raw: body,
+      meta: {
+        body,
+      },
     },
   };
-
-  // TODO: TEMP; remove, improve, or clean up
-  const uri = payload.meta.body?.['csp-report']?.['document-uri'];
-  eventData.data.uri = uri;
 
   const payloadBytes = byteSize(eventData);
 
@@ -138,9 +161,9 @@ function addReport(
   }
 
   // FIXME:!
-  const fingerprint = `${eventData.project_id}:${eventData.type}:${
-    eventData.data.name
-  }:${eventData.data.message}:${JSON.stringify(payload.meta.body)}`;
+  const fingerprint = `${eventData.project_id}:${
+    eventData.type
+  }:${JSON.stringify(body)}`;
   const fingerprintHash = hash(Buffer.from(fingerprint));
 
   const existingIssue = matchingIssueHashStmt.get(fingerprintHash);
@@ -237,7 +260,7 @@ function addReport(
 //   - Feature Policy violations
 //   - Network Error Logging (NEL)
 //   - Crash reports
-export const post: Middleware = (req: RawBodyRequest, res, next) => {
+export const post: Middleware = (req, res, next) => {
   try {
     // eslint-disable-next-line prefer-destructuring
     const origin = req.headers.origin;
@@ -253,25 +276,13 @@ export const post: Middleware = (req: RawBodyRequest, res, next) => {
       throw new AppError('Invalid key', Status.FORBIDDEN);
     }
 
-    let body = req.rawbody;
-
-    if (!body || typeof body !== 'string') {
-      throw new AppError('Invalid body', Status.BAD_REQUEST); // UNPROCESSABLE_ENTITY
-    } else {
-      try {
-        body = JSON.parse(body);
-      } catch {
-        /* No op */
-      }
-    }
-
     const ip = getIpAddress(req);
 
     if (!ip || typeof ip !== 'string' || !isIP(ip)) {
       throw new AppError('Invalid IP', Status.BAD_REQUEST);
     }
 
-    const ua = req.headers['sec-ch-ua'] || req.headers['user-agent'];
+    const ua = req.headers['user-agent'];
 
     if (
       !ua
@@ -283,28 +294,35 @@ export const post: Middleware = (req: RawBodyRequest, res, next) => {
     }
 
     const contentType = req.headers['content-type'];
+    let mimeType;
 
     if (!contentType || typeof contentType !== 'string') {
       throw new AppError('Invalid content type', Status.BAD_REQUEST);
+    } else {
+      // eslint-disable-next-line prefer-destructuring
+      mimeType = contentType.split(';')[0];
+
+      if (!VALID_MIME_TYPES.includes(mimeType)) {
+        throw new AppError('Invalid content type', Status.UNPROCESSABLE_ENTITY);
+      }
     }
 
-    // XXX: While we're getting a grasp for how browser reports work, we're
-    // simply saving a bunch of data for analysis
+    // Body added by the raw parser in packages/trackx-api/src/parser.ts
+    let body = req.body as unknown;
 
-    addReport(key, origin, ip, ua, contentType, {
-      name: 'Browser Report', // FIXME:!
-      meta: {
-        // FIXME: REMOVE; FOR EARLY TESTING ONLY, may contain PII so this
-        // must not be included in public releases!!
-        body,
-        // FIXME: REMOVE; FOR EARLY TESTING ONLY, may contain PII so this
-        // must not be included in public releases!!
-        headers: req.headers,
-        // FIXME: REMOVE; FOR EARLY TESTING ONLY, may contain PII so this
-        // must not be included in public releases!!
-        params: req.query,
-      },
-    });
+    if (!body || typeof body !== 'string') {
+      throw new AppError('Invalid body', Status.BAD_REQUEST);
+    }
+    try {
+      body = JSON.parse(body);
+    } catch {
+      throw new AppError('Invalid body', Status.BAD_REQUEST);
+    }
+    if (typeof body !== 'object' || body === null) {
+      throw new AppError('Invalid body', Status.BAD_REQUEST);
+    }
+
+    addReport(key, origin, ip, ua, mimeType, body);
 
     res.writeHead(Status.OK, {
       'Cache-Control': 'no-cache, no-store, must-revalidate',

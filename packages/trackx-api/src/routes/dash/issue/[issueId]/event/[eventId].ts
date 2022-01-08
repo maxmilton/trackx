@@ -10,6 +10,8 @@ import {
   Status,
 } from '../../../../../utils';
 
+const VALID_DIR_VALUES = ['first', 'prev', 'next', 'last'];
+
 const getIssueEventFirstStmt = db.prepare(`
   SELECT id, ts, type, data, 1 AS is_first
   FROM event
@@ -105,8 +107,6 @@ function getIssueEvent(
 
   return event;
 }
-
-export const VALID_DIR_VALUES = ['first', 'prev', 'next', 'last'];
 
 export const get: Middleware = (req, res, next) => {
   try {

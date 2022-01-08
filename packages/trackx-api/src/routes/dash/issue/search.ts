@@ -424,7 +424,7 @@ export const get: Middleware = (req, res, next) => {
 
     if (limit !== undefined) {
       if (typeof limit !== 'string' || limit.length > 4) {
-        throw new AppError('Invalid limit', Status.UNPROCESSABLE_ENTITY);
+        throw new AppError('Invalid limit', Status.BAD_REQUEST);
       }
       limitValue = +limit;
       if (
@@ -440,7 +440,7 @@ export const get: Middleware = (req, res, next) => {
 
     if (offset !== undefined) {
       if (typeof offset !== 'string' || offset.length > 8) {
-        throw new AppError('Invalid offset', Status.UNPROCESSABLE_ENTITY);
+        throw new AppError('Invalid offset', Status.BAD_REQUEST);
       }
       offsetValue = +offset;
       if (!Number.isInteger(offsetValue) || offsetValue < 0) {

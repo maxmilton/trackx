@@ -15,6 +15,9 @@
 // default values are set (especially for pagination; offset, limit), where DB
 // data type conversion happens
 
+// TODO: Should the incoming request max body size be increased? Currently 100kb
+// set in https://github.com/lukeed/polka/blob/next/packages/parse/index.js
+
 import { json, text } from '@polka/parse';
 import http from 'http';
 import polka from 'polka';
@@ -53,9 +56,9 @@ process.on('exit', () => {
   logger.info('Server stopped');
 });
 
-const handleExit = (cb: () => void) => {
+const handleExit = (callback: () => void) => {
   logger.info('Stopping...');
-  stop().catch(logger.fatal).finally(cb);
+  stop().catch(logger.fatal).finally(callback);
 };
 
 process.on('SIGHUP', () => handleExit(() => process.exit(128 + 1)));
@@ -87,14 +90,14 @@ for (const route of routes) {
       switch (method) {
         case 'post':
         case 'put':
-          if (route.path === '/v1/:key/report') {
-            app[method](route.path, raw, handler);
-          } else if (
+          if (
             process.env.NODE_ENV !== 'production'
             && route.path === '/dash/query'
           ) {
             const limit = 300 * 1024 * 1024; // 300MiB
             app[method](route.path, text({ limit }), handler);
+          } else if (route.path === '/v1/:key/report') {
+            app[method](route.path, raw, handler);
           } else {
             app[method](route.path, json(), handler);
           }
