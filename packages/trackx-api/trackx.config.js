@@ -34,5 +34,6 @@ module.exports = {
   NET_MAX_FILE_BYTES: 5_242_880, // 5 MiB
   NET_RETRY: 2,
   NET_TIMEOUT: 30_000, // 30 seconds
-  SESSION_TTL: 2_400_000, // 40 minutes; 60m * 40s * 1000ms
+  SCHEDULED_JOB_INTERVAL: 21_600_000, // 6 hours; 6h * 60m * 60s * 1000ms
+  SESSION_TTL: 2_400_000, // 40 minutes; 40m * 60s * 1000ms
 };

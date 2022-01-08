@@ -48,8 +48,8 @@ if (config.DB_COMPRESSION) {
   db.loadExtension(config.DB_ZSTD_PATH!);
 }
 
-function scheduledTasks() {
-  logger.info('Running scheduled tasks...');
+export function scheduledJob(): void {
+  logger.info('Running scheduled job...');
 
   // https://www.sqlite.org/lang_analyze.html#req
   db.pragma('analysis_limit = 400');
@@ -59,9 +59,11 @@ function scheduledTasks() {
   deleteOldDailySalt();
 }
 
-setInterval(() => {
-  scheduledTasks();
-}, 21_600_000); // 6 hours = 1000ms * 60s * 60m * 6h
+if (config.SCHEDULED_JOB_INTERVAL > 0) {
+  setInterval(() => {
+    scheduledJob();
+  }, config.SCHEDULED_JOB_INTERVAL);
+}
 
 const addMetaStmt = db.prepare('INSERT INTO meta(k, v) VALUES (?, ?)');
 const addMetaSafeStmt = db.prepare(

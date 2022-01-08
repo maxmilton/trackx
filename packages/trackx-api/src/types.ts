@@ -132,7 +132,20 @@ export interface TrackXAPIConfig {
    * fetching remote source maps to enhance stack traces.
    */
   readonly NET_TIMEOUT: number;
-  /** Session time to live in milliseconds. Sessions will last this long. */
+  /**
+   * Time in milliseconds to wait between runs of the scheduled job. Setting
+   * this to `0` disables running the scheduled job.
+   *
+   * The scheduled job is used primarily to optimize the database. The
+   * recommended value is between 1 to 24 hours (in milliseconds).
+   */
+  readonly SCHEDULED_JOB_INTERVAL: number;
+  /**
+   * Session time to live in milliseconds.
+   *
+   * Note that there is no automatic session token renewal; once a session
+   * token expires, the user must login again.
+   */
   readonly SESSION_TTL: number;
 }
 

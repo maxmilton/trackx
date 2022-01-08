@@ -20,7 +20,8 @@ export const get: Middleware = (req, res, next) => {
 
         // Deleting cookies works by expiring them; we use a date far in the
         // past so even user machines with the time set incorrectly will likely
-        // expire the cookie
+        // expire the cookie. This is a fallback for browsers which don't
+        // support the Clear-Site-Data header.
         cookie.setExpires(unixEpoch);
 
         send(res, Status.OK, undefined, {

@@ -48,6 +48,7 @@ const CONFIG_SCHEMA = [
   ['NET_MAX_FILE_BYTES', ['Number']],
   ['NET_RETRY', ['Number']],
   ['NET_TIMEOUT', ['Number']],
+  ['SCHEDULED_JOB_INTERVAL', ['Number']],
   ['SESSION_TTL', ['Number']],
 ] as const;
 const configExpectedKeys: string[] = CONFIG_SCHEMA.map((item) => item[0]);
