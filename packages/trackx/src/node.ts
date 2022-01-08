@@ -172,7 +172,7 @@ export function setup(endpoint: string, origin?: string): void;
 export function setup(
   endpoint: string,
   onErrorOrOrigin?: OnErrorHandler | string,
-  origin = 'null',
+  origin = 'node',
 ): void {
   if (typeof onErrorOrOrigin === 'string') {
     // eslint-disable-next-line no-param-reassign
