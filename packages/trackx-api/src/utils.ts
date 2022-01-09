@@ -103,7 +103,7 @@ export const logger = diary('', (event) => {
         message: [event.message, ...event.extra],
       },
       {
-        origin: 'logger',
+        via: 'logger',
         level: event.level,
         status: (event.error as AppError)?.status,
         details: (event.error as AppError)?.details,
@@ -148,7 +148,7 @@ export const handleError: OnErrorHandler = (payload, reason) => {
 
   if (
     payload.type === EventType.Programmatic
-    && payload.meta.origin === 'logger'
+    && payload.meta.via === 'logger'
   ) {
     // eslint-disable-next-line no-param-reassign
     payload.type = EventType.CustomLogger;
