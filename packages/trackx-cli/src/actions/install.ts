@@ -146,7 +146,7 @@ INSERT INTO project (id, key, origin, name, scrape, tags) VALUES
 
   // Mark the install date in a time stamp
   db.prepare(
-    "INSERT INTO meta(k, v) VALUES('install_ts', cast(strftime('%s', 'now') as int)) ON CONFLICT(k) DO NOTHING",
+    "INSERT INTO meta(k, v) VALUES('install_ts', datetime('now')) ON CONFLICT(k) DO NOTHING",
   ).run();
 
   logger.info('Installation finished!');
