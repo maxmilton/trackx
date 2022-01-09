@@ -9,7 +9,7 @@ module.exports = {
   DB_ZSTD_PATH: 'db/libsqlite_zstd.so',
   DB_INIT_SQL_PATH: 'db/master.sql',
   DB_COMPRESSION: 0,
-  REPORT_API_ENDPOINT: 'http://127.0.0.1:8080/v1/cuyk9nmavqs',
+  REPORT_API_ENDPOINT: 'http://127.0.0.1:8001/v1/cuyk9nmavqs',
   DASH_ORIGIN: 'https://dash.trackx.app',
 
   MAX_EVENT_BYTES: 1048576, // 1 MiB
