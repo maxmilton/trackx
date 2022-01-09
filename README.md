@@ -4,11 +4,11 @@
 
 # TrackX ![](./packages/trackx-dash/static/favicon-32x32.png)
 
-Simple, lightweight, and privacy-friendly error tracking. A self-hosted platform to capture JavaScript errors in web browsers, Node.js, and other runtime environments, capture browser reports, and view the data on a real-time monitoring dashboard.
+Simple, lightweight, and privacy-friendly error tracking. A self-hosted platform to capture JavaScript errors in web browsers, Node.js, and other runtime environments, capture browser reports, and analyse the data on a real-time monitoring dashboard.
 
 Try it for yourself at <https://demo.trackx.app>.
 
-> **<abbr title="Work in progress">WIP</abbr>**; most features already work, however, not everything is 100%. Namely, the documentation is unfinished and capturing browser reports (CSP violations, NEL reports, etc.) is still somewhat experimental.
+> **WIP**; Most features already work, however, not everything is 100%. Namely, the documentation is unfinished and capturing browser reports (CSP violations, NEL reports, etc.) is still experimental.
 
 ## Usage
 
