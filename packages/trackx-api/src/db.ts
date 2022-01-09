@@ -48,23 +48,6 @@ if (config.DB_COMPRESSION) {
   db.loadExtension(config.DB_ZSTD_PATH!);
 }
 
-export function scheduledJob(): void {
-  logger.info('Running scheduled job...');
-
-  // https://www.sqlite.org/lang_analyze.html#req
-  db.pragma('analysis_limit = 400');
-  db.pragma('optimize');
-
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  deleteOldDailySalt();
-}
-
-if (config.SCHEDULED_JOB_INTERVAL > 0) {
-  setInterval(() => {
-    scheduledJob();
-  }, config.SCHEDULED_JOB_INTERVAL);
-}
-
 const addMetaStmt = db.prepare('INSERT INTO meta(k, v) VALUES (?, ?)');
 const addMetaSafeStmt = db.prepare(
   'INSERT OR IGNORE INTO meta(k, v) VALUES (?, ?)',
@@ -152,9 +135,10 @@ export function getDailySalt(): string {
   setDailySaltStmt.run(newSalt);
   return newSalt;
 }
-export function deleteOldDailySalt(): void {
-  deleteOldDailySaltStmt.run();
-}
+
+const setScheduledJobLastRunStmt = db.prepare(
+  "INSERT OR REPLACE INTO meta(k, v) VALUES('scheduled_job_last_run', datetime('now'))",
+);
 
 export const existingSessionStmt = db.prepare(
   'SELECT e, ts FROM session WHERE id = ? AND project_id = ?',
@@ -260,3 +244,24 @@ export const updateIssueStmt = db.prepare(`
     done = 0
   WHERE id = ?
 `);
+
+function scheduledJob(): void {
+  logger.info('Running scheduled job...');
+
+  try {
+    // https://www.sqlite.org/lang_analyze.html#req
+    db.pragma('analysis_limit = 400');
+    db.pragma('optimize');
+
+    deleteOldDailySaltStmt.run();
+    setScheduledJobLastRunStmt.run();
+  } catch (error) {
+    logger.error(error);
+  }
+}
+
+if (config.SCHEDULED_JOB_INTERVAL > 0) {
+  setInterval(() => {
+    scheduledJob();
+  }, config.SCHEDULED_JOB_INTERVAL);
+}
