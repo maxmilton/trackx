@@ -413,7 +413,7 @@ export const TestPage: Component = () => {
         <button
           class="button js-single"
           onClick={() => {
-            fetch('http://example.com/404');
+            fetch('http://example.com/404').catch(console.warn);
           }}
         >
           CSP connect-src violation
