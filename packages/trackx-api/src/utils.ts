@@ -69,6 +69,9 @@ export const config: TrackXAPIConfig = (() => {
 
   return {
     ...rawConfig,
+    // TODO: Should all config values be optionally set from env variables?
+    HOST: process.env.HOST || rawConfig.HOST,
+    PORT: Number(process.env.PORT) || rawConfig.PORT,
     DB_PATH: path.resolve(rootDir, rawConfig.DB_PATH),
     DB_ZSTD_PATH: rawConfig.DB_ZSTD_PATH
       ? path.resolve(rootDir, rawConfig.DB_ZSTD_PATH)

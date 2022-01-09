@@ -35,9 +35,7 @@ import {
   logger,
 } from './utils';
 
-const HOST = process.env.HOST || config.HOST;
-const PORT = Number(process.env.PORT) || config.PORT;
-const origin = `http://${HOST}:${PORT}`;
+const origin = `http://${config.HOST}:${config.PORT}`;
 
 trackx.setup(config.REPORT_API_ENDPOINT, handleError, origin);
 trackx.meta.release = process.env.APP_RELEASE;
@@ -115,7 +113,7 @@ for (const route of routes) {
 
 loadPlugin('plugin.js', app, db);
 
-app.listen(PORT, HOST, () => {
+app.listen(config.PORT, config.HOST, () => {
   logger.info(`Running on ${origin}`);
 
   // Normally ping() can be called after setup() but we need to wait until the
