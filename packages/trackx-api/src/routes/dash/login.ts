@@ -19,18 +19,18 @@ export const options: Middleware = (_req, res) => {
   res.end();
 };
 
-function hashPassword(password: string, salt: string) {
-  return crypto.createHmac('sha512', salt).update(password).digest('base64');
+function verify(password: string, hash: string) {
+  return new Promise((resolve, reject) => {
+    const [salt, key] = hash.split(':');
+    const keyBuffer = Buffer.from(key, 'base64');
+    crypto.scrypt(password, salt, 64, { cost: 2048 }, (err, derivedKey) => {
+      if (err) reject(err);
+      resolve(crypto.timingSafeEqual(keyBuffer, derivedKey));
+    });
+  });
 }
 
-function comparePassword(
-  password: string,
-  [salt, hash]: readonly [string, string],
-) {
-  return hashPassword(password, salt) === hash;
-}
-
-export const post: Middleware = (req, res, next) => {
+export const post: Middleware = async (req, res, next) => {
   try {
     const query = req.query as ReqQueryData;
 
@@ -55,7 +55,7 @@ export const post: Middleware = (req, res, next) => {
       || !RE_EMAIL.test(email)
       // eslint-disable-next-line no-cond-assign
       || !((userid = email.toLowerCase()) in config.USERS)
-      || !comparePassword(password, config.USERS[userid])
+      || !(await verify(password, config.USERS[userid]))
     ) {
       throw new AppError('Invalid email or password.', Status.FORBIDDEN);
     }

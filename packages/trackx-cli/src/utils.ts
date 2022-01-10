@@ -2,6 +2,7 @@ import {
   blue, bold, dim, red, yellow,
 } from 'kleur/colors';
 import path from 'path';
+import { createInterface } from 'readline';
 import type { TrackXAPIConfig } from '../../trackx-api/src/types';
 
 export const logger = {
@@ -159,4 +160,38 @@ export function getConfig(
       ? path.resolve(rootDir, rawConfig.DB_INIT_SQL_PATH)
       : undefined,
   };
+}
+
+/** Read user input from stdin */
+export function read(prompt: string, mask?: boolean): Promise<string> {
+  return new Promise((resolve) => {
+    const output = process.stdout;
+    const rl = createInterface({
+      input: process.stdin,
+      output,
+      historySize: 0,
+    });
+
+    rl.question(prompt, (answer) => {
+      rl.close();
+      resolve(answer);
+    });
+
+    if (mask) {
+      // @ts-expect-error - Private internal API (undocumented)
+      // eslint-disable-next-line no-underscore-dangle
+      rl._writeToOutput = (char: string) => {
+        output.write(['\n', '\r\n', '\r'].includes(char) ? char : '*');
+      };
+    }
+  });
+}
+
+export function validEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+export function containsControlChar(str: string): boolean {
+  // eslint-disable-next-line no-control-regex
+  return /[\u0000-\u001F\u007F]/.test(str);
 }
