@@ -40,10 +40,9 @@ import {
 } from '../../../utils';
 
 const VALID_MIME_TYPES = [
+  'application/reports+json',
   'application/csp-report',
   'application/expect-ct-report+json',
-  'application/json',
-  'application/reports+json',
 ];
 
 function addReport(
@@ -84,6 +83,15 @@ function addReport(
     case 'application/reports+json':
       if (Array.isArray(body)) {
         // FIXME: Handle multiple reports in a single payload
+        // FIXME: Detect type of report
+        //  ↳ https://web.dev/reporting-api/#use-cases-and-report-types
+        //  ↳ CSP violation (Level 3 only)
+        //  ↳ COOP violation -- https://web.dev/coop-coep/#example-coop-report
+        //  ↳ COEP violation -- https://web.dev/coop-coep/#example-coep-report
+        //  ↳ Document Policy violation
+        //  ↳ Deprecation warning
+        //  ↳ Intervention
+        //  ↳ Crash
         // FIXME:!
       } else {
         // @ts-expect-error - FIXME:!
