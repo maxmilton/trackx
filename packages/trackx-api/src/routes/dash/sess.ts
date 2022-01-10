@@ -24,7 +24,9 @@ export const session: Middleware = (req: SessionRequest, _res, next) => {
     const { origin, referer } = req.headers;
 
     // Validate origin to mitigate simple CSRF attacks
-    // No origin sent for "safe" fetches (GET, HEAD) so fall back to referrer
+    // Fallback to origin of referer if an origin header was not sent -- for
+    // compatibility with old browsers, "safe" fetch methods (GET, HEAD), and
+    // "no-cors" mode fetch
     if (
       (!origin && !referer)
       || (origin || uriToOrigin(referer!)) !== config.DASH_ORIGIN

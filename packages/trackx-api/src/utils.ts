@@ -161,7 +161,7 @@ export const handleError: OnErrorHandler = (payload, reason) => {
     // eslint-disable-next-line no-param-reassign
     payload.meta.status ??= (reason as AppError).status;
     // eslint-disable-next-line no-param-reassign
-    payload.meta.code ??= (reason as Record<string, any>).code;
+    payload.meta.code ??= (reason as Record<string, unknown>).code;
     // eslint-disable-next-line no-param-reassign
     payload.meta.details ??= (reason as AppError).details;
   }
