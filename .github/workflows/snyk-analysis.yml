@@ -22,12 +22,12 @@ jobs:
       - run: pnpm run build
       - run: docker build -t ci/trackx-api packages/trackx-api
       - name: Snyk check for node vulnerabilities
-        uses: snyk/actions/node@14818c4695ecc4045f33c9cee9e795a788711ca4
+        uses: snyk/actions/node@d1ee3d73c6f24375d0efc597c74570b0cd08a323
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Snyk check for docker vulnerabilities
-        uses: snyk/actions/docker@14818c4695ecc4045f33c9cee9e795a788711ca4
+        uses: snyk/actions/docker@d1ee3d73c6f24375d0efc597c74570b0cd08a323
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
