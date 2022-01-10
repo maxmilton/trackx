@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@babel/core': 7.16.7
-      '@babel/plugin-transform-modules-commonjs': 7.16.7
+      '@babel/plugin-transform-modules-commonjs': 7.16.8
       '@babel/preset-typescript': 7.16.7
       '@maxmilton/stylelint-config': 0.0.9
       '@types/jest': 27.4.0
@@ -32,7 +32,7 @@ importers:
       typescript: 4.5.4
     devDependencies:
       '@babel/core': 7.16.7
-      '@babel/plugin-transform-modules-commonjs': 7.16.7_@babel+core@7.16.7
+      '@babel/plugin-transform-modules-commonjs': 7.16.8_@babel+core@7.16.7
       '@babel/preset-typescript': 7.16.7_@babel+core@7.16.7
       '@maxmilton/stylelint-config': 0.0.9_stylelint@14.2.0
       '@types/jest': 27.4.0
@@ -620,8 +620,8 @@ packages:
       '@babel/helper-plugin-utils': 7.16.7
     dev: true
 
-  /@babel/plugin-transform-modules-commonjs/7.16.7_@babel+core@7.16.7:
-    resolution: {integrity: sha512-h2RP2kE7He1ZWKyAlanMZrAbdv+Acw1pA8dQZhE025WJZE2z0xzFADAinXA9fxd5bn7JnM+SdOGcndGx1ARs9w==}
+  /@babel/plugin-transform-modules-commonjs/7.16.8_@babel+core@7.16.7:
+    resolution: {integrity: sha512-oflKPvsLT2+uKQopesJt3ApiaIS2HW+hzHFcwRNtyDGieAeC/dIHZX8buJQ2J2X1rxGPy4eRcUijm3qcSPjYcA==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
