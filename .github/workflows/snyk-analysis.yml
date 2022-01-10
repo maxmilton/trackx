@@ -19,7 +19,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: ./scripts/build --no-docker
+      - run: pnpm run build
       - run: docker build -t ci/trackx-api packages/trackx-api
       - name: Snyk check for node vulnerabilities
         uses: snyk/actions/node@14818c4695ecc4045f33c9cee9e795a788711ca4
