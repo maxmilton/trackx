@@ -7,11 +7,10 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
 /** @type {import('./src/types').TrackXAPIConfig} */
 module.exports = {
   USERS: {
-    // email = dev@user + password = development
-    'dev@user': [
-      'zZ1KP0fb',
-      'JpbCaPKt2MPKtWJKjstbdhVtW47iWzpXTtDC6/0sbtOB5wsvacfe+kixyOwXpdZR41chslk2KtPyEUTz2XrWZw==',
-    ],
+    // email = dev@user
+    // password = development
+    'dev@user':
+      'Q9hepNsrx4hKD9IkaAEssw==:pt3AEhfEzXUVSq+a2imNpFEEvERr6uLabxGtUqyiq5krNZ050Bl1fXmsi3UGGOxj6sgwEouO4Agw7L+wyw5fJA==',
   },
 
   ROOT_DIR: __dirname,

@@ -8,11 +8,11 @@ export interface TrackXAPIConfig {
    * User accounts.
    *
    * Emails are case-insensitive at login but MUST BE lowercase here. Generate
-   * a user salt and password hash with the CLI tool. For more details run the
-   * CLI with `trackx adduser --help`.
+   * a user password hash with the CLI tool. For more details run the CLI tool
+   * command `trackx adduser --help`.
    */
   readonly USERS: {
-    readonly [email: string]: readonly [salt: string, passwordHash: string];
+    readonly [email: string]: string;
   };
 
   /**
