@@ -69,7 +69,7 @@ const ProjectInstallPage: RouteComponent = (props) => {
                 <a
                   href="https://maxmilton.github.io/trackx/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener"
                 >
                   see the trackx documentation
                 </a>
@@ -128,6 +128,7 @@ export const { sendEvent } = trackx;`}
                     <a
                       href={`${config.DOCS_URL}/#/client/tips.md#build-process`}
                       target="_blank"
+                      rel="noopener"
                     >
                       docs for build process tips
                     </a>
@@ -192,6 +193,7 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                 <a
                   href={`${config.DOCS_URL}/#/client/overview.md#feature-comparison`}
                   target="_blank"
+                  rel="noopener"
                 >
                   docs for client features comparison
                 </a>{' '}
@@ -423,6 +425,7 @@ Header set Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                     <a
                       href={`${config.DOCS_URL}/#/client/browser-reports.md`}
                       target="_blank"
+                      rel="noopener"
                     >
                       See the docs page
                     </a>{' '}

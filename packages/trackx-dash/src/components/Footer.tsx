@@ -8,7 +8,7 @@ export const Footer: Component = () => (
       href="https://maxmilton.com"
       class="normal muted"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener"
     >
       Max Milton
     </a>{' '}
@@ -16,7 +16,7 @@ export const Footer: Component = () => (
     <a
       href="https://github.com/maxmilton/trackx/issues"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener"
     >
       report bug
     </a>
