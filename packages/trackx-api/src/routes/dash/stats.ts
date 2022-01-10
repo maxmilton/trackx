@@ -1,5 +1,5 @@
 import send from '@polka/send';
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import fs from 'fs';
 import type { Middleware } from 'polka';
 import { db, deniedDash } from '../../db';
@@ -116,13 +116,12 @@ function getStats(): Partial<Stats> {
   })();
 }
 
-function execCmd(cmd: string): Promise<string> {
+function execCmd(cmd: string, args?: string[]): Promise<string> {
   return new Promise((resolve, reject) => {
-    exec(cmd, (error, stdout, stderr) => {
+    execFile(cmd, args, (error, stdout, stderr) => {
       if (error || stderr) {
         reject(error || stderr);
       }
-
       resolve(stdout);
     });
   });
@@ -137,12 +136,17 @@ async function getTableSizes() {
     // Because the better-sqlite3 npm module doesn't have the compile-time
     // SQLITE_ENABLE_DBSTAT_VTAB option enabled, to get table size data we need
     // to use the system sqlite3 CLI client which does support DBSTAT
-    const output = await execCmd(
+    const output = await execCmd('/usr/bin/sqlite3', [
+      '--safe',
+      '--readonly',
+      '--list',
+      '--noheader',
+      '--nullvalue',
+      '""',
+      '--cmd',
+      '.eqp off',
+      config.DB_PATH,
       [
-        // TODO: Use --safe arg once the docker system sqlite3 is v3.37.0+
-        // eslint-disable-next-line max-len
-        // `sqlite3 --safe --readonly --list --noheader --nullvalue "" --cmd ".eqp off" ${config.DB_PATH} "`,
-        `sqlite3 --readonly --list --noheader --nullvalue "" --cmd ".eqp off" ${config.DB_PATH} "`,
         'BEGIN TRANSACTION;',
         "SELECT SUM(pgsize) FROM dbstat('main',1);",
 
@@ -178,9 +182,8 @@ async function getTableSizes() {
         "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_zstd_dicts';",
         "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_data_dict_idx';",
         'COMMIT;',
-        '"',
       ].join(''),
-    );
+    ]);
     const data = output.toString().split('\n');
     const total = +data[0];
     const project = +data[1];
