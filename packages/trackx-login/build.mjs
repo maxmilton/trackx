@@ -93,10 +93,10 @@ function makeHTML(jsPath, cssPath) {
     </div>
     <button id=submit class="button button-primary ph4" type=submit>Sign in</button>
     <div>
-      Forgot your password? <a href="${config.DOCS_URL}/#/guides/using-the-dash.md#login">Get help signing in</a>
+      Forgot your password? <a href="${config.DOCS_URL}/#/guides/using-the-dash.md#login" rel=noopener>Get help signing in</a>
     </div>
   </form>
-  <footer>© <a href=https://maxmilton.com class="normal muted" rel=noreferrer>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noreferrer>report bug</a></footer>
+  <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
 <body>
 <html>`.replace(/\n\s+/g, '\n');
 }
