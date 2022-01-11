@@ -9,9 +9,11 @@ export const logger = {
   /* eslint-disable no-console */
   fatal(this: void, ...args: unknown[]): void {
     console.error(bold(red('✗ fatal ')), ...args);
+    process.exitCode = 2;
   },
   error(this: void, ...args: unknown[]): void {
     console.error(red('✗ error '), ...args);
+    process.exitCode = 1;
   },
   warn(this: void, ...args: unknown[]): void {
     console.warn(yellow('‼ warn  '), ...args);
