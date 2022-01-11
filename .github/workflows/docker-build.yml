@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - packages/trackx-api/Dockerfile
+      - scripts/build
 jobs:
   docker-build:
     runs-on: ubuntu-latest
