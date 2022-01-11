@@ -138,6 +138,13 @@ export function getConfig(
   // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-dynamic-require, global-require
   const rawConfig = require(CONFIG_PATH) as unknown;
+  // Override config values with env vars
+  for (const key of Object.keys(rawConfig as object)) {
+    if (typeof process.env[key] !== 'undefined') {
+      // @ts-expect-error - xxx
+      rawConfig[key] = process.env[key];
+    }
+  }
   const validConfig = validateConfig(rawConfig, (errors) => {
     for (const error of errors) logger.error(`${error.name}: ${error.message}`);
   });
@@ -153,12 +160,11 @@ export function getConfig(
     ...rawConfig,
     CONFIG_PATH,
     DB_PATH: path.resolve(rootDir, rawConfig.DB_PATH),
-    DB_ZSTD_PATH: rawConfig.DB_ZSTD_PATH
-      ? path.resolve(rootDir, rawConfig.DB_ZSTD_PATH)
-      : undefined,
-    DB_INIT_SQL_PATH: rawConfig.DB_INIT_SQL_PATH
-      ? path.resolve(rootDir, rawConfig.DB_INIT_SQL_PATH)
-      : undefined,
+    DB_ZSTD_PATH:
+      rawConfig.DB_ZSTD_PATH && path.resolve(rootDir, rawConfig.DB_ZSTD_PATH),
+    DB_INIT_SQL_PATH:
+      rawConfig.DB_INIT_SQL_PATH
+      && path.resolve(rootDir, rawConfig.DB_INIT_SQL_PATH),
   };
 }
 

@@ -61,21 +61,30 @@ export class AppError extends Error {
 enable('*');
 
 export const config: TrackXAPIConfig = (() => {
-  const CONFIG_PATH = process.env.CONFIG_PATH || path.join(__dirname, '../trackx.config.js');
+  const CONFIG_PATH = path.resolve(
+    __dirname,
+    process.env.CONFIG_PATH || '../trackx.config.js',
+  );
   // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-dynamic-require, global-require
   const rawConfig = require(CONFIG_PATH) as TrackXAPIConfig;
+  // Override config values with env vars
+  for (const key of Object.keys(rawConfig)) {
+    if (typeof process.env[key] !== 'undefined') {
+      // @ts-expect-error - xxx
+      rawConfig[key] = process.env[key];
+    }
+  }
   const rootDir = path.resolve(process.cwd(), rawConfig.ROOT_DIR || '.');
 
   return {
     ...rawConfig,
-    // TODO: Should all config values be optionally set from env variables?
-    HOST: process.env.HOST || rawConfig.HOST,
-    PORT: Number(process.env.PORT) || rawConfig.PORT,
     DB_PATH: path.resolve(rootDir, rawConfig.DB_PATH),
-    DB_ZSTD_PATH: rawConfig.DB_ZSTD_PATH
-      ? path.resolve(rootDir, rawConfig.DB_ZSTD_PATH)
-      : undefined,
+    DB_ZSTD_PATH:
+      rawConfig.DB_ZSTD_PATH && path.resolve(rootDir, rawConfig.DB_ZSTD_PATH),
+    DB_INIT_SQL_PATH:
+      rawConfig.DB_INIT_SQL_PATH
+      && path.resolve(rootDir, rawConfig.DB_INIT_SQL_PATH),
   };
 })();
 const logLevel: Record<string, string> = {
