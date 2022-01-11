@@ -13,6 +13,10 @@ interface CheckOptions extends GlobalOptions {
 }
 
 export default function action(opts: CheckOptions): void {
+  if (opts._.length > 0) {
+    throw new Error(`Unexpected positional arguments: ${String(opts._)}`);
+  }
+
   const config = getConfig(opts.config);
   const db = connectDB(config);
 

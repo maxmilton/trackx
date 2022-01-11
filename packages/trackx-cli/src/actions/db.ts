@@ -43,6 +43,10 @@ import { getConfig, logger } from '../utils';
 //  ↳ Might be a good chance to standardise some data in the meta table
 
 export default function action(opts: GlobalOptions): void {
+  if (opts._.length > 0) {
+    throw new Error(`Unexpected positional arguments: ${String(opts._)}`);
+  }
+
   logger.error('Database features are not implemented yet');
 
   const config = getConfig(opts.config);

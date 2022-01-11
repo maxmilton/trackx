@@ -63,7 +63,7 @@ async function getPassword(input?: string): Promise<string> {
     return getPassword();
   }
 
-  return answer;
+  return String(answer);
 }
 
 interface AdduserOptions extends GlobalOptions {
@@ -72,6 +72,10 @@ interface AdduserOptions extends GlobalOptions {
 }
 
 export default async function action(opts: AdduserOptions): Promise<void> {
+  if (opts._.length > 0) {
+    throw new Error(`Unexpected positional arguments: ${String(opts._)}`);
+  }
+
   const config = getConfig(opts.config);
   const user = await getEmail(opts.user);
   const pass = await getPassword(opts.pass);

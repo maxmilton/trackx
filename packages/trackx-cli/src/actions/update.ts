@@ -1,3 +1,4 @@
+import type { GlobalOptions } from '../types';
 import { logger } from '../utils';
 
 // TODO: Update installation flow including:
@@ -6,6 +7,10 @@ import { logger } from '../utils';
 //  - Required DB SQL migrations
 //    ↳ https://github.com/lukeed/ley
 
-export default function action(): void {
+export default function action(opts: GlobalOptions): void {
+  if (opts._.length > 0) {
+    throw new Error(`Unexpected positional arguments: ${String(opts._)}`);
+  }
+
   logger.error('Automatic updates are not supported yet');
 }
