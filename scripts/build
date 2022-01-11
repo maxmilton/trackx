@@ -14,10 +14,11 @@ Perform a full TrackX production build in preparation for deployment.
 
 Available options:
 
--h, --help      Print this help and exit
--v, --verbose   Print script debug info
-    --no-docker Disable Docker operations
-    --no-git    Disable Git operations
+-h, --help       Print this help and exit
+-v, --verbose    Print script debug info
+    --no-docker  Disable Docker operations
+    --no-git     Disable Git operations
+-s  --skip-tests Skip running tests
 EOF
   exit
 }
@@ -121,7 +122,7 @@ build() {
     pnpm exec jest
   fi
 
-  # FIXME: Ideally we would build locally and then push to the remote
+  # TODO: Ideally we would build locally and then push to the remote
   # TODO: Remove? When using DOCKER_HOST the image is built on the remote host
   # if [[ "${nodocker}" -eq 0 ]]; then
   #   msg "Building Docker images..."
@@ -155,7 +156,6 @@ pack() {
   cp -r "${script_dir}/../packages/trackx-dash/dist/"* "${tmp_dir}/var/dash/"
 
   msg "Creating archive file..."
-  # tar -czf "${script_dir}/../trackx.tar.gz" -C "$tmp_dir" bin etc var
   tar -czf "${script_dir}/../trackx.tar.gz" -C "$tmp_dir" .
 }
 
