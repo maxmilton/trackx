@@ -71,7 +71,7 @@ export const config: TrackXAPIConfig = (() => {
   // Override config values with env vars
   for (const key of Object.keys(rawConfig)) {
     if (typeof process.env[key] !== 'undefined') {
-      // @ts-expect-error - xxx
+      // @ts-expect-error - unavoidable string indexing
       rawConfig[key] = process.env[key];
     }
   }

@@ -121,7 +121,6 @@ const pingMiddleware: Middleware = (req, res, next) => {
       send(res, Status.OK, pixel, {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Content-Type': 'image/gif',
-        'Cross-Origin-Resource-Policy': 'cross-origin',
         Pragma: 'no-cache',
         Expires: '0',
       });
