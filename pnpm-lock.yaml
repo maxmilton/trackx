@@ -63,9 +63,9 @@ importers:
 
   packages/icons:
     specifiers:
-      solid-js: 1.3.2
+      solid-js: 1.3.3
     devDependencies:
-      solid-js: 1.3.2
+      solid-js: 1.3.3
 
   packages/reltime:
     specifiers: {}
@@ -200,15 +200,15 @@ importers:
       rollup-plugin-esbuild: 4.8.2
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.5.2
-      solid-js: 1.3.2
+      solid-js: 1.3.3
       trackx: workspace:*
       uplot: 1.6.18
     dependencies:
       '@ekscss/framework': 0.0.39_ekscss@0.0.12
-      '@maxmilton/solid-router': 0.2.0_solid-js@1.3.2
+      '@maxmilton/solid-router': 0.2.0_solid-js@1.3.3
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
-      solid-js: 1.3.2
+      solid-js: 1.3.3
       trackx: link:../trackx
       uplot: 1.6.18
     devDependencies:
@@ -1024,14 +1024,14 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
-  /@maxmilton/solid-router/0.2.0_solid-js@1.3.2:
+  /@maxmilton/solid-router/0.2.0_solid-js@1.3.3:
     resolution: {integrity: sha512-d1Cw959T1q1ER+BxEYQo720UcmoKVKVSdtIeAdBs40CUhTMNyRxgnYRxfTeCkLJYgU8/yA4lM1V6s15UYtySVA==}
     peerDependencies:
       solid-js: ^1.1.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.0
-      solid-js: 1.3.2
+      solid-js: 1.3.3
     dev: false
 
   /@maxmilton/stylelint-config/0.0.9_stylelint@14.2.0:
@@ -5342,8 +5342,8 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js/1.3.2:
-    resolution: {integrity: sha512-BIY63BeKO4vCRqoj/PRcVkt90gnbIg4HhCYqZwsQdwsrFXiqhCycvyqZ1YDBIO8INJdxX5XNLZprmyrt9Mn5IA==}
+  /solid-js/1.3.3:
+    resolution: {integrity: sha512-0pyHpLZIgQDI1Z+MgxXQRPY10dhXfKJdptb4UCJQ9ArQOLq2gtFA1acEsvSAtPMVdqQ8bqj68FOTXLpz6hm2Mg==}
 
   /source-map-js/1.0.1:
     resolution: {integrity: sha512-4+TN2b3tqOCd/kaGRJ/sTYA0tR0mdXx26ipdolxcwtJVqEnqNYvlCAt1q3ypy4QMlYus+Zh34RNtYLoq2oQ4IA==}
