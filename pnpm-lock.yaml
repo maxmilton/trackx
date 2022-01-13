@@ -124,7 +124,7 @@ importers:
       diary: 0.3.0
       git-ref: 0.3.1
       kleur: 4.1.4
-      nanoid: 3.1.30
+      nanoid: 3.1.32
       polka: 1.0.0-next.22
       psl: 1.8.0
       source-map: 0.7.3
@@ -142,7 +142,7 @@ importers:
       better-sqlite3: 7.4.6
       diary: 0.3.0
       kleur: 4.1.4
-      nanoid: 3.1.30
+      nanoid: 3.1.32
       polka: 1.0.0-next.22
       tough-cookie: 4.0.0
       trackx: link:../trackx
@@ -4480,6 +4480,13 @@ packages:
     resolution: {integrity: sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: true
+
+  /nanoid/3.1.32:
+    resolution: {integrity: sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
 
   /napi-build-utils/1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
