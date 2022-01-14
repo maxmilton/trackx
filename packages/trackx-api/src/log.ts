@@ -1,8 +1,8 @@
 /**
- * @fileoverview Simple http request logger. Intended for visibility into API
- * requests and not as a full-blown trace for security/accountability purposes,
- * hence the lack of key information like time stamp and IP address. For more
- * in-depth logging use Nginx logs etc.
+ * @fileoverview Simple HTTP request logger polka/express middleware. Intended
+ * for visibility into API requests and not as a full-blown trace for security
+ * and accountability purposes, hence the lack of key information like time
+ * stamp and IP address. For more in-depth logging use Nginx logs etc.
  */
 
 import { green, red, yellow } from 'kleur/colors';
@@ -30,6 +30,6 @@ export const log: Middleware = (req, res, next) => {
     );
   };
 
-  res.once('finish', writeLog);
-  res.once('error', writeLog);
+  res.on('finish', writeLog);
+  res.on('error', writeLog);
 };

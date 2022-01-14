@@ -10,7 +10,7 @@
     "deploy": "scripts/save.sh && scripts/deploy.sh",
     "dev": "export NODE_ENV=development && node ../trackx-cli/dist/cli.js check && node build.mjs && pnpm run serve",
     "prebuild": "rm -rf dist",
-    "serve": "node -r source-map-support/register dist/server.js"
+    "serve": "node --inspect -r source-map-support/register dist/server.js"
   },
   "dependencies": {
     "@polka/parse": "1.0.0-next.21",
