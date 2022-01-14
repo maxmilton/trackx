@@ -18,7 +18,7 @@ const external = ['better-sqlite3'];
 const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/cli.js',
-  target: ['node14'],
+  target: ['node16'],
   platform: 'node',
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),

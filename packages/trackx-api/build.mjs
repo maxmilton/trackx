@@ -79,7 +79,7 @@ const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/server.js',
   platform: 'node',
-  target: ['node14'],
+  target: ['node16'],
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),
     'process.env.NODE_ENV': JSON.stringify(mode),
@@ -103,7 +103,7 @@ await esbuild.build({
   entryPoints: ['src/check.ts'],
   outfile: 'dist/check.js',
   platform: 'node',
-  target: ['node14'],
+  target: ['node16'],
   banner: { js: '"use strict";' },
   bundle: true,
   minify: !dev,
@@ -119,7 +119,6 @@ await esbuild.build({
  */
 
 // Generate production package.json
-// if (!dev) {
 /** @type {PackageJson} */
 const prodPkg = {
   name: 'trackx-api',
@@ -139,4 +138,3 @@ await fs.writeFile(
   path.join(process.cwd(), 'dist', 'package.json'),
   JSON.stringify(prodPkg, null, 2),
 );
-// }
