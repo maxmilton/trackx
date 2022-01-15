@@ -428,6 +428,20 @@ export const TestPage: Component = () => {
         <button
           class="button js-single"
           onClick={() => {
+            try {
+              document.open();
+              document.write('<h1>Test</h1>');
+              document.close();
+            } catch (error) {
+              console.warn(error);
+            }
+          }}
+        >
+          Document Policy violation
+        </button>
+        <button
+          class="button js-single"
+          onClick={() => {
             fetch(`${config.DASH_API_ENDPOINT}/not-a-real-enpoint`);
           }}
         >
