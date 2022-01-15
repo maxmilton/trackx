@@ -290,13 +290,11 @@ export function addEvent(
       : `${eventData.project_id}:${eventData.type}:${eventData.data.name}:${eventData.data.message}`;
     const fingerprintHash = hash(Buffer.from(fingerprint));
 
-    const existingIssue = matchingIssueHashStmt.get(fingerprintHash);
-
-    if (existingIssue?.ignore) {
-      return;
-    }
-
     db.transaction(() => {
+      const existingIssue = matchingIssueHashStmt.get(fingerprintHash);
+
+      if (existingIssue?.ignore) return;
+
       const salt = getDailySalt();
       const sessionId = hash(Buffer.from(salt + origin + ip + ua));
       const existingSession = existingSessionStmt.get(sessionId, project.id);
