@@ -1,9 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 
-// TODO: For browser reports hide any irrelevant fields
-// - Stack trace + raw stack trace
-// - TrackX Client
-
 import { RouteComponent, routeTo } from '@maxmilton/solid-router';
 import {
   IconCheck,
@@ -29,25 +25,22 @@ import {
 } from '../../utils';
 import './[id].xcss';
 
-// See equivalent client enum in packages/trackx/types.ts
+// Matches equivalent client enum in packages/trackx/types.ts
 const EventType = {
   1: 'Unhandled Error',
   2: 'Unhandled Rejection',
   3: 'Console Error',
   4: 'Programmatic',
-  // 5: 'CSP Report',
   5: 'Content Security Policy Report',
   6: 'Deprecation Report',
   7: 'Intervention Report',
   8: 'Crash Report',
-  // 9: 'CT Report',
   9: 'Certificate Transparency Report',
-  // 10: 'NELReport',
   10: 'Network Error Logging Report',
+  11: 'Cross-Origin Embedder Policy Report',
+  12: 'Cross-Origin Opener Policy Report',
+  13: 'Document Policy Report',
   70: 'Custom Logger',
-  71: 'Custom 1',
-  72: 'Custom 2',
-  73: 'Custom 3',
   96: 'Unknown Report',
   97: 'Unknown Event',
   98: 'Unknown',
@@ -63,6 +56,10 @@ const ClientType = {
   n: 'Node',
   _: 'Custom',
 } as const;
+
+function isEventWithStack(type: number) {
+  return [1, 2, 3, 4, 70, 97, 98, 99].includes(type);
+}
 
 function safeStringifyPretty(data: any): string {
   let out = data;
@@ -102,11 +99,15 @@ const IssuePage: RouteComponent = (props) => {
       // eslint-disable-next-line no-param-reassign
       data.data.meta = {
         ...rest,
-        'TrackX Client': `${(_c && ClientType[_c]) || _c || '?'} v${
-          _v || '?'
-        }`,
         'Event Size': _size,
       };
+
+      if (isEventWithStack(data.type)) {
+        // eslint-disable-next-line no-param-reassign
+        data.data.meta['TrackX Client'] = `${
+          (_c && ClientType[_c]) || _c || '?'
+        } v${_v || '?'}`;
+      }
 
       return data;
     }),
@@ -413,7 +414,8 @@ const IssuePage: RouteComponent = (props) => {
                       </div>
                       <div>
                         <span class="orange5">Type:</span>{' '}
-                        {EventType[eventData.type] || EventType[98]}
+                        {EventType[eventData.type]
+                          || `Unknown (${eventData.type})`}
                       </div>
                       <div>
                         <span class="orange5">Time:</span>{' '}
@@ -445,14 +447,18 @@ const IssuePage: RouteComponent = (props) => {
                       </div>
                     </div>
 
-                    <h3>Stack Trace</h3>
+                    {isEventWithStack(eventData.type) && (
+                      <>
+                        <h3>Stack Trace</h3>
 
-                    {/* TODO: Add a way to collapse/expand all the stack's frames */}
-                    {eventData.data.stack ? (
-                      // @ts-expect-error - FIXME:!
-                      <StackTrace stack={eventData.data.stack} />
-                    ) : (
-                      <div class="muted">{'<none>'}</div>
+                        {/* TODO: Add a way to collapse/expand all the stack's frames */}
+                        {eventData.data.stack ? (
+                          // @ts-expect-error - FIXME:!
+                          <StackTrace stack={eventData.data.stack} />
+                        ) : (
+                          <div class="muted">{'<none>'}</div>
+                        )}
+                      </>
                     )}
 
                     <h3>Meta Data</h3>
@@ -471,15 +477,19 @@ const IssuePage: RouteComponent = (props) => {
                       ))}
                     </div>
 
-                    <h3>Original Stack Trace</h3>
+                    {isEventWithStack(eventData.type) && (
+                      <>
+                        <h3>Original Stack Trace</h3>
 
-                    {eventData.data.stack_raw ? (
-                      <code
-                        class="code-block mw100 border-dark"
-                        textContent={eventData.data.stack_raw}
-                      />
-                    ) : (
-                      <div class="muted">{'<none>'}</div>
+                        {eventData.data.stack_raw ? (
+                          <code
+                            class="code-block mw100 border-dark"
+                            textContent={eventData.data.stack_raw}
+                          />
+                        ) : (
+                          <div class="muted">{'<none>'}</div>
+                        )}
+                      </>
                     )}
                   </>
                 )}

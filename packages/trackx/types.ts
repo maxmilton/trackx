@@ -13,10 +13,12 @@ export const enum EventType {
   CTReport = 9,
   /** Network Error Logging Report. */
   NELReport = 10,
+  /** Cross-Origin Embedder Policy Report. */
+  COEPReport = 11,
+  /** Cross-Origin Opener Policy Report. */
+  COOPReport = 12,
+  DocumentPolicyReport = 13,
   CustomLogger = 70,
-  Custom1 = 71,
-  Custom2 = 72,
-  Custom3 = 73,
   UnknownReport = 96,
   UnknownEvent = 97,
   Unknown = 98,

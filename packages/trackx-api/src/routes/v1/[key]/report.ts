@@ -1,6 +1,18 @@
+// TODO: Add per-project filter support (to combat excessive false positives,
+// especially for CSP reports)
+//  ↳ Would probably also be useful for events
+//  ↳ A similar deny-list would be useful for pings too
+//  ↳ Should there be a default filter? Maybe as an option?
+//  ↳ Filter out browser extensions
+//    ↳ chrome-extension:// (Chromium)
+//    ↳ moz-extension:// (Firefox)
+//    ↳ extension:// (Edge)
+//  ↳ Should the events be completely ignored or just marked as filtered?
+
 import { isIP } from 'net';
 import type { Middleware } from 'polka';
 import { EventType } from 'trackx/types';
+import type UAParser from 'ua-parser-js';
 import {
   addEventStmt,
   addIssueStmt,
@@ -21,7 +33,16 @@ import {
   updateSessionStmt,
 } from '../../../db';
 import type {
+  COEPReport,
+  COOPReport,
+  CrashReport,
+  CSPReport,
+  DeprecatedCSPReport,
+  DeprecationReport,
+  DocumentPolicyReport,
   EventInternal,
+  ExpectCTReport,
+  InterventionReport,
   IssueInternal,
   ProjectInternal,
   SessionInternal,
@@ -43,9 +64,269 @@ const VALID_MIME_TYPES = [
   'application/reports+json',
   'application/csp-report',
   'application/expect-ct-report+json',
+  'application/json',
+  'text/plain',
 ];
 
 function addReport(
+  project_id: number,
+  project_key: string,
+  origin: string,
+  ip: string,
+  ua: string,
+  reportType: string,
+  rawBody: object,
+  uaBrowser: UAParser.IBrowser,
+  uaOS: UAParser.IOS,
+) {
+  // TODO: Extract only the relevant data from the payload and discard the
+  // rest, especially that which may contain PII e.g., user-agent
+
+  // TODO: Regardless of report type, validate the data before saving to DB
+
+  let type;
+  let body;
+  let name;
+  let message;
+  let uri;
+  // FIXME: Add the unique but cross-browser reproducible parts of the report
+  // to ID the event for fingerprinting
+  let fingerprintSegments = '';
+
+  switch (reportType) {
+    // Reporting API v0 and v1
+    // https://web.dev/reporting-api/#use-cases-and-report-types
+    case 'coep':
+      type = EventType.COEPReport;
+      body = rawBody as COEPReport;
+      name = 'COEP Violation';
+      uri = body.url;
+      break;
+    case 'coop':
+      type = EventType.COOPReport;
+      body = rawBody as COOPReport;
+      name = 'COOP Violation';
+      uri = body.url;
+      break;
+    case 'crash':
+      type = EventType.CrashReport;
+      body = rawBody as CrashReport;
+      name = 'Browser Crash';
+      uri = body.url;
+      break;
+    case 'csp-violation':
+      type = EventType.CSPReport;
+      body = rawBody as CSPReport;
+      name = 'CSP Violation';
+      uri = body.url;
+      // TODO: Fix grouping; Firefox normalises the originalPolicy value and
+      // has a different columnNumber leading to a different fingerprint
+      fingerprintSegments += `${body.body.blockedURI || body.body.blockedURL}:${
+        body.body.sourceFile
+      }:${body.body.lineNumber}:${body.body.columnNumber}:${
+        body.body.originalPolicy
+      }:${body.body.effectiveDirective}`;
+      break;
+    case 'deprecation':
+      type = EventType.DeprecationReport;
+      body = rawBody as DeprecationReport;
+      name = 'Browser Deprecation';
+      message = body.body.message;
+      uri = body.url;
+      break;
+    case 'document-policy-violation':
+      type = EventType.DocumentPolicyReport;
+      body = rawBody as DocumentPolicyReport;
+      name = 'Document Policy Violation';
+      message = body.body.message;
+      uri = body.url;
+      break;
+    case 'intervention':
+      type = EventType.InterventionReport;
+      body = rawBody as InterventionReport;
+      name = 'Browser Intervention';
+      message = body.body.message;
+      uri = body.url;
+      break;
+    // // Content Security Policy Level 2 and 3 Reports
+    // // https://www.w3.org/TR/CSP2/
+    // // https://www.w3.org/TR/CSP3/
+    // case 'application/csp-report':
+    //   body = (rawBody as CSPReport)['csp-report'];
+    //   if (body) {
+    //     type = EventType.CSPReport;
+    //     uri = body['document-uri'];
+    //     name = 'CSP Violation';
+    //   } else {
+    //     // TODO: Should validation occur earlier to avoid the compute to get here?
+    //     throw new AppError('Invalid report', Status.BAD_REQUEST);
+    //   }
+    //   break;
+    // // Certificate Transparency Reports
+    // // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
+    // case 'application/expect-ct-report+json':
+    //   // @ts-expect-error - FIXME:!
+    //   body = rawBody['expect-ct-report'];
+    //   if (body) {
+    //     type = EventType.CTReport;
+    //     uri = `${body.scheme || 'https'}://${body.host}:${body.port}`;
+    //     name = 'Certificate Transparency Report';
+    //   } else {
+    //     // TODO: Should validation occur earlier to avoid the compute to get here?
+    //     throw new AppError('Invalid report', Status.BAD_REQUEST);
+    //   }
+    //   break;
+    // Chrome may send reports with Content-Type plain/text, so it's safest to
+    // handle these types of reports in a generic way
+    default:
+      // @ts-expect-error - FIXME:!
+      if (rawBody['csp-report']) {
+        type = EventType.CSPReport;
+        body = (rawBody as DeprecatedCSPReport)['csp-report'];
+        uri = body['document-uri'];
+        name = 'CSP Violation';
+        // TODO: Fix grouping; Firefox normalises the original-policy value and
+        // has a different column-number leading to a different fingerprint
+        fingerprintSegments += `${body['blocked-uri']}:${body['source-file']}:${
+          body['line-number']
+        }:${body['column-number']}:${body['original-policy']}:${
+          body['effective-directive'] || body['violated-directive']
+        }`;
+        // @ts-expect-error - FIXME:!
+      } else if (rawBody['expect-ct-report']) {
+        type = EventType.CTReport;
+        body = (rawBody as ExpectCTReport)['expect-ct-report'];
+        uri = `${body.scheme || 'https'}://${body.hostname || body.host}:${
+          body.port
+        }`;
+        name = 'Certificate Transparency Report';
+      } else {
+        // TODO: Should there be a per-project option to reject unknown reports?
+
+        type = EventType.UnknownReport;
+        body = rawBody;
+        // @ts-expect-error - FIXME:!
+        uri = body.url || body['document-uri'] || body.document_uri;
+      }
+      break;
+  }
+
+  const eventData: Omit<EventInternal, 'id'> = {
+    project_id,
+    // @ts-expect-error - set later
+    issue_id: undefined,
+    // @ts-expect-error - FIXME:!
+    ts: Date.now() - (body.age || 0),
+    type,
+    data: {
+      name,
+      message,
+      uri,
+      os: uaOS.name,
+      os_v: uaOS.version,
+      agent: uaBrowser.name,
+      agent_v: uaBrowser.version,
+      meta: {
+        // @ts-expect-error - FIXME:!
+        body: body.body || body, // TODO: Remove?
+      },
+    },
+  };
+
+  const payloadBytes = byteSize(eventData);
+
+  if (payloadBytes > config.MAX_EVENT_BYTES) {
+    logger.warn('Event size exceeds byte limit', payloadBytes);
+    deniedEvent(project_key);
+    return;
+  }
+
+  const fingerprint = `${eventData.project_id}:${eventData.type}:${
+    fingerprintSegments || JSON.stringify(body)
+  }`;
+  const fingerprintHash = hash(Buffer.from(fingerprint));
+
+  db.transaction(() => {
+    const existingIssue = matchingIssueHashStmt.get(fingerprintHash);
+
+    if (existingIssue?.ignore) return;
+
+    const salt = getDailySalt();
+    const sessionId = hash(Buffer.from(salt + origin + ip + ua));
+    const existingSession = existingSessionStmt.get(sessionId, project_id);
+
+    if (existingIssue) {
+      eventData.issue_id = existingIssue.id;
+
+      const existingSessionIdx = existingSessionIdxStmt.get(
+        sessionId,
+        eventData.issue_id,
+      );
+
+      if (!existingSession) {
+        const sessionData: SessionInternal = {
+          id: sessionId,
+          project_id,
+          ts: Math.trunc(eventData.ts / 1000),
+          e: 1,
+        };
+        addSessionStmt.run(sessionData);
+        addSessionGraphHitStmt.run(sessionData);
+      } else if (existingSession.e === 0) {
+        updateSessionStmt.run(sessionId, project_id);
+        updateSessionGraphStmt.run(project_id, existingSession.ts);
+      }
+
+      if (!existingSessionIdx) {
+        addSessionIdxStmt.run(sessionId, existingIssue.id);
+        updateIssueSessStmt.run(existingIssue.id);
+      }
+
+      updateIssueStmt.run(eventData.ts, existingIssue.id);
+    } else {
+      const issueData: Omit<
+      IssueInternal,
+      'id' | 'event_c' | 'ignore' | 'done'
+      > = {
+        hash: fingerprintHash,
+        project_id,
+        ts_last: eventData.ts,
+        ts_first: eventData.ts,
+        sess_c: 1,
+        name: eventData.data.name,
+        message: eventData.data.message,
+        uri: eventData.data.uri,
+      };
+      const issue_id = addIssueStmt.run(issueData).lastInsertRowid;
+
+      eventData.issue_id = issue_id as number;
+
+      if (!existingSession) {
+        const sessionData: SessionInternal = {
+          id: sessionId,
+          project_id,
+          ts: Math.trunc(eventData.ts / 1000),
+          e: 1,
+        };
+        addSessionStmt.run(sessionData);
+        addSessionGraphHitStmt.run(sessionData);
+      } else if (existingSession.e === 0) {
+        updateSessionStmt.run(sessionId, project_id);
+        updateSessionGraphStmt.run(project_id, existingSession.ts);
+      }
+
+      addSessionIdxStmt.run(sessionId, issue_id);
+    }
+
+    // @ts-expect-error - data stored as string in DB
+    eventData.data = JSON.stringify(eventData.data);
+
+    addEventStmt.run(eventData);
+    incrementDailyEvents();
+  })();
+}
+
+function prepareReports(
   key: string,
   origin: string,
   ip: string,
@@ -64,210 +345,54 @@ function addReport(
     throw new AppError('Invalid origin', Status.FORBIDDEN);
   }
 
-  // FIXME: Extract only the relevant data from the payload and discard the
-  // rest, especially that which may contain PII e.g., user-agent
-
-  // TODO: Regardless of report type, validate the data before saving to DB
-
-  // XXX: REF: https://report-uri.com
-  // XXX: REF: https://web.dev/reporting-api/
-
-  let type = EventType.UnknownReport;
-  let uri: string | undefined;
-  let name: string | undefined;
-  let message: string | undefined;
-
-  // TODO: Extract the relevant data points e.g., name, message, uri
-  switch (mimeType) {
-    // Reporting API v0 and v1
-    case 'application/reports+json':
-      if (Array.isArray(body)) {
-        // FIXME: Handle multiple reports in a single payload
-        // FIXME: Detect type of report
-        //  ↳ https://web.dev/reporting-api/#use-cases-and-report-types
-        //  ↳ CSP violation (Level 3 only)
-        //  ↳ COOP violation -- https://web.dev/coop-coep/#example-coop-report
-        //  ↳ COEP violation -- https://web.dev/coop-coep/#example-coep-report
-        //  ↳ Document Policy violation
-        //  ↳ Deprecation warning
-        //  ↳ Intervention
-        //  ↳ Crash
-        // FIXME:!
-      } else {
-        // @ts-expect-error - FIXME:!
-        uri = body['document-uri'] || body.document_uri;
-      }
-      break;
-    // Content Security Policy Level 2 and 3 Reports
-    // https://www.w3.org/TR/CSP2/
-    // https://www.w3.org/TR/CSP3/
-    case 'application/csp-report':
-      // @ts-expect-error - FIXME:!
-      if (body['csp-report']) {
-        type = EventType.CSPReport;
-        // @ts-expect-error - FIXME:!
-        // eslint-disable-next-line no-param-reassign
-        body = body['csp-report'];
-        // @ts-expect-error - FIXME:!
-        uri = body['document-uri'];
-        name = 'CSP Violation';
-      } else {
-        throw new AppError('Invalid report', Status.BAD_REQUEST);
-      }
-      break;
-    // Certificate Transparency Reports
-    // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
-    case 'application/expect-ct-report+json':
-      // @ts-expect-error - FIXME:!
-      if (body['expect-ct-report']) {
-        type = EventType.CTReport;
-        // @ts-expect-error - FIXME:!
-        // eslint-disable-next-line no-param-reassign
-        body = body['expect-ct-report'];
-        // @ts-expect-error - FIXME:!
-        uri = `${body.scheme || 'https'}://${body.host}:${body.port}`;
-        name = 'Certificate Transparency Report';
-      } else {
-        throw new AppError('Invalid report', Status.BAD_REQUEST);
-      }
-      break;
-    default:
-      throw new AppError('Invalid report', Status.BAD_REQUEST);
-  }
-
   const parser = uaParser.setUA(ua);
   const uaBrowser = parser.getBrowser();
-  const uaOs = parser.getOS();
+  const uaOS = parser.getOS();
 
-  const eventData: Omit<EventInternal, 'id'> = {
-    project_id: project.id,
-    // @ts-expect-error - set later
-    issue_id: undefined,
-    ts: Date.now(),
-    type,
-    data: {
-      name,
-      message,
-      uri,
-      os: uaOs.name,
-      os_v: uaOs.version,
-      agent: uaBrowser.name,
-      agent_v: uaBrowser.version,
-      // body_raw: body,
-      meta: {
-        body,
-      },
-    },
-  };
+  if (mimeType === 'application/reports+json') {
+    // TODO: Are Report API V0 and V1 bodies ever not an array?
+    if (Array.isArray(body)) {
+      for (const report of body) {
+        // TODO: Better validation of individual reports
 
-  const payloadBytes = byteSize(eventData);
+        if (report.age !== undefined) {
+          if (
+            typeof report.age !== 'number'
+            || report.age < 0
+            || report.age > 48 * 60 * 1000 // 2 days; 48 hours * 60 minutes * 1000 ms
+          ) {
+            // FIXME:!
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+        }
 
-  if (payloadBytes > config.MAX_EVENT_BYTES) {
-    logger.warn('Event size exceeds byte limit', payloadBytes);
-    deniedEvent(key);
-    return;
-  }
+        if (typeof report.type !== 'string' || typeof report.url !== 'string') {
+          // FIXME:!
+          // eslint-disable-next-line no-continue
+          continue;
+        }
 
-  // FIXME:!
-  const fingerprint = `${eventData.project_id}:${
-    eventData.type
-  }:${JSON.stringify(body)}`;
-  const fingerprintHash = hash(Buffer.from(fingerprint));
-
-  const existingIssue = matchingIssueHashStmt.get(fingerprintHash);
-
-  if (existingIssue?.ignore) {
-    return;
-  }
-
-  db.transaction(() => {
-    const salt = getDailySalt();
-    const sessionId = hash(Buffer.from(salt + origin + ip + ua));
-    const existingSession = existingSessionStmt.get(sessionId, project.id);
-
-    if (existingIssue) {
-      eventData.issue_id = existingIssue.id;
-
-      const existingSessionIdx = existingSessionIdxStmt.get(
-        sessionId,
-        eventData.issue_id,
-      );
-
-      if (!existingSession) {
-        const sessionData: SessionInternal = {
-          id: sessionId,
-          project_id: project.id,
-          ts: Math.trunc(eventData.ts / 1000),
-          e: 1,
-        };
-        addSessionStmt.run(sessionData);
-        addSessionGraphHitStmt.run(sessionData);
-      } else if (existingSession.e === 0) {
-        updateSessionStmt.run(sessionId, project.id);
-        updateSessionGraphStmt.run(project.id, existingSession.ts);
+        addReport(
+          project.id,
+          key,
+          origin,
+          ip,
+          ua,
+          report.type,
+          report,
+          uaBrowser,
+          uaOS,
+        );
       }
-
-      if (!existingSessionIdx) {
-        addSessionIdxStmt.run(sessionId, existingIssue.id);
-        updateIssueSessStmt.run(existingIssue.id);
-      }
-
-      updateIssueStmt.run(eventData.ts, existingIssue.id);
     } else {
-      const issueData: Omit<
-      IssueInternal,
-      'id' | 'event_c' | 'ignore' | 'done'
-      > = {
-        hash: fingerprintHash,
-        project_id: project.id,
-        ts_last: eventData.ts,
-        ts_first: eventData.ts,
-        sess_c: 1,
-        name: eventData.data.name,
-        message: eventData.data.message,
-        uri: eventData.data.uri,
-      };
-      const issue_id = addIssueStmt.run(issueData).lastInsertRowid;
-
-      eventData.issue_id = issue_id as number;
-
-      if (!existingSession) {
-        const sessionData: SessionInternal = {
-          id: sessionId,
-          project_id: project.id,
-          ts: Math.trunc(eventData.ts / 1000),
-          e: 1,
-        };
-        addSessionStmt.run(sessionData);
-        addSessionGraphHitStmt.run(sessionData);
-      } else if (existingSession.e === 0) {
-        updateSessionStmt.run(sessionId, project.id);
-        updateSessionGraphStmt.run(project.id, existingSession.ts);
-      }
-
-      addSessionIdxStmt.run(sessionId, issue_id);
+      throw new AppError('Invalid body', Status.BAD_REQUEST);
     }
-
-    // @ts-expect-error - data stored as string in DB
-    eventData.data = JSON.stringify(eventData.data);
-
-    addEventStmt.run(eventData);
-
-    incrementDailyEvents();
-  })();
+  } else {
+    addReport(project.id, key, origin, ip, ua, mimeType, body, uaBrowser, uaOS);
+  }
 }
 
-// Browser report ingest
-// - https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
-// - https://developer.mozilla.org/en-US/docs/Web/API/Reporting_API
-// - https://developers.google.com/web/updates/2018/09/reportingapi
-// - Report types
-//   - CSP violations
-//   - Deprecations
-//   - Browser interventions
-//   - Feature Policy violations
-//   - Network Error Logging (NEL)
-//   - Crash reports
 export const post: Middleware = (req, res, next) => {
   try {
     // eslint-disable-next-line prefer-destructuring
@@ -330,7 +455,7 @@ export const post: Middleware = (req, res, next) => {
       throw new AppError('Invalid body', Status.BAD_REQUEST);
     }
 
-    addReport(key, origin, ip, ua, mimeType, body);
+    prepareReports(key, origin, ip, ua, mimeType, body);
 
     res.writeHead(Status.OK, {
       'Cache-Control': 'no-cache, no-store, must-revalidate',
