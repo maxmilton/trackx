@@ -9,13 +9,14 @@
 
 import crypto from 'crypto';
 import { bold, yellow } from 'kleur/colors';
+import { toASCII } from 'punycode/';
 import type { GlobalOptions } from '../types';
 import {
   containsControlChar,
   getConfig,
+  isValidEmail,
   logger,
   read,
-  validEmail,
 } from '../utils';
 
 function createHash(password: string): Promise<string> {
@@ -31,15 +32,18 @@ function createHash(password: string): Promise<string> {
 }
 
 async function getEmail(input?: string): Promise<string> {
-  const answer = input || (await read('Email: '));
+  let answer = input || (await read('Email: '));
 
   if (!answer) {
     logger.error('Email value required but not provided');
     return getEmail();
   }
 
-  if (!validEmail(answer)) {
-    logger.warn('Possibly an invalid email, please check it');
+  // Support international domains in email addresses e.g., user@例子.世界
+  answer = toASCII(answer);
+
+  if (!isValidEmail(answer)) {
+    logger.error('Possibly an invalid email, please double check it');
   }
 
   return answer;

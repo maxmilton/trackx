@@ -5,11 +5,14 @@ import { Cookie } from 'tough-cookie';
 import { deniedDash } from '../../db';
 import type { ReqBodyData, ReqQueryData } from '../../types';
 import {
-  AppError, config, logger, sessions, Status, uid,
+  AppError,
+  config,
+  isNotValidEmail,
+  logger,
+  sessions,
+  Status,
+  uid,
 } from '../../utils';
-
-// https://github.com/angular/angular.js/blob/0633d8f2b0ac6cbad1c637768258b1f72994a614/src/ng/directive/input.js#L27
-const RE_EMAIL = /^(?=.{1,254}$)(?=.{1,64}@)[\w!#$%&'*+/=?^`{|}~-]+(\.[\w!#$%&'*+/=?^`{|}~-]+)*@[\dA-Za-z]([\dA-Za-z-]{0,61}[\dA-Za-z])?(\.[\dA-Za-z]([\dA-Za-z-]{0,61}[\dA-Za-z])?)*$/;
 
 export const options: Middleware = (_req, res) => {
   res.writeHead(Status.NO_CONTENT, {
@@ -52,7 +55,7 @@ export const post: Middleware = async (req, res, next) => {
       || password.length < 8
       // OWASP suggest max length of 64 for passwords -- https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
       || password.length > 64
-      || !RE_EMAIL.test(email)
+      || isNotValidEmail(email)
       // eslint-disable-next-line no-cond-assign
       || !((userid = email.toLowerCase()) in config.USERS)
       || !(await verify(password, config.USERS[userid]))

@@ -195,8 +195,12 @@ export function read(prompt: string, mask?: boolean): Promise<string> {
   });
 }
 
-export function validEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+// Same validation as packages/trackx-api/src/routes/dash/login.ts
+// https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+const RE_EMAIL = /^[\w!#$%&'*+./=?^`{|}~-]+@[\dA-Za-z](?:[\dA-Za-z-]{0,61}[\dA-Za-z])?(?:\.[\dA-Za-z](?:[\dA-Za-z-]{0,61}[\dA-Za-z])?)*$/;
+
+export function isValidEmail(email: string): boolean {
+  return RE_EMAIL.test(email);
 }
 
 export function containsControlChar(str: string): boolean {
