@@ -488,7 +488,8 @@ export const post: Middleware = (req, res, next) => {
     // FIXME: Temp workaround for reports with no Origin header
     if (!origin && Array.isArray(body)) {
       origin = new URL(body[0].url).origin;
-    } else {
+    }
+    if (!origin) {
       throw new AppError('Invalid origin', Status.FORBIDDEN);
     }
 
