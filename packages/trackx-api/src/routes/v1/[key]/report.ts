@@ -116,6 +116,7 @@ function addReport(
       type = EventType.CrashReport;
       body = rawBody as CrashReport;
       name = 'Browser Crash';
+      message = body.body.reason;
       uri = body.url;
       fingerprintSegments += `${uri}:${body.body.reason}`;
       break;
