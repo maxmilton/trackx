@@ -343,10 +343,10 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                     {() => `add_header Reporting-Endpoints 'default="${
                       config.REPORT_API_BASE_URL
                     }/${projectData.key}/report"' always;
-add_header Report-To '{"endpoints":[{"url":"${config.REPORT_API_BASE_URL}/${
-                      projectData.key
-                    }/report"}],"group":"default","max_age":604800}' always;
-add_header NEL '{"report_to":"default","max_age":604800}' always;
+add_header Report-To '{"max_age":604800,"endpoints":[{"url":"${
+                      config.REPORT_API_BASE_URL
+                    }/${projectData.key}/report"}]}' always;
+add_header NEL '{"max_age":604800,"report_to":"default"}' always;
 add_header Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                       currentTab() === 0
                         ? " script-src 'self' https://cdn.jsdelivr.net;"
@@ -370,10 +370,10 @@ add_header Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                     {() => `Header set Reporting-Endpoints 'default="${
                       config.REPORT_API_BASE_URL
                     }/${projectData.key}/report"'
-Header set Report-To '{"endpoints":[{"url":"${config.REPORT_API_BASE_URL}/${
-                      projectData.key
-                    }/report"}],"group":"default","max_age":604800}'
-Header set NEL '{"report_to":"default","max_age":604800}'
+Header set Report-To '{"max_age":604800,"endpoints":[{"url":"${
+                      config.REPORT_API_BASE_URL
+                    }/${projectData.key}/report"}]}'
+Header set NEL '{"max_age":604800,"report_to":"default"}'
 Header set Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                       currentTab() === 0
                         ? " script-src 'self' https://cdn.jsdelivr.net;"
@@ -399,12 +399,10 @@ Header set Content-Security-Policy "default-src 'self' ${apiOriginUri};${
       <add name="Reporting-Endpoints" value="default=\\"${
         config.REPORT_API_BASE_URL
       }/${projectData.key}/report\\"" />
-      <add name="Report-To" value="{\\"endpoints\\":[{\\"url\\":\\"${
+      <add name="Report-To" value="{\\"max_age\\":604800\\"endpoints\\":[{\\"url\\":\\"${
         config.REPORT_API_BASE_URL
-      }/${
-        projectData.key
-      }/report\\"}],\\"group\\":\\"default\\",\\"max_age\\":604800}" />
-      <add name="NEL" value="{\\"report_to\\":\\"default\\",\\"max_age\\":604800}" />
+      }/${projectData.key}/report\\"}]}" />
+      <add name="NEL" value="{\\"max_age\\":604800,\\"report_to\\":\\"default\\"}" />
       <add name="Content-Security-Policy" value="default-src 'self' ${apiOriginUri};${
         currentTab() === 0
           ? " script-src 'self' https://cdn.jsdelivr.net;"
