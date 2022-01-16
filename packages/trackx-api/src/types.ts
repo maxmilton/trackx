@@ -363,7 +363,7 @@ export type Plugin = (context: {
 /**
  * @see https://www.w3.org/TR/CSP3/#enumdef-securitypolicyviolationeventdisposition
  */
-type Disposition = 'enforce' | 'report' | 'reporting';
+type Disposition = 'enforce' | 'report';
 
 /**
  * @see https://web.dev/reporting-api/#report-format
@@ -549,4 +549,27 @@ export interface InterventionReport extends ReportBase {
     readonly columnNumber?: number | null;
   };
   readonly type: 'intervention';
+}
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Network_Error_Logging#error_reports
+ * @see https://w3c.github.io/network-error-logging/
+ */
+export interface NetworkErrorReport extends ReportBase {
+  readonly body: {
+    readonly elapsed_time: number;
+    readonly method: string;
+    readonly phase: string;
+    readonly protocol: string;
+    readonly referrer: string;
+    readonly request_headers?: Record<string, string[]>;
+    readonly response_headers?: Record<string, string[]>;
+    readonly sampling_fraction: number;
+    readonly server_ip: string;
+    readonly status_code: number;
+    readonly type: string;
+    /** @remarks Not mentioned in the spec but is in the MDN examples. */
+    readonly url?: string;
+  };
+  readonly type: 'network-error';
 }
