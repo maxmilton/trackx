@@ -531,9 +531,9 @@ export interface ExpectCTReport {
       readonly status: 'unknown' | 'invalid' | 'valid';
       readonly version: number;
     }>;
-    readonly 'served-certificate-chain'?: string;
+    readonly 'served-certificate-chain'?: string[];
     readonly 'test-report'?: boolean;
-    readonly 'validated-certificate-chain'?: string;
+    readonly 'validated-certificate-chain'?: string[];
   };
 }
 
