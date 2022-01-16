@@ -21,10 +21,12 @@
   "dependencies": {
     "better-sqlite3": "7.4.6",
     "kleur": "4.1.4",
+    "punycode": "2.1.1",
     "sade": "1.8.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "7.4.2",
+    "@types/punycode": "2.1.0",
     "@types/sade": "1.7.4",
     "git-ref": "0.3.1",
     "source-map-support": "0.5.21"

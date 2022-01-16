@@ -209,6 +209,14 @@ export function byteSize(data: string | object): number {
   );
 }
 
+// Same validation as packages/trackx-cli/src/actions/adduser.ts
+// https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+const RE_EMAIL = /^[\w!#$%&'*+./=?^`{|}~-]+@[\dA-Za-z](?:[\dA-Za-z-]{0,61}[\dA-Za-z])?(?:\.[\dA-Za-z](?:[\dA-Za-z-]{0,61}[\dA-Za-z])?)*$/;
+
+export function isNotValidEmail(email: string): boolean {
+  return !RE_EMAIL.test(email);
+}
+
 /**
  * Check a string is (not) comprised of only printable (not control) ASCII
  * characters from within the "ASCII" range (the first 128 characters in UTF-8).
