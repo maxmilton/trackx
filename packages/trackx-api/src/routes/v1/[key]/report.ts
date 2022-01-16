@@ -92,8 +92,6 @@ function addReport(
   let name;
   let message;
   let uri;
-  // FIXME: Add the unique but cross-browser reproducible parts of the report
-  // to ID the event for fingerprinting
   let fingerprintSegments = '';
 
   switch (reportType) {
@@ -173,37 +171,12 @@ function addReport(
         body.body.method
       }:${body.body.status_code}:${body.body.url || body.body.referrer}`;
       break;
-    // // Content Security Policy Level 2 and 3 Reports
-    // // https://www.w3.org/TR/CSP2/
-    // // https://www.w3.org/TR/CSP3/
-    // case 'application/csp-report':
-    //   body = (rawBody as CSPReport)['csp-report'];
-    //   if (body) {
-    //     type = EventType.CSPReport;
-    //     uri = body['document-uri'];
-    //     name = 'CSP Violation';
-    //   } else {
-    //     // TODO: Should validation occur earlier to avoid the compute to get here?
-    //     throw new AppError('Invalid report', Status.BAD_REQUEST);
-    //   }
-    //   break;
-    // // Certificate Transparency Reports
-    // // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
-    // case 'application/expect-ct-report+json':
-    //   // @ts-expect-error - FIXME:!
-    //   body = rawBody['expect-ct-report'];
-    //   if (body) {
-    //     type = EventType.CTReport;
-    //     uri = `${body.scheme || 'https'}://${body.host}:${body.port}`;
-    //     name = 'Certificate Transparency Report';
-    //   } else {
-    //     // TODO: Should validation occur earlier to avoid the compute to get here?
-    //     throw new AppError('Invalid report', Status.BAD_REQUEST);
-    //   }
-    //   break;
     // Chrome may send reports with Content-Type plain/text, so it's safest to
-    // handle these types of reports in a generic way
+    // handle these reports in a generic way rather than rely on Content-Type
     default:
+      // Content Security Policy Level 2 and 3 Reports
+      // https://www.w3.org/TR/CSP2/
+      // https://www.w3.org/TR/CSP3/
       // @ts-expect-error - FIXME:!
       if (rawBody['csp-report']) {
         type = EventType.CSPReport;
@@ -220,6 +193,8 @@ function addReport(
         }:${body['column-number']}:${body['original-policy']}:${
           body['effective-directive'] || body['violated-directive']
         }`;
+        // Certificate Transparency Reports
+        // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
         // @ts-expect-error - FIXME:!
       } else if (rawBody['expect-ct-report']) {
         type = EventType.CTReport;
@@ -227,7 +202,10 @@ function addReport(
         uri = `${body.scheme || 'https'}://${body.hostname || body.host}:${
           body.port
         }`;
-        name = 'Certificate Transparency Report';
+        name = 'Expect-CT Violation';
+        // TODO: Set message to something meaningful
+        // message = '';
+        fingerprintSegments += `${uri}:${body['served-certificate-chain']}:${body['validated-certificate-chain']}`;
       } else {
         // TODO: Should there be a per-project option to reject unknown reports?
 
