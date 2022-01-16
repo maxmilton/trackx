@@ -367,13 +367,15 @@ type Disposition = 'enforce' | 'report' | 'reporting';
 
 /**
  * @see https://web.dev/reporting-api/#report-format
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Report
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/ReportBody
  */
 interface ReportBase {
   /**
    * The number of milliseconds between the report's timestamp and the current
    * time.
    */
-  readonly age: number;
+  readonly age?: number;
   readonly body?: Record<string, unknown>;
   readonly type: string;
   /**
@@ -387,7 +389,7 @@ interface ReportBase {
   /**
    * The User-Agent header of the request from which the report was generated.
    */
-  readonly user_agent: string;
+  readonly user_agent?: string;
 }
 
 /**
@@ -424,10 +426,13 @@ export interface COOPReport extends ReportBase {
   readonly type: 'coop';
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/CrashReportBody
+ */
 export interface CrashReport extends ReportBase {
   readonly body: {
-    readonly crashId: string;
-    readonly reason?: string;
+    readonly crashId?: string;
+    readonly reason?: 'oom' | 'unresponsive';
   };
   readonly type: 'crash';
 }
@@ -532,13 +537,16 @@ export interface ExpectCTReport {
   };
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/InterventionReportBody
+ */
 export interface InterventionReport extends ReportBase {
   readonly body: {
     readonly id: string;
     readonly message: string;
-    readonly sourceFile?: string;
-    readonly lineNumber?: number;
-    readonly columnNumber?: number;
+    readonly sourceFile?: string | null;
+    readonly lineNumber?: number | null;
+    readonly columnNumber?: number | null;
   };
   readonly type: 'intervention';
 }
