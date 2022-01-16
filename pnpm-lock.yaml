@@ -20,7 +20,7 @@ importers:
       eslint-plugin-import: 2.25.4
       eslint-plugin-jest: 25.7.0
       eslint-plugin-jsx-a11y: 6.5.1
-      eslint-plugin-unicorn: 40.1.0
+      eslint-plugin-unicorn: 40.0.0
       jest: 27.4.7
       jest-resolve: 27.4.6
       prettier: 2.5.1
@@ -47,7 +47,7 @@ importers:
       eslint-plugin-import: 2.25.4_eslint@8.7.0
       eslint-plugin-jest: 25.7.0_36547e7e56cb5984c70866e6ceec1df2
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.7.0
-      eslint-plugin-unicorn: 40.1.0_eslint@8.7.0
+      eslint-plugin-unicorn: 40.0.0_eslint@8.7.0
       jest: 27.4.7
       jest-resolve: 27.4.6
       prettier: 2.5.1
@@ -2756,8 +2756,8 @@ packages:
       minimatch: 3.0.4
     dev: true
 
-  /eslint-plugin-unicorn/40.1.0_eslint@8.7.0:
-    resolution: {integrity: sha512-y5doK2DF9Sr5AqKEHbHxjFllJ167nKDRU01HDcWyv4Tnmaoe9iNxMrBnaybZvWZUaE3OC5Unu0lNIevYamloig==}
+  /eslint-plugin-unicorn/40.0.0_eslint@8.7.0:
+    resolution: {integrity: sha512-5GRXISfBk8jMmYk1eeNDw8zSRnWTxBjWkzx2Prre6E2/yLu2twozZ3EomLWCBu9nWms/ZE361BItyMQwfnG1qA==}
     engines: {node: '>=12'}
     peerDependencies:
       eslint: '>=7.32.0'
