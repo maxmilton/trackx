@@ -9,6 +9,8 @@
 //    ↳ extension:// (Edge)
 //  ↳ Should the events be completely ignored or just marked as filtered?
 
+// TODO: Better fingerprinting for smarter grouping
+
 import { isIP } from 'net';
 import type { Middleware } from 'polka';
 import { EventType } from 'trackx/types';
@@ -101,18 +103,21 @@ function addReport(
       body = rawBody as COEPReport;
       name = 'COEP Violation';
       uri = body.url;
+      fingerprintSegments += `${body.body.type}:${body.body.blockedURL}:${body.body.destination}`;
       break;
     case 'coop':
       type = EventType.COOPReport;
       body = rawBody as COOPReport;
       name = 'COOP Violation';
       uri = body.url;
+      fingerprintSegments += `${body.body.type}:${body.body.effectivePolicy}:${body.body.property}:${body.body.sourceFile}:${body.body.lineNumber}:${body.body.columnNumber}`;
       break;
     case 'crash':
       type = EventType.CrashReport;
       body = rawBody as CrashReport;
       name = 'Browser Crash';
       uri = body.url;
+      fingerprintSegments += `${uri}:${body.body.reason}`;
       break;
     case 'csp-violation':
       type = EventType.CSPReport;
@@ -136,6 +141,7 @@ function addReport(
       name = 'Browser Deprecation';
       message = body.body.message;
       uri = body.url;
+      fingerprintSegments += `${body.body.id}:${body.body.sourceFile}:${body.body.lineNumber}:${body.body.columnNumber}`;
       break;
     case 'document-policy-violation':
       type = EventType.DocumentPolicyReport;
@@ -143,6 +149,7 @@ function addReport(
       name = 'Document Policy Violation';
       message = body.body.message;
       uri = body.url;
+      fingerprintSegments += `${body.body.policyId}:${body.body.sourceFile}:${body.body.lineNumber}:${body.body.columnNumber}`;
       break;
     case 'intervention':
       type = EventType.InterventionReport;
@@ -150,6 +157,7 @@ function addReport(
       name = 'Browser Intervention';
       message = body.body.message;
       uri = body.url;
+      fingerprintSegments += `${body.body.id}:${body.body.sourceFile}:${body.body.lineNumber}:${body.body.columnNumber}`;
       break;
     // // Content Security Policy Level 2 and 3 Reports
     // // https://www.w3.org/TR/CSP2/
@@ -246,7 +254,8 @@ function addReport(
   }
 
   const fingerprint = `${eventData.project_id}:${eventData.type}:${
-    fingerprintSegments || JSON.stringify(body)
+    // @ts-expect-error - FIXME:!
+    fingerprintSegments || JSON.stringify(body.body || body || uri)
   }`;
   const fingerprintHash = hash(Buffer.from(fingerprint));
 
