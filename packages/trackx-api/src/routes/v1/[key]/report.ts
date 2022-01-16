@@ -161,6 +161,18 @@ function addReport(
       uri = body.url;
       fingerprintSegments += `${body.body.id}:${body.body.sourceFile}:${body.body.lineNumber}:${body.body.columnNumber}`;
       break;
+    case 'network-error':
+      type = EventType.NELReport;
+      body = rawBody as NetworkErrorReport;
+      uri = body.url;
+      name = 'Network Error';
+      message = `${body.body.type} for ${body.body.method} ${
+        body.body.url || body.body.referrer
+      }`;
+      fingerprintSegments += `${body.body.type}:${body.body.phase}:${
+        body.body.method
+      }:${body.body.status_code}:${body.body.url || body.body.referrer}`;
+      break;
     // // Content Security Policy Level 2 and 3 Reports
     // // https://www.w3.org/TR/CSP2/
     // // https://www.w3.org/TR/CSP3/
@@ -208,18 +220,6 @@ function addReport(
         }:${body['column-number']}:${body['original-policy']}:${
           body['effective-directive'] || body['violated-directive']
         }`;
-        // @ts-expect-error - FIXME:!
-      } else if (rawBody['network-error']) {
-        type = EventType.NELReport;
-        body = rawBody as NetworkErrorReport;
-        uri = body.url;
-        name = 'Network Error';
-        message = `${body.body.type} for ${body.body.method} ${
-          body.body.url || body.body.referrer
-        }`;
-        fingerprintSegments += `${body.body.type}:${body.body.phase}:${
-          body.body.method
-        }:${body.body.status_code}:${body.body.url || body.body.referrer}`;
         // @ts-expect-error - FIXME:!
       } else if (rawBody['expect-ct-report']) {
         type = EventType.CTReport;
@@ -416,7 +416,18 @@ function prepareReports(
       throw new AppError('Invalid body', Status.BAD_REQUEST);
     }
   } else {
-    addReport(project.id, key, origin, ip, ua, mimeType, body, uaBrowser, uaOS);
+    addReport(
+      project.id,
+      key,
+      origin,
+      ip,
+      ua,
+      // @ts-expect-error - FIXME:!
+      body.type || mimeType,
+      body,
+      uaBrowser,
+      uaOS,
+    );
   }
 }
 
