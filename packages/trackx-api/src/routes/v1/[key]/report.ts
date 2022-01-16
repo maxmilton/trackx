@@ -118,6 +118,9 @@ function addReport(
       type = EventType.CSPReport;
       body = rawBody as CSPReport;
       name = 'CSP Violation';
+      message = `${body.body.effectiveDirective} directive blocked ${
+        body.body.blockedURL || body.body.blockedURI
+      }`;
       uri = body.url;
       // TODO: Fix grouping; Firefox normalises the originalPolicy value and
       // has a different columnNumber leading to a different fingerprint
@@ -185,6 +188,9 @@ function addReport(
         body = (rawBody as DeprecatedCSPReport)['csp-report'];
         uri = body['document-uri'];
         name = 'CSP Violation';
+        message = `${
+          body['effective-directive'] || body['violated-directive']
+        } directive blocked ${body['blocked-uri']}`;
         // TODO: Fix grouping; Firefox normalises the original-policy value and
         // has a different column-number leading to a different fingerprint
         fingerprintSegments += `${body['blocked-uri']}:${body['source-file']}:${
@@ -226,10 +232,8 @@ function addReport(
       os_v: uaOS.version,
       agent: uaBrowser.name,
       agent_v: uaBrowser.version,
-      meta: {
-        // @ts-expect-error - FIXME:!
-        body: body.body || body, // TODO: Remove?
-      },
+      // @ts-expect-error - FIXME:!
+      meta: body.body || body || {}, // TODO: Better storage/presentation of data?
     },
   };
 
@@ -395,11 +399,27 @@ function prepareReports(
 
 export const post: Middleware = (req, res, next) => {
   try {
+    // FIXME: Looks like reports with Content-Type: application/reports+json are
+    // not sent with an Origin or Referer header, although they do send a CORS
+    // preflight OPTIONS request with an Origin. Perhaps because they can send
+    // multiple reports in one request?
+    //  ↳ Do we need to derive the origin from each report's URL?
+    //  ↳ Report API V0 may send reports from multiple origins in one request!!
+    //  ↳ Report API V1 will not send reports from multiple origins together.
+
     // eslint-disable-next-line prefer-destructuring
-    const origin = req.headers.origin;
+    let origin = req.headers.origin;
 
     if (!origin) {
-      throw new AppError('Invalid origin', Status.FORBIDDEN);
+      // FIXME: Temp workaround for reports with no Origin header
+      if (
+        !(
+          req.headers['content-type'] === 'application/reports+json'
+          && req.body[0] === '['
+        )
+      ) {
+        throw new AppError('Invalid origin', Status.FORBIDDEN);
+      }
     }
 
     // eslint-disable-next-line prefer-destructuring
@@ -453,6 +473,13 @@ export const post: Middleware = (req, res, next) => {
     }
     if (typeof body !== 'object' || body === null) {
       throw new AppError('Invalid body', Status.BAD_REQUEST);
+    }
+
+    // FIXME: Temp workaround for reports with no Origin header
+    if (!origin && Array.isArray(body)) {
+      origin = new URL(body[0].url).origin;
+    } else {
+      throw new AppError('Invalid origin', Status.FORBIDDEN);
     }
 
     prepareReports(key, origin, ip, ua, mimeType, body);
