@@ -46,6 +46,7 @@ import type {
   ExpectCTReport,
   InterventionReport,
   IssueInternal,
+  NetworkErrorReport,
   ProjectInternal,
   SessionInternal,
 } from '../../../types';
@@ -207,6 +208,18 @@ function addReport(
         }:${body['column-number']}:${body['original-policy']}:${
           body['effective-directive'] || body['violated-directive']
         }`;
+        // @ts-expect-error - FIXME:!
+      } else if (rawBody['network-error']) {
+        type = EventType.NELReport;
+        body = rawBody as NetworkErrorReport;
+        uri = body.url;
+        name = 'Network Error';
+        message = `${body.body.type} for ${body.body.method} ${
+          body.body.url || body.body.referrer
+        }`;
+        fingerprintSegments += `${body.body.type}:${body.body.phase}:${
+          body.body.method
+        }:${body.body.status_code}:${body.body.url || body.body.referrer}`;
         // @ts-expect-error - FIXME:!
       } else if (rawBody['expect-ct-report']) {
         type = EventType.CTReport;
