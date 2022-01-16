@@ -404,6 +404,8 @@ export const post: Middleware = (req, res, next) => {
     // preflight OPTIONS request with an Origin. Perhaps because they can send
     // multiple reports in one request?
     //  ↳ Do we need to derive the origin from each report's URL?
+    //  ↳ Report API V0 may send reports from multiple origins in one request!!
+    //  ↳ Report API V1 will not send reports from multiple origins together.
 
     // eslint-disable-next-line prefer-destructuring
     let origin = req.headers.origin;
