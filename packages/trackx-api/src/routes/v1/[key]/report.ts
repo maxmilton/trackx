@@ -127,13 +127,14 @@ function addReport(
         body.body.blockedURL || body.body.blockedURI
       }`;
       uri = body.url;
-      // TODO: Fix grouping; Firefox normalises the originalPolicy value and
-      // has a different columnNumber leading to a different fingerprint
-      fingerprintSegments += `${body.body.blockedURI || body.body.blockedURL}:${
-        body.body.sourceFile
-      }:${body.body.lineNumber}:${body.body.columnNumber}:${
-        body.body.originalPolicy
-      }:${body.body.effectiveDirective}`;
+      // TODO: Fix grouping; Firefox modifies the originalPolicy value and has
+      // a different columnNumber leading to a different fingerprint
+      //  ↳ Will we need to normalise the CSP policy?
+      fingerprintSegments += `${body.body.effectiveDirective}:${
+        body.body.blockedURI || body.body.blockedURL
+      }:${body.body.sourceFile}:${body.body.lineNumber}:${
+        body.body.columnNumber
+      }`;
       break;
     case 'deprecation':
       type = EventType.DeprecationReport;
@@ -186,13 +187,14 @@ function addReport(
         message = `${
           body['effective-directive'] || body['violated-directive']
         } directive blocked ${body['blocked-uri']}`;
-        // TODO: Fix grouping; Firefox normalises the original-policy value and
+        // TODO: Fix grouping; Firefox modifies the original-policy value and
         // has a different column-number leading to a different fingerprint
-        fingerprintSegments += `${body['blocked-uri']}:${body['source-file']}:${
-          body['line-number']
-        }:${body['column-number']}:${body['original-policy']}:${
+        //  ↳ Will we need to normalise the CSP policy?
+        fingerprintSegments += `${
           body['effective-directive'] || body['violated-directive']
-        }`;
+        }:${body['blocked-uri']}:${body['source-file']}:${
+          body['line-number']
+        }:${body['column-number']}`;
         // Certificate Transparency Reports
         // https://datatracker.ietf.org/doc/draft-ietf-httpbis-expect-ct/
         // @ts-expect-error - FIXME:!
