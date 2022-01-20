@@ -129,7 +129,7 @@ importers:
       psl: 1.8.0
       source-map: 0.7.3
       source-map-support: 0.5.21
-      totalist: 2.0.0
+      totalist: 3.0.0
       tough-cookie: 4.0.0
       trackx: workspace:*
       ua-parser-js: 1.0.2
@@ -156,7 +156,7 @@ importers:
       psl: 1.8.0
       source-map: 0.7.3
       source-map-support: 0.5.21
-      totalist: 2.0.0
+      totalist: 3.0.0
 
   packages/trackx-cli:
     specifiers:
@@ -5768,8 +5768,8 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /totalist/2.0.0:
-    resolution: {integrity: sha512-+Y17F0YzxfACxTyjfhnJQEe7afPA0GSpYlFkl2VFMxYP7jshQf9gXV7cH47EfToBumFThfKBvfAcoUn6fdNeRQ==}
+  /totalist/3.0.0:
+    resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==}
     engines: {node: '>=6'}
     dev: true
 
