@@ -239,6 +239,7 @@ const ProjectPage: RouteComponent = (props) => {
               href={`${config.DOCS_URL}/#/privacy-and-user-data.md#how-are-sessions-calculated`}
               class="link-help dib"
               target="_blank"
+              rel="noopener"
               aria-label="Times are UTC\nSee docs to learn how sessions are calculated"
               data-tooltip
             >
