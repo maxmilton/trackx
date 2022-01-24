@@ -92,6 +92,7 @@ function addReport(
   let name;
   let message;
   let uri;
+  /** The unique and reproducible data used to group similar events together. */
   let fingerprintSegments = '';
 
   switch (reportType) {
@@ -366,7 +367,7 @@ function prepareReports(
           if (
             typeof report.age !== 'number'
             || report.age < 0
-            || report.age > 48 * 60 * 1000 // 2 days; 48 hours * 60 minutes * 1000 ms
+            || report.age > 2_880_000 // 2 days * 24 hours * 60 minutes * 1000 ms
           ) {
             // FIXME:!
             // eslint-disable-next-line no-continue

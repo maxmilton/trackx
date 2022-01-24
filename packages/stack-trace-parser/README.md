@@ -9,6 +9,7 @@
     - https://github.com/thlorenz/convert-source-map/blob/master/index.js
     - https://github.com/ampproject/error-tracker/blob/main/utils/stacktrace/unminify.js
   - Reject source files which are too big to avoid running out of memory or use some kind of alternative disk based store
+    - First make a HEAD request to try find Content-Length or other hints
 
 ## Licence
 

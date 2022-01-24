@@ -363,7 +363,7 @@ export type Plugin = (context: {
 /**
  * @see https://www.w3.org/TR/CSP3/#enumdef-securitypolicyviolationeventdisposition
  */
-type Disposition = 'enforce' | 'report';
+type Disposition = 'enforce' | 'report' | 'reporting';
 
 /**
  * @see https://web.dev/reporting-api/#report-format
@@ -490,14 +490,17 @@ export interface CSPReport extends ReportBase {
   readonly type: 'csp-violation';
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/DeprecationReportBody
+ */
 export interface DeprecationReport extends ReportBase {
   readonly body: {
     readonly id: string;
-    readonly anticipatedRemoval?: Date;
-    readonly message: string;
-    readonly sourceFile?: string;
-    readonly lineNumber?: number;
-    readonly columnNumber?: number;
+    readonly anticipatedRemoval?: Date | null;
+    readonly message?: string;
+    readonly sourceFile?: string | null;
+    readonly lineNumber?: number | null;
+    readonly columnNumber?: number | null;
   };
   readonly type: 'deprecation';
 }

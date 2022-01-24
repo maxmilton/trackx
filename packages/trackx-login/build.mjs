@@ -98,7 +98,7 @@ function makeHTML(jsPath, cssPath) {
   </form>
   <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
 <body>
-<html>`.replace(/\n\s+/g, '\n');
+<html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
 }
 
 /** @type {esbuild.Plugin} */

@@ -244,8 +244,9 @@ export function addEvent(
     let payloadBytes = byteSize(eventData);
 
     if (eventData.data.stack && payloadBytes > config.MAX_EVENT_BYTES) {
-      // TODO: Maybe this should trim the stack of the last N frames? Since the
-      // first frames tend to be the most relevant
+      // TODO: Normally the higher frames are the most relevant, so it would be
+      // better to remove the source code from the last N frames only until the
+      // payload size is below the limit
 
       // Strip out source code to reduce size -- better to have frames without
       // source than completely discard the event

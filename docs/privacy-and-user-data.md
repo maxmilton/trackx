@@ -62,16 +62,16 @@ TODO: Write me
 
 1. A user accesses your website or your app is run.
 1. Your code calls `trackx.setup()` which adds instrumentation to detect errors.  
-   — see `packages/trackx/src/*`
+   — see [packages/trackx/src/\*](https://github.com/maxmilton/trackx/tree/master/packages/trackx/src)
 1. If you're using the `trackx.ping()` feature, a ping request is sent to the backend.
-   1. If the ping request is valid, a hash is generated to uniquely identify the user and if it's a new hash, we save a new session in the database. The user's IP address and user-agent are used to create the hash but then discarded.  
-      — see `packages/trackx-api/src/routes/v1/[key]/ping.ts`
+   1. If the ping request is valid, a hash is generated to uniquely identify the session and if it's a new hash, we save a new session in the database. The user's IP address and user-agent are used to create the hash but then discarded (only the hash is saved in the database).  
+      — see [packages/trackx-api/src/routes/v1/[key]/ping.ts](https://github.com/maxmilton/trackx/blob/master/packages/trackx-api/src/routes/v1/%5Bkey%5D/report.ts)
 1. Users use the application (with minimal overhead from the `trackx` client)
 1. At this point one of 2 things can happen:
    1. When an error is encountered or your code programatically calls `trackx.sendEvent()`, data about the error is captured and an event may be sent
-      1. If the client has an `OnErrorHandler`, the function is called allowing the event payload to be modified as necessary or stop the request from being sent — see `packages/trackx/types.ts#56`
-      1. If the event request is valid, it's processed, analysed and grouped into an existing matching issue or else a new issue is created — see `packages/trackx-api/src/routes/v1/[key]/event.ts`
+      1. If the client has an `OnErrorHandler`, the function is called allowing the event payload to be modified as necessary or stop the request from being sent — see [packages/trackx/types.ts#63](https://github.com/maxmilton/trackx/blob/master/packages/trackx/types.ts#L63)`
+      1. If the event request is valid, it's processed, analysed and grouped into an existing matching issue or else a new issue is created — see [packages/trackx-api/src/routes/v1/[key]/event.ts](https://github.com/maxmilton/trackx/blob/master/packages/trackx-api/src/routes/v1/%5Bkey%5D/event.ts)
       1. Event requests will also create a session if one doesn't exist (similar to 3.a) or if a session does exist it's marked as having an error.
    1. If you're using the browser reports feature, when a user's browser encounters an issue it may automatically send a report
-      1. The report request is processed, analysed, and grouped into an existing matching issue or else a new issue is created — see `packages/trackx-api/src/routes/v1/[key]/report.ts`
+      1. The report request is processed, analysed, and grouped into an existing matching issue or else a new issue is created — see [packages/trackx-api/src/routes/v1/[key]/report.ts](https://github.com/maxmilton/trackx/blob/master/packages/trackx-api/src/routes/v1/%5Bkey%5D/report.ts)
       1. Report requests will also create a session if one doesn't exist (similar to 3.a) or if a session does exist it's marked as having an error.
