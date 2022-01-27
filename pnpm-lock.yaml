@@ -12,7 +12,7 @@ importers:
       '@types/node': 17.0.10
       '@typescript-eslint/eslint-plugin': 5.10.1
       '@typescript-eslint/parser': 5.10.1
-      babel-preset-solid: 1.3.2
+      babel-preset-solid: 1.3.4
       esbuild: 0.14.14
       eslint: 8.7.0
       eslint-config-airbnb-base: 15.0.0
@@ -39,7 +39,7 @@ importers:
       '@types/node': 17.0.10
       '@typescript-eslint/eslint-plugin': 5.10.1_0f442f6b60390429061d5d9b6bcaaba6
       '@typescript-eslint/parser': 5.10.1_eslint@8.7.0+typescript@4.5.5
-      babel-preset-solid: 1.3.2_@babel+core@7.16.12
+      babel-preset-solid: 1.3.4_@babel+core@7.16.12
       esbuild: 0.14.14
       eslint: 8.7.0
       eslint-config-airbnb-base: 15.0.0_9ff7dbcc486b497d34e34a545c49272a
@@ -63,9 +63,9 @@ importers:
 
   packages/icons:
     specifiers:
-      solid-js: 1.3.3
+      solid-js: 1.3.4
     devDependencies:
-      solid-js: 1.3.3
+      solid-js: 1.3.4
 
   packages/reltime:
     specifiers: {}
@@ -204,15 +204,15 @@ importers:
       rollup-plugin-esbuild: 4.8.2
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.5.4
-      solid-js: 1.3.3
+      solid-js: 1.3.4
       trackx: workspace:*
       uplot: 1.6.18
     dependencies:
       '@ekscss/framework': 0.0.39_ekscss@0.0.12
-      '@maxmilton/solid-router': 0.2.0_solid-js@1.3.3
+      '@maxmilton/solid-router': 0.2.0_solid-js@1.3.4
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
-      solid-js: 1.3.3
+      solid-js: 1.3.4
       trackx: link:../trackx
       uplot: 1.6.18
     devDependencies:
@@ -1028,14 +1028,14 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
-  /@maxmilton/solid-router/0.2.0_solid-js@1.3.3:
+  /@maxmilton/solid-router/0.2.0_solid-js@1.3.4:
     resolution: {integrity: sha512-d1Cw959T1q1ER+BxEYQo720UcmoKVKVSdtIeAdBs40CUhTMNyRxgnYRxfTeCkLJYgU8/yA4lM1V6s15UYtySVA==}
     peerDependencies:
       solid-js: ^1.1.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.0
-      solid-js: 1.3.3
+      solid-js: 1.3.4
     dev: false
 
   /@maxmilton/stylelint-config/0.0.9_stylelint@14.3.0:
@@ -1767,8 +1767,8 @@ packages:
       '@types/babel__traverse': 7.14.2
     dev: true
 
-  /babel-plugin-jsx-dom-expressions/0.31.9_@babel+core@7.16.12:
-    resolution: {integrity: sha512-PY86Hesr0D3HxzKSsg0jk/oxRsFyw9jW9ejR+CSsBHpOCTilrOUDOXct3LevnG+dU5cKfm6D1V7fs2F3TyBf8A==}
+  /babel-plugin-jsx-dom-expressions/0.31.11_@babel+core@7.16.12:
+    resolution: {integrity: sha512-2h7Z6zMZNnkbp4IwE3mc9biUy03mFgS5DmPLdIaIkWY7QMXEqv9i2WEYJh0miVrrN1+RN2ICcwVuoht9Yta79A==}
     dependencies:
       '@babel/helper-module-imports': 7.16.0
       '@babel/plugin-syntax-jsx': 7.16.7_@babel+core@7.16.12
@@ -1809,10 +1809,10 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.16.12
     dev: true
 
-  /babel-preset-solid/1.3.2_@babel+core@7.16.12:
-    resolution: {integrity: sha512-NiWGdkWZ6a/3Sfc6JdkzeNi8HkbVLNhHuKPCBvCkZPMABP6VRBoqq/aYydZlESk6EC1PYRdZAYSItb9Is6tnJQ==}
+  /babel-preset-solid/1.3.4_@babel+core@7.16.12:
+    resolution: {integrity: sha512-evp3/4S042mDehPzWl5gYhYzwGx36nDx7s26fwGPdalN8e6OyQOO5djY5g0nRQv0VDJRUwV+kxKw6BDQLwztWA==}
     dependencies:
-      babel-plugin-jsx-dom-expressions: 0.31.9_@babel+core@7.16.12
+      babel-plugin-jsx-dom-expressions: 0.31.11_@babel+core@7.16.12
     transitivePeerDependencies:
       - '@babel/core'
     dev: true
@@ -5295,8 +5295,8 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js/1.3.3:
-    resolution: {integrity: sha512-0pyHpLZIgQDI1Z+MgxXQRPY10dhXfKJdptb4UCJQ9ArQOLq2gtFA1acEsvSAtPMVdqQ8bqj68FOTXLpz6hm2Mg==}
+  /solid-js/1.3.4:
+    resolution: {integrity: sha512-iMdb6wUPl+n9vkNLREyiyperl+L5n+KDe4T+XGwpU6vztwuga5ciNZr0qCQzbGDiQgDAziKyqk2/B+Qu3kMQWA==}
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
