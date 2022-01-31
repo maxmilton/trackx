@@ -150,10 +150,10 @@ const IssuePage: RouteComponent = (props) => {
         disablePrev: !!eventData.is_first,
         disableNext: !!eventData.is_last,
       });
-      setUrlParams({
-        ...urlParams(),
+      setUrlParams((prev) => ({
+        ...prev,
         event: eventData.id,
-      });
+      }));
       eventFetchInProgress = false;
     }
   });

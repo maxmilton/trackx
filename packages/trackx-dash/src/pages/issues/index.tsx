@@ -117,11 +117,11 @@ const IssuesPage: RouteComponent = () => {
       sort: 'last_seen',
       offset: 0,
     });
-    setUrlParams({
-      ...urlParams(),
+    setUrlParams((prev) => ({
+      ...prev,
       q: undefined,
       sort: undefined,
-    });
+    }));
   }
 
   const NavButtons = () => (
@@ -205,11 +205,11 @@ const IssuesPage: RouteComponent = () => {
                     sort: 'rank',
                   });
 
-                  setUrlParams({
-                    ...urlParams(),
+                  setUrlParams((prev) => ({
+                    ...prev,
                     q: state.searchText,
                     sort: undefined,
-                  });
+                  }));
 
                   // Updates to sort/offset already trigger resource fetch
                   const shouldFetch = state.sort === 'rank' && state.offset === 0;
@@ -253,10 +253,10 @@ const IssuesPage: RouteComponent = () => {
                 offset: 0, // reset pagination
                 sort,
               });
-              setUrlParams({
-                ...urlParams(),
+              setUrlParams((prev) => ({
+                ...prev,
                 sort,
-              });
+              }));
             }}
           >
             <option value="rank" disabled={!state.searchText}>

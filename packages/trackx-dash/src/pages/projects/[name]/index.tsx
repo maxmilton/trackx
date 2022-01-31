@@ -182,7 +182,7 @@ const ProjectPage: RouteComponent = (props) => {
 
   function handleDateNav(prev?: boolean) {
     const newDate = new Date(state.date);
-    let date;
+    let date: string | undefined;
 
     if (state.period === 'day') {
       newDate.setUTCDate(newDate.getUTCDate() + (prev ? -1 : 1));
@@ -195,10 +195,10 @@ const ProjectPage: RouteComponent = (props) => {
 
     setState({ date });
     setSelectText(selectRef, date);
-    setUrlParams({
-      ...urlParams(),
+    setUrlParams((prev2) => ({
+      ...prev2,
       date,
-    });
+    }));
   }
 
   return (
@@ -277,18 +277,18 @@ const ProjectPage: RouteComponent = (props) => {
                 const period = event.currentTarget.value;
 
                 batch(() => {
-                  let date;
+                  let date: string | undefined;
                   if (shouldIncludeDate(period)) {
                     date = dateToday(period);
                     setState({ date });
                   }
 
                   setState({ period });
-                  setUrlParams({
-                    ...urlParams(),
+                  setUrlParams((prev) => ({
+                    ...prev,
                     date,
                     period,
-                  });
+                  }));
                 });
               }}
             >
