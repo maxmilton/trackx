@@ -78,7 +78,6 @@
     "@rollup/plugin-replace": "3.0.1",
     "@types/ungap__global-this": "0.3.1",
     "esbuild": "0.14.14",
-    "esbuild-minify-templates": "0.7.2",
     "rollup": "2.66.1",
     "rollup-plugin-dts": "4.1.0",
     "rollup-plugin-esbuild": "4.8.2",

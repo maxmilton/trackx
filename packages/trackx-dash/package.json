@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ekscss/framework": "0.0.39",
-    "@maxmilton/solid-router": "0.2.0",
+    "@maxmilton/solid-router": "0.3.0",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
     "solid-js": "1.3.4",
