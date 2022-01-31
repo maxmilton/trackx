@@ -139,6 +139,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
           error,
         });
       }
+      return;
     }
 
     try {

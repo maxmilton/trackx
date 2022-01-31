@@ -129,6 +129,7 @@ const NewProjectPage: Component = () => {
           disableSubmit: false,
         });
       }
+      return;
     }
 
     try {
