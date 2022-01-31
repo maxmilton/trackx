@@ -1,4 +1,4 @@
-import type { RouteComponent } from '@maxmilton/solid-router';
+import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconSearch, IconX } from '@trackx/icons';
 import reltime from '@trackx/reltime';
 import {
@@ -9,14 +9,7 @@ import { For, Show, Suspense } from 'solid-js/web';
 import type { Issue } from '../../../../trackx-api/src/types';
 import { renderErrorAlert } from '../../components/ErrorAlert';
 import { Loading } from '../../components/Loading';
-import {
-  compactNumber,
-  config,
-  delURLParam,
-  // dirty,
-  fetchJSON,
-  setURLParam,
-} from '../../utils';
+import { compactNumber, config, fetchJSON } from '../../utils';
 import './index.xcss';
 
 const RESULT_LIMIT = 25;
@@ -40,7 +33,9 @@ function isValidSort(query: unknown): query is SortValue {
   );
 }
 
-const IssuesPage: RouteComponent = (props) => {
+const IssuesPage: RouteComponent = () => {
+  const [urlParams, setUrlParams] = useURLParams();
+  const initialUrlParams = urlParams();
   const [state, setState] = createStore({
     error: null as any,
     disableNext: true,
@@ -48,11 +43,11 @@ const IssuesPage: RouteComponent = (props) => {
     resultsFrom: 0,
     resultsTo: 0,
     resultsTotal: 0,
-    searchText: decodeURIComponent((props.query.q as string) || ''),
+    searchText: decodeURIComponent((initialUrlParams.q as string) || ''),
     sort:
-      props.query.sort && isValidSort(props.query.sort)
-        ? props.query.sort
-        : (props.query.q
+      initialUrlParams.sort && isValidSort(initialUrlParams.sort)
+        ? initialUrlParams.sort
+        : (initialUrlParams.q
           ? 'rank'
           : 'last_seen'),
     offset: 0,
@@ -63,7 +58,7 @@ const IssuesPage: RouteComponent = (props) => {
     () => `${config.DASH_API_ENDPOINT}/issue/${untrack(() => (state.searchText
       ? `search?q=${encodeURIComponent(state.searchText)}&`
       : 'all?'))}limit=${RESULT_LIMIT}&offset=${state.offset}&sort=${state.sort}${
-      props.query.project ? `&project=${props.query.project}` : ''
+      initialUrlParams.project ? `&project=${initialUrlParams.project}` : ''
     }`,
     fetchJSON,
     { initialValue: [] },
@@ -122,8 +117,11 @@ const IssuesPage: RouteComponent = (props) => {
       sort: 'last_seen',
       offset: 0,
     });
-    delURLParam('sort');
-    delURLParam('q');
+    setUrlParams({
+      ...urlParams(),
+      q: undefined,
+      sort: undefined,
+    });
   }
 
   const NavButtons = () => (
@@ -154,7 +152,7 @@ const IssuesPage: RouteComponent = (props) => {
         <span
           class="muted"
           textContent={`(${
-            props.query.project ? props.query.project : 'All Projects'
+            initialUrlParams.project ? initialUrlParams.project : 'All Projects'
           })`}
         />
       </h1>
@@ -207,8 +205,11 @@ const IssuesPage: RouteComponent = (props) => {
                     sort: 'rank',
                   });
 
-                  delURLParam('sort');
-                  setURLParam('q', state.searchText);
+                  setUrlParams({
+                    ...urlParams(),
+                    q: state.searchText,
+                    sort: undefined,
+                  });
 
                   // Updates to sort/offset already trigger resource fetch
                   const shouldFetch = state.sort === 'rank' && state.offset === 0;
@@ -252,7 +253,10 @@ const IssuesPage: RouteComponent = (props) => {
                 offset: 0, // reset pagination
                 sort,
               });
-              setURLParam('sort', sort);
+              setUrlParams({
+                ...urlParams(),
+                sort,
+              });
             }}
           >
             <option value="rank" disabled={!state.searchText}>

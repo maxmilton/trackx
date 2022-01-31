@@ -1,6 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 
-import { RouteComponent, routeTo } from '@maxmilton/solid-router';
+import {
+  routeTo,
+  useURLParams,
+  type RouteComponent,
+} from '@maxmilton/solid-router';
 import {
   IconCheck,
   IconChevronRight,
@@ -21,7 +25,7 @@ import { Sparkline } from '../../components/Graph';
 import { Loading } from '../../components/Loading';
 import { StackTrace } from '../../components/StackTrace';
 import {
-  AppError, config, fetchJSON, logout, setURLParam,
+  AppError, config, fetchJSON, logout,
 } from '../../utils';
 import './[id].xcss';
 
@@ -76,12 +80,14 @@ function safeStringifyPretty(data: any): string {
 }
 
 const IssuePage: RouteComponent = (props) => {
+  const [urlParams, setUrlParams] = useURLParams();
+  const initialUrlParams = urlParams();
   const [state, setState] = createStore({
     error: null as any,
     disablePrev: true,
     disableNext: true,
-    dir: props.query.event ? null : 'last',
-    eventId: (props.query.event as string | number) || null,
+    dir: initialUrlParams.event ? null : 'last',
+    eventId: (initialUrlParams.event as string | number) || null,
   });
   const [issue, { mutate }] = createResource<Issue, string>(
     `${config.DASH_API_ENDPOINT}/issue/${props.params.id}`,
@@ -144,7 +150,10 @@ const IssuePage: RouteComponent = (props) => {
         disablePrev: !!eventData.is_first,
         disableNext: !!eventData.is_last,
       });
-      setURLParam('event', eventData.id);
+      setUrlParams({
+        ...urlParams(),
+        event: eventData.id,
+      });
       eventFetchInProgress = false;
     }
   });

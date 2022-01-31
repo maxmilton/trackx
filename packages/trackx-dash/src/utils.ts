@@ -121,16 +121,3 @@ export function compactNumber(num: number, hideDecimalK?: boolean): string {
     hideDecimalK && e < 1 ? Math.floor(n) : Math.floor(n * 10) / 10 // 1 decimal without rounding
   }${'kMB'[e]}`;
 }
-
-function URLParamAction(
-  action: 'set' | 'delete',
-  key: string,
-  value?: string | number,
-) {
-  const params = new URLSearchParams(window.location.search);
-  params[action](key, value != null ? encodeURIComponent(value) : '');
-  window.history.replaceState({}, '', `?${params}`);
-}
-
-export const setURLParam = URLParamAction.bind(URLParamAction, 'set');
-export const delURLParam = URLParamAction.bind(URLParamAction, 'delete');

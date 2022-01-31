@@ -1,4 +1,4 @@
-import type { RouteComponent } from '@maxmilton/solid-router';
+import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconHelp } from '@trackx/icons';
 import reltime from '@trackx/reltime';
 import {
@@ -17,13 +17,7 @@ import type {
 import { renderErrorAlert } from '../../../components/ErrorAlert';
 import { Graph } from '../../../components/Graph';
 import { Loading } from '../../../components/Loading';
-import {
-  compactNumber,
-  config,
-  delURLParam,
-  fetchJSON,
-  setURLParam,
-} from '../../../utils';
+import { compactNumber, config, fetchJSON } from '../../../utils';
 import './index.xcss';
 
 interface SessionPeriodInfoProps {
@@ -139,15 +133,18 @@ interface ProjectPageState {
 }
 
 const ProjectPage: RouteComponent = (props) => {
-  const initialPeriod = typeof props.query.period === 'string'
-    && VALID_PERIOD_VALUES.includes(props.query.period)
-    ? props.query.period
+  const [urlParams, setUrlParams] = useURLParams();
+  const initialUrlParams = urlParams();
+  const initialPeriod = typeof initialUrlParams.period === 'string'
+    && VALID_PERIOD_VALUES.includes(initialUrlParams.period)
+    ? initialUrlParams.period
     : '30d';
   const [state, setState] = createStore<ProjectPageState>({
     period: initialPeriod,
     date:
-      typeof props.query.date === 'string' && Date.parse(props.query.date)
-        ? props.query.date
+      typeof initialUrlParams.date === 'string'
+      && Date.parse(initialUrlParams.date)
+        ? initialUrlParams.date
         : dateToday(initialPeriod),
     get disablePrev() {
       return !shouldIncludeDate(this.period);
@@ -178,7 +175,7 @@ const ProjectPage: RouteComponent = (props) => {
   });
 
   onMount(() => {
-    if (props.query.date && state.date) {
+    if (initialUrlParams.date && state.date) {
       setSelectText(selectRef, state.date);
     }
   });
@@ -198,7 +195,10 @@ const ProjectPage: RouteComponent = (props) => {
 
     setState({ date });
     setSelectText(selectRef, date);
-    setURLParam('date', date);
+    setUrlParams({
+      ...urlParams(),
+      date,
+    });
   }
 
   return (
@@ -277,17 +277,19 @@ const ProjectPage: RouteComponent = (props) => {
                 const period = event.currentTarget.value;
 
                 batch(() => {
+                  let date;
                   if (shouldIncludeDate(period)) {
-                    const date = dateToday(period);
+                    date = dateToday(period);
                     setState({ date });
-                    setURLParam('date', date);
-                  } else {
-                    delURLParam('date');
                   }
 
                   setState({ period });
+                  setUrlParams({
+                    ...urlParams(),
+                    date,
+                    period,
+                  });
                 });
-                setURLParam('period', period);
               }}
             >
               <option value="day">Today</option>
