@@ -28,7 +28,7 @@ importers:
       prettier-plugin-sh: 0.8.1
       prettier-plugin-sql: 0.4.1
       stylelint: 14.3.0
-      stylelint-config-standard: 24.0.0
+      stylelint-config-standard: 25.0.0
       typescript: 4.5.5
     devDependencies:
       '@babel/core': 7.17.0
@@ -55,7 +55,7 @@ importers:
       prettier-plugin-sh: 0.8.1_prettier@2.5.1
       prettier-plugin-sql: 0.4.1_prettier@2.5.1
       stylelint: 14.3.0
-      stylelint-config-standard: 24.0.0_stylelint@14.3.0
+      stylelint-config-standard: 25.0.0_stylelint@14.3.0
       typescript: 4.5.5
 
   packages/http-status-codes:
@@ -5590,21 +5590,21 @@ packages:
     resolution: {integrity: sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=}
     dev: true
 
-  /stylelint-config-recommended/6.0.0_stylelint@14.3.0:
-    resolution: {integrity: sha512-ZorSSdyMcxWpROYUvLEMm0vSZud2uB7tX1hzBZwvVY9SV/uly4AvvJPPhCcymZL3fcQhEQG5AELmrxWqtmzacw==}
+  /stylelint-config-recommended/7.0.0_stylelint@14.3.0:
+    resolution: {integrity: sha512-yGn84Bf/q41J4luis1AZ95gj0EQwRX8lWmGmBwkwBNSkpGSpl66XcPTulxGa/Z91aPoNGuIGBmFkcM1MejMo9Q==}
     peerDependencies:
-      stylelint: ^14.0.0
+      stylelint: ^14.4.0
     dependencies:
       stylelint: 14.3.0
     dev: true
 
-  /stylelint-config-standard/24.0.0_stylelint@14.3.0:
-    resolution: {integrity: sha512-+RtU7fbNT+VlNbdXJvnjc3USNPZRiRVp/d2DxOF/vBDDTi0kH5RX2Ny6errdtZJH3boO+bmqIYEllEmok4jiuw==}
+  /stylelint-config-standard/25.0.0_stylelint@14.3.0:
+    resolution: {integrity: sha512-21HnP3VSpaT1wFjFvv9VjvOGDtAviv47uTp3uFmzcN+3Lt+RYRv6oAplLaV51Kf792JSxJ6svCJh/G18E9VnCA==}
     peerDependencies:
-      stylelint: ^14.0.0
+      stylelint: ^14.4.0
     dependencies:
       stylelint: 14.3.0
-      stylelint-config-recommended: 6.0.0_stylelint@14.3.0
+      stylelint-config-recommended: 7.0.0_stylelint@14.3.0
     dev: true
 
   /stylelint-order/5.0.0_stylelint@14.3.0:
