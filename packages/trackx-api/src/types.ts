@@ -328,23 +328,10 @@ export interface Stats {
   db_tables: StatsDBTableInfo[];
 }
 
-// FIXME: Remove; temp for development of event ingest pipeline
-export type EventPerfLog = [
-  id: string,
-  msTotal: string,
-  msRaw: string,
-  msEnahnce: string,
-  size: string,
-  frames: string,
-];
-
 export interface Logs {
   denied_event: [ts: number, key: string, c: number][];
   denied_ping: [ts: number, key: string, c: number][];
   denied_dash: [ts: number, c: number][];
-
-  // FIXME: Remove; temp for development of event ingest pipeline
-  perf_event: EventPerfLog[];
 }
 
 // TODO: Remove if we decide to remove plugin support completely
