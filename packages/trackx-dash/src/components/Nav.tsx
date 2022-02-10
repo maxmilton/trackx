@@ -30,13 +30,6 @@ export const Nav: Component = () => {
         Issues
       </NavLink>
 
-      {/* TODO: Remove when finished with reports experiments */}
-      {process.env.NODE_ENV === 'development' && (
-        <NavLink href="/reports" class="nav-item">
-          Reports
-        </NavLink>
-      )}
-
       {process.env.NODE_ENV === 'development' && (
         <NavLink href="/test" class="nav-item">
           Test

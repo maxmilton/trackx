@@ -53,17 +53,10 @@ const routes: Route[] = [
 ];
 
 if (process.env.NODE_ENV === 'development') {
-  routes.push(
-    {
-      path: '/test',
-      component: lazy(() => import('./pages/test')),
-    },
-    // TODO: Remove when finished with reports experiments
-    {
-      path: '/reports',
-      component: lazy(() => import('./pages/reports')),
-    },
-  );
+  routes.push({
+    path: '/test',
+    component: lazy(() => import('./pages/test')),
+  });
 }
 
 // TODO: Graceful error handling when network is down and can't fetch routes or
