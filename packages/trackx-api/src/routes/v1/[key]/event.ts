@@ -1,12 +1,10 @@
 import { parse, resetCache, StackFrame } from '@trackx/stack-trace-parser';
 import { isIP } from 'net';
-import { performance } from 'perf_hooks';
 import type { Middleware } from 'polka';
 import { EventType } from 'trackx/types';
 import {
   addEventStmt,
   addIssueStmt,
-  addMetaSafe,
   addSessionGraphHitStmt,
   addSessionIdxStmt,
   addSessionStmt,
@@ -38,7 +36,6 @@ import {
   config,
   getIpAddress,
   hash,
-  humanFileSize,
   isNotASCII,
   logger,
   Status,
@@ -53,11 +50,6 @@ type IncomingEvent = Pick<EventInternal, 'type'> & {
   };
 };
 
-// FIXME: REMOVE; for temp dev data collection only
-const getEventIdStmt = db
-  .prepare('SELECT id FROM event ORDER BY id DESC LIMIT 1')
-  .pluck();
-
 // TODO: Rewrite the entire ingest pipeline as it was just hacked together
 //  ↳ Plan out properly with a flow diagram etc.
 //  ↳ Rewrite with memory footprint and efficiency in mind, same for stack parser
@@ -69,7 +61,6 @@ export function addEvent(
   ua: string,
   payload: IncomingEvent,
 ): void {
-  const t0 = performance.now(); // FIXME: << REMOVE; temp dev data collection only
   const project = getProjectByKeyStmt.get(key) as ProjectInternal | undefined;
 
   if (!project) {
@@ -126,7 +117,6 @@ export function addEvent(
       stack.length = config.MAX_STACK_FRAMES;
     }
 
-    const t1 = performance.now(); // FIXME: << REMOVE; temp dev data collection only
     if (project.scrape && stack.length > 0) {
       try {
         // TODO: Build network retry and timeout options into parser
@@ -158,7 +148,6 @@ export function addEvent(
         logger.error(error);
       }
     }
-    const t2 = performance.now(); // FIXME: << REMOVE; temp dev data collection only
 
     // TODO: Deal with the filtered frames still in the original raw stack trace
     //  ↳ Maybe keep the filtered frames but just minimise them by default?
@@ -387,27 +376,9 @@ export function addEvent(
       // @ts-expect-error - data stored as string in DB
       eventData.data = JSON.stringify(eventData.data);
 
-      // addEventStmt.run(eventData);
-      const event_id = addEventStmt.run(eventData).lastInsertRowid;
+      addEventStmt.run(eventData);
 
       incrementDailyEvents();
-
-      // FIXME: REMOVE; temp dev data collection only
-      const t3 = performance.now();
-      // Get last inserted event id via a separate query because when
-      // DB_COMPRESSION is enabled the event table is a view which uses
-      // triggers to override the insert, meaning that addEventStmt
-      // lastInsertRowid will always be null
-      const lastEventId = config.DB_COMPRESSION !== 0 ? getEventIdStmt.get() : event_id;
-      // when an event is deleted SQLite might reuse its rowid which causes an
-      // error and the whole transition to roll back so we need to be safe by
-      // ignoring conflicts (especially since this is non-critical data)
-      addMetaSafe(
-        `perf-event-${lastEventId}`,
-        `${(t3 - t0).toFixed(2)},${(t2 - t1).toFixed(2)},${humanFileSize(
-          payloadBytes,
-        )},${stack.length}`,
-      );
     })();
   })();
 }
