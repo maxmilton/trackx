@@ -186,7 +186,7 @@ importers:
       '@ekscss/rollup-plugin-css': 0.0.3
       '@ekscss/rollup-plugin-purgecss': 0.0.5
       '@maxmilton/solid-router': 0.3.1
-      '@rollup/plugin-babel': 5.3.0
+      '@rollup/plugin-babel': 5.3.1
       '@rollup/plugin-buble': 0.21.3
       '@rollup/plugin-commonjs': 21.0.1
       '@rollup/plugin-html': 0.2.4
@@ -217,7 +217,7 @@ importers:
       '@babel/core': 7.17.5
       '@ekscss/rollup-plugin-css': 0.0.3_rollup@2.68.0
       '@ekscss/rollup-plugin-purgecss': 0.0.5
-      '@rollup/plugin-babel': 5.3.0_@babel+core@7.17.5+rollup@2.68.0
+      '@rollup/plugin-babel': 5.3.1_@babel+core@7.17.5+rollup@2.68.0
       '@rollup/plugin-buble': 0.21.3_rollup@2.68.0
       '@rollup/plugin-commonjs': 21.0.1_rollup@2.68.0
       '@rollup/plugin-html': 0.2.4_rollup@2.68.0
@@ -1125,8 +1125,8 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: false
 
-  /@rollup/plugin-babel/5.3.0_@babel+core@7.17.5+rollup@2.68.0:
-    resolution: {integrity: sha512-9uIC8HZOnVLrLHxayq/PTzw+uS25E14KPUBh5ktF+18Mjo5yK0ToMMx6epY0uEgkjwJw0aBW4x2horYXh8juWw==}
+  /@rollup/plugin-babel/5.3.1_@babel+core@7.17.5+rollup@2.68.0:
+    resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
       '@babel/core': ^7.0.0
