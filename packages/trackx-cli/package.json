@@ -25,7 +25,7 @@
     "sade": "1.8.1"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "7.4.2",
+    "@types/better-sqlite3": "7.5.0",
     "@types/punycode": "2.1.0",
     "@types/sade": "1.7.4",
     "git-ref": "0.3.1",
