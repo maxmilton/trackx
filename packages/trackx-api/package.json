@@ -28,7 +28,7 @@
     "xxhash-addon": "1.4.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "7.4.2",
+    "@types/better-sqlite3": "7.5.0",
     "@types/tough-cookie": "4.0.1",
     "@types/ua-parser-js": "0.7.36",
     "git-ref": "0.3.1",

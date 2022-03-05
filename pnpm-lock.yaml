@@ -115,7 +115,7 @@ importers:
       '@polka/send': 1.0.0-next.15
       '@trackx/http-status-codes': workspace:*
       '@trackx/stack-trace-parser': workspace:*
-      '@types/better-sqlite3': 7.4.2
+      '@types/better-sqlite3': 7.5.0
       '@types/tough-cookie': 4.0.1
       '@types/ua-parser-js': 0.7.36
       better-sqlite3: 7.5.0
@@ -147,7 +147,7 @@ importers:
       ua-parser-js: 1.0.2
       xxhash-addon: 1.4.0
     devDependencies:
-      '@types/better-sqlite3': 7.4.2
+      '@types/better-sqlite3': 7.5.0
       '@types/tough-cookie': 4.0.1
       '@types/ua-parser-js': 0.7.36
       git-ref: 0.3.1
@@ -158,7 +158,7 @@ importers:
 
   packages/trackx-cli:
     specifiers:
-      '@types/better-sqlite3': 7.4.2
+      '@types/better-sqlite3': 7.5.0
       '@types/punycode': 2.1.0
       '@types/sade': 1.7.4
       better-sqlite3: 7.5.0
@@ -173,7 +173,7 @@ importers:
       punycode: 2.1.1
       sade: 1.8.1
     devDependencies:
-      '@types/better-sqlite3': 7.4.2
+      '@types/better-sqlite3': 7.5.0
       '@types/punycode': 2.1.0
       '@types/sade': 1.7.4
       git-ref: 0.3.1
@@ -1270,8 +1270,8 @@ packages:
       '@babel/types': 7.17.0
     dev: true
 
-  /@types/better-sqlite3/7.4.2:
-    resolution: {integrity: sha512-HUXWMOmRgOrXJ0SKt6kxqUaZtGkr0HCuaEt/76LojT6bkTu0lb0uhr3K1su9T09mskDKyQwNMvT7WithFN10PQ==}
+  /@types/better-sqlite3/7.5.0:
+    resolution: {integrity: sha512-G9ZbMjydW2yj1AgiPlUtdgF3a1qNpLJLudc9ynJCeJByS3XFWpmT9LT+VSHrKHFbxb31CvtYwetLTOvG9zdxdg==}
     dependencies:
       '@types/node': 17.0.17
     dev: true
