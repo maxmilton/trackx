@@ -73,6 +73,7 @@ function CustomError4(this: Error, message: string) {
   this.message = message;
   this.stack = new Error().stack!;
 }
+// @ts-expect-error - no "code" property
 CustomError4.prototype = new Error();
 
 declare class CustomError5 extends Error {
@@ -95,7 +96,6 @@ function CustomError5(this: Error, message: string) {
 }
 CustomError5.prototype = Object.create(Error.prototype);
 CustomError5.prototype.constructor = CustomError5;
-// @ts-expect-error - ref code has strange name assignment
 CustomError5.prototype.name = 'CustomError5';
 
 function function3(callback: () => void) {
@@ -1596,7 +1596,6 @@ COMMIT;`,
 
               for (let index = 0; index < state.mockSessionAmount; index++) {
                 rows.push({
-                  // @ts-expect-error - randomUUID is still very new
                   id: h64(crypto.randomUUID()).padStart(16, '0'),
                   // Random date, slightly skewed to the right
                   ts: Math.trunc(
