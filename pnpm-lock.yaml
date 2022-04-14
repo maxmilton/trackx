@@ -116,7 +116,7 @@ importers:
       '@trackx/http-status-codes': workspace:*
       '@trackx/stack-trace-parser': workspace:*
       '@types/better-sqlite3': 7.5.0
-      '@types/tough-cookie': 4.0.1
+      '@types/tough-cookie': 4.0.2
       '@types/ua-parser-js': 0.7.36
       better-sqlite3: 7.5.0
       diary: 0.3.0
@@ -148,7 +148,7 @@ importers:
       xxhash-addon: 1.4.0
     devDependencies:
       '@types/better-sqlite3': 7.5.0
-      '@types/tough-cookie': 4.0.1
+      '@types/tough-cookie': 4.0.2
       '@types/ua-parser-js': 0.7.36
       git-ref: 0.3.1
       psl: 1.8.0
@@ -1358,8 +1358,8 @@ packages:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
     dev: true
 
-  /@types/tough-cookie/4.0.1:
-    resolution: {integrity: sha512-Y0K95ThC3esLEYD6ZuqNek29lNX2EM1qxV8y2FTLUB0ff5wWrk7az+mLrnNFUnaXcgKye22+sFBRXOgpPILZNg==}
+  /@types/tough-cookie/4.0.2:
+    resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
     dev: true
 
   /@types/ua-parser-js/0.7.36:
