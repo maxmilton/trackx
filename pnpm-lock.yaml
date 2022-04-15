@@ -17,7 +17,7 @@ importers:
       eslint: 8.13.0
       eslint-config-airbnb-base: 15.0.0
       eslint-config-airbnb-typescript: 16.1.0
-      eslint-plugin-import: 2.25.4
+      eslint-plugin-import: 2.26.0
       eslint-plugin-jest: 26.1.1
       eslint-plugin-jsx-a11y: 6.5.1
       eslint-plugin-unicorn: 41.0.0
@@ -42,9 +42,9 @@ importers:
       babel-preset-solid: 1.3.6_@babel+core@7.17.5
       esbuild: 0.14.25
       eslint: 8.13.0
-      eslint-config-airbnb-base: 15.0.0_c30d0de178566d9b987ccaf504209400
-      eslint-config-airbnb-typescript: 16.1.0_1f89b239ee6f27b6e291da702a798384
-      eslint-plugin-import: 2.25.4_eslint@8.13.0
+      eslint-config-airbnb-base: 15.0.0_25dbcfb8cfecb7418ebda712664abe37
+      eslint-config-airbnb-typescript: 16.1.0_9df8f8267dc61fa17010b9d1b9da68fd
+      eslint-plugin-import: 2.26.0_eslint@8.13.0
       eslint-plugin-jest: 26.1.1_093ce8c3eada870900dc7ce9ac648851
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.13.0
       eslint-plugin-unicorn: 41.0.0_eslint@8.13.0
@@ -2693,7 +2693,7 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-airbnb-base/15.0.0_c30d0de178566d9b987ccaf504209400:
+  /eslint-config-airbnb-base/15.0.0_25dbcfb8cfecb7418ebda712664abe37:
     resolution: {integrity: sha512-xaX3z4ZZIcFLvh2oUNvcX5oEofXda7giYmuplVxoOg5A7EXJMrUyqRgR+mhDhPK8LZ4PttFOBvCYDbX3sUoUig==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -2702,13 +2702,13 @@ packages:
     dependencies:
       confusing-browser-globals: 1.0.11
       eslint: 8.13.0
-      eslint-plugin-import: 2.25.4_eslint@8.13.0
+      eslint-plugin-import: 2.26.0_eslint@8.13.0
       object.assign: 4.1.2
       object.entries: 1.1.5
       semver: 6.3.0
     dev: true
 
-  /eslint-config-airbnb-typescript/16.1.0_1f89b239ee6f27b6e291da702a798384:
+  /eslint-config-airbnb-typescript/16.1.0_9df8f8267dc61fa17010b9d1b9da68fd:
     resolution: {integrity: sha512-W5Cq20KpEx5ZLC54bnVrC37zq2+WD956Kp/Ma3nYFRjT1v9KM63v+DPkrrmmrVqrlDKaD0ivm/qeYmyHV6qKlw==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0
@@ -2716,7 +2716,7 @@ packages:
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.13.0_9e25d094d662a10583896d2e26a5f702
       '@typescript-eslint/parser': 5.13.0_eslint@8.13.0+typescript@4.6.3
-      eslint-config-airbnb-base: 15.0.0_c30d0de178566d9b987ccaf504209400
+      eslint-config-airbnb-base: 15.0.0_25dbcfb8cfecb7418ebda712664abe37
     transitivePeerDependencies:
       - eslint
       - eslint-plugin-import
@@ -2737,8 +2737,8 @@ packages:
       find-up: 2.1.0
     dev: true
 
-  /eslint-plugin-import/2.25.4_eslint@8.13.0:
-    resolution: {integrity: sha512-/KJBASVFxpu0xg1kIBn9AUa8hQVnszpwgE7Ld0lKAlx7Ie87yzEzCgSkekt+le/YVhiaosO4Y14GDAOc41nfxA==}
+  /eslint-plugin-import/2.26.0_eslint@8.13.0:
+    resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
@@ -2756,7 +2756,7 @@ packages:
       minimatch: 3.1.2
       object.values: 1.1.5
       resolve: 1.22.0
-      tsconfig-paths: 3.13.0
+      tsconfig-paths: 3.14.1
     dev: true
 
   /eslint-plugin-jest/26.1.1_093ce8c3eada870900dc7ce9ac648851:
@@ -4227,7 +4227,7 @@ packages:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.6
     dev: true
 
   /json5/2.2.0:
@@ -4469,6 +4469,10 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: true
 
   /mkdirp-classic/0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
@@ -5765,12 +5769,12 @@ packages:
       regexparam: 1.3.0
     dev: false
 
-  /tsconfig-paths/3.13.0:
-    resolution: {integrity: sha512-nWuffZppoaYK0vQ1SQmkSsQzJoHA4s6uzdb2waRpD806x9yfq153AdVsWz4je2qZcW+pENrMQXbGQ3sMCkXuhw==}
+  /tsconfig-paths/3.14.1:
+    resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
-      minimist: 1.2.5
+      minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
 
