@@ -90,7 +90,7 @@ importers:
       '@ungap/global-this': ^0.4.4
       esbuild: 0.14.36
       rollup: 2.70.2
-      rollup-plugin-dts: 4.2.0
+      rollup-plugin-dts: 4.2.1
       rollup-plugin-esbuild: 4.9.1
       rollup-plugin-terser: 7.0.2
       trackx: .
@@ -104,7 +104,7 @@ importers:
       '@types/ungap__global-this': 0.3.1
       esbuild: 0.14.36
       rollup: 2.70.2
-      rollup-plugin-dts: 4.2.0_rollup@2.70.2+typescript@4.6.3
+      rollup-plugin-dts: 4.2.1_rollup@2.70.2+typescript@4.6.3
       rollup-plugin-esbuild: 4.9.1_esbuild@0.14.36+rollup@2.70.2
       rollup-plugin-terser: 7.0.2_rollup@2.70.2
       trackx: 'link:'
@@ -236,7 +236,7 @@ importers:
     specifiers:
       '@ekscss/framework': 0.0.39
       '@types/csso': 5.0.0
-      csso: 5.0.2
+      csso: 5.0.3
       ekscss: 0.0.12
       esbuild: 0.14.36
       esbuild-minify-templates: 0.8.0
@@ -249,7 +249,7 @@ importers:
       '@ekscss/framework': 0.0.39_ekscss@0.0.12
     devDependencies:
       '@types/csso': 5.0.0
-      csso: 5.0.2
+      csso: 5.0.3
       ekscss: 0.0.12
       esbuild: 0.14.36
       esbuild-minify-templates: 0.8.0_esbuild@0.14.36
@@ -2226,8 +2226,8 @@ packages:
       css-tree: 1.1.3
     dev: true
 
-  /csso/5.0.2:
-    resolution: {integrity: sha512-llFAe1UfFHy38ziX+YrPMGkn5MxdjzYtz0drvgnjRY/tLPmBRxotYTGO51BsKe9voQA074pEb0udV+piXH4scQ==}
+  /csso/5.0.3:
+    resolution: {integrity: sha512-93gBHTJ6EQlLNhIX5Ho8VAJD2t2T2wg1xHDjbIUm/oQ7iFiSUTo9jSojiQK0pEZ3lMhYDrQO7Rcd70M68+VrtA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
       css-tree: 2.0.4
@@ -5239,12 +5239,12 @@ packages:
       glob: 7.2.0
     dev: true
 
-  /rollup-plugin-dts/4.2.0_rollup@2.70.2+typescript@4.6.3:
-    resolution: {integrity: sha512-lx6irWVhz/x4//tIqRhzk4FOqGQ0n37ZM2wpPCn4uafl/EmiV92om7ZdAsq7Bzho6C+Xh5GfsyuP9H+Udv72Lg==}
-    engines: {node: '>=v12.22.10'}
+  /rollup-plugin-dts/4.2.1_rollup@2.70.2+typescript@4.6.3:
+    resolution: {integrity: sha512-eaxQZNUJ5iQcxNGlpJ1CUgG4OSVqWjDZ3nNSWBIoGrpcote2aNphSe1RJOaSYkb8dwn3o+rYm1vvld/5z3EGSQ==}
+    engines: {node: '>=v12.22.11'}
     peerDependencies:
-      rollup: ^2.55
-      typescript: ^4.1
+      rollup: ^2.70
+      typescript: ^4.6
     dependencies:
       magic-string: 0.26.1
       rollup: 2.70.2
