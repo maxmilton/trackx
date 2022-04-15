@@ -16,7 +16,7 @@ importers:
       esbuild: 0.14.36
       eslint: 8.13.0
       eslint-config-airbnb-base: 15.0.0
-      eslint-config-airbnb-typescript: 16.1.0
+      eslint-config-airbnb-typescript: 17.0.0
       eslint-plugin-import: 2.26.0
       eslint-plugin-jest: 26.1.1
       eslint-plugin-jsx-a11y: 6.5.1
@@ -25,7 +25,7 @@ importers:
       jest-resolve: 27.5.1
       prettier: 2.6.2
       prettier-plugin-pkg: 0.13.0
-      prettier-plugin-sh: 0.8.1
+      prettier-plugin-sh: 0.10.1
       prettier-plugin-sql: 0.6.0
       stylelint: 14.6.1
       stylelint-config-standard: 25.0.0
@@ -43,7 +43,7 @@ importers:
       esbuild: 0.14.36
       eslint: 8.13.0
       eslint-config-airbnb-base: 15.0.0_25dbcfb8cfecb7418ebda712664abe37
-      eslint-config-airbnb-typescript: 16.1.0_8c500265506c7d53a14c17a9ada8f0c8
+      eslint-config-airbnb-typescript: 17.0.0_8c500265506c7d53a14c17a9ada8f0c8
       eslint-plugin-import: 2.26.0_eslint@8.13.0
       eslint-plugin-jest: 26.1.1_4f9b85e1acda728c6d5d81e488916a8d
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.13.0
@@ -52,7 +52,7 @@ importers:
       jest-resolve: 27.5.1
       prettier: 2.6.2
       prettier-plugin-pkg: 0.13.0_prettier@2.6.2
-      prettier-plugin-sh: 0.8.1_prettier@2.6.2
+      prettier-plugin-sh: 0.10.1_prettier@2.6.2
       prettier-plugin-sql: 0.6.0_prettier@2.6.2
       stylelint: 14.6.1
       stylelint-config-standard: 25.0.0_stylelint@14.6.1
@@ -1077,6 +1077,18 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@pkgr/utils/2.1.0:
+    resolution: {integrity: sha512-Va5LTLVoPIH8CrV170zXLSDtCJ6eG6uVXYwwsDYOOeec0MdkhvJzKaxvA+hGJRWFl5I4VBQBs5pwljaI4TG5OA==}
+    engines: {node: '>=12'}
+    dependencies:
+      cross-spawn: 7.0.3
+      is-glob: 4.0.3
+      open: 8.4.0
+      picocolors: 1.0.0
+      tiny-glob: 0.2.9
+      tslib: 2.3.1
     dev: true
 
   /@polka/parse/1.0.0-next.21:
@@ -2780,18 +2792,19 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /eslint-config-airbnb-typescript/16.1.0_8c500265506c7d53a14c17a9ada8f0c8:
-    resolution: {integrity: sha512-W5Cq20KpEx5ZLC54bnVrC37zq2+WD956Kp/Ma3nYFRjT1v9KM63v+DPkrrmmrVqrlDKaD0ivm/qeYmyHV6qKlw==}
+  /eslint-config-airbnb-typescript/17.0.0_8c500265506c7d53a14c17a9ada8f0c8:
+    resolution: {integrity: sha512-elNiuzD0kPAPTXjFWg+lE24nMdHMtuxgYoD30OyMD6yrW1AhFZPAg27VX7d3tzOErw+dgJTNWfRSDqEcXb4V0g==}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.0.0
+      '@typescript-eslint/eslint-plugin': ^5.13.0
       '@typescript-eslint/parser': ^5.0.0
+      eslint: ^7.32.0 || ^8.2.0
+      eslint-plugin-import: ^2.25.3
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.19.0_f34adc8488d2e4f014fe61432d70cbf2
       '@typescript-eslint/parser': 5.19.0_eslint@8.13.0+typescript@4.6.3
+      eslint: 8.13.0
       eslint-config-airbnb-base: 15.0.0_25dbcfb8cfecb7418ebda712664abe37
-    transitivePeerDependencies:
-      - eslint
-      - eslint-plugin-import
+      eslint-plugin-import: 2.26.0_eslint@8.13.0
     dev: true
 
   /eslint-import-resolver-node/0.3.6:
@@ -3303,6 +3316,10 @@ packages:
       type-fest: 0.20.2
     dev: true
 
+  /globalyzer/0.1.0:
+    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
+    dev: true
+
   /globby/11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -3317,6 +3334,10 @@ packages:
 
   /globjoin/0.1.4:
     resolution: {integrity: sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=}
+    dev: true
+
+  /globrex/0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /graceful-fs/4.2.9:
@@ -4567,14 +4588,16 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mvdan-sh/0.5.0:
-    resolution: {integrity: sha512-UWbdl4LHd2fUnaEcOUFVWRdWGLkNoV12cKVIPiirYd8qM5VkCoCTXErlDubevrkEG7kGohvjRxAlTQmOqG80tw==}
-    dev: true
-
   /nanoid/3.3.1:
     resolution: {integrity: sha512-n6Vs/3KGyxPQd6uO0eH4Bv0ojGSUvuLlIHtC3Y0kEO23YRge8H9x1GCzLn28YX0H66pMkxuaeESFq4tKISKwdw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/3.3.2:
+    resolution: {integrity: sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: true
 
   /napi-build-utils/1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
@@ -4971,13 +4994,15 @@ packages:
       prettier: 2.6.2
     dev: true
 
-  /prettier-plugin-sh/0.8.1_prettier@2.6.2:
-    resolution: {integrity: sha512-tz0g6y+ZaJF0PWaa1F7vhCv4nLgYYl2zYzYU4XJFD1McoY0oHI+l2osvXqv1s5yQdtjdlzKszN6VY7WTaw2Gqw==}
+  /prettier-plugin-sh/0.10.1_prettier@2.6.2:
+    resolution: {integrity: sha512-bEcEMvgivqNB/9r9UIN6CTPoux7pmZKFtzDkEb/hSwj/j/PlHfNpiOwLtDZ44D8RtUAZloMz7j1ucqdPqcTawQ==}
+    engines: {node: '>=12.20'}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
-      mvdan-sh: 0.5.0
       prettier: 2.6.2
+      sh-syntax: 0.1.4
+      synckit: 0.7.0
     dev: true
 
   /prettier-plugin-sql/0.6.0_prettier@2.6.2:
@@ -5376,6 +5401,14 @@ packages:
     resolution: {integrity: sha1-BF+XgtARrppoA93TgrJDkrPYkPc=}
     dev: false
 
+  /sh-syntax/0.1.4:
+    resolution: {integrity: sha512-PbReZBaylc3YSo+SbZQd5b8/I0jh8CQTdy5YRBNSVtIyuJ+l1dCygR8UhWBMz3p431ZDs2Wp59qUpIUvPCcssA==}
+    engines: {node: '>=v12.20'}
+    dependencies:
+      nanoid: 3.3.2
+      tslib: 2.3.1
+    dev: true
+
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -5737,6 +5770,14 @@ packages:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: true
 
+  /synckit/0.7.0:
+    resolution: {integrity: sha512-NbpamGIw1300xjPCLCVkhtSgGVfONitrmJA4CD54f2P47GxW5rlsCiajAYrqbz0H0PmVSPA2slZjEfJpUfap0Q==}
+    engines: {node: '>=12.20'}
+    dependencies:
+      '@pkgr/utils': 2.1.0
+      tslib: 2.3.1
+    dev: true
+
   /table/6.8.0:
     resolution: {integrity: sha512-s/fitrbVeEyHKFa7mFdkuQMWlH1Wgw/yEXMt5xACT4ZpzWFluehAxRtUUQKPuWhaLAWhFcVx6w3oC8VKaUfPGA==}
     engines: {node: '>=10.0.0'}
@@ -5804,6 +5845,13 @@ packages:
     resolution: {integrity: sha512-8hmiGIJMDlwjg7dlJ4yKGLK8EsYqKgPWbG3b4wjJddKNwc7N7Dpn08Df4szr/sZdMVeOstrdYSsqzX6BYbcB+w==}
     dev: true
 
+  /tiny-glob/0.2.9:
+    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
+    dependencies:
+      globalyzer: 0.1.0
+      globrex: 0.1.2
+    dev: true
+
   /tmpl/1.0.5:
     resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}
     dev: true
@@ -5863,6 +5911,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
+  /tslib/2.3.1:
+    resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.6.3:
