@@ -243,7 +243,7 @@ importers:
       esbuild-plugin-ekscss: 0.0.10
       git-ref: 0.3.1
       purgecss: 4.1.3
-      terser: 5.12.0
+      terser: 5.12.1
       trackx-dash: workspace:*
     dependencies:
       '@ekscss/framework': 0.0.39_ekscss@0.0.12
@@ -256,7 +256,7 @@ importers:
       esbuild-plugin-ekscss: 0.0.10_ekscss@0.0.12+esbuild@0.14.36
       git-ref: 0.3.1
       purgecss: 4.1.3
-      terser: 5.12.0
+      terser: 5.12.1
       trackx-dash: link:../trackx-dash
 
 packages:
@@ -5798,6 +5798,17 @@ packages:
 
   /terser/5.12.0:
     resolution: {integrity: sha512-R3AUhNBGWiFc77HXag+1fXpAxTAFRQTJemlJKjAgD9r8xXTpjNKqIXwHM/o7Rh+O0kUJtS3WQVdBeMKFk5sw9A==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      acorn: 8.7.0
+      commander: 2.20.3
+      source-map: 0.7.3
+      source-map-support: 0.5.21
+    dev: true
+
+  /terser/5.12.1:
+    resolution: {integrity: sha512-NXbs+7nisos5E+yXwAD+y7zrcTkMqb0dEJxIGtSKPdCBzopf7ni4odPul2aechpV7EXNvOudYOX2bb5tln1jbQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
