@@ -6,6 +6,7 @@ module.exports = {
   extends: ['plugin:jsx-a11y/recommended'],
   rules: {
     // TODO: Work through lint issues and remove these rules (=> errors by default)
+    '@typescript-eslint/no-misused-promises': WARN,
     '@typescript-eslint/no-unsafe-assignment': WARN,
     '@typescript-eslint/no-unsafe-call': WARN,
     '@typescript-eslint/no-unsafe-member-access': WARN,
