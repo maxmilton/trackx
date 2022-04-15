@@ -239,7 +239,7 @@ importers:
       csso: 5.0.2
       ekscss: 0.0.12
       esbuild: 0.14.36
-      esbuild-minify-templates: 0.7.3
+      esbuild-minify-templates: 0.8.0
       esbuild-plugin-ekscss: 0.0.10
       git-ref: 0.3.1
       purgecss: 4.1.3
@@ -252,7 +252,7 @@ importers:
       csso: 5.0.2
       ekscss: 0.0.12
       esbuild: 0.14.36
-      esbuild-minify-templates: 0.7.3_esbuild@0.14.36
+      esbuild-minify-templates: 0.8.0_esbuild@0.14.36
       esbuild-plugin-ekscss: 0.0.10_ekscss@0.0.12+esbuild@0.14.36
       git-ref: 0.3.1
       purgecss: 4.1.3
@@ -2638,8 +2638,8 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-minify-templates/0.7.3_esbuild@0.14.36:
-    resolution: {integrity: sha512-HSiVgS0iwfXs5r3sWtegnHom8AI7FPCDbZcxDH9RRBJsgFb2/SGFQU7SqpMiQgYE3C9hQs+xuPHTDb0pIOZe1g==}
+  /esbuild-minify-templates/0.8.0_esbuild@0.14.36:
+    resolution: {integrity: sha512-QP0myitL1Xd9BXhSVUprYBEE3WcYBhTE+aL87l+okR8L3/M3Wx9nzuL+VSJmWEO/hWdkoeqmLddfcK0u5UJubw==}
     engines: {node: '>= 12'}
     peerDependencies:
       esbuild: ^0.14.0
@@ -2647,7 +2647,7 @@ packages:
       '@ampproject/remapping': 2.1.2
       astray: 1.1.1
       esbuild: 0.14.36
-      magic-string: 0.25.9
+      magic-string: 0.26.1
       meriyah: 4.2.0
     dev: true
 
