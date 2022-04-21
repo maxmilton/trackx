@@ -77,7 +77,7 @@
     "@rollup/plugin-node-resolve": "13.2.1",
     "@rollup/plugin-replace": "4.0.0",
     "@types/ungap__global-this": "0.3.1",
-    "esbuild": "0.14.36",
+    "esbuild": "0.14.38",
     "rollup": "2.70.2",
     "rollup-plugin-dts": "4.2.1",
     "rollup-plugin-esbuild": "4.9.1",
