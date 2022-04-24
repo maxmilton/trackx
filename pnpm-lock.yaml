@@ -83,7 +83,7 @@ importers:
   packages/trackx:
     specifiers:
       '@rollup/plugin-buble': 0.21.3
-      '@rollup/plugin-commonjs': 21.1.0
+      '@rollup/plugin-commonjs': 22.0.0
       '@rollup/plugin-node-resolve': 13.2.1
       '@rollup/plugin-replace': 4.0.0
       '@types/ungap__global-this': 0.3.1
@@ -98,7 +98,7 @@ importers:
       '@ungap/global-this': 0.4.4
     devDependencies:
       '@rollup/plugin-buble': 0.21.3_rollup@2.70.2
-      '@rollup/plugin-commonjs': 21.1.0_rollup@2.70.2
+      '@rollup/plugin-commonjs': 22.0.0_rollup@2.70.2
       '@rollup/plugin-node-resolve': 13.2.1_rollup@2.70.2
       '@rollup/plugin-replace': 4.0.0_rollup@2.70.2
       '@types/ungap__global-this': 0.3.1
@@ -188,7 +188,7 @@ importers:
       '@maxmilton/solid-router': 0.3.1
       '@rollup/plugin-babel': 5.3.1
       '@rollup/plugin-buble': 0.21.3
-      '@rollup/plugin-commonjs': 21.1.0
+      '@rollup/plugin-commonjs': 22.0.0
       '@rollup/plugin-html': 0.2.4
       '@rollup/plugin-node-resolve': 13.2.1
       '@rollup/plugin-replace': 4.0.0
@@ -219,7 +219,7 @@ importers:
       '@ekscss/rollup-plugin-purgecss': 0.0.5
       '@rollup/plugin-babel': 5.3.1_@babel+core@7.17.9+rollup@2.70.2
       '@rollup/plugin-buble': 0.21.3_rollup@2.70.2
-      '@rollup/plugin-commonjs': 21.1.0_rollup@2.70.2
+      '@rollup/plugin-commonjs': 22.0.0_rollup@2.70.2
       '@rollup/plugin-html': 0.2.4_rollup@2.70.2
       '@rollup/plugin-node-resolve': 13.2.1_rollup@2.70.2
       '@rollup/plugin-replace': 4.0.0_rollup@2.70.2
@@ -1125,11 +1125,11 @@ packages:
       rollup: 2.70.2
     dev: true
 
-  /@rollup/plugin-commonjs/21.1.0_rollup@2.70.2:
-    resolution: {integrity: sha512-6ZtHx3VHIp2ReNNDxHjuUml6ur+WcQ28N1yHgCQwsbNkQg2suhxGMDQGJOn/KuDxKtd1xuZP5xSTwBA4GQ8hbA==}
-    engines: {node: '>= 8.0.0'}
+  /@rollup/plugin-commonjs/22.0.0_rollup@2.70.2:
+    resolution: {integrity: sha512-Ktvf2j+bAO+30awhbYoCaXpBcyPmJbaEUYClQns/+6SNCYFURbvBiNbWgHITEsIgDDWCDUclWRKEuf8cwZCFoQ==}
+    engines: {node: '>= 12.0.0'}
     peerDependencies:
-      rollup: ^2.38.3
+      rollup: ^2.68.0
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.70.2
       commondir: 1.0.1
