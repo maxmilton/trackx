@@ -12,7 +12,7 @@
     "viz": "BUNDLE_VIZ=true pnpm run build && xdg-open http://localhost:5001/viz.html"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.39",
+    "@ekscss/framework": "0.0.40",
     "@maxmilton/solid-router": "0.3.1",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
@@ -30,7 +30,7 @@
     "@rollup/plugin-html": "0.2.4",
     "@rollup/plugin-node-resolve": "13.2.1",
     "@rollup/plugin-replace": "4.0.0",
-    "ekscss": "0.0.12",
+    "ekscss": "0.0.13",
     "esbuild": "0.14.38",
     "git-ref": "0.3.1",
     "rollup": "2.70.2",
