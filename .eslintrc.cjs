@@ -34,7 +34,7 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': WARN,
-    'import/no-relative-packages': WARN,
+    'import/no-relative-packages': OFF,
     'import/prefer-default-export': OFF,
     'no-void': OFF,
     'unicorn/filename-case': OFF,
