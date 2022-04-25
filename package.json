@@ -53,6 +53,11 @@
       "node_modules/(?!solid-js.*|.*(?<=.[tj]sx))$"
     ]
   },
+  "pnpm": {
+    "overrides": {
+      "source-map": "~0.8.0-beta.0"
+    }
+  },
   "prettier": {
     "arrowParens": "always",
     "endOfLine": "lf",
