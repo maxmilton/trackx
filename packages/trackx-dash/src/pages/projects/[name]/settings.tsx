@@ -213,7 +213,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
       // TODO: Generating a new key should just update/mutate the key in-place
       // on the page rather than refetching the entire project and visually
       // jarring the entire page
-      projectActions.refetch();
+      await projectActions.refetch();
     } catch (error: unknown) {
       // eslint-disable-next-line no-console
       console.error(error);

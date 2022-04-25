@@ -214,7 +214,18 @@ const IssuesPage: RouteComponent = () => {
                   // Updates to sort/offset already trigger resource fetch
                   const shouldFetch = state.sort === 'rank' && state.offset === 0;
 
-                  if (shouldFetch) refetch();
+                  if (shouldFetch) {
+                    // TODO: Better refetch error handling once createResource
+                    // ResourceActions types are improved
+                    //  ↳ https://github.com/solidjs/solid/blob/main/packages/solid/src/reactive/signal.ts#L410-L413
+                    (async () => {
+                      await refetch();
+                    })().catch((error) => {
+                      // eslint-disable-next-line no-console
+                      console.error(error);
+                      setState({ error });
+                    });
+                  }
 
                   // Dismiss mobile on-screen keybaord (without losing focus)
                   self.readOnly = true;

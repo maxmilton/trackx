@@ -269,7 +269,17 @@ const IssuePage: RouteComponent = (props) => {
 
     eventFetchInProgress = true;
     setState({ error: null, dir });
-    refetch();
+
+    // TODO: Better refetch error handling once createResource ResourceActions
+    // types are improved
+    //  ↳ https://github.com/solidjs/solid/blob/main/packages/solid/src/reactive/signal.ts#L410-L413
+    (async () => {
+      await refetch();
+    })().catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      setState({ error });
+    });
   };
 
   return (
