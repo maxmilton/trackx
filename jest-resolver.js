@@ -1,6 +1,6 @@
 // https://jestjs.io/docs/configuration#resolver-string
-/** @type {import('jest-resolve/build/defaultResolver').default} */
-const resolver = (request, options) => options.defaultResolver(request, {
+/** @type {import('jest-resolve').SyncResolver} */
+const resolver = (path, options) => options.defaultResolver(path, {
   ...options,
   packageFilter(pkg) {
     return typeof pkg.name === 'string' && pkg.name.startsWith('solid-js')
