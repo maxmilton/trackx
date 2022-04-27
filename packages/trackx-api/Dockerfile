@@ -1,7 +1,7 @@
 # Install NPM modules including building node-gyp binaries e.g., better-sqlite3
 FROM debian:bullseye-slim AS install_deps
-ENV SQLITE_TOOLS_URL https://www.sqlite.org/2022/sqlite-tools-linux-x86-3370200.zip
-ENV SQLITE_TOOLS_SHA3 c5c9b1cadcaab46e8bdbec48487a5c6be9899132db4db431d12b99dc4e7a28ca
+ENV SQLITE_TOOLS_URL https://sqlite.org/2022/sqlite-tools-linux-x86-3380300.zip
+ENV SQLITE_TOOLS_SHA3 44f48bdb147d8db5f42d06e7cc25a95154ecaef1e6a4db5d1a5deb7b6341e2f5
 RUN set -xe \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
