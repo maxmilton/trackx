@@ -20,7 +20,7 @@
     "better-sqlite3": "7.5.1",
     "diary": "0.3.0",
     "kleur": "4.1.4",
-    "nanoid": "3.3.3",
+    "nanoid": "3.3.4",
     "polka": "1.0.0-next.22",
     "tough-cookie": "4.0.0",
     "trackx": "workspace:*",
