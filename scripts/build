@@ -114,8 +114,8 @@ build() {
 
   if [[ "${skip_tests}" -eq 0 ]]; then
     msg "Linting..."
-    pnpm run --dir "$script_dir/.." lint:css -- --quiet
-    pnpm run --dir "$script_dir/.." lint:js -- --quiet
+    pnpm run --dir "$script_dir/.." lint:css --quiet
+    pnpm run --dir "$script_dir/.." lint:js --quiet
     pnpm run --dir "$script_dir/.." lint:ts
 
     msg "Running tests..."
