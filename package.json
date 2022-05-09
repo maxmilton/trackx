@@ -32,7 +32,7 @@
     "jest": "28.0.3",
     "jest-resolve": "28.0.3",
     "prettier": "2.6.2",
-    "prettier-plugin-pkg": "0.13.0",
+    "prettier-plugin-pkg": "0.13.1",
     "prettier-plugin-sh": "0.10.1",
     "prettier-plugin-sql": "0.6.0",
     "stylelint": "14.8.1",
