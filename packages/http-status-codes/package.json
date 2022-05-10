@@ -7,5 +7,6 @@
   "license": "MIT",
   "private": true,
   "main": "index.ts",
-  "types": "index.ts"
+  "types": "index.ts",
+  "sideEffects": false
 }
