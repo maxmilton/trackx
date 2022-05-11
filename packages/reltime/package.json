@@ -1,6 +1,6 @@
 {
   "name": "@trackx/reltime",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Get a human-readable time relative to a past or future date",
   "repository": "maxmilton/trackx",
