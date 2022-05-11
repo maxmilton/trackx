@@ -12,7 +12,8 @@ const MONTH = DAY * 30;
  * @param date - The date from which to calculate the time difference.
  * @param short - Whether to use a short or long form of the time unit.
  * @param maxPeriods - Maximum number of significant periods to keep. E.g., `2`
- * could result in `'1 month, 3 days ago'` and `1` would be `'1 month ago'`.
+ * could result in `'1 month, 3 days ago'` and `1` would be `'1 month ago'`. `5`
+ * or higher will result in all periods being included.
  */
 export default function reltime(
   date: Date | string | number,
@@ -40,9 +41,10 @@ export default function reltime(
       const val = Math.floor(periods[key]);
 
       if (val) {
-        // TODO: When short, month and minute both become "m" leading to confusion
         keep.push(
-          short ? `${val}${key[0]}` : `${val} ${key}${val === 1 ? '' : 's'}`,
+          short
+            ? `${val}${key === 'month' ? 'mo' : key[0]}`
+            : `${val} ${key}${val === 1 ? '' : 's'}`,
         );
       }
     }

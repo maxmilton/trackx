@@ -1,5 +1,6 @@
 const OFF = 0;
 const WARN = 1;
+const ERROR = 2;
 
 // TODO: Types
 // eslint-disable-next-line max-len
@@ -60,8 +61,9 @@ module.exports = {
       files: ['packages/*/test/**', '*.test.ts', '*.test.tsx'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style'],
       rules: {
-        '@typescript-eslint/unbound-method': 'off', // replaced by jest/unbound-method
-        'jest/unbound-method': 'error',
+        '@typescript-eslint/unbound-method': OFF, // replaced by jest/unbound-method
+        'import/no-extraneous-dependencies': OFF,
+        'jest/unbound-method': ERROR,
       },
     },
   ],
