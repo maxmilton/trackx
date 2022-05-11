@@ -119,7 +119,7 @@ build() {
     pnpm run --dir "$script_dir/.." lint:ts
 
     msg "Running tests..."
-    pnpm exec jest
+    TZ=UTC pnpm exec jest
   fi
 
   # TODO: Ideally we would build locally and then push to the remote
