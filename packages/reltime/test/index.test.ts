@@ -28,6 +28,10 @@ describe('exports', () => {
   });
 });
 
+test('timezone is UTC', () => {
+  expect(new Date().getTimezoneOffset()).toBe(0);
+});
+
 test('mocked implementation of Date.now works', () => {
   expect.assertions(1);
   expect(Date.now()).toBe(new Date(TARGET).getTime());
@@ -59,9 +63,9 @@ describe('option short = undefined (defaults to 1)', () => {
   });
 
   test.each([
-    ['12/31/2013', '1 year, 5 months, 21 days, 8 hours, 12 minutes ago'],
+    ['12/31/2013', '1 year, 5 months, 20 days, 22 hours, 12 minutes ago'],
     ['2030-05-20', '14 years, 11 months, 23 days, 1 hour, 47 minutes from now'],
-    ['2030-05-20 14:02:47', '14 years, 11 months, 23 days, 5 hours, 50 minutes from now'],
+    ['2030-05-20 14:02:47', '14 years, 11 months, 23 days, 15 hours, 50 minutes from now'],
     ['Wed, 20 Nov 1912 00:00:00 GMT', '102 years, 7 months, 21 days, 22 hours, 12 minutes ago'],
     ['Sun Jun 14 2015 15:13:00 GMT-0700', 'just now'],
     [TARGET, 'just now'],
@@ -98,9 +102,9 @@ describe('option short = true', () => {
   });
 
   test.each([
-    ['12/31/2013', '1y, 5mo, 21d, 8h, 12m ago'],
+    ['12/31/2013', '1y, 5mo, 20d, 22h, 12m ago'],
     ['2030-05-20', '14y, 11mo, 23d, 1h, 47m from now'],
-    ['2030-05-20 14:02:47', '14y, 11mo, 23d, 5h, 50m from now'],
+    ['2030-05-20 14:02:47', '14y, 11mo, 23d, 15h, 50m from now'],
     ['Wed, 20 Nov 1912 00:00:00 GMT', '102y, 7mo, 21d, 22h, 12m ago'],
     ['Sun Jun 14 2015 15:13:00 GMT-0700', 'just now'],
     [TARGET, 'just now'],

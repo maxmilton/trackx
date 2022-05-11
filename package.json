@@ -8,7 +8,7 @@
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "serve": "docker compose --file docker-compose.dev.yml up --build",
     "setup": "./scripts/dev-setup.sh",
-    "test": "jest --coverage"
+    "test": "TZ=UTC jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "7.17.10",
