@@ -7,19 +7,19 @@
 // - Arrow function
 // - Error().stack
 
-// TODO: Document what's missing in the lite client (to save bytes):
-// - No session ID; every time the script loads counts as a session
+// TODO: Document what's missing/different in the lite client (to save bytes):
 // - No sendEvent method (use console.error instead + best practice to still
 //   use an Error instance for correct stack context)
 // - No fetch timeout; request timeout handled by browser
-// - No retry when sending an event fails
+// - No retry when sending an event fails (silently swallows the send error)
 // - No offline support
 // - No `onError` argument in `setup` function
 //   - No way to cancel sending events or modify their data before sending
 // - Doesn't protect against certain edge cases
 //   - No protection against primitive string conversion fail on message e.g., Object.create(null)
+// - Calls globals directly (no globalThis or window) e.g., addEventListener, location
 
-import type { ClientType, EventMeta } from 'trackx/types';
+import type { ClientType, EventMeta, EventPayload } from 'trackx/types';
 
 const listen = addEventListener;
 
@@ -49,7 +49,6 @@ export const setup = (endpoint: string): void => {
       void fetch(endpoint + '/event', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        // TODO: Type as EventPayload for type safety (but how without extra bytes?!)
         body: JSON.stringify({
           name: ex.name,
           message: String(ex.message || x),
@@ -57,7 +56,8 @@ export const setup = (endpoint: string): void => {
           type,
           uri: location.href,
           meta,
-        }),
+          // TODO: Correctly type as EventPayload for type safety (but without extra bytes!)
+        } as EventPayload),
       });
     } catch {
       /* No op; no retry, no offline handling, no flood lock, etc. */

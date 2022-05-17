@@ -87,6 +87,8 @@ CREATE TABLE session (
 ) WITHOUT ROWID, STRICT;
 
 CREATE TABLE session_issue (
+  -- XXX: Sessions are never deleted or modified so we don't explicitly need to
+  -- set id as a foreign key.
   id BLOB NOT NULL, -- REFERENCES session(id)
   issue_id INTEGER NOT NULL REFERENCES issue(id) ON DELETE CASCADE,
   PRIMARY KEY(id, issue_id)

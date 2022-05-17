@@ -2,6 +2,8 @@
 //  ↳ Possibly we'll need to override fetch with fetch + custom client
 //  ↳ Actually it looks like deno supports a --location flag which might
 //    eventually pass the origin in fetch requests
+//    ↳ https://github.com/denoland/deno/pull/11557
+//    ↳ https://github.com/denoland/deno/pull/11565
 
 import type {
   ClientType,
