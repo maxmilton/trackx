@@ -1170,7 +1170,7 @@ export const TestPage: Component = () => {
       <h3 id="mock-issue">Generate mock issue</h3>
 
       <div class="mb3">
-        <label htmlFor="mock-issue-project" class="label">
+        <label for="mock-issue-project" class="label">
           Target project
         </label>
         {!state.projects ? (
@@ -1207,7 +1207,7 @@ export const TestPage: Component = () => {
       </div>
 
       <div class="mb3">
-        <label htmlFor="mock-issue-amount" class="label">
+        <label for="mock-issue-amount" class="label">
           Amount
         </label>
         <input
@@ -1310,7 +1310,7 @@ COMMIT;`,
       <h3 id="mock-event">Generate mock event</h3>
 
       <div class="mb3">
-        <label htmlFor="mock-event-project" class="label">
+        <label for="mock-event-project" class="label">
           Target project
         </label>
         {!state.projects ? (
@@ -1347,7 +1347,7 @@ COMMIT;`,
       </div>
 
       <div class="mb3">
-        <label htmlFor="mock-event-amount" class="label">
+        <label for="mock-event-amount" class="label">
           Amount
         </label>
         <input
@@ -1364,7 +1364,7 @@ COMMIT;`,
 
       <div class="mb3 df">
         <div class="mr2">
-          <label htmlFor="mock-event-time-from" class="label">
+          <label for="mock-event-time-from" class="label">
             Time range from
           </label>
           <input
@@ -1378,7 +1378,7 @@ COMMIT;`,
           />
         </div>
         <div>
-          <label htmlFor="mock-event-time-to" class="label">
+          <label for="mock-event-time-to" class="label">
             Time range until
           </label>
           <input
@@ -1478,7 +1478,7 @@ COMMIT;`,
       <h3 id="mock-session">Generate mock session</h3>
 
       <div class="mb3">
-        <label htmlFor="mock-session-project" class="label">
+        <label for="mock-session-project" class="label">
           Target project
         </label>
         {!state.projects ? (
@@ -1515,7 +1515,7 @@ COMMIT;`,
       </div>
 
       <div class="mb3">
-        <label htmlFor="mock-session-amount" class="label">
+        <label for="mock-session-amount" class="label">
           Amount
         </label>
         <input
@@ -1532,7 +1532,7 @@ COMMIT;`,
 
       <div class="mb3 df">
         <div class="mr2">
-          <label htmlFor="mock-session-time-from" class="label">
+          <label for="mock-session-time-from" class="label">
             Time range from
           </label>
           <input
@@ -1546,7 +1546,7 @@ COMMIT;`,
           />
         </div>
         <div>
-          <label htmlFor="mock-session-time-to" class="label">
+          <label for="mock-session-time-to" class="label">
             Time range until
           </label>
           <input

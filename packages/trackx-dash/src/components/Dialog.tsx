@@ -1,4 +1,4 @@
-import { onCleanup, onMount, type Component } from 'solid-js';
+import { onCleanup, onMount, type FlowComponent } from 'solid-js';
 import './Dialog.xcss';
 
 interface DialogProps {
@@ -7,7 +7,7 @@ interface DialogProps {
 
 // TODO: Add subtle animation to transition between closed<>open
 
-export const Dialog: Component<DialogProps> = (props) => {
+export const Dialog: FlowComponent<DialogProps> = (props) => {
   let outer: HTMLDivElement;
 
   function handleClick(event: MouseEvent) {

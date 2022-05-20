@@ -304,7 +304,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                   onSubmit={handleSubmit}
                 >
                   <div class="mb3">
-                    <label htmlFor="name" class="label">
+                    <label for="name" class="label">
                       Name
                     </label>
                     <input
@@ -322,7 +322,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                     </small>
                   </div>
                   <div class="mb3">
-                    <label htmlFor="origin" class="label">
+                    <label for="origin" class="label">
                       Allowed Origins
                     </label>
                     <input
@@ -348,7 +348,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                     </small>
                   </div>
                   <div class="mb3">
-                    <label htmlFor="tags" class="label">
+                    <label for="tags" class="label">
                       Tags
                     </label>
                     <input
@@ -371,7 +371,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                       checked={state.scrape}
                       onClick={handleInputCheckbox}
                     />
-                    <label htmlFor="scrape" class="label">
+                    <label for="scrape" class="label">
                       Automatically fetch source maps to enhance stack traces
                     </label>
                   </div>

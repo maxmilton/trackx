@@ -251,7 +251,7 @@ const IssuesPage: RouteComponent = () => {
         </div>
 
         <div class="ml2">
-          <label htmlFor="sort" class="mt-3 label muted">
+          <label for="sort" class="mt-3 label muted">
             Sort by
           </label>
           <select

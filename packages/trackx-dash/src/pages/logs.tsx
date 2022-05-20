@@ -63,7 +63,7 @@ const PaginatedTable: Component<PaginatedTableProps> = (props) => {
           {props.rows.length === 1 ? '' : 's'}
         </div>
         <div class="ml-auto">
-          <label htmlFor="size" class="label dn ns-dib mr2 muted">
+          <label for="size" class="label dn ns-dib mr2 muted">
             Show
           </label>
           <select
