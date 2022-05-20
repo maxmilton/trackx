@@ -13,5 +13,7 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': WARN,
 
     'jsx-a11y/accessible-emoji': OFF,
+    // Does not support "for" attribute on JSX label elements
+    'jsx-a11y/label-has-associated-control': OFF,
   },
 };
