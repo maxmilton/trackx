@@ -33,7 +33,7 @@ importers:
       prettier: 2.6.2
       prettier-plugin-pkg: 0.13.1
       prettier-plugin-sh: 0.11.0
-      prettier-plugin-sql: 0.6.1
+      prettier-plugin-sql: 0.7.0
       solid-js: 1.4.2
       solid-testing-library: 0.3.0
       stylelint: 14.8.3
@@ -66,7 +66,7 @@ importers:
       prettier: 2.6.2
       prettier-plugin-pkg: 0.13.1_prettier@2.6.2
       prettier-plugin-sh: 0.11.0_prettier@2.6.2
-      prettier-plugin-sql: 0.6.1_prettier@2.6.2
+      prettier-plugin-sql: 0.7.0_prettier@2.6.2
       solid-js: 1.4.2
       solid-testing-library: 0.3.0_solid-js@1.4.2
       stylelint: 14.8.3
@@ -1462,7 +1462,6 @@ packages:
 
   /@types/stylis/4.0.2:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
-    dev: true
 
   /@types/testing-library__jest-dom/5.14.3:
     resolution: {integrity: sha512-oKZe+Mf4ioWlMuzVBaXQ9WDnEm1+umLx0InILg+yvZVBBDmzV5KfZyLrCvadtWcx8+916jLmHafcmqqffl+iIw==}
@@ -2532,7 +2531,6 @@ packages:
       '@types/stylis': 4.0.2
       source-map: 0.8.0-beta.0
       stylis: 4.1.1
-    dev: true
 
   /electron-to-chromium/1.4.137:
     resolution: {integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==}
@@ -5112,15 +5110,15 @@ packages:
       prettier: 2.6.2
     dev: true
 
-  /prettier-plugin-sql/0.6.1_prettier@2.6.2:
-    resolution: {integrity: sha512-KxQp08QCE2GXZoC1FuHbhxozwQ38I7aizQgXO5i5FfFpW9XWgNArPqOG7jG2UCEYVXSh97XitwuJxE3c69lLgQ==}
+  /prettier-plugin-sql/0.7.0_prettier@2.6.2:
+    resolution: {integrity: sha512-CZZ4nX8d5RJomIC3robwebrShiLrLGDHGSY5ypK58fQtzdTrl5dHbcAhLnJhiZlteFkvuNYTl8tBfvUmL5gXfw==}
     engines: {node: '>=12.20'}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       node-sql-parser: 4.3.0
       prettier: 2.6.2
-      sql-formatter: 4.0.2
+      sql-formatter: 6.1.1
     dev: true
 
   /prettier/2.6.2:
@@ -5681,8 +5679,8 @@ packages:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
     dev: true
 
-  /sql-formatter/4.0.2:
-    resolution: {integrity: sha512-R6u9GJRiXZLr/lDo8p56L+OyyN2QFJPCDnsyEOsbdIpsnDKL8gubYFo7lNR7Zx7hfdWT80SfkoVS0CMaF/DE2w==}
+  /sql-formatter/6.1.1:
+    resolution: {integrity: sha512-NiUP90vNb6NjQryWz0bPsvv4BTqe/wY75mRbh2E6M1kKZIoCKtueeKIDMQBB+RI8pjxVUQy7e35JUXQj6YYonQ==}
     hasBin: true
     dependencies:
       argparse: 2.0.1
