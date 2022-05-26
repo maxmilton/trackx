@@ -51,4 +51,4 @@ COPY --from=install_deps /lib32/libdl-2.31.so /lib32/libdl.so.2
 COPY --from=install_deps /lib32/libm-2.31.so /lib32/libm.so.6
 COPY --from=install_deps /lib32/libc-2.31.so /lib32/libc.so.6
 USER nodejs:nodejs
-CMD ["/usr/bin/node", "server.js"]
+CMD ["/usr/bin/node", "--report-on-fatalerror", "server.js"]
