@@ -34,7 +34,7 @@ importers:
       prettier-plugin-pkg: 0.13.2
       prettier-plugin-sh: 0.11.0
       prettier-plugin-sql: 0.7.0
-      solid-js: 1.4.2
+      solid-js: 1.4.3
       solid-testing-library: 0.3.0
       stylelint: 14.8.5
       stylelint-config-standard: 25.0.0
@@ -67,8 +67,8 @@ importers:
       prettier-plugin-pkg: 0.13.2_prettier@2.6.2
       prettier-plugin-sh: 0.11.0_prettier@2.6.2
       prettier-plugin-sql: 0.7.0_prettier@2.6.2
-      solid-js: 1.4.2
-      solid-testing-library: 0.3.0_solid-js@1.4.2
+      solid-js: 1.4.3
+      solid-testing-library: 0.3.0_solid-js@1.4.3
       stylelint: 14.8.5
       stylelint-config-standard: 25.0.0_stylelint@14.8.5
       typescript: 4.7.2
@@ -78,9 +78,9 @@ importers:
 
   packages/icons:
     specifiers:
-      solid-js: 1.4.2
+      solid-js: 1.4.3
     devDependencies:
-      solid-js: 1.4.2
+      solid-js: 1.4.3
 
   packages/reltime:
     specifiers: {}
@@ -219,15 +219,15 @@ importers:
       rollup-plugin-esbuild: 4.9.1
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.6.0
-      solid-js: 1.4.2
+      solid-js: 1.4.3
       trackx: workspace:*
       uplot: 1.6.20
     dependencies:
       '@ekscss/framework': 0.0.40_ekscss@0.0.13
-      '@maxmilton/solid-router': 0.3.1_solid-js@1.4.2
+      '@maxmilton/solid-router': 0.3.1_solid-js@1.4.3
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
-      solid-js: 1.4.2
+      solid-js: 1.4.3
       trackx: link:../trackx
       uplot: 1.6.20
     devDependencies:
@@ -1150,14 +1150,14 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@maxmilton/solid-router/0.3.1_solid-js@1.4.2:
+  /@maxmilton/solid-router/0.3.1_solid-js@1.4.3:
     resolution: {integrity: sha512-Jmc1ZKiV9SJpdQ4k8cWKf6psK2lBHlgGLI3cNogAfEC2t6dp+qaIhAoYxWtSfV3FzaI3IAQfFz5cNsc6Az14hw==}
     peerDependencies:
       solid-js: ^1.1.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.0
-      solid-js: 1.4.2
+      solid-js: 1.4.3
     dev: false
 
   /@maxmilton/stylelint-config/0.0.10_stylelint@14.8.5:
@@ -5705,17 +5705,17 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js/1.4.2:
-    resolution: {integrity: sha512-IU5yKuT8P/n5F5g8j1rTXqxUdPYmoZDk/074TG94AEYf/nyXAeG82BSge4/lLIbCfUcnGUJ6DRdebIjujOAYyg==}
+  /solid-js/1.4.3:
+    resolution: {integrity: sha512-3uh2cbT4ICronIasLAxycF6SVgvqcfwFCDCzlEA9CEahn1qQg8Rw8aRGiI4O51PrHcN5aPRO9knYYRCs0PgzcQ==}
 
-  /solid-testing-library/0.3.0_solid-js@1.4.2:
+  /solid-testing-library/0.3.0_solid-js@1.4.3:
     resolution: {integrity: sha512-6NWVbySNVzyReBm2N6p3eF8bzxRZXHZTAmPix4vFWYol16QWVjNQsEUxvr+ZOutb0yuMZmNuGx3b6WIJYmjwMQ==}
     engines: {node: '>= 14'}
     peerDependencies:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 7.31.2
-      solid-js: 1.4.2
+      solid-js: 1.4.3
     dev: true
 
   /source-map-js/1.0.2:
