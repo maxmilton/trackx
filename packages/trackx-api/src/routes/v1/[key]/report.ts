@@ -173,7 +173,7 @@ function addReport(
         body.body.method
       }:${body.body.status_code}:${body.body.url || body.body.referrer}`;
       break;
-    // Chrome may send reports with Content-Type plain/text, so it's safest to
+    // Chrome may send reports with Content-Type text/plain, so it's safest to
     // handle these reports in a generic way rather than rely on Content-Type
     default:
       // Content Security Policy Level 2 and 3 Reports

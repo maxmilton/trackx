@@ -18,13 +18,12 @@
 // TODO: Should the incoming request max body size be increased? Currently 100kb
 // set in https://github.com/lukeed/polka/blob/next/packages/parse/index.js
 
-import { json, text } from '@polka/parse';
+import { json, parse, text } from '@polka/parse';
 import http from 'http';
 import polka from 'polka';
 import * as trackx from 'trackx/node';
 import { db } from './db';
 import { log } from './log';
-import { raw } from './parser';
 import { session } from './routes/dash/sess';
 import { routes } from './routes/__ROUTE_MANIFEST__';
 import {
@@ -95,7 +94,7 @@ for (const route of routes) {
             const limit = 300 * 1024 * 1024; // 300MiB
             app[method](route.path, text({ limit }), handler);
           } else if (route.path === '/v1/:key/report') {
-            app[method](route.path, raw, handler);
+            app[method](route.path, parse({ type: '' }), handler);
           } else {
             app[method](route.path, json(), handler);
           }
