@@ -16,7 +16,7 @@ RUN set -xe \
     unzip \
   && KEYRING=/usr/share/keyrings/nodesource.gpg \
   && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee "$KEYRING" >/dev/null \
-  && echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/node_16.x bullseye main" | tee /etc/apt/sources.list.d/nodesource.list \
+  && echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/node_18.x bullseye main" | tee /etc/apt/sources.list.d/nodesource.list \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
     nodejs

@@ -79,7 +79,7 @@ const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/server.js',
   platform: 'node',
-  target: ['node16'],
+  target: ['node18'],
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),
     'process.env.NODE_ENV': JSON.stringify(mode),
@@ -103,7 +103,7 @@ await esbuild.build({
   entryPoints: ['src/check.ts'],
   outfile: 'dist/check.js',
   platform: 'node',
-  target: ['node16'],
+  target: ['node18'],
   banner: { js: '"use strict";' },
   bundle: true,
   minify: !dev,
