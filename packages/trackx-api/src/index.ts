@@ -20,7 +20,7 @@
 
 import { json, parse, text } from '@polka/parse';
 import http from 'http';
-import polka from 'polka';
+import polka, { type Middleware } from 'polka';
 import * as trackx from 'trackx/node';
 import { db } from './db';
 import { log } from './log';
@@ -80,8 +80,8 @@ const methods = [
 
 for (const route of routes) {
   for (const method of methods) {
-    // @ts-expect-error - FIXME:!
-    const handler = route.module[method];
+    // @ts-expect-error - Each route only implements certain methods
+    const handler = route.module[method] as Middleware | undefined;
 
     if (handler) {
       switch (method) {
