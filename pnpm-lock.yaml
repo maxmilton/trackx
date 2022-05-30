@@ -260,7 +260,7 @@ importers:
       esbuild-plugin-ekscss: 0.0.11
       git-ref: 0.3.1
       purgecss: 4.1.3
-      terser: 5.13.1
+      terser: 5.14.0
       trackx-dash: workspace:*
     dependencies:
       '@ekscss/framework': 0.0.40_ekscss@0.0.13
@@ -273,7 +273,7 @@ importers:
       esbuild-plugin-ekscss: 0.0.11_su3ue5m2gpehzqde5b4f3xzz4i
       git-ref: 0.3.1
       purgecss: 4.1.3
-      terser: 5.13.1
+      terser: 5.14.0
       trackx-dash: link:../trackx-dash
 
 packages:
@@ -1088,6 +1088,13 @@ packages:
   /@jridgewell/set-array/1.1.1:
     resolution: {integrity: sha512-Ct5MqZkLGEXTVmQYbGtx9SVqD2fqwvdubdps5D3djjAkgkKwT918VNOz65pEHFaYTeWcukmJmH5SwsA9Tn2ObQ==}
     engines: {node: '>=6.0.0'}
+    dev: true
+
+  /@jridgewell/source-map/0.3.2:
+    resolution: {integrity: sha512-m7O9o2uR8k2ObDysZYzdfhb08VuEml5oWGiosa1VdaPZ/A6QyPkAJuwN0Q1lhULOf6B7MtQmHENS743hWtCrgw==}
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.1
+      '@jridgewell/trace-mapping': 0.3.13
     dev: true
 
   /@jridgewell/sourcemap-codec/1.4.13:
@@ -5963,6 +5970,17 @@ packages:
       acorn: 8.7.1
       commander: 2.20.3
       source-map: 0.8.0-beta.0
+      source-map-support: 0.5.21
+    dev: true
+
+  /terser/5.14.0:
+    resolution: {integrity: sha512-JC6qfIEkPBd9j1SMO3Pfn+A6w2kQV54tv+ABQLgZr7dA3k/DL/OBoYSWxzVpZev3J+bUHXfr55L8Mox7AaNo6g==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      '@jridgewell/source-map': 0.3.2
+      acorn: 8.7.1
+      commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
 
