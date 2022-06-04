@@ -342,7 +342,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                       <a
                         href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener"
                       >
                         HTTP origins
                       </a>{' '}

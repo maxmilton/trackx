@@ -261,7 +261,7 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                     <a
                       href="https://caniuse.com/mdn-api_request_keepalive"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener"
                     >
                       fetch + keepalive support
                     </a>{' '}
@@ -314,7 +314,7 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                 <a
                   href="https://developer.mozilla.org/en-US/docs/Web/API/Reporting_API"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener"
                 >
                   Reporting API
                 </a>

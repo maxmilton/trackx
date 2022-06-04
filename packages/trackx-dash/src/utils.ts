@@ -70,7 +70,7 @@ export async function fetchJSON<T>(url: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export async function adHocQuery<T>(
+export async function adHocQuery<T extends object | undefined>(
   sql: string,
   opts: {
     exec?: boolean;

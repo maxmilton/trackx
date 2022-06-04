@@ -322,7 +322,11 @@ const IssuePage: RouteComponent = (props) => {
                 >
                   {issue()!.ignore ? 'Ignored' : 'Ignore'}
                 </button>
-                <button class="button" onClick={handleDelete}>
+                <button
+                  class="button"
+                  title="Delete issue"
+                  onClick={handleDelete}
+                >
                   <IconTrash />
                 </button>
               </div>
@@ -438,7 +442,7 @@ const IssuePage: RouteComponent = (props) => {
                           <a
                             href={eventData.data.uri}
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener"
                           >
                             <span textContent={eventData.data.uri} />{' '}
                             <IconExternalLink />

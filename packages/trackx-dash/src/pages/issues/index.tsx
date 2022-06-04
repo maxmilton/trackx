@@ -244,7 +244,11 @@ const IssuesPage: RouteComponent = () => {
           />
           <IconSearch />
           {state.searchText && (
-            <button class="button-cancel-search button" onClick={cancelSearch}>
+            <button
+              class="button-cancel-search button"
+              title="Cancel search"
+              onClick={cancelSearch}
+            >
               <IconX />
             </button>
           )}

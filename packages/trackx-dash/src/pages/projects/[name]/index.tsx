@@ -273,6 +273,7 @@ const ProjectPage: RouteComponent = (props) => {
               id="period"
               class="select"
               value={state.period}
+              title="Time period"
               onInput={(event) => {
                 const period = event.currentTarget.value;
 
