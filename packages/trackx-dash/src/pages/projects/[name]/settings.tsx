@@ -26,8 +26,8 @@ import {
 
 const ProjectSettingsPage: RouteComponent = (props) => {
   const [state, setState] = createStore({
-    error: null as any,
-    validationError: null as any,
+    error: null as unknown,
+    validationError: null as unknown,
     disableSubmit: false,
     showConfirmNewKey: false,
     showConfirmRemove: false,
@@ -43,7 +43,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
     setState({ error });
   });
 
-  const [project, projectActions] = createResource<Project, string>(
+  const [project, { mutate }] = createResource<Project, string>(
     () => `${config.DASH_API_ENDPOINT}/project/${props.params.name}`,
     fetchJSON,
   );
@@ -206,14 +206,16 @@ const ProjectSettingsPage: RouteComponent = (props) => {
         throw new AppError(await res.text(), res.status);
       }
 
+      const key = await res.text();
+      mutate((prev) => ({
+        ...prev!,
+        key,
+      }));
+
       setState({
         disableSubmit: false,
         showConfirmNewKey: false,
       });
-      // TODO: Generating a new key should just update/mutate the key in-place
-      // on the page rather than refetching the entire project and visually
-      // jarring the entire page
-      await projectActions.refetch();
     } catch (error: unknown) {
       // eslint-disable-next-line no-console
       console.error(error);

@@ -37,7 +37,7 @@ const IssuesPage: RouteComponent = () => {
   const [urlParams, setUrlParams] = useURLParams();
   const initialUrlParams = urlParams();
   const [state, setState] = createStore({
-    error: null as any,
+    error: null as unknown,
     disableNext: true,
     disablePrev: true,
     resultsFrom: 0,
