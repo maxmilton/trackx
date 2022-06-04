@@ -445,11 +445,11 @@ export const post: Middleware = (req, res, next) => {
     }
 
     // TODO: More/better validation of meta data
-    // TODO: 128_000 is a magic number; should be configurable or improve calculation
+    // TODO: Should there be a separate config option rather than MAX_EVENT_BYTES?
     if (meta !== undefined) {
       if (
         Object.prototype.toString.call(meta) !== '[object Object]'
-        || JSON.stringify(meta).length > 128_000
+        || JSON.stringify(meta).length > config.MAX_EVENT_BYTES
       ) {
         throw new AppError('Invalid meta', Status.UNPROCESSABLE_ENTITY);
       }

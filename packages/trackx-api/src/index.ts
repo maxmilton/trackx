@@ -93,6 +93,14 @@ for (const route of routes) {
           ) {
             const limit = 300 * 1024 * 1024; // 300MiB
             app[method](route.path, text({ limit }), handler);
+          } else if (route.path === '/v1/:key/event') {
+            app[method](
+              route.path,
+              // TODO: Should the incoming event max body size be a separate
+              // config option rather than MAX_EVENT_BYTES?
+              json({ limit: config.MAX_EVENT_BYTES }),
+              handler,
+            );
           } else if (route.path === '/v1/:key/report') {
             app[method](route.path, parse({ type: '' }), handler);
           } else {
