@@ -920,7 +920,7 @@ export const TestPage: Component = () => {
             setState({ active: false, status: 'Done!' });
           }}
         >
-          100 errors with large payload
+          100 sendEvent with large payload
         </button>
         <button
           class="button"
@@ -951,7 +951,7 @@ export const TestPage: Component = () => {
             }(0));
           }}
         >
-          5,000 errors with large payload /w random data
+          5,000 sendEvent with large payload /w random data
         </button>
       </div>
 
