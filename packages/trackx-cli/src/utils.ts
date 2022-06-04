@@ -53,6 +53,8 @@ const CONFIG_SCHEMA = [
   ['NET_TIMEOUT', ['Number']],
   ['SCHEDULED_JOB_INTERVAL', ['Number']],
   ['SESSION_TTL', ['Number']],
+
+  ['ENABLE_DB_TABLE_STATS', ['Boolean', 'Undefined']],
 ] as const;
 const configExpectedKeys: string[] = CONFIG_SCHEMA.map((item) => item[0]);
 
@@ -84,8 +86,9 @@ function validateConfig(
   }
 
   for (const [key, types] of CONFIG_SCHEMA) {
-    if (!(key in rawConfig)) {
-      errors.push(new ReferenceError(`Config missing "${key}" key`));
+    // @ts-expect-error - FIXME: "types" type
+    if (!(key in rawConfig) && !types.includes('Undefined')) {
+      errors.push(new ReferenceError(`Config missing required "${key}" key`));
     }
 
     const valueType = toStr

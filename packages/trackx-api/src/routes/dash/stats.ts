@@ -13,6 +13,7 @@ import {
   AppError,
   config,
   humanFileSize,
+  humanizeTime,
   logger,
   sessions,
   Status,
@@ -280,8 +281,7 @@ export const get: Middleware = async (req, res, next) => {
       throw new AppError('Unexpected param', Status.BAD_REQUEST);
     }
 
-    const [tableSizes, dbFileSize, dbWalFileSize] = await Promise.all([
-      getTableSizes(),
+    const [dbFileSize, dbWalFileSize] = await Promise.all([
       fs.promises.stat(config.DB_PATH).then(humanizeSize),
       fs.promises.stat(`${config.DB_PATH}-wal`).then(humanizeSize),
     ]);
@@ -291,7 +291,16 @@ export const get: Middleware = async (req, res, next) => {
     data.api_uptime = Math.floor(process.uptime());
     data.db_size = dbFileSize;
     data.dbwal_size = dbWalFileSize;
-    data.db_tables = tableSizes;
+    // data.db_tables = tableSizes;
+
+    // FIXME: Generating DB table stats is extremely slow on systems with slow disks
+    //  ↳ https://github.com/maxmilton/trackx/issues/158
+    if (config.ENABLE_DB_TABLE_STATS) {
+      const t0 = performance.now();
+      data.db_tables = await getTableSizes();
+      const t1 = performance.now();
+      logger.info(`Generated DB table stats in ${humanizeTime(t1 - t0)}`);
+    }
 
     send(res, Status.OK, data);
   } catch (error) {

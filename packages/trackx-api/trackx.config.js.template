@@ -22,4 +22,6 @@ module.exports = {
   NET_TIMEOUT: 30000, // 30 seconds
   SCHEDULED_JOB_INTERVAL: 21600000, // 6 hours
   SESSION_TTL: 2400000, // 40 minutes
+
+  ENABLE_DB_TABLE_STATS: false,
 };
