@@ -36,8 +36,8 @@ import {
 
 const NewProjectPage: Component = () => {
   const [state, setState] = createStore({
-    error: null as any,
-    validationError: null as any,
+    error: null as unknown,
+    validationError: null as unknown,
     disableSubmit: false,
     origin: '',
     name: '',

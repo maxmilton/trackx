@@ -26,8 +26,8 @@ import {
 
 const ProjectSettingsPage: RouteComponent = (props) => {
   const [state, setState] = createStore({
-    error: null as any,
-    validationError: null as any,
+    error: null as unknown,
+    validationError: null as unknown,
     disableSubmit: false,
     showConfirmNewKey: false,
     showConfirmRemove: false,
