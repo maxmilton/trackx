@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-len
-/* eslint-disable @typescript-eslint/no-floating-promises, @typescript-eslint/no-throw-literal, func-names, no-console, no-await-in-loop, no-plusplus, max-classes-per-file, jsx-a11y/anchor-is-valid, unicorn/error-message, unicorn/no-array-for-each */
+/* eslint-disable @typescript-eslint/no-floating-promises, @typescript-eslint/no-misused-promises, @typescript-eslint/no-throw-literal, func-names, no-console, no-await-in-loop, no-plusplus, max-classes-per-file, jsx-a11y/anchor-is-valid, unicorn/error-message, unicorn/no-array-for-each */
 
 import { createEffect, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store';
@@ -625,6 +625,7 @@ export const TestPage: Component = () => {
             type="text"
             class="input w100"
             value={state.customMsg}
+            title="Custom error message"
             onInput={(event) => {
               setState({ customMsg: event.currentTarget.value });
             }}
@@ -1247,7 +1248,7 @@ export const TestPage: Component = () => {
                 throw new TypeError('Bad time range');
               }
 
-              const [startIssueId] = await adHocQuery(
+              const [startIssueId] = await adHocQuery<[string]>(
                 'SELECT MAX(id) + 1 FROM issue;',
                 { pluck: true },
               );
@@ -1262,7 +1263,7 @@ export const TestPage: Component = () => {
               tsList.sort((a, b) => a - b);
 
               const rows = tsList.map((ts, index) => ({
-                id: (startIssueId as number) + index,
+                id: +startIssueId + index,
                 ts,
               }));
 

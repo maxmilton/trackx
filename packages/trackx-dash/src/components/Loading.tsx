@@ -1,6 +1,4 @@
-// import { type Component, createSignal, onCleanup, onMount } from 'solid-js';
 import { createSignal, onCleanup, type Component } from 'solid-js';
-// import { Show } from 'solid-js/web';
 
 interface LoadingProperties {
   /**
@@ -13,33 +11,10 @@ interface LoadingProperties {
   delay?: number;
 }
 
-// FIXME: onMount seems to not fire when Loading is used in a Suspense fallback
-
-// export const Loading: Component<LoadingProperties> = ({ delay = 176 }) => {
-//   const [ready, setReady] = createSignal(false);
-//   let timer: number;
-
-//   onMount(() => {
-//     timer = window.setTimeout(() => {
-//       setReady(true);
-//     }, delay);
-//   });
-
-//   onCleanup(() => window.clearTimeout(timer));
-
-//   return (
-//     <div class="spinner-wrapper pa4">
-//       <Show when={ready()}>
-//         <div class="spinner"></div>
-//       </Show>
-//     </div>
-//   );
-// };
-
 export const Loading: Component<LoadingProperties> = (props) => {
-  const [ready, setReady] = createSignal(false);
+  const [show, setShow] = createSignal(false);
   const timer = window.setTimeout(() => {
-    setReady(true);
+    setShow(true);
   }, props.delay || 176);
 
   onCleanup(() => window.clearTimeout(timer));
@@ -49,13 +24,8 @@ export const Loading: Component<LoadingProperties> = (props) => {
   // <Suspend> etc. content DOM) but it would be great if it would not render
   // until ready triggers and then render the div.spinner-wrapper
   return (
-    // <Show when={ready()}>
-    //   <div class="spinner-wrapper pa4">
-    //     <div class="spinner"></div>
-    //   </div>
-    // </Show>
     <>
-      {ready() && (
+      {show() && (
         <div class="spinner-wrapper pa4">
           <div class="spinner" />
         </div>

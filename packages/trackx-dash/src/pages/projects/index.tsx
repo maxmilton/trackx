@@ -76,7 +76,11 @@ const ProjectsPage: Component = () => {
         />
         <IconSearch />
         {searchText() && (
-          <button class="button-cancel-search button" onClick={cancelSearch}>
+          <button
+            class="button-cancel-search button"
+            title="Cancel search"
+            onClick={cancelSearch}
+          >
             <IconX />
           </button>
         )}

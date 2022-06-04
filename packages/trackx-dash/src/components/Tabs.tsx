@@ -42,10 +42,9 @@ export const Tabs: Component<TabsProps> = (props) => {
     <div class="tabs">
       <div role="tablist">
         {props.titles.map((title, index) => (
-          // @ts-expect-error - FIXME: aria-selected should also accept undefined|null
           <button
             role="tab"
-            aria-selected={currentTab() === index || undefined}
+            aria-selected={currentTab() === index}
             onClick={() => setCurrentTab(index)}
             textContent={title}
           />
