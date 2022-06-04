@@ -193,10 +193,10 @@ export function generateSalt(rounds: number): string {
 export function humanizeTime(ms: number): string {
   const periods = {
     d: Math.floor(ms / (1000 * 60 * 60 * 24)),
-    h: Math.floor((ms % (1000 * 60 * 60)) / 24),
-    m: Math.floor((ms % (1000 * 60)) / 60),
-    s: Math.floor((ms % 1000) / 60),
-    ms: Math.floor(ms % 1000),
+    h: Math.floor(ms / (1000 * 60 * 60)) % 24,
+    m: Math.floor(ms / (1000 * 60)) % 60,
+    s: Math.floor(ms / 1000) % 60,
+    ms: Math.floor(ms) % 1000,
   };
   const keep = [];
   let key: keyof typeof periods;
