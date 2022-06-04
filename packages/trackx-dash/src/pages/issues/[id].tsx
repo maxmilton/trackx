@@ -13,9 +13,7 @@ import {
   IconTrash,
 } from '@trackx/icons';
 import reltime from '@trackx/reltime';
-import {
-  createEffect, createResource, onError, untrack,
-} from 'solid-js';
+import { createEffect, createResource, onError } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { Match, Show, Switch } from 'solid-js/web';
 import type { Event, Issue } from '../../../../trackx-api/src/types';
@@ -68,7 +66,7 @@ function isEventWithStack(type: number) {
 function safeStringifyPretty(data: any): string {
   let out = data;
 
-  if (typeof data === 'object') {
+  if (data != null && typeof data === 'object') {
     try {
       out = JSON.stringify(data, null, 2);
     } catch {
@@ -93,10 +91,10 @@ const IssuePage: RouteComponent = (props) => {
     `${config.DASH_API_ENDPOINT}/issue/${props.params.id}`,
     fetchJSON,
   );
-  const [event, { refetch }] = createResource(
-    () => `${config.DASH_API_ENDPOINT}/issue/${props.params.id}/event/${untrack(
-      () => `${state.eventId}${state.dir ? `?dir=${state.dir}` : ''}`,
-    )}`,
+  const [event] = createResource(
+    () => `${config.DASH_API_ENDPOINT}/issue/${props.params.id}/event/${
+      state.eventId
+    }${state.dir ? `?dir=${state.dir}` : ''}`,
     (url) => fetchJSON<Event>(url).then((data) => {
       // Expand short internal meta keys into a human readable form
       // eslint-disable-next-line @typescript-eslint/naming-convention, object-curly-newline
@@ -119,6 +117,7 @@ const IssuePage: RouteComponent = (props) => {
     }),
   );
   let eventFetchInProgress = false;
+  let currentEventId = state.eventId;
 
   onError((error: unknown) => {
     // eslint-disable-next-line no-console
@@ -146,7 +145,6 @@ const IssuePage: RouteComponent = (props) => {
 
     if (eventData) {
       setState({
-        eventId: eventData.id,
         disablePrev: !!eventData.is_first,
         disableNext: !!eventData.is_last,
       });
@@ -154,6 +152,7 @@ const IssuePage: RouteComponent = (props) => {
         ...prev,
         event: eventData.id,
       }));
+      currentEventId = eventData.id;
       eventFetchInProgress = false;
     }
   });
@@ -268,18 +267,8 @@ const IssuePage: RouteComponent = (props) => {
     if (eventFetchInProgress) return;
 
     eventFetchInProgress = true;
-    setState({ error: null, dir });
-
-    // TODO: Better refetch error handling once createResource ResourceActions
-    // types are improved
-    //  ↳ https://github.com/solidjs/solid/blob/main/packages/solid/src/reactive/signal.ts#L410-L413
-    (async () => {
-      await refetch();
-    })().catch((error) => {
-      // eslint-disable-next-line no-console
-      console.error(error);
-      setState({ error });
-    });
+    // Trigger fetching the next event
+    setState({ error: null, dir, eventId: currentEventId });
   };
 
   return (

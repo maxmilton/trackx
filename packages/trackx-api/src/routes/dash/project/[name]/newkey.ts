@@ -16,7 +16,7 @@ const setNewProjectKeyStmt = db.prepare(
   'UPDATE project SET key = ? WHERE name = ?',
 );
 
-function setNewProjectKey(projectName: string): void {
+function setNewProjectKey(projectName: string) {
   const project = getProjectKeyByNameStmt.get(projectName) as
     | ProjectInternal
     | undefined;
@@ -33,6 +33,8 @@ function setNewProjectKey(projectName: string): void {
     `key-change-${project.key}`,
     `{"project_id":${project.id},"ts":${Date.now()},"to":"${newKey}"}`,
   );
+
+  return newKey;
 }
 
 export const post: Middleware = (req, res, next) => {
@@ -55,8 +57,8 @@ export const post: Middleware = (req, res, next) => {
       throw new AppError('Unexpected property', Status.BAD_REQUEST);
     }
 
-    setNewProjectKey(name);
-    res.end();
+    const key = setNewProjectKey(name);
+    res.end(key);
   } catch (error) {
     logger.error(error);
     void next(error || new Error(error));
