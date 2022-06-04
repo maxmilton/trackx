@@ -244,7 +244,8 @@ export const TestPage: Component = () => {
             }
 
             setState({
-              status: 'Done (expect network congestion until all events sent)',
+              status:
+                'Done (expect network congestion until all events are sent)',
             });
           }}
         >
@@ -766,7 +767,7 @@ export const TestPage: Component = () => {
 
             for (let index = 0; index < 100; index++) {
               console.error('100 console errors');
-              setState({ status: index });
+              setState({ status: `${index} / 100` });
               await sleep();
             }
 
@@ -787,7 +788,7 @@ export const TestPage: Component = () => {
             for (let index = 0; index < 100; index++) {
               const number = Math.floor(Math.random() * (max - min) + min);
               console.error(`100 console #${number}`);
-              setState({ status: index });
+              setState({ status: `${index} / 100` });
               await sleep();
             }
 
@@ -805,10 +806,10 @@ export const TestPage: Component = () => {
             if (window.trackx) {
               for (let index = 0; index < 10_000; index++) {
                 window.trackx?.sendEvent(
-                  new CustomError('10000 custom errors'),
+                  new CustomError('10,000 custom errors'),
                 );
                 if (index % 100 === 0) {
-                  setState({ status: index });
+                  setState({ status: `${index} / 10,000` });
                 }
                 await sleep();
               }
@@ -829,7 +830,7 @@ export const TestPage: Component = () => {
               for (let index = 0; index < 10_000; index++) {
                 window.trackx?.sendEvent(new Error(`10k #${Date.now()}`));
                 if (index % 100 === 0) {
-                  setState({ status: index });
+                  setState({ status: `${index} / 10,000` });
                 }
                 await sleep();
               }
@@ -854,7 +855,7 @@ export const TestPage: Component = () => {
                 const number = Math.floor(Math.random() * (max - min) + min);
                 window.trackx?.sendEvent(new Error(`100k #${number}`));
                 if (index % 100 === 0) {
-                  setState({ status: index });
+                  setState({ status: `${index} / 100,000` });
                 }
                 await sleep(0);
               }
@@ -873,7 +874,7 @@ export const TestPage: Component = () => {
 
             for (let index = 0; index < 30; index++) {
               console.error(new Error(`2s delay #${index + 1} ${Date.now()}`));
-              setState({ status: index });
+              setState({ status: `${index} / 30` });
               await sleep(2000);
             }
 
@@ -886,7 +887,7 @@ export const TestPage: Component = () => {
           class="button"
           disabled={state.active}
           onClick={() => {
-            setState({ active: true, status: 'Blasting...' });
+            setState({ active: true, status: 'Running...' });
 
             const ts = Date.now();
 
@@ -899,6 +900,58 @@ export const TestPage: Component = () => {
         >
           {/* XXX: Just enough events to trigger flood protection in the API gateway */}
           32 sendEvent Error
+        </button>
+        <button
+          class="button"
+          disabled={state.active}
+          onClick={() => {
+            setState({ active: true, status: 'Running...' });
+
+            const arr = new Uint8Array(65_536);
+            window.crypto.getRandomValues(arr);
+            const randomValues = arr.toString();
+
+            for (let index = 0; index < 100; index++) {
+              window.trackx?.sendEvent(new Error('100 large payload'), {
+                randomValues,
+              });
+            }
+
+            setState({ active: false, status: 'Done!' });
+          }}
+        >
+          100 errors with large payload
+        </button>
+        <button
+          class="button"
+          disabled={state.active}
+          onClick={() => {
+            setState({ active: true, status: 'Starting...' });
+
+            (function next(index: number) {
+              if (index < 5000) {
+                const arr = new Uint8Array(65_536);
+                window.crypto.getRandomValues(arr);
+
+                window.trackx?.sendEvent(
+                  new Error('5,000 large payload random data'),
+                  {
+                    randomValues: arr.toString(),
+                  },
+                );
+
+                if (index % 100 === 0) {
+                  setState({ status: `${index} / 10,000` });
+                }
+
+                setTimeout(() => next(index + 1), 0);
+              } else {
+                setState({ active: false, status: 'Done!' });
+              }
+            }(0));
+          }}
+        >
+          5,000 errors with large payload /w random data
         </button>
       </div>
 
@@ -1128,7 +1181,7 @@ export const TestPage: Component = () => {
                   mode: 'same-origin',
                 },
               );
-              setState({ status: index });
+              setState({ status: `${index} / 100` });
               await sleep();
             }
 
