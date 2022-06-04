@@ -139,13 +139,17 @@ const StatsPage: Component = () => {
               <div>
                 <h2>Database</h2>
 
-                <p>
+                {/* TODO: Remove class=wsnb once no longer necessary */}
+                <p class="wsnb">
                   {data.db_size}
                   <span class="muted"> + </span>
                   {data.dbwal_size}
                   <span class="muted"> (wal)</span>
                 </p>
 
+                {/* FIXME: Generating DB table stats is extremely slow on systems
+                with slow disks -- https://github.com/maxmilton/trackx/issues/158 */}
+                {/*
                 <h3>Tables</h3>
 
                 <div class="table-wrapper">
@@ -161,6 +165,7 @@ const StatsPage: Component = () => {
                     </For>
                   </table>
                 </div>
+                */}
               </div>
             </div>
           )}
