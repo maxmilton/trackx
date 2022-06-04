@@ -1,6 +1,10 @@
 import reltime from '@trackx/reltime';
 import { createEffect, createResource, type Component } from 'solid-js';
-import { For, Match, Switch } from 'solid-js/web';
+import {
+  // For,
+  Match,
+  Switch,
+} from 'solid-js/web';
 import UPlot from 'uplot';
 import type { Stats, TimeSeriesData } from '../../../trackx-api/src/types';
 import { renderErrorAlert } from '../components/ErrorAlert';
