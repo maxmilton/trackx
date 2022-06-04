@@ -147,6 +147,15 @@ export interface TrackXAPIConfig {
    * token expires, the user must login again.
    */
   readonly SESSION_TTL: number;
+
+  /**
+   * Show database table size statistics on the dash `/stats` page.
+   *
+   * @remarks Currently has known performance issues. Enabling this feature may
+   * be useful for debugging and observability but should be disabled in
+   * production to prevent a potential denial-of-service attack vector.
+   */
+  readonly ENABLE_DB_TABLE_STATS?: boolean;
 }
 
 export type ReqBodyData = Record<string, unknown>;
@@ -325,7 +334,8 @@ export interface Stats {
   dash_session_c: number;
   db_size: string;
   dbwal_size: string;
-  db_tables: StatsDBTableInfo[];
+  // Optional because it's behind the config flag "ENABLE_DB_TABLE_STATS"
+  db_tables?: StatsDBTableInfo[];
 }
 
 export interface Logs {

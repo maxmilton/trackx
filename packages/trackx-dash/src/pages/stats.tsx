@@ -1,10 +1,6 @@
 import reltime from '@trackx/reltime';
 import { createEffect, createResource, type Component } from 'solid-js';
-import {
-  // For,
-  Match,
-  Switch,
-} from 'solid-js/web';
+import { For, Match, Switch } from 'solid-js/web';
 import UPlot from 'uplot';
 import type { Stats, TimeSeriesData } from '../../../trackx-api/src/types';
 import { renderErrorAlert } from '../components/ErrorAlert';
@@ -143,8 +139,7 @@ const StatsPage: Component = () => {
               <div>
                 <h2>Database</h2>
 
-                {/* TODO: Remove class=wsnb once no longer necessary */}
-                <p class="wsnb">
+                <p class="wsn">
                   {data.db_size}
                   <span class="muted"> + </span>
                   {data.dbwal_size}
@@ -153,23 +148,25 @@ const StatsPage: Component = () => {
 
                 {/* FIXME: Generating DB table stats is extremely slow on systems
                 with slow disks -- https://github.com/maxmilton/trackx/issues/158 */}
-                {/*
-                <h3>Tables</h3>
+                {data.db_tables && (
+                  <>
+                    <h3>Tables</h3>
 
-                <div class="table-wrapper">
-                  <table class="table wi tr tnum">
-                    <For each={data.db_tables} fallback="No data">
-                      {([name, size, percent]) => (
-                        <tr>
-                          <td class="tl break" textContent={name} />
-                          <td class="wsn" textContent={size} />
-                          <td textContent={percent} />
-                        </tr>
-                      )}
-                    </For>
-                  </table>
-                </div>
-                */}
+                    <div class="table-wrapper">
+                      <table class="table wi tr tnum">
+                        <For each={data.db_tables} fallback="No data">
+                          {([name, size, percent]) => (
+                            <tr>
+                              <td class="tl break" textContent={name} />
+                              <td class="wsn" textContent={size} />
+                              <td textContent={percent} />
+                            </tr>
+                          )}
+                        </For>
+                      </table>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}

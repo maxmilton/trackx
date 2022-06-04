@@ -190,6 +190,26 @@ export function generateSalt(rounds: number): string {
     .slice(0, rounds);
 }
 
+export function humanizeTime(ms: number): string {
+  const periods = {
+    d: Math.floor(ms / (1000 * 60 * 60 * 24)),
+    h: Math.floor((ms % (1000 * 60 * 60)) / 24),
+    m: Math.floor((ms % (1000 * 60)) / 60),
+    s: Math.floor((ms % 1000) / 60),
+    ms: Math.floor(ms % 1000),
+  };
+  const keep = [];
+  let key: keyof typeof periods;
+
+  for (key in periods) {
+    if (periods[key] > 0) {
+      keep.push(`${periods[key]}${key}`);
+    }
+  }
+
+  return keep.join(' ');
+}
+
 export function humanFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   let b = bytes;

@@ -1,20 +1,19 @@
-/* eslint-disable max-len */
-
 import send from '@polka/send';
-// import { execFile } from 'child_process';
+import { execFile } from 'child_process';
 import fs from 'fs';
 import type { Middleware } from 'polka';
 import { db, deniedDash } from '../../db';
 import type {
   ReqQueryData,
   Stats,
-  // StatsDBTableInfo,
+  StatsDBTableInfo,
   TimeSeriesData,
 } from '../../types';
 import {
   AppError,
   config,
   humanFileSize,
+  humanizeTime,
   logger,
   sessions,
   Status,
@@ -118,167 +117,161 @@ function getStats(): Partial<Stats> {
   })();
 }
 
-// FIXME: Generating DB table stats is extremely slow on systems with slow disks
-//  ↳ https://github.com/maxmilton/trackx/issues/158
+function execCmd(cmd: string, args?: string[]): Promise<string> {
+  return new Promise((resolve, reject) => {
+    execFile(cmd, args, (error, stdout, stderr) => {
+      if (error || stderr) {
+        reject(error || stderr);
+      }
+      resolve(stdout);
+    });
+  });
+}
 
-// function execCmd(cmd: string, args?: string[]): Promise<string> {
-//   return new Promise((resolve, reject) => {
-//     execFile(cmd, args, (error, stdout, stderr) => {
-//       if (error || stderr) {
-//         reject(error || stderr);
-//       }
-//       resolve(stdout);
-//     });
-//   });
-// }
-
-// const tablePercent = (table: number, total: number) => `${((table / total) * 100).toFixed(2)}%`;
+const tablePercent = (table: number, total: number) => `${((table / total) * 100).toFixed(2)}%`;
 
 const humanizeSize = (stats: fs.Stats) => humanFileSize(stats.size);
 
-// const DB_QUERY = [
-//   'BEGIN TRANSACTION;',
-//   "SELECT SUM(pgsize) FROM dbstat('main',1);",
+const DB_QUERY = [
+  'BEGIN TRANSACTION;',
+  "SELECT SUM(pgsize) FROM dbstat('main',1);",
 
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='project';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue';",
-//   config.DB_COMPRESSION
-//     ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_event_zstd';"
-//     : "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_denied';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_events';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_pings';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='meta';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='project';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue';",
+  config.DB_COMPRESSION
+    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_event_zstd';"
+    : "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_denied';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_events';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_pings';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='meta';",
 
-//   // "issue_fts" is a virtual table, so it doesn't have a size itself
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_config';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_data';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_docsize';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_idx';",
+  // "issue_fts" is a virtual table, so it doesn't have a size itself
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_config';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_data';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_docsize';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_idx';",
 
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_graph';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_issue';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_ts_last_idx';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_list_idx';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_state_idx';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_graph_idx';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_list_idx';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_graph';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_issue';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_ts_last_idx';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_list_idx';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_state_idx';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_graph_idx';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_list_idx';",
 
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_issue_1';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_1';",
-//   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_2';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_issue_1';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_1';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_2';",
 
-//   config.DB_COMPRESSION
-//     ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_zstd_dicts';"
-//     : '',
-//   config.DB_COMPRESSION
-//     ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_data_dict_idx';"
-//     : '',
-//   'COMMIT;',
-// ].join('');
+  config.DB_COMPRESSION
+    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_zstd_dicts';"
+    : '',
+  config.DB_COMPRESSION
+    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_data_dict_idx';"
+    : '',
+  'COMMIT;',
+].join('');
 
-// async function getTableSizes() {
-//   try {
-//     // Because the better-sqlite3 npm module doesn't have the compile-time
-//     // SQLITE_ENABLE_DBSTAT_VTAB option enabled, to get table size data we need
-//     // to use the system sqlite3 CLI client which does support DBSTAT
-//     const t0 = performance.now();
-//     const output = await execCmd('/usr/bin/sqlite3', [
-//       '-safe',
-//       '-readonly',
-//       '-list',
-//       '-noheader',
-//       '-nullvalue',
-//       '0',
-//       '-cmd',
-//       '.eqp off',
-//       config.DB_PATH,
-//       DB_QUERY,
-//     ]);
-//     const t1 = performance.now();
-//     console.log(`DB exec took ${(t1 - t0).toFixed(2)} ms`);
-//     const data = output.toString().split('\n');
-//     const total = +data[0];
-//     const project = +data[1];
-//     const session = +data[2];
-//     const issue = +data[3];
-//     const event = +data[4];
-//     const daily_denied = +data[5];
-//     const daily_events = +data[6];
-//     const daily_pings = +data[7];
-//     const meta = +data[8];
-//     const issue_fts = +data[9] + +data[10] + +data[11] + +data[12];
-//     const session_graph = +data[13];
-//     const session_issue = +data[14];
-//     const issue_ts_last_idx = +data[15];
-//     const issue_list_idx = +data[16];
-//     const issue_state_idx = +data[17];
-//     const event_graph_idx = +data[18];
-//     const event_list_idx = +data[19];
-//     const sqlite_autoindex_issue_1 = +data[20];
-//     const sqlite_autoindex_project_1 = +data[21];
-//     const sqlite_autoindex_project_2 = +data[22];
+async function getTableSizes() {
+  try {
+    // Because the better-sqlite3 npm module doesn't have the compile-time
+    // SQLITE_ENABLE_DBSTAT_VTAB option enabled, to get table size data we need
+    // to use the system sqlite3 CLI client which does support DBSTAT
+    const output = await execCmd('/usr/bin/sqlite3', [
+      '-safe',
+      '-readonly',
+      '-list',
+      '-noheader',
+      '-nullvalue',
+      '0',
+      '-cmd',
+      '.eqp off',
+      config.DB_PATH,
+      DB_QUERY,
+    ]);
+    const data = output.toString().split('\n');
+    const total = +data[0];
+    const project = +data[1];
+    const session = +data[2];
+    const issue = +data[3];
+    const event = +data[4];
+    const daily_denied = +data[5];
+    const daily_events = +data[6];
+    const daily_pings = +data[7];
+    const meta = +data[8];
+    const issue_fts = +data[9] + +data[10] + +data[11] + +data[12];
+    const session_graph = +data[13];
+    const session_issue = +data[14];
+    const issue_ts_last_idx = +data[15];
+    const issue_list_idx = +data[16];
+    const issue_state_idx = +data[17];
+    const event_graph_idx = +data[18];
+    const event_list_idx = +data[19];
+    const sqlite_autoindex_issue_1 = +data[20];
+    const sqlite_autoindex_project_1 = +data[21];
+    const sqlite_autoindex_project_2 = +data[22];
 
-//     const tablesInfo = [
-//       /* prettier-ignore */
-//       [project, ['project', humanFileSize(project), tablePercent(project, total)]],
-//       /* prettier-ignore */
-//       [session, ['session', humanFileSize(session), tablePercent(session, total)]],
-//       /* prettier-ignore */
-//       [issue, ['issue', humanFileSize(issue), tablePercent(issue, total)]],
-//       /* prettier-ignore */
-//       [event, ['event', humanFileSize(event), tablePercent(event, total)]],
-//       /* prettier-ignore */
-//       [daily_denied, ['daily_denied', humanFileSize(daily_denied), tablePercent(daily_denied, total)]],
-//       /* prettier-ignore */
-//       [daily_events, ['daily_events', humanFileSize(daily_events), tablePercent(daily_events, total)]],
-//       /* prettier-ignore */
-//       [daily_pings, ['daily_pings', humanFileSize(daily_pings), tablePercent(daily_pings, total)]],
-//       /* prettier-ignore */
-//       [meta, ['meta', humanFileSize(meta), tablePercent(meta, total)]],
-//       /* prettier-ignore */
-//       [issue_fts, ['issue_fts*', humanFileSize(issue_fts), tablePercent(issue_fts, total)]],
-//       /* prettier-ignore */
-//       [session_graph, ['session_graph', humanFileSize(session_graph), tablePercent(session_graph, total)]],
-//       /* prettier-ignore */
-//       [session_issue, ['session_issue', humanFileSize(session_issue), tablePercent(session_issue, total)]],
-//       /* prettier-ignore */
-//       [issue_ts_last_idx, ['issue_ts_last_idx', humanFileSize(issue_ts_last_idx), tablePercent(issue_ts_last_idx, total)]],
-//       /* prettier-ignore */
-//       [issue_list_idx, ['issue_list_idx', humanFileSize(issue_list_idx), tablePercent(issue_list_idx, total)]],
-//       /* prettier-ignore */
-//       [issue_state_idx, ['issue_state_idx', humanFileSize(issue_state_idx), tablePercent(issue_state_idx, total)]],
-//       /* prettier-ignore */
-//       [event_graph_idx, ['event_graph_idx', humanFileSize(event_graph_idx), tablePercent(event_graph_idx, total)]],
-//       /* prettier-ignore */
-//       [event_list_idx, ['event_list_idx', humanFileSize(event_list_idx), tablePercent(event_list_idx, total)]],
-//       /* prettier-ignore */
-//       [sqlite_autoindex_issue_1, ['sqlite_autoindex_issue_1', humanFileSize(sqlite_autoindex_issue_1), tablePercent(sqlite_autoindex_issue_1, total)]],
-//       /* prettier-ignore */
-//       [sqlite_autoindex_project_1, ['sqlite_autoindex_project_1', humanFileSize(sqlite_autoindex_project_1), tablePercent(sqlite_autoindex_project_1, total)]],
-//       /* prettier-ignore */
-//       [sqlite_autoindex_project_2, ['sqlite_autoindex_project_2', humanFileSize(sqlite_autoindex_project_2), tablePercent(sqlite_autoindex_project_2, total)]],
-//     ] as [number, StatsDBTableInfo][];
+    const tablesInfo = [
+      /* prettier-ignore */
+      [project, ['project', humanFileSize(project), tablePercent(project, total)]],
+      /* prettier-ignore */
+      [session, ['session', humanFileSize(session), tablePercent(session, total)]],
+      /* prettier-ignore */
+      [issue, ['issue', humanFileSize(issue), tablePercent(issue, total)]],
+      /* prettier-ignore */
+      [event, ['event', humanFileSize(event), tablePercent(event, total)]],
+      /* prettier-ignore */
+      [daily_denied, ['daily_denied', humanFileSize(daily_denied), tablePercent(daily_denied, total)]],
+      /* prettier-ignore */
+      [daily_events, ['daily_events', humanFileSize(daily_events), tablePercent(daily_events, total)]],
+      /* prettier-ignore */
+      [daily_pings, ['daily_pings', humanFileSize(daily_pings), tablePercent(daily_pings, total)]],
+      /* prettier-ignore */
+      [meta, ['meta', humanFileSize(meta), tablePercent(meta, total)]],
+      /* prettier-ignore */
+      [issue_fts, ['issue_fts*', humanFileSize(issue_fts), tablePercent(issue_fts, total)]],
+      /* prettier-ignore */
+      [session_graph, ['session_graph', humanFileSize(session_graph), tablePercent(session_graph, total)]],
+      /* prettier-ignore */
+      [session_issue, ['session_issue', humanFileSize(session_issue), tablePercent(session_issue, total)]],
+      /* prettier-ignore */
+      [issue_ts_last_idx, ['issue_ts_last_idx', humanFileSize(issue_ts_last_idx), tablePercent(issue_ts_last_idx, total)]],
+      /* prettier-ignore */
+      [issue_list_idx, ['issue_list_idx', humanFileSize(issue_list_idx), tablePercent(issue_list_idx, total)]],
+      /* prettier-ignore */
+      [issue_state_idx, ['issue_state_idx', humanFileSize(issue_state_idx), tablePercent(issue_state_idx, total)]],
+      /* prettier-ignore */
+      [event_graph_idx, ['event_graph_idx', humanFileSize(event_graph_idx), tablePercent(event_graph_idx, total)]],
+      /* prettier-ignore */
+      [event_list_idx, ['event_list_idx', humanFileSize(event_list_idx), tablePercent(event_list_idx, total)]],
+      /* prettier-ignore */
+      [sqlite_autoindex_issue_1, ['sqlite_autoindex_issue_1', humanFileSize(sqlite_autoindex_issue_1), tablePercent(sqlite_autoindex_issue_1, total)]],
+      /* prettier-ignore */
+      [sqlite_autoindex_project_1, ['sqlite_autoindex_project_1', humanFileSize(sqlite_autoindex_project_1), tablePercent(sqlite_autoindex_project_1, total)]],
+      /* prettier-ignore */
+      [sqlite_autoindex_project_2, ['sqlite_autoindex_project_2', humanFileSize(sqlite_autoindex_project_2), tablePercent(sqlite_autoindex_project_2, total)]],
+    ] as [number, StatsDBTableInfo][];
 
-//     if (config.DB_COMPRESSION) {
-//       const zstd_dicts = +data[23];
-//       const data_dict_idx = +data[24];
+    if (config.DB_COMPRESSION) {
+      const zstd_dicts = +data[23];
+      const data_dict_idx = +data[24];
 
-//       tablesInfo.push(
-//         /* prettier-ignore */
-//         [zstd_dicts, ['_zstd_dicts', humanFileSize(zstd_dicts), tablePercent(zstd_dicts, total)]],
-//         /* prettier-ignore */
-//         [data_dict_idx, ['_data_dict_idx', humanFileSize(data_dict_idx), tablePercent(data_dict_idx, total)]],
-//       );
-//     }
+      tablesInfo.push(
+        /* prettier-ignore */
+        [zstd_dicts, ['_zstd_dicts', humanFileSize(zstd_dicts), tablePercent(zstd_dicts, total)]],
+        /* prettier-ignore */
+        [data_dict_idx, ['_data_dict_idx', humanFileSize(data_dict_idx), tablePercent(data_dict_idx, total)]],
+      );
+    }
 
-//     return tablesInfo.sort((a, b) => b[0] - a[0]).map((row) => row[1]);
-//   } catch (error) {
-//     logger.error(error);
-//     return [];
-//   }
-// }
+    return tablesInfo.sort((a, b) => b[0] - a[0]).map((row) => row[1]);
+  } catch (error) {
+    logger.error(error);
+    return [];
+  }
+}
 
 export const get: Middleware = async (req, res, next) => {
   try {
@@ -288,11 +281,6 @@ export const get: Middleware = async (req, res, next) => {
       throw new AppError('Unexpected param', Status.BAD_REQUEST);
     }
 
-    // const [tableSizes, dbFileSize, dbWalFileSize] = await Promise.all([
-    //   getTableSizes(),
-    //   fs.promises.stat(config.DB_PATH).then(humanizeSize),
-    //   fs.promises.stat(`${config.DB_PATH}-wal`).then(humanizeSize),
-    // ]);
     const [dbFileSize, dbWalFileSize] = await Promise.all([
       fs.promises.stat(config.DB_PATH).then(humanizeSize),
       fs.promises.stat(`${config.DB_PATH}-wal`).then(humanizeSize),
@@ -304,6 +292,15 @@ export const get: Middleware = async (req, res, next) => {
     data.db_size = dbFileSize;
     data.dbwal_size = dbWalFileSize;
     // data.db_tables = tableSizes;
+
+    // FIXME: Generating DB table stats is extremely slow on systems with slow disks
+    //  ↳ https://github.com/maxmilton/trackx/issues/158
+    if (config.ENABLE_DB_TABLE_STATS) {
+      const t0 = performance.now();
+      data.db_tables = await getTableSizes();
+      const t1 = performance.now();
+      logger.info(`Generated DB table stats in ${humanizeTime(t1 - t0)}`);
+    }
 
     send(res, Status.OK, data);
   } catch (error) {
