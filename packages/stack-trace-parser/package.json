@@ -18,6 +18,6 @@
   "dependencies": {
     "data-uri-to-buffer": "4.0.0",
     "httpie": "2.0.0-next.13",
-    "source-map": "0.7.3"
+    "source-map": "0.7.4"
   }
 }
