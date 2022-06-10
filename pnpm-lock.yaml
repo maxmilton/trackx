@@ -148,7 +148,7 @@ importers:
       tough-cookie: 4.0.0
       trackx: workspace:*
       ua-parser-js: 1.0.2
-      xxhash-addon: 1.4.0
+      xxhash-addon: 1.5.0
     dependencies:
       '@polka/parse': 1.0.0-next.21
       '@polka/send': 1.0.0-next.15
@@ -162,7 +162,7 @@ importers:
       tough-cookie: 4.0.0
       trackx: link:../trackx
       ua-parser-js: 1.0.2
-      xxhash-addon: 1.4.0
+      xxhash-addon: 1.5.0
     devDependencies:
       '@types/better-sqlite3': 7.5.0
       '@types/tough-cookie': 4.0.2
@@ -6350,8 +6350,8 @@ packages:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
     dev: true
 
-  /xxhash-addon/1.4.0:
-    resolution: {integrity: sha512-n3Ml0Vgvy7jMYJBlQIoFLjYxXNZQ5CbzW8E2Ynq2QCUpWMqCouooW7j02+7Oud5FijBuSrjQNuN/fCiz1SHN+w==}
+  /xxhash-addon/1.5.0:
+    resolution: {integrity: sha512-ZkfBZMrrpbyT8/uw7x+2voPBXO2oczajlGo11+OOO1YqGbk6DuF7erwirCUPvydN17lEjilu3VGDWWG4+fV45Q==}
     engines: {node: '>=8.6.0 <9.0.0 || >=10.0.0'}
     requiresBuild: true
     dev: false
