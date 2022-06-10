@@ -221,7 +221,7 @@ importers:
       rollup-plugin-visualizer: 5.6.0
       solid-js: 1.4.3
       trackx: workspace:*
-      uplot: 1.6.20
+      uplot: 1.6.21
     dependencies:
       '@ekscss/framework': 0.0.40_ekscss@0.0.13
       '@maxmilton/solid-router': 0.3.1_solid-js@1.4.3
@@ -229,7 +229,7 @@ importers:
       '@trackx/reltime': link:../reltime
       solid-js: 1.4.3
       trackx: link:../trackx
-      uplot: 1.6.20
+      uplot: 1.6.21
     devDependencies:
       '@babel/core': 7.18.2
       '@ekscss/rollup-plugin-css': 0.0.3_rollup@2.75.6
@@ -6177,8 +6177,8 @@ packages:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
     engines: {node: '>= 4.0.0'}
 
-  /uplot/1.6.20:
-    resolution: {integrity: sha512-Jl4Z51Sns4xKLLQeBeiGdcgv4eW1UkKwukSTndIP3YcnlU4za9qGhejlX+XzRbvjaB32C0pxRsdq8m8Gwbq1Eg==}
+  /uplot/1.6.21:
+    resolution: {integrity: sha512-Xd7m2GSHyzhz+mP9CzYTalzp9WDlHzTorNY1yDvg6E+wiCwMIIY+MLfNveObyp3qVMH4kP8mOhRX4k4S9YLHRQ==}
     dev: false
 
   /uri-js/4.4.1:
