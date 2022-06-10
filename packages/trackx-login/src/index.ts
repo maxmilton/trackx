@@ -1,7 +1,8 @@
 /* eslint-disable prefer-template */
 
-import * as config from '../../trackx-dash/trackx.config.mjs';
 import './index.xcss';
+
+import * as config from '../../trackx-dash/trackx.config.mjs';
 import {
   append, create, dirty, getElement,
 } from './utils';

@@ -1,5 +1,6 @@
-import { onCleanup, onMount, type FlowComponent } from 'solid-js';
 import './Dialog.xcss';
+
+import { onCleanup, onMount, type FlowComponent } from 'solid-js';
 
 interface DialogProps {
   onClose: () => void;

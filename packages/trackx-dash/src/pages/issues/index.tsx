@@ -1,3 +1,5 @@
+import './index.xcss';
+
 import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconSearch, IconX } from '@trackx/icons';
 import reltime from '@trackx/reltime';
@@ -10,7 +12,6 @@ import type { Issue } from '../../../../trackx-api/src/types';
 import { renderErrorAlert } from '../../components/ErrorAlert';
 import { Loading } from '../../components/Loading';
 import { compactNumber, config, fetchJSON } from '../../utils';
-import './index.xcss';
 
 const RESULT_LIMIT = 25;
 

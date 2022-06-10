@@ -1,9 +1,10 @@
+import './Nav.xcss';
+
 import { NavLink } from '@maxmilton/solid-router';
 import { IconDotsVertical } from '@trackx/icons';
 import { createSignal, type Component } from 'solid-js';
 import { Show } from 'solid-js/web';
 import { logout } from '../utils';
-import './Nav.xcss';
 
 export const Nav: Component = () => {
   const [showSubnav, setShowSubnav] = createSignal(false);

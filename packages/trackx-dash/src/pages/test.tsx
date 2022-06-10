@@ -1,12 +1,13 @@
 // eslint-disable-next-line max-len
 /* eslint-disable @typescript-eslint/no-floating-promises, @typescript-eslint/no-misused-promises, @typescript-eslint/no-throw-literal, func-names, no-console, no-await-in-loop, no-plusplus, max-classes-per-file, jsx-a11y/anchor-is-valid, unicorn/error-message, unicorn/no-array-for-each */
 
+import './test.xcss';
+
 import { createEffect, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { For } from 'solid-js/web';
 import { Loading } from '../components/Loading';
 import { adHocQuery, AppError, config } from '../utils';
-import './test.xcss';
 
 class CustomError extends Error {
   declare code: number | undefined;

@@ -1,3 +1,5 @@
+import './index.xcss';
+
 import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconHelp } from '@trackx/icons';
 import reltime from '@trackx/reltime';
@@ -18,7 +20,6 @@ import { renderErrorAlert } from '../../../components/ErrorAlert';
 import { Graph } from '../../../components/Graph';
 import { Loading } from '../../../components/Loading';
 import { compactNumber, config, fetchJSON } from '../../../utils';
-import './index.xcss';
 
 interface SessionPeriodInfoProps {
   data: SessionsData['period'];

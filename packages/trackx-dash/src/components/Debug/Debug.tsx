@@ -1,6 +1,7 @@
+import './Debug.xcss';
+
 import { onMount, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import './Debug.xcss';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

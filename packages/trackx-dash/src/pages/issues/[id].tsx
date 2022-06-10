@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
+import './[id].xcss';
+
 import {
   routeTo,
   useURLParams,
@@ -25,7 +27,6 @@ import { StackTrace } from '../../components/StackTrace';
 import {
   AppError, config, fetchJSON, logout,
 } from '../../utils';
-import './[id].xcss';
 
 // Matches equivalent client enum in packages/trackx/types.ts
 const EventType = {
