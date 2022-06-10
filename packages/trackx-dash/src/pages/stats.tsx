@@ -1,3 +1,5 @@
+import './stats.xcss';
+
 import reltime from '@trackx/reltime';
 import { createEffect, createResource, type Component } from 'solid-js';
 import { For, Match, Switch } from 'solid-js/web';
@@ -7,7 +9,6 @@ import { renderErrorAlert } from '../components/ErrorAlert';
 import { Graph } from '../components/Graph';
 import { Loading } from '../components/Loading';
 import { config, fetchJSON } from '../utils';
-import './stats.xcss';
 
 interface DailyGraphProps {
   data: TimeSeriesData;

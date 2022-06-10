@@ -1,3 +1,5 @@
+import './Graph.xcss';
+
 import {
   createEffect,
   createResource,
@@ -10,7 +12,6 @@ import UPlot from 'uplot';
 import type { TimeSeriesData } from '../../../trackx-api/src/types';
 import { config, fetchJSON } from '../utils';
 import { renderErrorAlert } from './ErrorAlert';
-import './Graph.xcss';
 import { Loading } from './Loading';
 
 type PartialLike<T> = {

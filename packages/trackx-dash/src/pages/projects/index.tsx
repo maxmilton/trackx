@@ -1,3 +1,5 @@
+import './index.xcss';
+
 import { IconSearch, IconX } from '@trackx/icons';
 import {
   createEffect,
@@ -10,7 +12,6 @@ import type { ProjectList } from '../../../../trackx-api/src/types';
 import { renderErrorAlert } from '../../components/ErrorAlert';
 import { Loading } from '../../components/Loading';
 import { compactNumber, config, fetchJSON } from '../../utils';
-import './index.xcss';
 
 const ProjectsPage: Component = () => {
   let list: ProjectList;

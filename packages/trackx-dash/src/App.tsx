@@ -1,3 +1,5 @@
+import './css/index.xcss';
+
 import { Route, Router, routeTo } from '@maxmilton/solid-router';
 import { JSX, lazy } from 'solid-js';
 import { ErrorBoundary, Suspense } from 'solid-js/web';
@@ -5,7 +7,6 @@ import { Debug } from './components/Debug';
 import { Footer } from './components/Footer';
 import { Loading } from './components/Loading';
 import { Nav } from './components/Nav';
-import './css/index.xcss';
 import { ErrorPage } from './pages/error';
 import { AppError } from './utils';
 

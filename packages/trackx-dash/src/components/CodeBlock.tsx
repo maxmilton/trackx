@@ -1,6 +1,7 @@
+import './CodeBlock.xcss';
+
 import { IconCopy } from '@trackx/icons/src';
 import { createSignal, type FlowComponent } from 'solid-js';
-import './CodeBlock.xcss';
 
 export const CodeBlock: FlowComponent = (props) => {
   const [copied, setCopied] = createSignal();

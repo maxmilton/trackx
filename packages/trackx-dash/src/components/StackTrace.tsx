@@ -1,9 +1,10 @@
+import './StackTrace.xcss';
+
 // import { IconChevronDown, IconExternalLink } from '@trackx/icons';
 import { IconChevronDown } from '@trackx/icons';
 import { createSignal, type Component } from 'solid-js';
 import { For, Show } from 'solid-js/web';
 // import { isValidURL } from '../utils';
-import './StackTrace.xcss';
 
 // TODO: Types like this which are shared across packages should be in one
 // place, a type source of truth to make sure they're up-to-date

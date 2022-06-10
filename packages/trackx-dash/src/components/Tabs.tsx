@@ -1,3 +1,5 @@
+import './Tabs.xcss';
+
 import {
   createSignal,
   type Accessor,
@@ -6,7 +8,6 @@ import {
   type Setter,
 } from 'solid-js';
 import { Match, Switch } from 'solid-js/web';
-import './Tabs.xcss';
 
 interface TabsProps {
   children: JSX.Element[];

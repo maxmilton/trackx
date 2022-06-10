@@ -1,3 +1,5 @@
+import './logs.xcss';
+
 import { IconChevronRight } from '@trackx/icons';
 import { createEffect, createResource, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store';
@@ -6,7 +8,6 @@ import type { Logs } from '../../../trackx-api/src/types';
 import { renderErrorAlert } from '../components/ErrorAlert';
 import { Loading } from '../components/Loading';
 import { config, fetchJSON } from '../utils';
-import './logs.xcss';
 
 interface PaginatedTableProps {
   headers: string[];
