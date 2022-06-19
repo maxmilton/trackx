@@ -136,7 +136,7 @@ importers:
       '@types/tough-cookie': 4.0.2
       '@types/ua-parser-js': 0.7.36
       better-sqlite3: 7.5.3
-      diary: 0.3.0
+      diary: 0.3.1
       git-ref: 0.3.1
       kleur: 4.1.4
       nanoid: 4.0.0
@@ -155,7 +155,7 @@ importers:
       '@trackx/http-status-codes': link:../http-status-codes
       '@trackx/stack-trace-parser': link:../stack-trace-parser
       better-sqlite3: 7.5.3
-      diary: 0.3.0
+      diary: 0.3.1
       kleur: 4.1.4
       nanoid: 4.0.0
       polka: 1.0.0-next.22
@@ -2577,8 +2577,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /diary/0.3.0:
-    resolution: {integrity: sha512-Z4HGQ6c7/g/nHlUUO6/PfH/ukOa79Lp2yWrAbN2qfWfCSwSh/30/VHR1InqV8UvvTfxgp9AjgQRTSYiNkyaVSg==}
+  /diary/0.3.1:
+    resolution: {integrity: sha512-efOiQYa4S0fNbXs00dDq6wGPIlTCs2TCKDglL+bPhFnmV/4aPfv2mHJ6K3BXey5Fy+4mXNob7QtJYQVIxBpxQA==}
     dev: false
 
   /diff-sequences/28.1.1:
