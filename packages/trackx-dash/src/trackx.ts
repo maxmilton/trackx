@@ -46,22 +46,19 @@ trackx.meta.referrer = document.referrer;
 // trackx.meta.viewport_height = window.innerHeight;
 // trackx.meta.orientation = window.screen.orientation.type;
 
-// Alternative to capturing an exact screen width; low accuracy but interesting
-// data point and privacy-friendly. Idea from plausible:
-// - https://github.com/plausible/analytics/blob/086d4de74e7b29ed85d1f88067eff4c8598fa71a/tracker/src/plausible.js#L53
-// - https://github.com/plausible/analytics/blob/7a02aae2a562efd39f11fa405c0f084c4d59e8cc/lib/plausible_web/controllers/api/external_controller.ex#L255-L258
+// Privacy-friendly alternative to exact screen width
 // Note this width is not multiplied by devicePixelRatio (which would give the
 // true pixel width, however we want the "virtual"/scaled width)
 const screenWidth = window.screen.width;
-// TODO: The accuracy of the names is wildly incorrect, consider changing to
-// generic names e.g., XS, S, M, L, XL
 trackx.meta.screen_size = screenWidth < 576
-  ? 'Mobile'
+  ? 'XS'
   : screenWidth < 992
-    ? 'Tablet'
+    ? 'S'
     : screenWidth < 1440
-      ? 'Laptop'
-      : 'Desktop';
+      ? 'M'
+      : screenWidth < 3840
+        ? 'L'
+        : 'XL';
 
 if (process.env.NODE_ENV !== 'production') {
   trackx.meta.NODE_ENV = process.env.NODE_ENV || 'NULL';
