@@ -79,26 +79,26 @@ const htmlTemplate = ({
     .join('\n');
 
   return `<!doctype html>
-<html${makeHtmlAttributes(attributes.html)}>
-<head>
-  <meta charset=utf-8>
-  <meta name=viewport content="width=device-width,initial-scale=1">
-  <meta name=theme-color content=#11181c>
-  <link href=/app.webmanifest rel=manifest>
-  <link href=/logo.svg rel=icon>
-  <link href=/apple-touch-icon.png rel=apple-touch-icon>
-  <title>${title}</title>
-  <meta name=color-scheme content=dark>
-  <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
-  ${links}
-  <script src=/trackx.js?${hash} crossorigin></script>
-  ${scripts}
-</head>
-<body class=dark>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id=app></div>
-</body>
-</html>`;
+  <html${makeHtmlAttributes(attributes.html)}>
+  <head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta name=theme-color content=#11181c>
+    <link href=/app.webmanifest rel=manifest>
+    <link href=/logo.svg rel=icon>
+    <link href=/apple-touch-icon.png rel=apple-touch-icon>
+    <title>${title}</title>
+    <meta name=color-scheme content=dark>
+    <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
+    ${links}
+    <script src=/trackx.js?${hash} crossorigin></script>
+    ${scripts}
+  </head>
+  <body class=dark>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id=app></div>
+  </body>
+  </html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
 };
 
 /** @type {import('rollup').RollupOptions[]} */

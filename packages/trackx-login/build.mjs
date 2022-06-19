@@ -62,43 +62,43 @@ const analyzeMeta = {
  */
 function makeHTML(jsPath, cssPath) {
   return `<!doctype html>
-<html lang=en>
-<head>
-  <meta charset=utf-8>
-  <meta name=viewport content="width=device-width">
-  <meta name=theme-color content=#11181c>
-  <link href=/app.webmanifest rel=manifest>
-  <link href=/logo.svg rel=icon>
-  <link href=/apple-touch-icon.png rel=apple-touch-icon>
-  <title>Sign in to TrackX</title>
-  <meta name=color-scheme content=dark>
-  <meta name=referrer content=origin>
-  <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
-  <link href=/${cssPath} rel=stylesheet>
-  <script src=/trackx.js?${hash} crossorigin></script>
-  <script src=/${jsPath} defer></script>
-</head>
-<body class=dark>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <form id=login class=card>
-    <h1 class=mt0>Sign in to TrackX</h1>
-    <div id=feedback></div>
-    <div class=mb3>
-      <label class=label for=email>Email</label>
-      <input id=email class="input w100" type=email required autocomplete=email autofocus>
-    </div>
-    <div class=mb3>
-      <label class=label for=password>Password</label>
-      <input id=password class="input w100" type=password required minlength=8 maxlength=64 autocomplete=current-password>
-    </div>
-    <button id=submit class="button button-primary ph4" type=submit>Sign in</button>
-    <div>
-      Forgot your password? <a href="${config.DOCS_URL}/#/guides/using-the-dash.md#login" rel=noopener>Get help signing in</a>
-    </div>
-  </form>
-  <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
-<body>
-<html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
+  <html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width">
+    <meta name=theme-color content=#11181c>
+    <link href=/app.webmanifest rel=manifest>
+    <link href=/logo.svg rel=icon>
+    <link href=/apple-touch-icon.png rel=apple-touch-icon>
+    <title>Sign in to TrackX</title>
+    <meta name=color-scheme content=dark>
+    <meta name=referrer content=origin>
+    <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
+    <link href=/${cssPath} rel=stylesheet>
+    <script src=/trackx.js?${hash} crossorigin></script>
+    <script src=/${jsPath} defer></script>
+  </head>
+  <body class=dark>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <form id=login class=card>
+      <h1 class=mt0>Sign in to TrackX</h1>
+      <div id=feedback></div>
+      <div class=mb3>
+        <label class=label for=email>Email</label>
+        <input id=email class="input w100" type=email required autocomplete=email autofocus>
+      </div>
+      <div class=mb3>
+        <label class=label for=password>Password</label>
+        <input id=password class="input w100" type=password required minlength=8 maxlength=64 autocomplete=current-password>
+      </div>
+      <button id=submit class="button button-primary ph4" type=submit>Sign in</button>
+      <div>
+        Forgot your password? <a href="${config.DOCS_URL}/#/guides/using-the-dash.md#login" rel=noopener>Get help signing in</a>
+      </div>
+    </form>
+    <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
+  <body>
+  <html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
 }
 
 /** @type {esbuild.Plugin} */
