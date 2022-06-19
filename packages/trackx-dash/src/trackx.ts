@@ -4,12 +4,10 @@ import * as trackx from 'trackx';
 import * as config from '../trackx.config.mjs';
 import type { AppError } from './utils';
 
-// Add trackx.sendEvent type to the global scope for use in frontend apps
 declare global {
   interface Window {
-    trackx?: {
-      sendEvent: typeof trackx.sendEvent;
-    };
+    // Added by /trackx.js script in index.html
+    trackx?: typeof trackx;
   }
 }
 
