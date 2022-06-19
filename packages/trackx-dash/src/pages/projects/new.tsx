@@ -19,9 +19,10 @@
 // TODO: Add a warning when using '*' as an allowed origin
 // TODO: If using '*' allowed origin, validate it's the only entry
 
+import type { RouteComponent } from '@maxmilton/solid-router';
 import { routeTo } from '@maxmilton/solid-router';
 import { IconChevronRight } from '@trackx/icons';
-import { createEffect, onError, type Component } from 'solid-js';
+import { createEffect, onError } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { Show } from 'solid-js/web';
 import { renderErrorAlert } from '../../components/ErrorAlert';
@@ -34,7 +35,7 @@ import {
   VALIDATION_ERROR,
 } from '../../validation';
 
-const NewProjectPage: Component = () => {
+const NewProjectPage: RouteComponent = () => {
   const [state, setState] = createStore({
     error: null as unknown,
     validationError: null as unknown,

@@ -3,7 +3,8 @@
 
 import './test.xcss';
 
-import { createEffect, type Component } from 'solid-js';
+import type { RouteComponent } from '@maxmilton/solid-router';
+import { createEffect } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { For } from 'solid-js/web';
 import { Loading } from '../components/Loading';
@@ -135,7 +136,7 @@ interface TestPageState {
   showLoading: boolean;
 }
 
-export const TestPage: Component = () => {
+export const TestPage: RouteComponent = () => {
   const date1 = new Date();
   const date2 = new Date(date1);
   const daysAgo = 7;
