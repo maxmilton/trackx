@@ -10,9 +10,6 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    // FIXME: Remove once TS 4.6+ is released and typescript-eslint has support
-    //  ↳ https://github.com/typescript-eslint/typescript-eslint/issues/3950
-    extraFileExtensions: ['.mjs', '.cjs'],
     project: ['./tsconfig.lint.json'],
     tsconfigRootDir: __dirname,
   },
@@ -25,10 +22,10 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:unicorn/recommended',
   ],
-  // add .tsx to airbnb-typescript/base
   settings: {
     'import/resolver': {
       node: {
+        // add .tsx to airbnb-typescript/base
         extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.d.ts'],
       },
     },
