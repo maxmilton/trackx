@@ -4,6 +4,6 @@
     "rootDir": "src",
     "outDir": "dist",
     "module": "commonjs",
-    "alwaysStrict": false
+    "alwaysStrict": false // using esbuild banner option instead
   }
 }
