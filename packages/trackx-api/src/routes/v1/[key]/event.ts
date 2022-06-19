@@ -120,6 +120,9 @@ export function addEvent(
     if (project.scrape && stack.length > 0) {
       try {
         // TODO: Build network retry and timeout options into parser
+
+        // TODO: Capture stats on outgoing network requests & number of failures
+
         stack = await parse.withSource(stack);
 
         // TODO: Build much better cache logic and controls into parser net code
