@@ -1,5 +1,6 @@
 import './logs.xcss';
 
+import type { RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight } from '@trackx/icons';
 import { createEffect, createResource, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store';
@@ -119,7 +120,7 @@ const PaginatedTable: Component<PaginatedTableProps> = (props) => {
   );
 };
 
-const LogsPage: Component = () => {
+const LogsPage: RouteComponent = () => {
   const [logs] = createResource<Logs, string>(
     `${config.DASH_API_ENDPOINT}/logs`,
     fetchJSON,

@@ -2,7 +2,7 @@
 [![Coverage status](https://img.shields.io/codeclimate/coverage/maxmilton/trackx)](https://codeclimate.com/github/maxmilton/trackx)
 [![Licence](https://img.shields.io/github/license/maxmilton/trackx.svg)](https://github.com/maxmilton/trackx/blob/master/LICENSE)
 
-# TrackX ![](./packages/trackx-dash/static/favicon-32x32.png)
+# TrackX ![](./packages/trackx-dash/static/favicon.ico)
 
 Simple, lightweight, and privacy-friendly error tracking. A self-hosted platform to capture JavaScript errors in web browsers, Node.js, and other runtime environments, capture browser reports, and analyse the data on a real-time monitoring dashboard.
 

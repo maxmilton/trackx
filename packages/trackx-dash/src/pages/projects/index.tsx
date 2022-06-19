@@ -1,19 +1,15 @@
 import './index.xcss';
 
+import type { RouteComponent } from '@maxmilton/solid-router';
 import { IconSearch, IconX } from '@trackx/icons';
-import {
-  createEffect,
-  createResource,
-  createSignal,
-  type Component,
-} from 'solid-js';
+import { createEffect, createResource, createSignal } from 'solid-js';
 import { For, Match, Switch } from 'solid-js/web';
 import type { ProjectList } from '../../../../trackx-api/src/types';
 import { renderErrorAlert } from '../../components/ErrorAlert';
 import { Loading } from '../../components/Loading';
 import { compactNumber, config, fetchJSON } from '../../utils';
 
-const ProjectsPage: Component = () => {
+const ProjectsPage: RouteComponent = () => {
   let list: ProjectList;
   const [projects, { mutate }] = createResource<ProjectList, string>(
     `${config.DASH_API_ENDPOINT}/project/all`,

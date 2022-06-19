@@ -1,5 +1,6 @@
 import './stats.xcss';
 
+import type { RouteComponent } from '@maxmilton/solid-router';
 import reltime from '@trackx/reltime';
 import { createEffect, createResource, type Component } from 'solid-js';
 import { For, Match, Switch } from 'solid-js/web';
@@ -56,7 +57,7 @@ const DailyGraph: Component<DailyGraphProps> = (props) => (
   />
 );
 
-const StatsPage: Component = () => {
+const StatsPage: RouteComponent = () => {
   const [stats] = createResource<Stats, string>(
     () => `${config.DASH_API_ENDPOINT}/stats`,
     fetchJSON,
