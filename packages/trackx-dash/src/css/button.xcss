@@ -1,3 +1,16 @@
+/**
+* Buttons
+*/
+
+// Fix buttons with '@ekscss/framework/addon/ux-larger-click-zone.xcss'
+a.button {
+  margin: 0;
+}
+
+a.button:hover {
+  color: currentcolor;
+}
+
 .button {
   font-weight: ${x.textWeightMedium};
   letter-spacing: 0.01em;
