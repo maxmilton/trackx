@@ -2,9 +2,6 @@ const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
 
-// TODO: Types
-// eslint-disable-next-line max-len
-// /** @type {import('eslint/lib/shared/types').ConfigData & { parserOptions: import('@typescript-eslint/types').ParserOptions }} */
 module.exports = {
   root: true,
   reportUnusedDisableDirectives: true,
@@ -21,6 +18,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:unicorn/recommended',
+    'plugin:security/recommended',
   ],
   settings: {
     'import/resolver': {
