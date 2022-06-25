@@ -65,6 +65,32 @@ module.exports = extend(framework, {
       disabledBorder: (x) => x.color.dark5,
     },
 
+    button: {
+      level3: {
+        backgroundColorFrom: (x) => x.color.dark4,
+        backgroundColorTo: (x) => x.color.dark3,
+        hoverBackgroundColor: (x) => x.color.dark2,
+      },
+      primary: {
+        backgroundColorFrom: (x) => x.color.rose2,
+        backgroundColorTo: (x) => x.color.rose1,
+        borderColor: (x) => x.color.rose4,
+        hoverBackgroundColor: (x) => x.color.rose1,
+      },
+      success: {
+        backgroundColorFrom: (x) => x.color.green4,
+        backgroundColorTo: (x) => x.color.green3,
+        borderColor: (x) => x.color.green5,
+        hoverBackgroundColor: (x) => x.color.green2,
+      },
+      danger: {
+        backgroundColorFrom: (x) => x.color.red4,
+        backgroundColorTo: (x) => x.fn.color(x.color.red3).lighten(0.06),
+        borderColor: (x) => x.color.red5,
+        hoverBackgroundColor: (x) => x.color.red2,
+      },
+    },
+
     alert: {
       backgroundColor: (x) => x.color.dark2,
       infoTextColor: (x) => x.color.blue5,

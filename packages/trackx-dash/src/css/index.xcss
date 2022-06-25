@@ -5,7 +5,7 @@
 @import '@ekscss/framework/addon/type-hyphens.xcss';
 @import '@ekscss/framework/addon/validation.xcss';
 @import '@ekscss/framework/addon/pretty.xcss';
-// @import '@ekscss/framework/addon/button.xcss';
+@import '@ekscss/framework/addon/button.xcss';
 @import '@ekscss/framework/addon/tag.xcss';
 @import '@ekscss/framework/addon/alert.xcss';
 @import '@ekscss/framework/addon/code.xcss';

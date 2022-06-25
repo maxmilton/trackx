@@ -2,71 +2,20 @@
 * Buttons
 */
 
-// Fix buttons with '@ekscss/framework/addon/ux-larger-click-zone.xcss'
-a.button {
-  margin: 0;
-}
-
-a.button:hover {
-  color: currentcolor;
-}
+// FIXME: Breaks when using margin utils e.g, ml-auto, mr3, etc.
+// // Fix buttons with '@ekscss/framework/addon/ux-larger-click-zone.xcss'
+// a.button {
+//   margin: 0;
+// }
 
 .button {
-  font-weight: ${x.textWeightMedium};
   letter-spacing: 0.01em;
-  background-image: linear-gradient(${x.color.dark4}, ${x.color.dark3});
-
-  &:hover {
-    background-color: ${x.color.dark2};
-    background-image: none;
-  }
-
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled]:focus,
-  &:disabled {
-    font-weight: unset;
-    background-image: none;
-  }
-}
-
-.button-primary {
-  border-color: ${x.color.rose4};
-  color: ${x.color.white};
-  background-image: linear-gradient(${x.color.rose2}, ${x.color.rose1});
-
-  &:hover {
-    background-color: ${x.color.rose1};
-    background-image: none;
-  }
-}
-
-.button-success {
-  border-color: ${x.color.green5};
-  color: ${x.color.white};
-  background-image: linear-gradient(${x.color.green4}, ${x.color.green3});
-
-  &:hover {
-    background-color: ${x.color.green2};
-    background-image: none;
-  }
 }
 
 .button-danger-pre {
   border-color: ${x.color.dark5};
   color: ${x.color.red4};
   background-image: linear-gradient(${x.color.dark3}, ${x.color.dark2});
-
-  &:hover {
-    background-color: ${x.color.red2};
-    background-image: none;
-  }
-}
-
-.button-danger {
-  border-color: ${x.color.red5};
-  color: ${x.color.white};
-  background-image: linear-gradient(${x.color.red4}, ${x.fn.color(x.color.red3).lighten(0.06)});
 
   &:hover {
     background-color: ${x.color.red2};
@@ -84,7 +33,7 @@ a.button:hover {
   background-image: none;
 }
 
-// Button which looks exactly like an anchor element
+// Button that looks like an anchor element
 .button-link {
   #apply: .button-clear, a;
   border: 0;
