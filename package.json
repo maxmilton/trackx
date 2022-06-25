@@ -37,7 +37,7 @@
     "jest-resolve": "28.1.1",
     "prettier": "2.7.1",
     "prettier-plugin-pkg": "0.14.1",
-    "prettier-plugin-sh": "0.11.0",
+    "prettier-plugin-sh": "0.12.0",
     "prettier-plugin-sql": "0.8.0",
     "solid-js": "1.4.4",
     "solid-testing-library": "0.3.0",
