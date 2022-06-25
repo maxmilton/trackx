@@ -113,7 +113,7 @@ const captureEvent = (type: EventType, x: unknown, extraMeta?: EventMeta) => {
 
   try {
     message = String(message);
-  } catch (error) {
+  } catch {
     // Protect against primitive string conversion fail e.g., Object.create(null)
     message = Object.prototype.toString.call(message);
   }
