@@ -12,7 +12,7 @@
     "viz": "BUNDLE_VIZ=true pnpm run build && xdg-open http://localhost:5001/viz.html"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.40",
+    "@ekscss/framework": "0.0.41",
     "@maxmilton/solid-router": "0.3.1",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
