@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 import { AppError } from '../utils';
 
 interface ErrorPageProps {
-  error?: AppError;
+  error?: any;
   reset: () => void;
 }
 
@@ -14,7 +14,7 @@ export const ErrorPage: Component<ErrorPageProps> = (props) => {
 
   if (window.trackx) {
     window.trackx.sendEvent(
-      props.error,
+      props.error as Error,
       props.error instanceof AppError
         ? {
           code: props.error.code,
@@ -28,7 +28,10 @@ export const ErrorPage: Component<ErrorPageProps> = (props) => {
     <div class="con">
       {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
       <h1 textContent={`${props.error.code} Error`} />
-      <p class="lead" textContent={props.error.message} />
+      <p
+        class="lead"
+        textContent={String(props.error.message || props.error)}
+      />
 
       {process.env.NODE_ENV === 'development' && props.error.stack && (
         <code class="code-block" textContent={props.error.stack} />
