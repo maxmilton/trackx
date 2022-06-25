@@ -109,6 +109,10 @@ export const FORBIDDEN_PROJECT_NAMES = [
 //   return !/^[\u0020-\u007E]*$/.test(str);
 // }
 
+// FIXME: Origin check is broken with chrome-extension URIs when using anything
+// other than Chrome (including backend validation in node)
+//  ↳ Same thing for moz-extension
+
 /** Check a string is (not) a valid URL origin USVString. */
 export function isNotOrigin(uri: string): boolean {
   return new URL(uri).origin !== uri;

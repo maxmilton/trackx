@@ -294,10 +294,10 @@ const ProjectPage: RouteComponent = (props) => {
                 });
               }}
             >
-              <option value="day">Today</option>
+              <option value="day">Today *</option>
               <option value="7d">Last 7 days</option>
               <option value="30d">Last 30 days</option>
-              <option value="month">Month-to-date</option>
+              <option value="month">Month-to-date *</option>
               <option value="6mo">Last 6 months</option>
               <option value="12mo">Last 12 months</option>
             </select>
@@ -322,6 +322,10 @@ const ProjectPage: RouteComponent = (props) => {
                   ↳ Also note other graphs are not zoomable, otherwise it would
                     probably get in the way
                 */}
+
+                {/* TODO: Reused the same graph instance on updates */}
+
+                {/* TODO: Show lines between future dates as a dash */}
 
                 <Graph
                   data={sessionsData.graph}

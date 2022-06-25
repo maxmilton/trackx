@@ -11,6 +11,11 @@
 // which takes URL segments/query params, etc. which can then break out of its
 // context)
 
+// TODO: Check all user input is properly sanitized, including __proto__
+// poisoning etc. e.g., never use req.body object directly to initialise
+// something, only ever access individual properties and then sanitize them
+// before use
+
 // TODO: Consistent patterns for input validation; optional inputs, where
 // default values are set (especially for pagination; offset, limit), where DB
 // data type conversion happens

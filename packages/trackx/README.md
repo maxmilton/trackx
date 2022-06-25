@@ -54,6 +54,8 @@ TODO: Write docs:
   - Custom loggers
 - Support for deno, cloudflare workers, and other "exotic" but increasingly common tools/platforms
 - Users should opt to use the modern client if they don't need old browser support. Other than the small size reduction, the killer feature is fetch keepalive; event requests will still be sent even if the page is closed (otherwise errors on page unload are not captured because their requests are cancelled!).
+- The clients do not protect against cyclic references in objects sent in meta data. If you're sending an object in meta data when you don't control the object, are unsure about the structure, or when it may contain cyclic references, you should run the object through a decycle function.
+  - Example: <https://github.com/maxmilton/trackx-magnet/blob/master/src/trackx.ts#L23>
 
 ## Features
 
