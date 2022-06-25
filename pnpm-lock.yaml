@@ -26,6 +26,7 @@ importers:
       eslint-plugin-import: 2.26.0
       eslint-plugin-jest: 26.5.3
       eslint-plugin-jsx-a11y: 6.6.0
+      eslint-plugin-security: 1.5.0
       eslint-plugin-unicorn: 42.0.0
       jest: 28.1.1
       jest-environment-jsdom: 28.1.1
@@ -59,6 +60,7 @@ importers:
       eslint-plugin-import: 2.26.0_zgg5sxdhnxsuz2d3vdnwdtmcnu
       eslint-plugin-jest: 26.5.3_ed7rxttb2wpk7audeky7cybyim
       eslint-plugin-jsx-a11y: 6.6.0_eslint@8.18.0
+      eslint-plugin-security: 1.5.0
       eslint-plugin-unicorn: 42.0.0_eslint@8.18.0
       jest: 28.1.1_@types+node@18.0.0
       jest-environment-jsdom: 28.1.1
@@ -3051,6 +3053,12 @@ packages:
       language-tags: 1.0.5
       minimatch: 3.1.2
       semver: 6.3.0
+    dev: true
+
+  /eslint-plugin-security/1.5.0:
+    resolution: {integrity: sha512-hAFVwLZ/UeXrlyVD2TDarv/x00CoFVpaY0IUZhKjPjiFxqkuQVixsK4f2rxngeQOqSxi6OUjzJM/jMwKEVjJ8g==}
+    dependencies:
+      safe-regex: 2.1.1
     dev: true
 
   /eslint-plugin-unicorn/42.0.0_eslint@8.18.0:
