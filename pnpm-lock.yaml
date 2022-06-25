@@ -198,7 +198,7 @@ importers:
   packages/trackx-dash:
     specifiers:
       '@babel/core': 7.18.5
-      '@ekscss/framework': 0.0.40
+      '@ekscss/framework': 0.0.41
       '@ekscss/rollup-plugin-css': 0.0.3
       '@ekscss/rollup-plugin-purgecss': 0.0.5
       '@maxmilton/solid-router': 0.3.1
@@ -222,7 +222,7 @@ importers:
       trackx: workspace:*
       uplot: 1.6.21
     dependencies:
-      '@ekscss/framework': 0.0.40_ekscss@0.0.13
+      '@ekscss/framework': 0.0.41_ekscss@0.0.13
       '@maxmilton/solid-router': 0.3.1_solid-js@1.4.4
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
@@ -250,7 +250,7 @@ importers:
 
   packages/trackx-login:
     specifiers:
-      '@ekscss/framework': 0.0.40
+      '@ekscss/framework': 0.0.41
       '@types/csso': 5.0.0
       csso: 5.0.3
       ekscss: 0.0.13
@@ -262,7 +262,7 @@ importers:
       terser: 5.14.1
       trackx-dash: workspace:*
     dependencies:
-      '@ekscss/framework': 0.0.40_ekscss@0.0.13
+      '@ekscss/framework': 0.0.41_ekscss@0.0.13
     devDependencies:
       '@types/csso': 5.0.0
       csso: 5.0.3
@@ -738,8 +738,8 @@ packages:
       postcss-selector-parser: 6.0.10
     dev: true
 
-  /@ekscss/framework/0.0.40_ekscss@0.0.13:
-    resolution: {integrity: sha512-xQC0CZ2KG1sklQVmwdDNoiG1zWVBQJ/ozloPH2U7+JdM1vAHco3IO8YVg7EX5K68DBKfydQq6D/oNLh/HxFDcA==}
+  /@ekscss/framework/0.0.41_ekscss@0.0.13:
+    resolution: {integrity: sha512-uWdGyYp2S1WXdUfLVOosN7V4ZKxz5Cl3JZKUMoR9kMn2oeWLv/xhEy8Rf5qWvmgyOtvo/C/3z2ly3uGgoTmEhA==}
     peerDependencies:
       ekscss: ^0.0.13
     peerDependenciesMeta:
