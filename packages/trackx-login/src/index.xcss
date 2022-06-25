@@ -6,6 +6,7 @@
 
 @import '@ekscss/framework';
 @import '@ekscss/framework/addon/pretty.xcss';
+@import '@ekscss/framework/addon/button.xcss';
 @import '@ekscss/framework/addon/alert.xcss';
 @import '@ekscss/framework/addon/card.xcss';
 @import '@ekscss/framework/addon/dark.xcss';
