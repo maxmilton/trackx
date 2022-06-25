@@ -1,8 +1,5 @@
 lockfileVersion: 5.4
 
-overrides:
-  source-map: ~0.8.0-beta.0
-
 importers:
 
   .:
@@ -91,11 +88,11 @@ importers:
     specifiers:
       data-uri-to-buffer: 4.0.0
       httpie: 2.0.0-next.13
-      source-map: ~0.8.0-beta.0
+      source-map: 0.7.4
     dependencies:
       data-uri-to-buffer: 4.0.0
       httpie: 2.0.0-next.13
-      source-map: 0.8.0-beta.0
+      source-map: 0.7.4
 
   packages/trackx:
     specifiers:
@@ -144,7 +141,7 @@ importers:
       nanoid: 4.0.0
       polka: 1.0.0-next.22
       psl: 1.8.0
-      source-map: ~0.8.0-beta.0
+      source-map: 0.7.4
       source-map-support: 0.5.21
       totalist: 3.0.0
       tough-cookie: 4.0.0
@@ -171,7 +168,7 @@ importers:
       '@types/ua-parser-js': 0.7.36
       git-ref: 0.3.1
       psl: 1.8.0
-      source-map: 0.8.0-beta.0
+      source-map: 0.7.4
       source-map-support: 0.5.21
       totalist: 3.0.0
 
@@ -794,7 +791,7 @@ packages:
       '@rollup/pluginutils': 4.2.1
       csso: 4.2.0
       rollup: 2.75.7
-      source-map: 0.8.0-beta.0
+      source-map: 0.7.4
     dev: true
 
   /@ekscss/rollup-plugin-purgecss/0.0.5:
@@ -2335,7 +2332,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       mdn-data: 2.0.14
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
     dev: true
 
   /css-tree/2.0.4:
@@ -2354,7 +2351,7 @@ packages:
     resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
     dependencies:
       inherits: 2.0.4
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
       source-map-resolve: 0.6.0
     dev: true
 
@@ -2912,7 +2909,7 @@ packages:
       esutils: 2.0.3
       optionator: 0.8.3
     optionalDependencies:
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
     dev: true
 
   /eslint-config-airbnb-base/15.0.0_srrmf5la5dmnsfe2mpg6sboreu:
@@ -3892,7 +3889,7 @@ packages:
     dependencies:
       debug: 4.3.4
       istanbul-lib-coverage: 3.2.0
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5422,7 +5419,7 @@ packages:
       nanoid: 3.3.4
       open: 8.4.0
       rollup: 2.75.7
-      source-map: 0.8.0-beta.0
+      source-map: 0.7.4
       yargs: 17.5.1
     dev: true
 
@@ -5584,15 +5581,24 @@ packages:
     resolution: {integrity: sha512-SHSKFHadjVA5oR4PPqhtAVdcBWwRYVd6g6cAXnIbRiIwc2EhPrTuKUBdSLvlEKyIP3GCf89fltvcZiP9MMFA1w==}
     dependencies:
       buffer-from: 1.1.2
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
     dev: true
 
   /source-map-support/0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
     dependencies:
       buffer-from: 1.1.2
-      source-map: 0.8.0-beta.0
+      source-map: 0.6.1
     dev: true
+
+  /source-map/0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
+    engines: {node: '>= 8'}
 
   /source-map/0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
