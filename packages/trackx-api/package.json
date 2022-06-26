@@ -19,7 +19,7 @@
     "@trackx/stack-trace-parser": "workspace:*",
     "better-sqlite3": "7.5.3",
     "diary": "0.3.1",
-    "kleur": "4.1.4",
+    "kleur": "4.1.5",
     "nanoid": "4.0.0",
     "polka": "1.0.0-next.22",
     "tough-cookie": "4.0.0",
