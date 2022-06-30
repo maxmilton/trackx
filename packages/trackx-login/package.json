@@ -17,7 +17,7 @@
     "@types/csso": "5.0.0",
     "csso": "5.0.3",
     "ekscss": "0.0.13",
-    "esbuild": "0.14.47",
+    "esbuild": "0.14.48",
     "esbuild-minify-templates": "0.8.0",
     "esbuild-plugin-ekscss": "0.0.11",
     "git-ref": "0.3.1",
