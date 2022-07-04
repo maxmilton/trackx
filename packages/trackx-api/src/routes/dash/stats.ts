@@ -121,7 +121,7 @@ function getStats(): Partial<Stats> {
       dash_c_30d_avg: avgCount(daily_dash[1] as number[]),
       daily_events,
       daily_pings,
-      daily_dash: [daily_dash[0], daily_dash[1]],
+      daily_dash: [daily_dash[0], daily_dash[1]] as TimeSeriesData,
     };
   })();
 }
