@@ -136,7 +136,7 @@ export const uidShort = customAlphabet(
   '0123456789abcdefghijklmnopqrstuvwxyz',
   UID_SHORT_LENGTH,
 );
-const hasher = new XXHash3(0);
+const hasher = new XXHash3(Buffer.alloc(4));
 export const uaParser = new UAParser(undefined, {
   // Add detection of our custom node client user-agent
   browser: [
@@ -178,9 +178,10 @@ export const handleError: OnErrorHandler = (payload, reason) => {
   return payload;
 };
 
-export function hash(buf: Buffer): Buffer {
+export function hash(data: Buffer): Buffer {
   hasher.reset();
-  return hasher.hash(buf);
+  hasher.update(data);
+  return hasher.digest();
 }
 
 export function generateSalt(rounds: number): string {
