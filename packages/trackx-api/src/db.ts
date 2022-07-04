@@ -106,12 +106,19 @@ const incrementDailyPingsStmt = db.prepare(`
   INSERT INTO daily_pings(ts, c) VALUES(strftime('%s', date('now')), 1)
     ON CONFLICT(ts) DO UPDATE SET c = c + 1
 `);
+const incrementDailyDashStmt = db.prepare(`
+  INSERT INTO daily_dash(ts, c) VALUES(strftime('%s', date('now')), 1)
+    ON CONFLICT(ts) DO UPDATE SET c = c + 1
+`);
 
 export function incrementDailyEvents(): void {
   incrementDailyEventsStmt.run();
 }
 export function incrementDailyPings(): void {
   incrementDailyPingsStmt.run();
+}
+export function incrementDailyDash(): void {
+  incrementDailyDashStmt.run();
 }
 
 const getDailySaltStmt = db

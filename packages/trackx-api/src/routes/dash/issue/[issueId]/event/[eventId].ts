@@ -5,7 +5,7 @@ import type { Event, ReqQueryData } from '../../../../../types';
 import {
   AppError,
   byteSize,
-  humanFileSize,
+  humanizeFileSize,
   logger,
   Status,
 } from '../../../../../utils';
@@ -103,7 +103,7 @@ function getIssueEvent(
   event.data = JSON.parse(event.data);
 
   // eslint-disable-next-line no-underscore-dangle
-  (event.data.meta ??= {})._size = humanFileSize(byteSize(event));
+  (event.data.meta ??= {})._size = humanizeFileSize(byteSize(event));
 
   return event;
 }
