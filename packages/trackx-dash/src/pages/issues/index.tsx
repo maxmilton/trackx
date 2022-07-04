@@ -152,9 +152,7 @@ const IssuesPage: RouteComponent = () => {
         Issues{' '}
         <span
           class="muted"
-          textContent={`(${
-            initialUrlParams.project ? initialUrlParams.project : 'All Projects'
-          })`}
+          textContent={`(${initialUrlParams.project || 'All Projects'})`}
         />
       </h1>
 

@@ -49,6 +49,7 @@ module.exports = {
     'unicorn/prefer-reflect-apply': OFF,
     // not actually faster in v8 - https://jsben.ch/Z5MUv
     'unicorn/prefer-set-has': OFF,
+    'unicorn/prefer-top-level-await': WARN,
     'unicorn/prevent-abbreviations': OFF,
   },
   overrides: [
