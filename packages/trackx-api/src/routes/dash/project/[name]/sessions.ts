@@ -150,62 +150,72 @@ function getSessionsData(
   const end = Math.trunc(getTime(true) / 1000) - 1;
   const prev = Math.trunc(getTime(false) / 1000);
 
-  return db.transaction(() => {
-    const rows = stmt.all(project.id, start, end);
-    const rowsMap: Record<string, [number, number]> = {};
-    const time: number[] = [];
-    const series1: number[] = [];
-    const series2: number[] = [];
+  const data = db.transaction(() => ({
+    timeseries: stmt.all(project.id, start, end),
+    currentPeriod: getSessionTotalStmt.get(
+      project.id,
+      start,
+      end,
+    ) as SessionsCount,
+    previousPeriod: getSessionTotalStmt.get(
+      project.id,
+      prev,
+      start - 1,
+    ) as SessionsCount,
+  }))();
 
-    // eslint-disable-next-line unicorn/no-for-loop
-    for (let index = 0; index < rows.length; index++) {
-      const row = rows[index];
-      rowsMap[row[0]] = [row[1], row[2]];
-    }
+  const rows = data.timeseries;
+  const rowsMap: Record<string, [number, number]> = {};
+  const time: number[] = [];
+  const series1: number[] = [];
+  const series2: number[] = [];
 
-    // Months have a variable number of days, so they're handled separately
-    if (period === '6mo' || period === '12mo') {
-      const startMs = start * 1000;
+  // eslint-disable-next-line unicorn/no-for-loop
+  for (let index = 0; index < rows.length; index++) {
+    const row = rows[index];
+    rowsMap[row[0]] = [row[1], row[2]];
+  }
 
-      for (let index = 0; index < steps; index++) {
-        const next = new Date(startMs);
-        next.setUTCMonth(next.getUTCMonth() + index);
-        const ts = next.getTime() / 1000;
-        const entry = rowsMap[ts];
-        time.push(ts);
+  // Months have a variable number of days, so they're handled separately
+  if (period === '6mo' || period === '12mo') {
+    const startMs = start * 1000;
 
-        if (entry) {
-          series1.push(entry[0]);
-          series2.push(entry[1]);
-        } else {
-          series1.push(0);
-          series2.push(0);
-        }
-      }
-    } else {
-      for (let index = 0; index < steps; index++) {
-        const ts = start + index * offset;
-        const entry = rowsMap[ts];
-        time.push(ts);
+    for (let index = 0; index < steps; index++) {
+      const next = new Date(startMs);
+      next.setUTCMonth(next.getUTCMonth() + index);
+      const ts = next.getTime() / 1000;
+      const entry = rowsMap[ts];
+      time.push(ts);
 
-        if (entry) {
-          series1.push(entry[0]);
-          series2.push(entry[1]);
-        } else {
-          series1.push(0);
-          series2.push(0);
-        }
+      if (entry) {
+        series1.push(entry[0]);
+        series2.push(entry[1]);
+      } else {
+        series1.push(0);
+        series2.push(0);
       }
     }
+  } else {
+    for (let index = 0; index < steps; index++) {
+      // @ts-expect-error - FIXME: TS not detecting offset is defined in this branch
+      const ts = start + index * offset;
+      const entry = rowsMap[ts];
+      time.push(ts);
 
-    const currentPeriod = getSessionTotalStmt.get(project.id, start, end);
-    const previousPeriod = getSessionTotalStmt.get(project.id, prev, start - 1);
+      if (entry) {
+        series1.push(entry[0]);
+        series2.push(entry[1]);
+      } else {
+        series1.push(0);
+        series2.push(0);
+      }
+    }
+  }
 
-    return {
-      graph: [time, series1, series2] as [number[], number[], number[]],
-      period: [currentPeriod, previousPeriod] as [SessionsCount, SessionsCount],
-    };
-  })();
+  return {
+    graph: [time, series1, series2],
+    period: [data.currentPeriod, data.previousPeriod],
+  };
 }
 
 export const get: Middleware = (req, res, next) => {
