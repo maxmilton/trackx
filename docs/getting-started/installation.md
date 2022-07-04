@@ -59,7 +59,7 @@ TODO: Simplify and refine install process.
    1. Edit `/opt/trackx/etc/nginx/conf.d/dash.trackx.app.conf`
 1. <span class="tag">SERVER</span> Set file ownership:
    ```sh
-   sudo chown -R 506:506 /opt/trackx && sudo chown -R root:root /opt/trackx/etc/nginx && sudo chmod 400 /opt/trackx/etc/nginx/certs/*
+   sudo chown -R 5063:5063 /opt/trackx && sudo chown -R root:root /opt/trackx/etc/nginx && sudo chmod 400 /opt/trackx/etc/nginx/certs/*
    ```
 1. Deploy the Docker images to your server:
    ```sh

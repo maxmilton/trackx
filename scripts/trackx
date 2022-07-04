@@ -9,8 +9,8 @@ TRACKX_DB_DIR=/opt/trackx/var/db
 DOCKER_IMAGE=trackx-api
 
 test -d "$TRACKX_DB_DIR" || mkdir -p "$TRACKX_DB_DIR"
-test "$(stat -c '%u' "$TRACKX_DB_DIR")" = "506" || sudo chown 506:506 "$TRACKX_DB_DIR"
-test "$(stat -c '%u' "$CONFIG_PATH")" = "506" || sudo chown 506:506 "$CONFIG_PATH"
+test "$(stat -c '%u' "$TRACKX_DB_DIR")" = "5063" || sudo chown 5063:5063 "$TRACKX_DB_DIR"
+test "$(stat -c '%u' "$CONFIG_PATH")" = "5063" || sudo chown 5063:5063 "$CONFIG_PATH"
 
 docker run \
   --rm \
