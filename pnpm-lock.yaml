@@ -31,7 +31,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.15.0
       prettier-plugin-sh: 0.12.6
-      prettier-plugin-sql: 0.8.1
+      prettier-plugin-sql: 0.8.3
       solid-js: 1.4.5
       solid-testing-library: 0.3.0
       stylelint: 14.9.1
@@ -65,7 +65,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.15.0_prettier@2.7.1
       prettier-plugin-sh: 0.12.6_prettier@2.7.1
-      prettier-plugin-sql: 0.8.1_prettier@2.7.1
+      prettier-plugin-sql: 0.8.3_prettier@2.7.1
       solid-js: 1.4.5
       solid-testing-library: 0.3.0_solid-js@1.4.5
       stylelint: 14.9.1
@@ -5133,15 +5133,15 @@ packages:
       prettier: 2.7.1
     dev: true
 
-  /prettier-plugin-sql/0.8.1_prettier@2.7.1:
-    resolution: {integrity: sha512-mej+aSc0fGUCbraE+q3N7AlkV118OBhfn7ARFls6lyY4h4saYvQY8Ziep94IaAfwBLZ2K0U8hS35WeroEVTZTg==}
-    engines: {node: ^12.20 || ^14.18.0 || >=16.0.0}
+  /prettier-plugin-sql/0.8.3_prettier@2.7.1:
+    resolution: {integrity: sha512-e9W/ANtOdqicLMbKdQ7OT6pfgoVYyHTtbYQphnuorXRVzOpAfpFS3HMBgkl+RC9pEboOwEPS3FHUD6cHzhrdUQ==}
+    engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       node-sql-parser: 4.3.0
       prettier: 2.7.1
-      sql-formatter: 7.0.2
+      sql-formatter: 7.0.4
     dev: true
 
   /prettier/2.7.1:
@@ -5679,8 +5679,8 @@ packages:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: true
 
-  /sql-formatter/7.0.2:
-    resolution: {integrity: sha512-l6JVgMKT3Nzq7Jtpf43QhL26QEM5ICDMN2ARnZz5Z2l1d6e2mT/nRWAZun9kSSkrHrOAsBn20vknWFWuOlz3ww==}
+  /sql-formatter/7.0.4:
+    resolution: {integrity: sha512-1rnwJuY9UuuzbEKUeE0jmDxJusnoHUnS7Ufxm972bgZkRjrFVH5JuMjmlzNvxQox0+F45pa0fNjfgIyq6iMVNg==}
     hasBin: true
     dependencies:
       argparse: 2.0.1
