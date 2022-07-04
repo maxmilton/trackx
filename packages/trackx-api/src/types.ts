@@ -318,17 +318,19 @@ export interface SessionsData {
 export type StatsDBTableInfo = [name: string, size: string, percent: string];
 
 export interface Stats {
-  ping_c_30d_avg: number;
   session_c: number;
   session_e_c: number;
   event_c: number;
-  event_c_30d_avg: number;
   issue_c: number;
   issue_done_c: number;
   issue_ignore_c: number;
   project_c: number;
+  ping_c_30d_avg: number;
+  event_c_30d_avg: number;
+  dash_c_30d_avg: number;
   daily_events: TimeSeriesData;
   daily_pings: TimeSeriesData;
+  daily_dash: TimeSeriesData;
   api_v: string;
   api_uptime: number;
   dash_session_c: number;

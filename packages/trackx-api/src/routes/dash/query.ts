@@ -10,7 +10,7 @@ import type { ReqBodyData, ReqQueryData } from '../../types';
 import {
   AppError,
   byteSize,
-  humanFileSize,
+  humanizeFileSize,
   logger,
   Status,
   toBoolean,
@@ -129,7 +129,7 @@ export const post: Middleware = (req, res, next) => {
     }
 
     logger.warn('AD HOC QUERIES ARE A SECURITY RISK. FOR DEVELOPMENT ONLY.');
-    logger.debug(`SQL payload ${humanFileSize(byteSize(sql))}`);
+    logger.debug(`SQL payload ${humanizeFileSize(byteSize(sql))}`);
 
     const data = adHocQuery(sql, {
       exec,

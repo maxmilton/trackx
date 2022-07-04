@@ -41,17 +41,21 @@ const DailyGraph: Component<DailyGraphProps> = (props) => (
             show: false,
           },
         },
-        {
-          label: 'Denied',
-          width: 2,
-          stroke: '#f55656', // red4
-          paths: UPlot.paths.points!(),
-          spanGaps: false,
-          points: {
-            show: true,
-            width: 0,
-          },
-        },
+        ...(props.data[2]
+          ? [
+            {
+              label: 'Denied',
+              width: 2,
+              stroke: '#f55656', // red4
+              paths: UPlot.paths.points!(),
+              spanGaps: false,
+              points: {
+                show: true,
+                width: 0,
+              },
+            },
+          ]
+          : []),
       ],
     }}
   />
@@ -118,6 +122,11 @@ const StatsPage: RouteComponent = () => {
                   <span class="muted">(avg.)</span>
                 </p>
                 <DailyGraph data={data.daily_pings} label="Pings" />
+                <p>
+                  {data.dash_c_30d_avg.toLocaleString()} dash requests per day{' '}
+                  <span class="muted">(avg.)</span>
+                </p>
+                <DailyGraph data={data.daily_dash} label="Dash Requests" />
 
                 <hr />
 

@@ -211,7 +211,7 @@ export function humanizeTime(ms: number): string {
   return keep.join(' ');
 }
 
-export function humanFileSize(bytes: number): string {
+export function humanizeFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   let b = bytes;
   let e = -1;

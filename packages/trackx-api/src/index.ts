@@ -27,7 +27,7 @@ import { json, parse, text } from '@polka/parse';
 import http from 'http';
 import polka, { type Middleware } from 'polka';
 import * as trackx from 'trackx/node';
-import { db } from './db';
+import { db, incrementDailyDash } from './db';
 import { log } from './log';
 import { session } from './routes/dash/sess';
 import { routes } from './routes/__ROUTE_MANIFEST__';
@@ -67,8 +67,13 @@ process.on('SIGHUP', () => handleExit(() => process.exit(128 + 1)));
 process.on('SIGINT', () => handleExit(() => process.exit(128 + 2)));
 process.on('SIGTERM', () => handleExit(() => process.exit(128 + 15)));
 
+const dash: Middleware = (_req, _res, next) => {
+  void next();
+  incrementDailyDash();
+};
+
 app.use(log);
-app.use('/dash/*', session);
+app.use('/dash/*', dash, session);
 
 const methods = [
   'all',

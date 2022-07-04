@@ -12,7 +12,7 @@ import type {
 import {
   AppError,
   config,
-  humanFileSize,
+  humanizeFileSize,
   humanizeTime,
   logger,
   sessions,
@@ -39,6 +39,9 @@ const getDailyEventsStmt = db
   .raw();
 const getDailyPingsStmt = db
   .prepare('SELECT ts, c FROM daily_pings WHERE ts > ?')
+  .raw();
+const getDailyDashStmt = db
+  .prepare('SELECT ts, c FROM daily_dash WHERE ts > ?')
   .raw();
 const getDailyDeniedEvents = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'event'")
@@ -92,6 +95,9 @@ function getStats(): Partial<Stats> {
     const sessionData = getSessionCountStmt.get();
     const issueData = getIssueCountStmt.get();
 
+    // FIXME: Don't run non-database computations within the transaction; move
+    // remapGraphData and avgCount out of the transaction
+
     const daily_events = remapGraphData(
       getDailyEventsStmt.all(ts),
       getDailyDeniedEvents.all(ts),
@@ -100,19 +106,22 @@ function getStats(): Partial<Stats> {
       getDailyPingsStmt.all(ts),
       getDailyDeniedPings.all(ts),
     );
+    const daily_dash = remapGraphData(getDailyDashStmt.all(ts), []);
 
     return {
-      ping_c_30d_avg: avgCount(daily_pings[1] as number[]),
       session_c: sessionData.session_c || 0,
       session_e_c: sessionData.session_e_c || 0,
       event_c: getEventCountStmt.get() || 0,
-      event_c_30d_avg: avgCount(daily_events[1] as number[]),
       issue_c: issueData.issue_c || 0,
       issue_done_c: issueData.issue_done_c || 0,
       issue_ignore_c: issueData.issue_ignore_c || 0,
       project_c: getProjectCountStmt.get() || 0,
+      ping_c_30d_avg: avgCount(daily_pings[1] as number[]),
+      event_c_30d_avg: avgCount(daily_events[1] as number[]),
+      dash_c_30d_avg: avgCount(daily_dash[1] as number[]),
       daily_events,
       daily_pings,
+      daily_dash: [daily_dash[0], daily_dash[1]] as TimeSeriesData,
     };
   })();
 }
@@ -130,7 +139,7 @@ function execCmd(cmd: string, args?: string[]): Promise<string> {
 
 const tablePercent = (table: number, total: number) => `${((table / total) * 100).toFixed(2)}%`;
 
-const humanizeSize = (stats: fs.Stats) => humanFileSize(stats.size);
+const humanizeSize = (stats: fs.Stats) => humanizeFileSize(stats.size);
 
 const DB_QUERY = [
   'BEGIN TRANSACTION;',
@@ -145,6 +154,7 @@ const DB_QUERY = [
   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_denied';",
   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_events';",
   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_pings';",
+  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_dash';",
   "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='meta';",
 
   // "issue_fts" is a virtual table, so it doesn't have a size itself
@@ -200,58 +210,61 @@ async function getTableSizes() {
     const daily_denied = +data[5];
     const daily_events = +data[6];
     const daily_pings = +data[7];
-    const meta = +data[8];
-    const issue_fts = +data[9] + +data[10] + +data[11] + +data[12];
-    const session_graph = +data[13];
-    const session_issue = +data[14];
-    const issue_ts_last_idx = +data[15];
-    const issue_list_idx = +data[16];
-    const issue_state_idx = +data[17];
-    const event_graph_idx = +data[18];
-    const event_list_idx = +data[19];
-    const sqlite_autoindex_issue_1 = +data[20];
-    const sqlite_autoindex_project_1 = +data[21];
-    const sqlite_autoindex_project_2 = +data[22];
+    const daily_dash = +data[8];
+    const meta = +data[9];
+    const issue_fts = +data[10] + +data[11] + +data[12] + +data[13];
+    const session_graph = +data[14];
+    const session_issue = +data[15];
+    const issue_ts_last_idx = +data[16];
+    const issue_list_idx = +data[17];
+    const issue_state_idx = +data[18];
+    const event_graph_idx = +data[19];
+    const event_list_idx = +data[20];
+    const sqlite_autoindex_issue_1 = +data[21];
+    const sqlite_autoindex_project_1 = +data[22];
+    const sqlite_autoindex_project_2 = +data[23];
 
     const tablesInfo = [
       /* prettier-ignore */
-      [project, ['project', humanFileSize(project), tablePercent(project, total)]],
+      [project, ['project', humanizeFileSize(project), tablePercent(project, total)]],
       /* prettier-ignore */
-      [session, ['session', humanFileSize(session), tablePercent(session, total)]],
+      [session, ['session', humanizeFileSize(session), tablePercent(session, total)]],
       /* prettier-ignore */
-      [issue, ['issue', humanFileSize(issue), tablePercent(issue, total)]],
+      [issue, ['issue', humanizeFileSize(issue), tablePercent(issue, total)]],
       /* prettier-ignore */
-      [event, ['event', humanFileSize(event), tablePercent(event, total)]],
+      [event, ['event', humanizeFileSize(event), tablePercent(event, total)]],
       /* prettier-ignore */
-      [daily_denied, ['daily_denied', humanFileSize(daily_denied), tablePercent(daily_denied, total)]],
+      [daily_denied, ['daily_denied', humanizeFileSize(daily_denied), tablePercent(daily_denied, total)]],
       /* prettier-ignore */
-      [daily_events, ['daily_events', humanFileSize(daily_events), tablePercent(daily_events, total)]],
+      [daily_events, ['daily_events', humanizeFileSize(daily_events), tablePercent(daily_events, total)]],
       /* prettier-ignore */
-      [daily_pings, ['daily_pings', humanFileSize(daily_pings), tablePercent(daily_pings, total)]],
+      [daily_pings, ['daily_pings', humanizeFileSize(daily_pings), tablePercent(daily_pings, total)]],
       /* prettier-ignore */
-      [meta, ['meta', humanFileSize(meta), tablePercent(meta, total)]],
+      [daily_dash, ['daily_dash', humanizeFileSize(daily_dash), tablePercent(daily_dash, total)]],
       /* prettier-ignore */
-      [issue_fts, ['issue_fts*', humanFileSize(issue_fts), tablePercent(issue_fts, total)]],
+      [meta, ['meta', humanizeFileSize(meta), tablePercent(meta, total)]],
       /* prettier-ignore */
-      [session_graph, ['session_graph', humanFileSize(session_graph), tablePercent(session_graph, total)]],
+      [issue_fts, ['issue_fts*', humanizeFileSize(issue_fts), tablePercent(issue_fts, total)]],
       /* prettier-ignore */
-      [session_issue, ['session_issue', humanFileSize(session_issue), tablePercent(session_issue, total)]],
+      [session_graph, ['session_graph', humanizeFileSize(session_graph), tablePercent(session_graph, total)]],
       /* prettier-ignore */
-      [issue_ts_last_idx, ['issue_ts_last_idx', humanFileSize(issue_ts_last_idx), tablePercent(issue_ts_last_idx, total)]],
+      [session_issue, ['session_issue', humanizeFileSize(session_issue), tablePercent(session_issue, total)]],
       /* prettier-ignore */
-      [issue_list_idx, ['issue_list_idx', humanFileSize(issue_list_idx), tablePercent(issue_list_idx, total)]],
+      [issue_ts_last_idx, ['issue_ts_last_idx', humanizeFileSize(issue_ts_last_idx), tablePercent(issue_ts_last_idx, total)]],
       /* prettier-ignore */
-      [issue_state_idx, ['issue_state_idx', humanFileSize(issue_state_idx), tablePercent(issue_state_idx, total)]],
+      [issue_list_idx, ['issue_list_idx', humanizeFileSize(issue_list_idx), tablePercent(issue_list_idx, total)]],
       /* prettier-ignore */
-      [event_graph_idx, ['event_graph_idx', humanFileSize(event_graph_idx), tablePercent(event_graph_idx, total)]],
+      [issue_state_idx, ['issue_state_idx', humanizeFileSize(issue_state_idx), tablePercent(issue_state_idx, total)]],
       /* prettier-ignore */
-      [event_list_idx, ['event_list_idx', humanFileSize(event_list_idx), tablePercent(event_list_idx, total)]],
+      [event_graph_idx, ['event_graph_idx', humanizeFileSize(event_graph_idx), tablePercent(event_graph_idx, total)]],
       /* prettier-ignore */
-      [sqlite_autoindex_issue_1, ['sqlite_autoindex_issue_1', humanFileSize(sqlite_autoindex_issue_1), tablePercent(sqlite_autoindex_issue_1, total)]],
+      [event_list_idx, ['event_list_idx', humanizeFileSize(event_list_idx), tablePercent(event_list_idx, total)]],
       /* prettier-ignore */
-      [sqlite_autoindex_project_1, ['sqlite_autoindex_project_1', humanFileSize(sqlite_autoindex_project_1), tablePercent(sqlite_autoindex_project_1, total)]],
+      [sqlite_autoindex_issue_1, ['sqlite_autoindex_issue_1', humanizeFileSize(sqlite_autoindex_issue_1), tablePercent(sqlite_autoindex_issue_1, total)]],
       /* prettier-ignore */
-      [sqlite_autoindex_project_2, ['sqlite_autoindex_project_2', humanFileSize(sqlite_autoindex_project_2), tablePercent(sqlite_autoindex_project_2, total)]],
+      [sqlite_autoindex_project_1, ['sqlite_autoindex_project_1', humanizeFileSize(sqlite_autoindex_project_1), tablePercent(sqlite_autoindex_project_1, total)]],
+      /* prettier-ignore */
+      [sqlite_autoindex_project_2, ['sqlite_autoindex_project_2', humanizeFileSize(sqlite_autoindex_project_2), tablePercent(sqlite_autoindex_project_2, total)]],
     ] as [number, StatsDBTableInfo][];
 
     if (config.DB_COMPRESSION) {
@@ -260,9 +273,9 @@ async function getTableSizes() {
 
       tablesInfo.push(
         /* prettier-ignore */
-        [zstd_dicts, ['_zstd_dicts', humanFileSize(zstd_dicts), tablePercent(zstd_dicts, total)]],
+        [zstd_dicts, ['_zstd_dicts', humanizeFileSize(zstd_dicts), tablePercent(zstd_dicts, total)]],
         /* prettier-ignore */
-        [data_dict_idx, ['_data_dict_idx', humanFileSize(data_dict_idx), tablePercent(data_dict_idx, total)]],
+        [data_dict_idx, ['_data_dict_idx', humanizeFileSize(data_dict_idx), tablePercent(data_dict_idx, total)]],
       );
     }
 
