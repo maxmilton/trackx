@@ -47,8 +47,8 @@ COPY --from=install_deps /sqlite3 /usr/bin/sqlite3
 # Fustratingly, SQLite don't provide official 64-bit precompiled binaries so we
 # need to add 32-bit C libs to run their 32-bit binary
 COPY --from=install_deps /lib/ld-linux.so.2 /lib/ld-linux.so.2
-COPY --from=install_deps /lib32/libdl-2.31.so /lib32/libdl.so.2
-COPY --from=install_deps /lib32/libm-2.31.so /lib32/libm.so.6
-COPY --from=install_deps /lib32/libc-2.31.so /lib32/libc.so.6
+COPY --from=install_deps /lib32/libdl-2.33.so /lib32/libdl.so.2
+COPY --from=install_deps /lib32/libm-2.33.so /lib32/libm.so.6
+COPY --from=install_deps /lib32/libc-2.33.so /lib32/libc.so.6
 USER nodejs:nodejs
 CMD ["/usr/bin/node", "--report-on-fatalerror", "server.js"]
