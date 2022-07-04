@@ -18,7 +18,7 @@ docker run --rm \
   --security-opt no-new-privileges \
   --env CONFIG_PATH="/data/trackx.config.js" \
   --env DB_PATH="/tmp/db/trackx.db" \
-  --tmpfs /tmp/db:rw,noexec,nodev,nosuid,uid=506,gid=506,mode=0700,size=10m \
+  --tmpfs /tmp/db:rw,noexec,nodev,nosuid,uid=5063,gid=5063,mode=0700,size=10m \
   --mount type=bind,src="$config_path",dst=/data/trackx.config.js,ro \
   --mount type=bind,src="${repo_root_dir}/packages/trackx-api/migrations/master.sql",dst=/data/db/master.sql \
   ci/trackx-api /usr/bin/node cli.js install

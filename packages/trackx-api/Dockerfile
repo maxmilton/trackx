@@ -38,8 +38,8 @@ RUN set -xe \
 FROM debian:bullseye-slim@sha256:67f5a66b7d31a1eb725271b7f02f3128aade7ea1f675978fb09ba00cb4a5a980
 ENV NODE_ENV production
 RUN set -xe \
-  && groupadd -g 506 -r nodejs \
-  && useradd -r -u 506 -M -s /sbin/nologin -g nodejs nodejs
+  && groupadd -g 5063 -r nodejs \
+  && useradd -r -u 5063 -M -s /sbin/nologin -g nodejs nodejs
 WORKDIR /data/
 COPY --from=install_deps --chown=nodejs:nodejs /data/ /data/
 COPY --from=install_deps /usr/bin/node /usr/bin/node
