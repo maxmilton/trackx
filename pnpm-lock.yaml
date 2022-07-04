@@ -140,7 +140,7 @@ importers:
       kleur: 4.1.5
       nanoid: 4.0.0
       polka: 1.0.0-next.22
-      psl: 1.8.0
+      psl: 1.9.0
       source-map: 0.7.4
       source-map-support: 0.5.21
       totalist: 3.0.0
@@ -167,7 +167,7 @@ importers:
       '@types/tough-cookie': 4.0.2
       '@types/ua-parser-js': 0.7.36
       git-ref: 0.3.1
-      psl: 1.8.0
+      psl: 1.9.0
       source-map: 0.7.4
       source-map-support: 0.5.21
       totalist: 3.0.0
@@ -5180,8 +5180,8 @@ packages:
       sisteransi: 1.0.5
     dev: true
 
-  /psl/1.8.0:
-    resolution: {integrity: sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==}
+  /psl/1.9.0:
+    resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
 
   /pump/3.0.0:
     resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==}
@@ -5990,7 +5990,7 @@ packages:
     resolution: {integrity: sha512-tHdtEpQCMrc1YLrMaqXXcj6AxhYi/xgit6mZu1+EDWUn+qhUf8wMQoFIy9NXuq23zAwtcB0t/MjACGR18pcRbg==}
     engines: {node: '>=6'}
     dependencies:
-      psl: 1.8.0
+      psl: 1.9.0
       punycode: 2.1.1
       universalify: 0.1.2
 
