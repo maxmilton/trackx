@@ -20,8 +20,8 @@ export default function reltime(
   short?: boolean,
   maxPeriods = 1,
 ): string {
-  const del = new Date(date).getTime() - Date.now();
-  const abs = Math.abs(del);
+  const delta = new Date(date).getTime() - Date.now();
+  const abs = Math.abs(delta);
 
   if (abs < MIN) return 'just now';
 
@@ -50,5 +50,5 @@ export default function reltime(
     }
   }
 
-  return keep.join(', ') + (del < 0 ? ' ago' : ' from now');
+  return keep.join(', ') + (delta < 0 ? ' ago' : ' from now');
 }
