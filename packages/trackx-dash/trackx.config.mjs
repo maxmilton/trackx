@@ -29,4 +29,4 @@ export const REPORT_API_KEY = '1dncxc0jjib';
  * production to prevent a potential denial-of-service attack vector. See
  * <https://github.com/maxmilton/trackx/issues/158>.
  */
-export const ENABLE_DB_TABLE_STATS = true;
+export const ENABLE_DB_TABLE_STATS = process.env.ENABLE_DB_TABLE_STATS || !prod;
