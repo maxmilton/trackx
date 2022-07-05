@@ -135,7 +135,7 @@ const StatsPage: RouteComponent = () => {
                   {data.dash_session_c === 1 ? '' : 's'}
                 </p>
 
-                {process.env.ENABLE_DB_TABLE_STATS && (
+                {config.ENABLE_DB_TABLE_STATS && (
                   <div>
                     <hr />
                     <h2>Database</h2>
