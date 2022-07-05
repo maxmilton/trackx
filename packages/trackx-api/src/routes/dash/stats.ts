@@ -4,16 +4,16 @@ import fs from 'fs';
 import type { Middleware } from 'polka';
 import { db, deniedDash } from '../../db';
 import type {
+  DBStats,
+  DBStatsTable,
   ReqQueryData,
   Stats,
-  StatsDBTableInfo,
   TimeSeriesData,
 } from '../../types';
 import {
   AppError,
   config,
   humanizeFileSize,
-  humanizeTime,
   logger,
   sessions,
   Status,
@@ -48,6 +48,9 @@ const getDailyDeniedEvents = db
   .raw();
 const getDailyDeniedPings = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'ping'")
+  .raw();
+const getDailyDeniedDash = db
+  .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'dash'")
   .raw();
 
 function remapGraphData(
@@ -106,7 +109,10 @@ function getStats(): Partial<Stats> {
       getDailyPingsStmt.all(ts),
       getDailyDeniedPings.all(ts),
     );
-    const daily_dash = remapGraphData(getDailyDashStmt.all(ts), []);
+    const daily_dash = remapGraphData(
+      getDailyDashStmt.all(ts),
+      getDailyDeniedDash.all(ts),
+    );
 
     return {
       session_c: sessionData.session_c || 0,
@@ -121,7 +127,7 @@ function getStats(): Partial<Stats> {
       dash_c_30d_avg: avgCount(daily_dash[1] as number[]),
       daily_events,
       daily_pings,
-      daily_dash: [daily_dash[0], daily_dash[1]] as TimeSeriesData,
+      daily_dash,
     };
   })();
 }
@@ -141,48 +147,7 @@ const tablePercent = (table: number, total: number) => `${((table / total) * 100
 
 const humanizeSize = (stats: fs.Stats) => humanizeFileSize(stats.size);
 
-const DB_QUERY = [
-  'BEGIN TRANSACTION;',
-  "SELECT SUM(pgsize) FROM dbstat('main',1);",
-
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='project';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue';",
-  config.DB_COMPRESSION
-    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_event_zstd';"
-    : "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_denied';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_events';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_pings';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='daily_dash';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='meta';",
-
-  // "issue_fts" is a virtual table, so it doesn't have a size itself
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_config';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_data';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_docsize';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_fts_idx';",
-
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_graph';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='session_issue';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_ts_last_idx';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_list_idx';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='issue_state_idx';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_graph_idx';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='event_list_idx';",
-
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_issue_1';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_1';",
-  "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='sqlite_autoindex_project_2';",
-
-  config.DB_COMPRESSION
-    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_zstd_dicts';"
-    : '',
-  config.DB_COMPRESSION
-    ? "SELECT SUM(pgsize) FROM dbstat('main',1) WHERE name='_data_dict_idx';"
-    : '',
-  'COMMIT;',
-].join('');
+const DB_STATS_QUERY = 'SELECT name, SUM(pgsize) AS size FROM dbstat GROUP BY name;';
 
 async function getTableSizes() {
   try {
@@ -192,94 +157,28 @@ async function getTableSizes() {
     const output = await execCmd('/usr/bin/sqlite3', [
       '-safe',
       '-readonly',
-      '-list',
+      '-json',
       '-noheader',
       '-nullvalue',
       '0',
       '-cmd',
       '.eqp off',
       config.DB_PATH,
-      DB_QUERY,
+      DB_STATS_QUERY,
     ]);
-    const data = output.toString().split('\n');
-    const total = +data[0];
-    const project = +data[1];
-    const session = +data[2];
-    const issue = +data[3];
-    const event = +data[4];
-    const daily_denied = +data[5];
-    const daily_events = +data[6];
-    const daily_pings = +data[7];
-    const daily_dash = +data[8];
-    const meta = +data[9];
-    const issue_fts = +data[10] + +data[11] + +data[12] + +data[13];
-    const session_graph = +data[14];
-    const session_issue = +data[15];
-    const issue_ts_last_idx = +data[16];
-    const issue_list_idx = +data[17];
-    const issue_state_idx = +data[18];
-    const event_graph_idx = +data[19];
-    const event_list_idx = +data[20];
-    const sqlite_autoindex_issue_1 = +data[21];
-    const sqlite_autoindex_project_1 = +data[22];
-    const sqlite_autoindex_project_2 = +data[23];
 
-    const tablesInfo = [
-      /* prettier-ignore */
-      [project, ['project', humanizeFileSize(project), tablePercent(project, total)]],
-      /* prettier-ignore */
-      [session, ['session', humanizeFileSize(session), tablePercent(session, total)]],
-      /* prettier-ignore */
-      [issue, ['issue', humanizeFileSize(issue), tablePercent(issue, total)]],
-      /* prettier-ignore */
-      [event, ['event', humanizeFileSize(event), tablePercent(event, total)]],
-      /* prettier-ignore */
-      [daily_denied, ['daily_denied', humanizeFileSize(daily_denied), tablePercent(daily_denied, total)]],
-      /* prettier-ignore */
-      [daily_events, ['daily_events', humanizeFileSize(daily_events), tablePercent(daily_events, total)]],
-      /* prettier-ignore */
-      [daily_pings, ['daily_pings', humanizeFileSize(daily_pings), tablePercent(daily_pings, total)]],
-      /* prettier-ignore */
-      [daily_dash, ['daily_dash', humanizeFileSize(daily_dash), tablePercent(daily_dash, total)]],
-      /* prettier-ignore */
-      [meta, ['meta', humanizeFileSize(meta), tablePercent(meta, total)]],
-      /* prettier-ignore */
-      [issue_fts, ['issue_fts*', humanizeFileSize(issue_fts), tablePercent(issue_fts, total)]],
-      /* prettier-ignore */
-      [session_graph, ['session_graph', humanizeFileSize(session_graph), tablePercent(session_graph, total)]],
-      /* prettier-ignore */
-      [session_issue, ['session_issue', humanizeFileSize(session_issue), tablePercent(session_issue, total)]],
-      /* prettier-ignore */
-      [issue_ts_last_idx, ['issue_ts_last_idx', humanizeFileSize(issue_ts_last_idx), tablePercent(issue_ts_last_idx, total)]],
-      /* prettier-ignore */
-      [issue_list_idx, ['issue_list_idx', humanizeFileSize(issue_list_idx), tablePercent(issue_list_idx, total)]],
-      /* prettier-ignore */
-      [issue_state_idx, ['issue_state_idx', humanizeFileSize(issue_state_idx), tablePercent(issue_state_idx, total)]],
-      /* prettier-ignore */
-      [event_graph_idx, ['event_graph_idx', humanizeFileSize(event_graph_idx), tablePercent(event_graph_idx, total)]],
-      /* prettier-ignore */
-      [event_list_idx, ['event_list_idx', humanizeFileSize(event_list_idx), tablePercent(event_list_idx, total)]],
-      /* prettier-ignore */
-      [sqlite_autoindex_issue_1, ['sqlite_autoindex_issue_1', humanizeFileSize(sqlite_autoindex_issue_1), tablePercent(sqlite_autoindex_issue_1, total)]],
-      /* prettier-ignore */
-      [sqlite_autoindex_project_1, ['sqlite_autoindex_project_1', humanizeFileSize(sqlite_autoindex_project_1), tablePercent(sqlite_autoindex_project_1, total)]],
-      /* prettier-ignore */
-      [sqlite_autoindex_project_2, ['sqlite_autoindex_project_2', humanizeFileSize(sqlite_autoindex_project_2), tablePercent(sqlite_autoindex_project_2, total)]],
-    ] as [number, StatsDBTableInfo][];
+    const data = (JSON.parse(output) as { name: string; size: number }[]).sort(
+      (a, b) => b.size - a.size,
+    );
+    const total = data.reduce((acc, row) => acc + row.size, 0);
 
-    if (config.DB_COMPRESSION) {
-      const zstd_dicts = +data[23];
-      const data_dict_idx = +data[24];
-
-      tablesInfo.push(
-        /* prettier-ignore */
-        [zstd_dicts, ['_zstd_dicts', humanizeFileSize(zstd_dicts), tablePercent(zstd_dicts, total)]],
-        /* prettier-ignore */
-        [data_dict_idx, ['_data_dict_idx', humanizeFileSize(data_dict_idx), tablePercent(data_dict_idx, total)]],
-      );
+    for (const row of data) {
+      // FIXME: Better types rather than casting to unknown
+      (row as unknown as DBStatsTable).percent = tablePercent(row.size, total);
+      (row as unknown as DBStatsTable).size = humanizeFileSize(row.size);
     }
 
-    return tablesInfo.sort((a, b) => b[0] - a[0]).map((row) => row[1]);
+    return data as unknown as DBStatsTable[];
   } catch (error) {
     logger.error(error);
     return [];
@@ -288,31 +187,47 @@ async function getTableSizes() {
 
 export const get: Middleware = async (req, res, next) => {
   try {
-    const query = req.query as ReqQueryData;
+    const { type, ...restQuery } = req.query as ReqQueryData;
 
-    if (Object.keys(query).length > 0) {
+    if (Object.keys(restQuery).length > 0) {
       throw new AppError('Unexpected param', Status.BAD_REQUEST);
     }
 
-    const [dbFileSize, dbWalFileSize] = await Promise.all([
-      fs.promises.stat(config.DB_PATH).then(humanizeSize),
-      fs.promises.stat(`${config.DB_PATH}-wal`).then(humanizeSize),
-    ]);
-    const data = getStats();
-    data.dash_session_c = sessions.size;
-    data.api_v = process.env.APP_RELEASE!;
-    data.api_uptime = Math.floor(process.uptime());
-    data.db_size = dbFileSize;
-    data.dbwal_size = dbWalFileSize;
-    // data.db_tables = tableSizes;
+    if (type !== undefined) {
+      if (type !== 'db') {
+        throw new AppError('Invalid type param', Status.UNPROCESSABLE_ENTITY);
+      }
+    }
 
-    // FIXME: Generating DB table stats is extremely slow on systems with slow disks
-    //  ↳ https://github.com/maxmilton/trackx/issues/158
-    if (config.ENABLE_DB_TABLE_STATS) {
+    let data;
+
+    if (type === 'db' && config.ENABLE_DB_TABLE_STATS) {
+      // TODO: Consider moving DB table stats to trackx-cli
+
+      // FIXME: Generating DB table stats is slow in general and extremely slow
+      // on systems with slower storage devices
+      //  ↳ https://github.com/maxmilton/trackx/issues/158
+
       const t0 = performance.now();
+      data = {} as DBStats;
       data.db_tables = await getTableSizes();
       const t1 = performance.now();
-      logger.info(`Generated DB table stats in ${humanizeTime(t1 - t0)}`);
+      const [dbFileSize, dbWalFileSize] = await Promise.all([
+        fs.promises.stat(config.DB_PATH).then(humanizeSize),
+        fs.promises.stat(`${config.DB_PATH}-wal`).then(humanizeSize),
+      ]);
+      data.db_size = dbFileSize;
+      data.db_size_wal = dbWalFileSize;
+      const t2 = performance.now();
+      res.setHeader(
+        'Server-Timing',
+        `db;dur=${Math.round(t1 - t0)},fs;dur=${(t2 - t1).toFixed(2)}`,
+      );
+    } else {
+      data = getStats();
+      data.dash_session_c = sessions.size;
+      data.api_v = process.env.APP_RELEASE!;
+      data.api_uptime = Math.floor(process.uptime());
     }
 
     send(res, Status.OK, data);
