@@ -15,6 +15,7 @@ import esbuild from 'rollup-plugin-esbuild';
 import { terser } from 'rollup-plugin-terser';
 import { visualizer } from 'rollup-plugin-visualizer';
 import pkg from './package.json';
+import * as config from './trackx.config.mjs';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -51,6 +52,7 @@ const terserOpts = {
     wrap_iife: true,
     wrap_func_args: true,
   },
+  // mangle: false,
 };
 
 /** @type {import('rollup').WatcherOptions} */
@@ -138,6 +140,7 @@ export default [
     plugins: [
       replace({
         'process.env.APP_RELEASE': JSON.stringify(release),
+        'process.env.ENABLE_DB_TABLE_STATS': !!config.ENABLE_DB_TABLE_STATS,
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.XCSS_GLOBALS': JSON.stringify(
           // eslint-disable-next-line

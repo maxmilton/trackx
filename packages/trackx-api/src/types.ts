@@ -148,12 +148,18 @@ export interface TrackXAPIConfig {
    */
   readonly SESSION_TTL: number;
 
+  // TODO: Consider moving DB table stats to trackx-cli
   /**
-   * Show database table size statistics on the dash `/stats` page.
+   * Allow fetching database table statistics via the `api/dash/stats?type=db`
+   * API route. Used on the `trackx-dash` `/stats` page.
+   *
+   * Note that there's also a matching config option in `trackx-dash` that should
+   * also be set to the same value.
    *
    * @remarks Currently has known performance issues. Enabling this feature may
    * be useful for debugging and observability but should be disabled in
-   * production to prevent a potential denial-of-service attack vector.
+   * production to prevent a potential denial-of-service attack vector. See
+   * <https://github.com/maxmilton/trackx/issues/158>.
    */
   readonly ENABLE_DB_TABLE_STATS?: boolean;
 }
@@ -315,8 +321,6 @@ export interface SessionsData {
   period: [current: SessionsCount, previous: SessionsCount];
 }
 
-export type StatsDBTableInfo = [name: string, size: string, percent: string];
-
 export interface Stats {
   session_c: number;
   session_e_c: number;
@@ -334,10 +338,19 @@ export interface Stats {
   api_v: string;
   api_uptime: number;
   dash_session_c: number;
+}
+
+export type DBStatsTable = {
+  name: string;
+  size: string;
+  percent: string;
+};
+
+/** @remarks Only available when config flag "ENABLE_DB_TABLE_STATS" is true. */
+export interface DBStats {
   db_size: string;
-  dbwal_size: string;
-  // Optional because it's behind the config flag "ENABLE_DB_TABLE_STATS"
-  db_tables?: StatsDBTableInfo[];
+  db_size_wal: string;
+  db_tables: DBStatsTable[];
 }
 
 export interface Logs {

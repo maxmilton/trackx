@@ -2,10 +2,19 @@ import './stats.xcss';
 
 import type { RouteComponent } from '@maxmilton/solid-router';
 import reltime from '@trackx/reltime';
-import { createEffect, createResource, type Component } from 'solid-js';
+import {
+  createEffect,
+  createResource,
+  createSignal,
+  type Component,
+} from 'solid-js';
 import { For, Match, Switch } from 'solid-js/web';
 import UPlot from 'uplot';
-import type { Stats, TimeSeriesData } from '../../../trackx-api/src/types';
+import type {
+  DBStats,
+  Stats,
+  TimeSeriesData,
+} from '../../../trackx-api/src/types';
 import { renderErrorAlert } from '../components/ErrorAlert';
 import { Graph } from '../components/Graph';
 import { Loading } from '../components/Loading';
@@ -41,21 +50,17 @@ const DailyGraph: Component<DailyGraphProps> = (props) => (
             show: false,
           },
         },
-        ...(props.data[2]
-          ? [
-            {
-              label: 'Denied',
-              width: 2,
-              stroke: '#f55656', // red4
-              paths: UPlot.paths.points!(),
-              spanGaps: false,
-              points: {
-                show: true,
-                width: 0,
-              },
-            },
-          ]
-          : []),
+        {
+          label: 'Denied',
+          width: 2,
+          stroke: '#f55656', // red4
+          paths: UPlot.paths.points!(),
+          spanGaps: false,
+          points: {
+            show: true,
+            width: 0,
+          },
+        },
       ],
     }}
   />
@@ -64,6 +69,11 @@ const DailyGraph: Component<DailyGraphProps> = (props) => (
 const StatsPage: RouteComponent = () => {
   const [stats] = createResource<Stats, string>(
     () => `${config.DASH_API_ENDPOINT}/stats`,
+    fetchJSON,
+  );
+  const [dbStatsURL, setDBStatsURL] = /* @__PURE__ */ createSignal<string>();
+  const [dbStats] = /* @__PURE__ */ createResource<DBStats, string>(
+    dbStatsURL,
     fetchJSON,
   );
 
@@ -83,7 +93,7 @@ const StatsPage: RouteComponent = () => {
         <Match when={stats()}>
           {(data) => (
             <div class="df f-col ns-f-row">
-              <div class="stats-col ns-mr4">
+              <div class="m-mr4 l-mr5">
                 <h2>Platform</h2>
 
                 <p>{data.event_c.toLocaleString()} events</p>
@@ -108,28 +118,6 @@ const StatsPage: RouteComponent = () => {
 
                 <hr />
 
-                <h2>
-                  Requests <small class="muted">(last 30 days)</small>
-                </h2>
-
-                <p>
-                  {data.event_c_30d_avg.toLocaleString()} events per day{' '}
-                  <span class="muted">(avg.)</span>
-                </p>
-                <DailyGraph data={data.daily_events} label="Events" />
-                <p>
-                  {data.ping_c_30d_avg.toLocaleString()} pings per day{' '}
-                  <span class="muted">(avg.)</span>
-                </p>
-                <DailyGraph data={data.daily_pings} label="Pings" />
-                <p>
-                  {data.dash_c_30d_avg.toLocaleString()} dash requests per day{' '}
-                  <span class="muted">(avg.)</span>
-                </p>
-                <DailyGraph data={data.daily_dash} label="Dash Requests" />
-
-                <hr />
-
                 <p>Dash {process.env.APP_RELEASE}</p>
                 <p>API {data.api_v}</p>
                 <p>
@@ -146,38 +134,105 @@ const StatsPage: RouteComponent = () => {
                   {data.dash_session_c.toLocaleString()} active dash session
                   {data.dash_session_c === 1 ? '' : 's'}
                 </p>
-              </div>
-              <div>
-                <h2>Database</h2>
 
-                <p class="wsn">
-                  {data.db_size}
-                  <span class="muted"> + </span>
-                  {data.dbwal_size}
-                  <span class="muted"> (wal)</span>
-                </p>
+                {process.env.ENABLE_DB_TABLE_STATS && (
+                  <div>
+                    <hr />
+                    <h2>Database</h2>
 
-                {/* FIXME: Generating DB table stats is extremely slow on systems
-                with slow disks -- https://github.com/maxmilton/trackx/issues/158 */}
-                {data.db_tables && (
-                  <>
-                    <h3>Tables</h3>
+                    {/* TODO: Consider moving DB table stats to trackx-cli */}
 
-                    <div class="table-wrapper">
-                      <table class="table wi tr tnum">
-                        <For each={data.db_tables} fallback="No data">
-                          {([name, size, percent]) => (
-                            <tr>
-                              <td class="tl break" textContent={name} />
-                              <td class="wsn" textContent={size} />
-                              <td textContent={percent} />
-                            </tr>
+                    {/* FIXME: Generating DB table stats is slow in general and
+                    extremely slow on systems with slower storage devices
+                      ↳ https://github.com/maxmilton/trackx/issues/158 */}
+
+                    {!dbStatsURL() ? (
+                      <>
+                        <div class="alert alert-warning">
+                          <strong>WARNING:</strong> Getting DB stats is slow!
+                        </div>
+                        <button
+                          class="button"
+                          onClick={() => {
+                            setDBStatsURL(
+                              `${config.DASH_API_ENDPOINT}/stats?type=db`,
+                            );
+                          }}
+                        >
+                          Get DB stats
+                        </button>
+                      </>
+                    ) : (
+                      <Switch
+                        fallback={<p class="danger">Failed to load DB stats</p>}
+                      >
+                        <Match
+                          when={dbStats.error}
+                          children={renderErrorAlert}
+                        />
+                        <Match when={dbStats.loading}>
+                          <Loading />
+                        </Match>
+                        <Match when={dbStats()}>
+                          {(data2) => (
+                            <>
+                              <p class="wsn">
+                                {data2.db_size}
+                                <span class="muted"> + </span>
+                                {data2.db_size_wal}
+                                <span class="muted"> (wal)</span>
+                              </p>
+                              <h3>Tables</h3>
+                              <div class="table-wrapper">
+                                <table class="table wi tr tnum">
+                                  <For
+                                    each={data2.db_tables}
+                                    fallback="No data"
+                                  >
+                                    {(row) => (
+                                      <tr>
+                                        <td
+                                          class="tl break"
+                                          textContent={row.name}
+                                        />
+                                        <td
+                                          class="wsn"
+                                          textContent={row.size}
+                                        />
+                                        <td textContent={row.percent} />
+                                      </tr>
+                                    )}
+                                  </For>
+                                </table>
+                              </div>
+                            </>
                           )}
-                        </For>
-                      </table>
-                    </div>
-                  </>
+                        </Match>
+                      </Switch>
+                    )}
+                  </div>
                 )}
+              </div>
+              <div class="stats-col">
+                <h2>
+                  Requests <small class="muted">(last 30 days)</small>
+                </h2>
+
+                <p class="mb2">
+                  {data.event_c_30d_avg.toLocaleString()} events per day{' '}
+                  <span class="muted">(avg.)</span>
+                </p>
+                <DailyGraph data={data.daily_events} label="Events" />
+                <p class="mb2">
+                  {data.ping_c_30d_avg.toLocaleString()} pings per day{' '}
+                  <span class="muted">(avg.)</span>
+                </p>
+                <DailyGraph data={data.daily_pings} label="Pings" />
+                <p class="mb2">
+                  {data.dash_c_30d_avg.toLocaleString()} dash requests per day{' '}
+                  <span class="muted">(avg.)</span>
+                </p>
+                <DailyGraph data={data.daily_dash} label="Dash Requests" />
               </div>
             </div>
           )}
