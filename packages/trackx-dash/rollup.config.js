@@ -140,9 +140,9 @@ export default [
     plugins: [
       replace({
         'process.env.APP_RELEASE': JSON.stringify(release),
-        'process.env.ENABLE_DB_TABLE_STATS':
-          process.env.ENABLE_DB_TABLE_STATS
-          && JSON.parse(process.env.ENABLE_DB_TABLE_STATS),
+        'process.env.ENABLE_DB_TABLE_STATS': JSON.stringify(
+          config.ENABLE_DB_TABLE_STATS,
+        ),
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.XCSS_GLOBALS': JSON.stringify(
           // eslint-disable-next-line

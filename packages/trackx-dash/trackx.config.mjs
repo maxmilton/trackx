@@ -6,7 +6,19 @@
  * you will need to rebuild and deploy the front end apps.
  */
 
+/* eslint-disable operator-linebreak */
+
 const prod = process.env.NODE_ENV === 'production' || !process.env.NODE_ENV;
+
+/**
+ * Get an environment variable and parse it into a JSON value.
+ * @param {string} key
+ * @returns {unknown}
+ */
+function env(key) {
+  const val = process.env[key];
+  return val && JSON.parse(val);
+}
 
 export const DOCS_URL = 'https://docs.trackx.app';
 export const DASH_API_ENDPOINT = prod
@@ -29,4 +41,5 @@ export const REPORT_API_KEY = '1dncxc0jjib';
  * production to prevent a potential denial-of-service attack vector. See
  * <https://github.com/maxmilton/trackx/issues/158>.
  */
-export const ENABLE_DB_TABLE_STATS = process.env.ENABLE_DB_TABLE_STATS || !prod;
+export const ENABLE_DB_TABLE_STATS =
+  /* @__PURE__ */ env('ENABLE_DB_TABLE_STATS') || !prod;
