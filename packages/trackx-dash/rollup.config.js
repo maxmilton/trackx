@@ -80,7 +80,8 @@ const htmlTemplate = ({
     })
     .join('\n');
 
-  return `<!doctype html>
+  return `
+  <!doctype html>
   <html${makeHtmlAttributes(attributes.html)}>
   <head>
     <meta charset=utf-8>
@@ -100,7 +101,10 @@ const htmlTemplate = ({
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id=app></div>
   </body>
-  </html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
+  </html>
+  `
+    .trim()
+    .replace(/\n\s+/g, '\n'); // remove leading whitespace
 };
 
 /** @type {import('rollup').RollupOptions[]} */
