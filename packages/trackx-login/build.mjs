@@ -61,7 +61,8 @@ const analyzeMeta = {
  * @param {string} cssPath
  */
 function makeHTML(jsPath, cssPath) {
-  return `<!doctype html>
+  return `
+  <!doctype html>
   <html lang=en>
   <head>
     <meta charset=utf-8>
@@ -98,7 +99,10 @@ function makeHTML(jsPath, cssPath) {
     </form>
     <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
   <body>
-  <html>`.replace(/\n\s+/g, '\n'); // remove leading whitespace
+  <html>
+  `
+    .trim()
+    .replace(/\n\s+/g, '\n'); // remove leading whitespace
 }
 
 /** @type {esbuild.Plugin} */
