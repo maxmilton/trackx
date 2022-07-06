@@ -29,7 +29,7 @@ importers:
       jest-environment-jsdom: 28.1.2
       jest-resolve: 28.1.1
       prettier: 2.7.1
-      prettier-plugin-pkg: 0.15.0
+      prettier-plugin-pkg: 0.16.0
       prettier-plugin-sh: 0.12.6
       prettier-plugin-sql: 0.8.3
       solid-js: 1.4.6
@@ -63,7 +63,7 @@ importers:
       jest-environment-jsdom: 28.1.2
       jest-resolve: 28.1.1
       prettier: 2.7.1
-      prettier-plugin-pkg: 0.15.0_prettier@2.7.1
+      prettier-plugin-pkg: 0.16.0_prettier@2.7.1
       prettier-plugin-sh: 0.12.6_prettier@2.7.1
       prettier-plugin-sql: 0.8.3_prettier@2.7.1
       solid-js: 1.4.6
@@ -6448,8 +6448,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.15.0_prettier@2.7.1:
-    resolution: {integrity: sha512-HhscJxwM0Jc4Wp/a0kr4yvOwcUtoQVC/1KEPGByUNEv/pdXFY3Ih4/uLF4cEUYM9HkmCQ/PiIoLasc8qWUA9Fg==}
+  /prettier-plugin-pkg/0.16.0_prettier@2.7.1:
+    resolution: {integrity: sha512-+pUzsNzs16OSUf82OqF6+B4RajiDoHToJElp8T6YjcPF3uKCy7P3zk2rpdBPPXVMaR+lp5c4C1rbTniC34tz6g==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0

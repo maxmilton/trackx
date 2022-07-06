@@ -36,7 +36,7 @@
     "jest-environment-jsdom": "28.1.2",
     "jest-resolve": "28.1.1",
     "prettier": "2.7.1",
-    "prettier-plugin-pkg": "0.15.0",
+    "prettier-plugin-pkg": "0.16.0",
     "prettier-plugin-sh": "0.12.6",
     "prettier-plugin-sql": "0.8.3",
     "solid-js": "1.4.6",
