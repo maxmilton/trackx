@@ -4,11 +4,15 @@ import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconSearch, IconX } from '@trackx/icons';
 import reltime from '@trackx/reltime';
 import {
-  createEffect, createResource, onError, untrack,
+  createEffect, createResource, on, onError, untrack,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { For, Show, Suspense } from 'solid-js/web';
-import type { Issue } from '../../../../trackx-api/src/types';
+import type {
+  Issue,
+  ProjectListSimple,
+} from '../../../../trackx-api/src/types';
+// import { ISSUE_SORT_VALUES } from '../../../../trackx-api/src/utils';
 import { renderErrorAlert } from '../../components/ErrorAlert';
 import { Loading } from '../../components/Loading';
 import { compactNumber, config, fetchJSON } from '../../utils';
@@ -17,22 +21,14 @@ const RESULT_LIMIT = 25;
 
 // TODO: Would be preferable to have a single source of truth for values like
 // this which are shared between API and web app; use same data as packages/trackx-api/src/utils.ts
-const VALID_SORT_VALUES = [
+//  ↳ Importing that file currently has unwanted side effects
+const ISSUE_SORT_VALUES = [
   'last_seen',
   'first_seen',
   'event_count',
   'sess_count',
   'rank',
 ];
-
-type SortValue = typeof VALID_SORT_VALUES[number];
-
-function isValidSort(query: unknown): query is SortValue {
-  return (
-    typeof query === 'string'
-    && (VALID_SORT_VALUES as ReadonlyArray<string>).includes(query)
-  );
-}
 
 const IssuesPage: RouteComponent = () => {
   const [urlParams, setUrlParams] = useURLParams();
@@ -44,26 +40,40 @@ const IssuesPage: RouteComponent = () => {
     resultsFrom: 0,
     resultsTo: 0,
     resultsTotal: 0,
-    searchText: decodeURIComponent((initialUrlParams.q as string) || ''),
+    searchText: decodeURIComponent(
+      (typeof initialUrlParams.q === 'string' && initialUrlParams.q) || '',
+    ),
+    project:
+      typeof initialUrlParams.project === 'string'
+        ? initialUrlParams.project
+        : '',
     sort:
-      initialUrlParams.sort && isValidSort(initialUrlParams.sort)
+      typeof initialUrlParams.sort === 'string'
+      && ISSUE_SORT_VALUES.includes(initialUrlParams.sort)
         ? initialUrlParams.sort
         : (initialUrlParams.q
           ? 'rank'
           : 'last_seen'),
     offset: 0,
   });
+  const [projects] = createResource<ProjectListSimple, string>(
+    `${config.DASH_API_ENDPOINT}/project/all?type=simple`,
+    fetchJSON,
+    { initialValue: [] },
+  );
   const [issues, { refetch }] = createResource<Issue[], string>(
     // Untrack changes to state.searchText because we manually refetch on
     // enter key press in the search input to prevent excessive requests
     () => `${config.DASH_API_ENDPOINT}/issue/${untrack(() => (state.searchText
       ? `search?q=${encodeURIComponent(state.searchText)}&`
-      : 'all?'))}limit=${RESULT_LIMIT}&offset=${state.offset}&sort=${state.sort}${
-      initialUrlParams.project ? `&project=${initialUrlParams.project}` : ''
-    }`,
+      : 'all?'))}limit=${RESULT_LIMIT}&offset=${state.offset}${
+      state.project ? `&project=${state.project}` : ''
+    }&sort=${state.sort}`,
     fetchJSON,
     { initialValue: [] },
   );
+
+  let projectsRef: HTMLSelectElement;
 
   onError((error: unknown) => {
     // eslint-disable-next-line no-console
@@ -79,6 +89,12 @@ const IssuesPage: RouteComponent = () => {
   createEffect(() => {
     document.title = 'Issues | TrackX';
   });
+
+  createEffect(
+    on(projects, () => {
+      projectsRef.value = state.project;
+    }),
+  );
 
   createEffect(() => {
     const data = issues();
@@ -148,13 +164,7 @@ const IssuesPage: RouteComponent = () => {
 
   return (
     <div class="con">
-      <h1>
-        Issues{' '}
-        <span
-          class="muted"
-          textContent={`(${initialUrlParams.project || 'All Projects'})`}
-        />
-      </h1>
+      <h1>Issues</h1>
 
       <Show when={state.error} children={renderErrorAlert} />
 
@@ -169,7 +179,7 @@ const IssuesPage: RouteComponent = () => {
             ↳ Only on search indexed columns; name, message, uri
       */}
 
-      <div class="df avb mb3">
+      <div class="ns-df avb mb3">
         <div class="pos-r search w100">
           {/* TODO: Input validation to ensure minLength */}
           <input
@@ -219,7 +229,7 @@ const IssuesPage: RouteComponent = () => {
                     //  ↳ https://github.com/solidjs/solid/blob/main/packages/solid/src/reactive/signal.ts#L410-L413
                     (async () => {
                       await refetch();
-                    })().catch((error) => {
+                    })().catch((error: unknown) => {
                       // eslint-disable-next-line no-console
                       console.error(error);
                       setState({ error });
@@ -253,8 +263,37 @@ const IssuesPage: RouteComponent = () => {
           )}
         </div>
 
-        <div class="ml2">
-          <label for="sort" class="mt-3 label muted">
+        <div class="ns-ml2">
+          <label for="projects" class="mt2 ns-mt-3 label muted">
+            Project
+          </label>
+          <select
+            // @ts-expect-error - ref not actually used before define
+            ref={projectsRef}
+            id="projects"
+            class="select"
+            value={state.project}
+            onInput={(event) => {
+              const project = event.currentTarget.value;
+              setState({
+                error: null,
+                offset: 0, // reset pagination
+                project,
+              });
+              setUrlParams((prev) => ({
+                ...prev,
+                project,
+              }));
+            }}
+          >
+            <option value="">All Projects</option>
+            <For each={projects()}>
+              {(project) => <option>{project}</option>}
+            </For>
+          </select>
+        </div>
+        <div class="ns-ml2">
+          <label for="sort" class="mt2 ns-mt-3 label muted">
             Sort by
           </label>
           <select
@@ -264,6 +303,7 @@ const IssuesPage: RouteComponent = () => {
             onInput={(event) => {
               const sort = event.currentTarget.value;
               setState({
+                error: null,
                 offset: 0, // reset pagination
                 sort,
               });

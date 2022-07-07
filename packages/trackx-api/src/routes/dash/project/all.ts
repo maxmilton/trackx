@@ -1,7 +1,11 @@
 import send from '@polka/send';
 import type { Middleware } from 'polka';
 import { db, deniedDash } from '../../../db';
-import type { ProjectList, ReqQueryData } from '../../../types';
+import type {
+  ProjectList,
+  ProjectListSimple,
+  ReqQueryData,
+} from '../../../types';
 import { AppError, logger, Status } from '../../../utils';
 
 const getProjectListStmt = db.prepare(`
@@ -30,20 +34,31 @@ const getProjectListStmt = db.prepare(`
   LEFT JOIN cte_issue ON cte_issue.project_id = project.id
   LEFT JOIN cte_session ON cte_session.project_id = project.id
 `);
+const getProjectListSimpleStmt = db.prepare('SELECT name FROM project').raw();
 
 function getProjectList(): ProjectList {
   return getProjectListStmt.all() as ProjectList;
 }
 
+function getProjectListSimple() {
+  return getProjectListSimpleStmt.all() as ProjectListSimple;
+}
+
 export const get: Middleware = (req, res, next) => {
   try {
-    const query = req.query as ReqQueryData;
+    const { type, ...queryRest } = req.query as ReqQueryData;
 
-    if (Object.keys(query).length > 0) {
+    if (Object.keys(queryRest).length > 0) {
       throw new AppError('Unexpected param', Status.BAD_REQUEST);
     }
 
-    const data = getProjectList();
+    if (type !== undefined) {
+      if (type !== 'simple') {
+        throw new AppError('Invalid type param', Status.UNPROCESSABLE_ENTITY);
+      }
+    }
+
+    const data = type === 'simple' ? getProjectListSimple() : getProjectList();
 
     send(res, Status.OK, data);
   } catch (error) {
