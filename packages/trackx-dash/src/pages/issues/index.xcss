@@ -18,6 +18,12 @@
   padding: ${x.input.paddingY} 2.6rem;
 }
 
+@media ${x.media.ns} {
+  .ns-mw35 {
+    max-width: 35%;
+  }
+}
+
 .results-table {
   border: 1px solid ${x.color.dark3};
   border-radius: ${x.radius};
