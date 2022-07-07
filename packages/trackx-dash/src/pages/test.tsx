@@ -435,7 +435,7 @@ export const TestPage: RouteComponent = () => {
               document.open();
               document.write('<h1>Test</h1>');
               document.close();
-            } catch (error) {
+            } catch (error: unknown) {
               console.warn(error);
             }
           }}
@@ -1817,16 +1817,16 @@ DROP TRIGGER tmp_session_ai;`,
       <h3 id="ui-components">UI components</h3>
 
       <div class="alert alert-info">
-        <strong>TIP:</strong> Example info alert.
+        <strong>ALERT:</strong> Example info alert.
       </div>
       <div class="alert alert-success">
-        <strong>TIP:</strong> Example success alert.
+        <strong>ALERT:</strong> Example success alert.
       </div>
       <div class="alert alert-warning">
-        <strong>TIP:</strong> Example warning alert.
+        <strong>ALERT:</strong> Example warning alert.
       </div>
       <div class="alert alert-danger">
-        <strong>TIP:</strong> Example danger alert.
+        <strong>ALERT:</strong> Example danger alert.
       </div>
 
       <div class="mb3">

@@ -69,7 +69,7 @@ process.on('SIGTERM', () => handleExit(() => process.exit(128 + 15)));
 
 const dash: Middleware = (_req, _res, next) => {
   void next();
-  incrementDailyDash();
+  setTimeout(incrementDailyDash, 30);
 };
 
 app.use(log);

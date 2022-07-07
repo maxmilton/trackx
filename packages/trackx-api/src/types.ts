@@ -211,6 +211,8 @@ export type ProjectList = {
   session_c: number | null;
 }[];
 
+export type ProjectListSimple = string[];
+
 export interface ProjectOverview {
   issues: Issue[];
   uris: Array<{
