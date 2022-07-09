@@ -134,7 +134,7 @@ importers:
       '@types/better-sqlite3': 7.5.0
       '@types/tough-cookie': 4.0.2
       '@types/ua-parser-js': 0.7.36
-      better-sqlite3: 7.5.3
+      better-sqlite3: 7.6.0
       diary: 0.3.1
       git-ref: 0.3.1
       kleur: 4.1.5
@@ -153,7 +153,7 @@ importers:
       '@polka/send': 1.0.0-next.15
       '@trackx/http-status-codes': link:../http-status-codes
       '@trackx/stack-trace-parser': link:../stack-trace-parser
-      better-sqlite3: 7.5.3
+      better-sqlite3: 7.6.0
       diary: 0.3.1
       kleur: 4.1.5
       nanoid: 4.0.0
@@ -176,7 +176,7 @@ importers:
     specifiers:
       '@types/better-sqlite3': 7.5.0
       '@types/punycode': 2.1.0
-      better-sqlite3: 7.5.3
+      better-sqlite3: 7.6.0
       git-ref: 0.3.1
       kleur: 4.1.5
       mri: 1.2.0
@@ -184,7 +184,7 @@ importers:
       sade: 1.8.1
       source-map-support: 0.5.21
     dependencies:
-      better-sqlite3: 7.5.3
+      better-sqlite3: 7.6.0
       kleur: 4.1.5
       punycode: 2.1.1
       sade: 1.8.1
@@ -2261,8 +2261,8 @@ packages:
       tweetnacl: 0.14.5
     dev: false
 
-  /better-sqlite3/7.5.3:
-    resolution: {integrity: sha512-tNIrDsThpWT8j1mg+svI1pqCYROqNOWMbB2qXVg+TJqH9UR5XnbAHyRsLZoJagldGTTqJPj/sUPVOkW0GRpYqw==}
+  /better-sqlite3/7.6.0:
+    resolution: {integrity: sha512-wYckL8S8RHP+KKNsZuJGZ7z/6FFmVgwd0U8jSv6t997C+EFR1yvi8p2WIpTb10jiV5rRA5VtMdgtAZFcAnK3Iw==}
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
@@ -3953,7 +3953,7 @@ packages:
     dev: true
 
   /github-from-package/0.0.0:
-    resolution: {integrity: sha1-l/tdlr/eiXMxPyDoKI75oWf6ZM4=}
+    resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
     dev: false
 
   /glob-parent/5.1.2:

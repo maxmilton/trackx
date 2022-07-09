@@ -17,7 +17,7 @@
     "@polka/send": "1.0.0-next.15",
     "@trackx/http-status-codes": "workspace:*",
     "@trackx/stack-trace-parser": "workspace:*",
-    "better-sqlite3": "7.5.3",
+    "better-sqlite3": "7.6.0",
     "diary": "0.3.1",
     "kleur": "4.1.5",
     "nanoid": "4.0.0",
