@@ -24,7 +24,7 @@ importers:
       eslint-plugin-jest: 26.5.3
       eslint-plugin-jsx-a11y: 6.6.0
       eslint-plugin-security: 1.5.0
-      eslint-plugin-unicorn: 43.0.0
+      eslint-plugin-unicorn: 43.0.1
       jest: 28.1.2
       jest-environment-jsdom: 28.1.2
       jest-resolve: 28.1.1
@@ -58,7 +58,7 @@ importers:
       eslint-plugin-jest: 26.5.3_cbxtyx3d4qwpnm7p4q4ovvhj5y
       eslint-plugin-jsx-a11y: 6.6.0_eslint@8.19.0
       eslint-plugin-security: 1.5.0
-      eslint-plugin-unicorn: 43.0.0_eslint@8.19.0
+      eslint-plugin-unicorn: 43.0.1_eslint@8.19.0
       jest: 28.1.2_@types+node@18.0.3
       jest-environment-jsdom: 28.1.2
       jest-resolve: 28.1.1
@@ -3434,8 +3434,8 @@ packages:
       safe-regex: 2.1.1
     dev: true
 
-  /eslint-plugin-unicorn/43.0.0_eslint@8.19.0:
-    resolution: {integrity: sha512-Z/6HX8yry+zAjo4jHHTAbe1rfniox7qgmCReGBfTc/CVgotfScaMCc4dtSSTHlJ+7Yix5o6LPXzwwpuGGFricg==}
+  /eslint-plugin-unicorn/43.0.1_eslint@8.19.0:
+    resolution: {integrity: sha512-wYvF6q0RRTKw6gzbKy5bbazWUrBEPIto2S9U6eSF+tsHgtgE+CwQ6Bww1W2Ie9TRED01QkZRN79c5aVMFgrFYw==}
     engines: {node: '>=14.18'}
     peerDependencies:
       eslint: '>=8.18.0'
