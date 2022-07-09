@@ -1,5 +1,5 @@
 # Install NPM modules including building node-gyp binaries e.g., better-sqlite3
-FROM debian:bullseye-slim@sha256:67f5a66b7d31a1eb725271b7f02f3128aade7ea1f675978fb09ba00cb4a5a980 AS install_deps
+FROM debian:bullseye-slim@sha256:f6957458017ec31c4e325a76f39d6323c4c21b0e31572efa006baa927a160891 AS install_deps
 ENV SQLITE_TOOLS_URL https://www.sqlite.org/2022/sqlite-tools-linux-x86-3390000.zip
 ENV SQLITE_TOOLS_SHA3 cf29e7956267045cae8f18e0018a3d8d50765032c6222d673d0edd894a982637
 RUN set -xe \
@@ -35,7 +35,7 @@ RUN set -xe \
   && pnpm install --prod --no-lockfile
 
 # Make release image
-FROM debian:bullseye-slim@sha256:67f5a66b7d31a1eb725271b7f02f3128aade7ea1f675978fb09ba00cb4a5a980
+FROM debian:bullseye-slim@sha256:f6957458017ec31c4e325a76f39d6323c4c21b0e31572efa006baa927a160891
 ENV NODE_ENV production
 RUN set -xe \
   && groupadd -g 5063 -r nodejs \
@@ -47,8 +47,8 @@ COPY --from=install_deps /sqlite3 /usr/bin/sqlite3
 # Fustratingly, SQLite don't provide official 64-bit precompiled binaries so we
 # need to add 32-bit C libs to run their 32-bit binary
 COPY --from=install_deps /lib/ld-linux.so.2 /lib/ld-linux.so.2
-COPY --from=install_deps /lib32/libdl-2.33.so /lib32/libdl.so.2
-COPY --from=install_deps /lib32/libm-2.33.so /lib32/libm.so.6
-COPY --from=install_deps /lib32/libc-2.33.so /lib32/libc.so.6
+COPY --from=install_deps /lib32/libdl-2.31.so /lib32/libdl.so.2
+COPY --from=install_deps /lib32/libm-2.31.so /lib32/libm.so.6
+COPY --from=install_deps /lib32/libc-2.31.so /lib32/libc.so.6
 USER nodejs:nodejs
 CMD ["/usr/bin/node", "--report-on-fatalerror", "server.js"]
