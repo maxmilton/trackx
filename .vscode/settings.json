@@ -5,6 +5,7 @@
   "files.associations": {
     "*.xcss": "scss"
   },
+  "git.branchProtection": ["master", "dev"],
   "js/ts.implicitProjectConfig.checkJs": true,
   "prettier.ignorePath": ".gitignore",
   "scss.validate": false,
