@@ -34,13 +34,14 @@ const getDeniedDashReqsStmt = db
 `,
   )
   .raw();
+const getAllLogData = db.transaction(() => ({
+  denied_event: getDeniedEventsStmt.all(),
+  denied_ping: getDeniedPingsStmt.all(),
+  denied_dash: getDeniedDashReqsStmt.all(),
+}));
 
 function getLogs(): Logs {
-  return db.transaction(() => ({
-    denied_event: getDeniedEventsStmt.all(),
-    denied_ping: getDeniedPingsStmt.all(),
-    denied_dash: getDeniedDashReqsStmt.all(),
-  }))();
+  return getAllLogData();
 }
 
 export const get: Middleware = (req, res, next) => {
