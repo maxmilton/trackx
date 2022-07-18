@@ -27,6 +27,7 @@ interface DailyGraphProps {
 
 const graphSync = UPlot.sync('stats');
 
+// TODO: These graphs should have lighter coloured background opts.axes[0&1].grid.stroke
 const DailyGraph: Component<DailyGraphProps> = (props) => (
   <Graph
     data={props.data}
