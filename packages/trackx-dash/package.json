@@ -21,7 +21,7 @@
     "uplot": "1.6.22"
   },
   "devDependencies": {
-    "@babel/core": "7.18.6",
+    "@babel/core": "7.18.9",
     "@ekscss/rollup-plugin-css": "0.0.3",
     "@ekscss/rollup-plugin-purgecss": "0.0.5",
     "@rollup/plugin-babel": "5.3.1",
