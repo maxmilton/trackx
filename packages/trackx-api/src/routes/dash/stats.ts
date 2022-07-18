@@ -53,6 +53,19 @@ const getDailyDeniedDash = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'dash'")
   .raw();
 
+const getAllStatsData = db.transaction((ts: number) => ({
+  session: getSessionCountStmt.get(),
+  issue: getIssueCountStmt.get(),
+  event_c: getEventCountStmt.get(),
+  project_c: getProjectCountStmt.get(),
+  daily_events: getDailyEventsStmt.all(ts),
+  daily_events_denied: getDailyDeniedEvents.all(ts),
+  daily_pings: getDailyPingsStmt.all(ts),
+  daily_pings_denied: getDailyDeniedPings.all(ts),
+  daily_dash: getDailyDashStmt.all(ts),
+  daily_dash_denied: getDailyDeniedDash.all(ts),
+}));
+
 function remapGraphData(
   rows: [number, number][],
   rows2: [number, number][],
@@ -95,19 +108,7 @@ function getStats(): Partial<Stats> {
   date.setUTCDate(date.getUTCDate() - 30); // 30 days ago
   const ts = date.getTime() / 1000;
 
-  const data = db.transaction(() => ({
-    session: getSessionCountStmt.get(),
-    issue: getIssueCountStmt.get(),
-    event_c: getEventCountStmt.get(),
-    project_c: getProjectCountStmt.get(),
-    daily_events: getDailyEventsStmt.all(ts),
-    daily_events_denied: getDailyDeniedEvents.all(ts),
-    daily_pings: getDailyPingsStmt.all(ts),
-    daily_pings_denied: getDailyDeniedPings.all(ts),
-    daily_dash: getDailyDashStmt.all(ts),
-    daily_dash_denied: getDailyDeniedDash.all(ts),
-  }))();
-
+  const data = getAllStatsData(ts);
   const daily_events = remapGraphData(
     data.daily_events,
     data.daily_events_denied,
