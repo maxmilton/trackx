@@ -511,6 +511,8 @@ const IssuePage: RouteComponent = (props) => {
           </div>
         </div>
         <div class="issue-sidebar fsn">
+          {/* TODO: Make it clear to users what the fraph time zone is (UTC). */}
+
           <h3>Last 24 hours</h3>
 
           <Sparkline

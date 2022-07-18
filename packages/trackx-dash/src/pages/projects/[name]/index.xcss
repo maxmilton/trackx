@@ -8,6 +8,8 @@
 }
 
 .sessions-card {
+  // Override .card overflow style
+  overflow: initial;
   // Prevent jitter when loading sessions data
   min-height: 27.66rem;
 }

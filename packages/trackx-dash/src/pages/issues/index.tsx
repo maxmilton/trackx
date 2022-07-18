@@ -264,6 +264,8 @@ const IssuesPage: RouteComponent = () => {
         </div>
 
         <div class="ns-ml2 ns-mw35">
+          {/* TODO: Project list dropdown should be easily filterable. */}
+
           <label for="projects" class="mt2 ns-mt-3 label muted">
             Project
           </label>
