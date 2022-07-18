@@ -73,10 +73,11 @@ function remapGraphData(
 
   date.setUTCDate(date.getUTCDate() - (steps - 1));
   date.setUTCHours(0, 0, 0, 0);
+  const ts0 = Math.trunc(date.getTime() / 1000);
 
   for (let index = 0; index < steps; index++) {
-    const ts = date.getTime() / 1000 + index * offset;
-    time.push(Math.trunc(ts));
+    const ts = ts0 + index * offset;
+    time.push(ts);
     series1.push(rowsMap[ts] || 0);
     series2.push(rows2Map[ts] || null);
   }
@@ -84,7 +85,7 @@ function remapGraphData(
   return [time, series1, series2];
 }
 
-function avgCount(counts: number[]): number {
+function averageCount(counts: number[]): number {
   return Math.trunc(counts.reduce((a, b) => a + b, 0) / counts.length);
 }
 
@@ -94,42 +95,41 @@ function getStats(): Partial<Stats> {
   date.setUTCDate(date.getUTCDate() - 30); // 30 days ago
   const ts = date.getTime() / 1000;
 
-  return db.transaction(() => {
-    const sessionData = getSessionCountStmt.get();
-    const issueData = getIssueCountStmt.get();
+  const data = db.transaction(() => ({
+    session: getSessionCountStmt.get(),
+    issue: getIssueCountStmt.get(),
+    event_c: getEventCountStmt.get(),
+    project_c: getProjectCountStmt.get(),
+    daily_events: getDailyEventsStmt.all(ts),
+    daily_events_denied: getDailyDeniedEvents.all(ts),
+    daily_pings: getDailyPingsStmt.all(ts),
+    daily_pings_denied: getDailyDeniedPings.all(ts),
+    daily_dash: getDailyDashStmt.all(ts),
+    daily_dash_denied: getDailyDeniedDash.all(ts),
+  }))();
 
-    // FIXME: Don't run non-database computations within the transaction; move
-    // remapGraphData and avgCount out of the transaction
+  const daily_events = remapGraphData(
+    data.daily_events,
+    data.daily_events_denied,
+  );
+  const daily_pings = remapGraphData(data.daily_pings, data.daily_pings_denied);
+  const daily_dash = remapGraphData(data.daily_dash, data.daily_dash_denied);
 
-    const daily_events = remapGraphData(
-      getDailyEventsStmt.all(ts),
-      getDailyDeniedEvents.all(ts),
-    );
-    const daily_pings = remapGraphData(
-      getDailyPingsStmt.all(ts),
-      getDailyDeniedPings.all(ts),
-    );
-    const daily_dash = remapGraphData(
-      getDailyDashStmt.all(ts),
-      getDailyDeniedDash.all(ts),
-    );
-
-    return {
-      session_c: sessionData.session_c || 0,
-      session_e_c: sessionData.session_e_c || 0,
-      event_c: getEventCountStmt.get() || 0,
-      issue_c: issueData.issue_c || 0,
-      issue_done_c: issueData.issue_done_c || 0,
-      issue_ignore_c: issueData.issue_ignore_c || 0,
-      project_c: getProjectCountStmt.get() || 0,
-      ping_c_30d_avg: avgCount(daily_pings[1] as number[]),
-      event_c_30d_avg: avgCount(daily_events[1] as number[]),
-      dash_c_30d_avg: avgCount(daily_dash[1] as number[]),
-      daily_events,
-      daily_pings,
-      daily_dash,
-    };
-  })();
+  return {
+    session_c: data.session.session_c || 0,
+    session_e_c: data.session.session_e_c || 0,
+    event_c: data.event_c || 0,
+    issue_c: data.issue.issue_c || 0,
+    issue_done_c: data.issue.issue_done_c || 0,
+    issue_ignore_c: data.issue.issue_ignore_c || 0,
+    project_c: data.project_c || 0,
+    ping_c_30d_avg: averageCount(daily_pings[1] as number[]),
+    event_c_30d_avg: averageCount(daily_events[1] as number[]),
+    dash_c_30d_avg: averageCount(daily_dash[1] as number[]),
+    daily_events,
+    daily_pings,
+    daily_dash,
+  };
 }
 
 function execCmd(cmd: string, args?: string[]): Promise<string> {
