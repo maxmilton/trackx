@@ -31,7 +31,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.16.0
       prettier-plugin-sh: 0.12.6
-      prettier-plugin-sql: 0.10.0
+      prettier-plugin-sql: 0.10.2
       solid-js: 1.4.8
       solid-testing-library: 0.3.0
       stylelint: 14.9.1
@@ -65,7 +65,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.16.0_prettier@2.7.1
       prettier-plugin-sh: 0.12.6_prettier@2.7.1
-      prettier-plugin-sql: 0.10.0_prettier@2.7.1
+      prettier-plugin-sql: 0.10.2_prettier@2.7.1
       solid-js: 1.4.8
       solid-testing-library: 0.3.0_solid-js@1.4.8
       stylelint: 14.9.1
@@ -4747,8 +4747,8 @@ packages:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
     dev: true
 
-  /node-sql-parser/4.3.0:
-    resolution: {integrity: sha512-tuRljwmeG93Xl4+Vv/L8StNSDc4HbUkXy70XSB+hgOtxHIF2QXmZnxiL9o/RHSfmuxVye0t78On8aww5KZqPrg==}
+  /node-sql-parser/4.4.0:
+    resolution: {integrity: sha512-c5J7oxQk4XWnNWPaGZ4CS0HFSDJex/QjoCNUuUJ84PX0ehAHFfPPkpjChQ3uySmHKHiwiVKMDFmPsFlq1gSXFQ==}
     engines: {node: '>=8'}
     dependencies:
       big-integer: 1.6.51
@@ -5103,15 +5103,16 @@ packages:
       prettier: 2.7.1
     dev: true
 
-  /prettier-plugin-sql/0.10.0_prettier@2.7.1:
-    resolution: {integrity: sha512-Q+G+53kPGxBwpT5hrkDiB5bU9hkobmA1XmlQZGN8WY7lBejoJRNE38+re4pXBN7yPqAFSRv+h/4zCaiPetsPMA==}
+  /prettier-plugin-sql/0.10.2_prettier@2.7.1:
+    resolution: {integrity: sha512-N/UzXwHLZ3RGtCbegoEIKdqb1aQfjLQvbLWSR2QtGHrB9oGy9gWnUCqNG3dTlVnXUacRU/I6lMdhGryZdN6kZA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
-      node-sql-parser: 4.3.0
+      node-sql-parser: 4.4.0
       prettier: 2.7.1
       sql-formatter: 8.2.0
+      tslib: 2.4.0
     dev: true
 
   /prettier/2.7.1:
@@ -5993,6 +5994,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
