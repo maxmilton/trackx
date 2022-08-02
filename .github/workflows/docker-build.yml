@@ -1,8 +1,11 @@
 name: Docker build
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
     paths:
       - packages/trackx-api/Dockerfile
       - scripts/build
