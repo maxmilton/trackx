@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/csso": "5.0.0",
-    "csso": "5.0.4",
+    "csso": "5.0.5",
     "ekscss": "0.0.13",
     "esbuild": "0.14.54",
     "esbuild-minify-templates": "0.9.0",
