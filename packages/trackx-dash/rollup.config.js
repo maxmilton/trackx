@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import { getGlobals } from '@ekscss/framework/utils';
-import css from '@ekscss/rollup-plugin-css';
 import purgecss from '@ekscss/rollup-plugin-purgecss';
+import css from '@maxmilton/rollup-plugin-css';
 import { babel } from '@rollup/plugin-babel';
 import buble from '@rollup/plugin-buble';
 import commonjs from '@rollup/plugin-commonjs';

@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-extraneous-dependencies, no-console, no-param-reassign */
+// eslint-disable-next-line max-len
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, import/no-extraneous-dependencies, no-console, no-param-reassign, no-restricted-syntax, no-bitwise */
 
-import * as csso from 'csso';
+import * as pcss from '@parcel/css';
 import esbuild from 'esbuild';
 import {
   decodeUTF8,
@@ -10,12 +10,12 @@ import {
   writeFiles,
 } from 'esbuild-minify-templates';
 import { xcss } from 'esbuild-plugin-ekscss';
-import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { PurgeCSS } from 'purgecss';
 import * as terser from 'terser';
-import { fileURLToPath } from 'url';
 import * as config from '../trackx-dash/trackx.config.mjs';
 
 // Workaround for no json import in ESM yet
@@ -98,8 +98,8 @@ function makeHTML(jsPath, cssPath) {
       </div>
     </form>
     <footer>© <a href=https://maxmilton.com class="normal muted" rel=noopener>Max Milton</a> ・ ${release} ・ <a href=https://github.com/maxmilton/trackx/issues rel=noopener>report bug</a></footer>
-  <body>
-  <html>
+  </body>
+  </html>
   `
     .trim()
     .replace(/\n\s+/g, '\n'); // remove leading whitespace
@@ -159,9 +159,26 @@ const minifyCSS = {
           css: [{ raw: decodeUTF8(outCSS.file.contents) }],
           safelist: ['html', 'body'],
         });
-        const { css } = csso.minify(purged[0].css);
+        const minified = pcss.transform({
+          filename: outCSS.file.path,
+          code: Buffer.from(purged[0].css),
+          minify: true,
+          sourceMap: dev,
+          targets: {
+            chrome: 60 << 16,
+            edge: 79 << 16,
+            firefox: 55 << 16,
+            safari: (11 << 16) | (1 << 8),
+          },
+        });
 
-        result.outputFiles[outCSS.index].contents = encodeUTF8(css);
+        for (const warning of minified.warnings) {
+          console.error('CSS WARNING:', warning.message);
+        }
+
+        result.outputFiles[outCSS.index].contents = encodeUTF8(
+          minified.code.toString(),
+        );
       }
     });
   },

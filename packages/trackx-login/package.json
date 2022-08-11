@@ -14,8 +14,7 @@
     "@ekscss/framework": "0.0.41"
   },
   "devDependencies": {
-    "@types/csso": "5.0.0",
-    "csso": "5.0.4",
+    "@parcel/css": "1.12.2",
     "ekscss": "0.0.13",
     "esbuild": "0.14.54",
     "esbuild-minify-templates": "0.9.0",
