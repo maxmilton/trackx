@@ -1,15 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 import esbuild from 'esbuild';
-import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
-import { createRequire } from 'module';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import { totalist } from 'totalist';
-
-// Workaround for node import not working with *.json
-const require = createRequire(import.meta.url);
-const pkg = require('./package.json');
+import pkg from './package.json' assert { type: 'json' };
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -119,17 +115,14 @@ await esbuild.build({
 // Generate production package.json
 /** @type {PackageJson} */
 const prodPkg = {
-  name: 'trackx-api',
+  name: pkg.name,
   version: pkg.version,
   bin: { trackx: './cli.js' },
   dependencies: {},
 };
 
 for (const dep of external) {
-  // TODO: Replace with `import.meta.resolve()` once the node API is stable
-  /** @type {PackageJson} */
-  const depPkg = require(`${dep}/package.json`); // eslint-disable-line
-  prodPkg.dependencies[dep] = depPkg.version;
+  prodPkg.dependencies[dep] = pkg.dependencies[dep] || pkg.devDependencies[dep];
 }
 
 await fs.writeFile(
