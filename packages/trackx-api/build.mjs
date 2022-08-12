@@ -11,7 +11,7 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
-const external = /** @type {const} */ [
+const external = [
   // from @trackx/api
   'better-sqlite3',
   'psl', // tough-cookie dependency, massive size
@@ -122,6 +122,7 @@ const prodPkg = {
 };
 
 for (const dep of external) {
+  // @ts-expect-error - Unavoidable indexing by string
   prodPkg.dependencies[dep] = pkg.dependencies[dep] || pkg.devDependencies[dep];
 }
 
