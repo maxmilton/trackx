@@ -11,7 +11,7 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
-const external = [
+const external = /** @type {const} */ [
   // from @trackx/api
   'better-sqlite3',
   'psl', // tough-cookie dependency, massive size
