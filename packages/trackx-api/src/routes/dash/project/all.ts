@@ -34,14 +34,14 @@ const getProjectListStmt = db.prepare(`
   LEFT JOIN cte_issue ON cte_issue.project_id = project.id
   LEFT JOIN cte_session ON cte_session.project_id = project.id
 `);
-const getProjectListSimpleStmt = db.prepare('SELECT name FROM project').raw();
+const getProjectNamesStmt = db.prepare('SELECT name FROM project').pluck();
 
 function getProjectList(): ProjectList {
   return getProjectListStmt.all() as ProjectList;
 }
 
-function getProjectListSimple() {
-  return getProjectListSimpleStmt.all() as ProjectListSimple;
+function getProjectNames() {
+  return getProjectNamesStmt.all() as ProjectListSimple;
 }
 
 export const get: Middleware = (req, res, next) => {
@@ -58,7 +58,7 @@ export const get: Middleware = (req, res, next) => {
       }
     }
 
-    const data = type === 'simple' ? getProjectListSimple() : getProjectList();
+    const data = type === 'simple' ? getProjectNames() : getProjectList();
 
     send(res, Status.OK, data);
   } catch (error) {
