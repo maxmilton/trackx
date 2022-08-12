@@ -255,7 +255,7 @@ importers:
       ekscss: 0.0.13
       esbuild: 0.14.54
       esbuild-minify-templates: 0.9.0
-      esbuild-plugin-ekscss: 0.0.11
+      esbuild-plugin-ekscss: 0.0.12
       git-ref: 0.3.1
       purgecss: 4.1.3
       terser: 5.14.2
@@ -267,7 +267,7 @@ importers:
       ekscss: 0.0.13
       esbuild: 0.14.54
       esbuild-minify-templates: 0.9.0_esbuild@0.14.54
-      esbuild-plugin-ekscss: 0.0.11_txr4grxxk4eufw3fbg45a4vfw4
+      esbuild-plugin-ekscss: 0.0.12_txr4grxxk4eufw3fbg45a4vfw4
       git-ref: 0.3.1
       purgecss: 4.1.3
       terser: 5.14.2
@@ -2870,11 +2870,11 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-plugin-ekscss/0.0.11_txr4grxxk4eufw3fbg45a4vfw4:
-    resolution: {integrity: sha512-KF4hq65h7Z3XWMTmeQ0SvNtflBU/n0KIyK3KwDjnkvlvVKLNr9O4kh9w7oF9UPvTTGm2H15gKRpHcrzzQvQChw==}
+  /esbuild-plugin-ekscss/0.0.12_txr4grxxk4eufw3fbg45a4vfw4:
+    resolution: {integrity: sha512-mCJs50/o1vKIeGGWnSrz4/s7ZSVnoX1hB+Mxke8pkFeNo0N9Ci8uYDDFwOPU0jhJv/eVyw2q5qDrOwt0FtnJ4w==}
     peerDependencies:
       ekscss: ^0.0.13
-      esbuild: ^0.13.0 || ^0.14.0
+      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0
     dependencies:
       ekscss: 0.0.13
       esbuild: 0.14.54
