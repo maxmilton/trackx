@@ -104,9 +104,6 @@ if (process.env.NODE_ENV !== 'production') {
 export const logger = diary('', (event) => {
   if (process.env.NODE_ENV === 'production') {
     if (event.level === 'log' || event.level === 'debug') return;
-  } else if (event.level === 'debug') {
-    // eslint-disable-next-line no-param-reassign
-    event.message = dim(event.message);
   }
 
   if (event.level === 'error' || event.level === 'fatal') {
@@ -122,6 +119,26 @@ export const logger = diary('', (event) => {
         details: (event.error as AppError)?.details,
       },
     );
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    switch (event.level) {
+      case 'fatal':
+      case 'error':
+        if (event.error instanceof Error && event.error.stack) {
+          // eslint-disable-next-line no-param-reassign
+          event.message += event.error.stack.slice(
+            event.error.stack.indexOf('\n'),
+          );
+        }
+        break;
+      case 'debug':
+        // eslint-disable-next-line no-param-reassign
+        event.message = dim(event.message);
+        break;
+      default:
+        break;
+    }
   }
 
   // eslint-disable-next-line no-console
