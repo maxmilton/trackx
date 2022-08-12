@@ -10,7 +10,7 @@
  * node check.js http://localhost:8000/health
  */
 
-import { request } from 'http';
+import { request } from 'node:http';
 
 const url = process.argv[2];
 const opts = { timeout: 3000 };

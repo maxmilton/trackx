@@ -1,5 +1,5 @@
-import fs from 'fs';
 import { green, red, yellow } from 'kleur/colors';
+import fs from 'node:fs';
 import { connectDB } from '../db';
 import type { GlobalOptions } from '../types';
 import { getConfig, logger } from '../utils';

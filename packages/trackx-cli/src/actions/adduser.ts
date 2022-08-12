@@ -7,8 +7,9 @@
  * @see packages/trackx-api/src/routes/dash/login.ts -- logic to verify passwords
  */
 
-import crypto from 'crypto';
 import { bold, yellow } from 'kleur/colors';
+import crypto from 'node:crypto';
+// eslint-disable-next-line unicorn/prefer-node-protocol
 import { toASCII } from 'punycode/';
 import type { GlobalOptions } from '../types';
 import {

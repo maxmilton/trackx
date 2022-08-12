@@ -24,7 +24,7 @@
 // set in https://github.com/lukeed/polka/blob/next/packages/parse/index.js
 
 import { json, parse, text } from '@polka/parse';
-import http from 'http';
+import http from 'node:http';
 import polka, { type Middleware } from 'polka';
 import * as trackx from 'trackx/node';
 import { db, incrementDailyDash } from './db';

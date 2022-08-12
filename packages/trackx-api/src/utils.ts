@@ -1,13 +1,13 @@
 import type { Database } from 'better-sqlite3';
-import crypto from 'crypto';
 import { diary, enable } from 'diary';
 import { sprintf } from 'diary/utils';
-import fs from 'fs';
-import type { IncomingMessage, ServerResponse } from 'http';
 import { dim, red, yellow } from 'kleur/colors';
-import { customAlphabet, nanoid } from 'nanoid';
-import type { Server, Socket } from 'net';
-import path from 'path';
+import { customAlphabet } from 'nanoid';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+import type { Server, Socket } from 'node:net';
+import path from 'node:path';
 import type { Polka, Request } from 'polka';
 import type { Cookie } from 'tough-cookie';
 import { sendEvent } from 'trackx/node';
@@ -17,6 +17,7 @@ import { XXHash3 } from 'xxhash-addon';
 import type { TrackXAPIConfig } from './types';
 
 export { Status } from '@trackx/http-status-codes';
+export { nanoid as uid } from 'nanoid';
 
 export const SECONDS_IN_HOUR = 3600; // 60s * 60m
 export const SECONDS_IN_DAY = 86_400; // 60s * 60m * 24h
@@ -131,7 +132,6 @@ export const logger = diary('', (event) => {
   );
 });
 export const sessions = new Map<string, Cookie>();
-export const uid = nanoid;
 export const uidShort = customAlphabet(
   '0123456789abcdefghijklmnopqrstuvwxyz',
   UID_SHORT_LENGTH,
@@ -352,7 +352,7 @@ const serverStoppingHelper = (server: Server) => {
   return stoppingFunction;
 };
 
-export const getServerStop = (server: Server) => {
+export const getServerStop = (server: Server): (() => Promise<void>) => {
   const serverStopper = serverStoppingHelper(server);
 
   return () => new Promise<void>((resolve, reject) => {

@@ -1,8 +1,8 @@
 import {
   blue, bold, dim, red, yellow,
 } from 'kleur/colors';
-import path from 'path';
-import { createInterface } from 'readline';
+import path from 'node:path';
+import { createInterface } from 'node:readline';
 import type { TrackXAPIConfig } from '../../trackx-api/src/types';
 
 export const logger = {

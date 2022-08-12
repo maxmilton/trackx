@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import type { ProjectInternal } from '../../../trackx-api/src/types';
 import { connectDB } from '../db';
 import type { GlobalOptions } from '../types';

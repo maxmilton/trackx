@@ -1,5 +1,5 @@
 import send from '@polka/send';
-import { isIP } from 'net';
+import { isIP } from 'node:net';
 import type { Middleware } from 'polka';
 import {
   addSessionGraphHitStmt,
