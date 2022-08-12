@@ -6,7 +6,7 @@
  */
 
 import { green, red, yellow } from 'kleur/colors';
-import { performance } from 'perf_hooks';
+import { performance } from 'node:perf_hooks';
 import type { Middleware } from 'polka';
 
 export const log: Middleware = (req, res, next) => {

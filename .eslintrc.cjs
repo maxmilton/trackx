@@ -39,12 +39,7 @@ module.exports = {
     'unicorn/no-null': OFF,
     'unicorn/prefer-add-event-listener': OFF,
     'unicorn/prefer-dom-node-append': OFF,
-    // somewhat broken
-    'unicorn/prefer-export-from': OFF,
-    // invalid for TypeScript
-    'unicorn/prefer-json-parse-buffer': OFF,
     'unicorn/prefer-module': OFF,
-    'unicorn/prefer-node-protocol': OFF,
     'unicorn/prefer-query-selector': OFF,
     'unicorn/prefer-reflect-apply': OFF,
     // not actually faster in v8 - https://jsben.ch/Z5MUv

@@ -11,7 +11,7 @@
 
 // TODO: Better fingerprinting for smarter grouping
 
-import { isIP } from 'net';
+import { isIP } from 'node:net';
 import type { Middleware } from 'polka';
 import { EventType } from 'trackx/types';
 import type UAParser from 'ua-parser-js';

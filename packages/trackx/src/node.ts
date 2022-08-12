@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-node-protocol */
+
 import { globalAgent } from 'http';
 import { request, RequestOptions } from 'https';
 import os from 'os';

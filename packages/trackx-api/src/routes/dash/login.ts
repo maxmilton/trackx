@@ -1,5 +1,5 @@
 import send from '@polka/send';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import type { Middleware } from 'polka';
 import { Cookie } from 'tough-cookie';
 import { deniedDash } from '../../db';

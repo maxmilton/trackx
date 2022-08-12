@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies, no-console */
 
 import esbuild from 'esbuild';
-import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
-
-// workaround for no json import in esm yet
-/** @type {import('./package.json')} */
-const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
+import pkg from './package.json' assert { type: 'json' };
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -18,7 +13,7 @@ const external = ['better-sqlite3'];
 const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/cli.js',
-  target: ['node16'],
+  target: ['node18'],
   platform: 'node',
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),

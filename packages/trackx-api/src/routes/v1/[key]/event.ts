@@ -1,5 +1,5 @@
 import { parse, resetCache, StackFrame } from '@trackx/stack-trace-parser';
-import { isIP } from 'net';
+import { isIP } from 'node:net';
 import type { Middleware } from 'polka';
 import { EventType } from 'trackx/types';
 import {

@@ -1,6 +1,6 @@
 import send from '@polka/send';
-import { execFile } from 'child_process';
-import fs from 'fs';
+import { execFile } from 'node:child_process';
+import fs from 'node:fs';
 import type { Middleware } from 'polka';
 import { db, deniedDash } from '../../db';
 import type {

@@ -4,8 +4,8 @@
 
 // Based on https://github.com/xpl/stacktracey/blob/e886dd2ceb4780923050de4d8a0f901bb079fc7b/stacktracey.js
 
-import path from 'path';
-import { inspect } from 'util';
+import path from 'node:path';
+import { inspect } from 'node:util';
 // import { getSourceAsync, resetCache } from './get-source';
 import { getSourceAsync } from './get-source';
 import type { CodeLocation, RawInput, StackFrame } from './types';
