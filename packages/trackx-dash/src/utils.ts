@@ -1,6 +1,6 @@
 import * as config from '../trackx.config.mjs';
 
-export { config };
+export * as config from '../trackx.config.mjs';
 
 export class AppError extends Error {
   declare code: number | undefined;
