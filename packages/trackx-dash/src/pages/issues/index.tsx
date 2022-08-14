@@ -4,10 +4,12 @@ import { useURLParams, type RouteComponent } from '@maxmilton/solid-router';
 import { IconChevronRight, IconSearch, IconX } from '@trackx/icons';
 import reltime from '@trackx/reltime';
 import {
-  createEffect, createResource, on, onError, untrack,
+  createEffect, createResource, on, onError,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { For, Show, Suspense } from 'solid-js/web';
+import {
+  For, Match, Show, Switch,
+} from 'solid-js/web';
 import type {
   Issue,
   ProjectListSimple,
@@ -33,6 +35,9 @@ const ISSUE_SORT_VALUES = [
 const IssuesPage: RouteComponent = () => {
   const [urlParams, setUrlParams] = useURLParams();
   const initialUrlParams = urlParams();
+  const initialSearch = decodeURIComponent(
+    (typeof initialUrlParams.q === 'string' && initialUrlParams.q) || '',
+  );
   const [state, setState] = createStore({
     error: null as unknown,
     disableNext: true,
@@ -40,9 +45,8 @@ const IssuesPage: RouteComponent = () => {
     resultsFrom: 0,
     resultsTo: 0,
     resultsTotal: 0,
-    searchText: decodeURIComponent(
-      (typeof initialUrlParams.q === 'string' && initialUrlParams.q) || '',
-    ),
+    currentSearch: initialSearch,
+    searchText: initialSearch,
     project:
       typeof initialUrlParams.project === 'string'
         ? initialUrlParams.project
@@ -61,12 +65,12 @@ const IssuesPage: RouteComponent = () => {
     fetchJSON,
     { initialValue: [] },
   );
-  const [issues, { refetch }] = createResource<Issue[], string>(
-    // Untrack changes to state.searchText because we manually refetch on
-    // enter key press in the search input to prevent excessive requests
-    () => `${config.DASH_API_ENDPOINT}/issue/${untrack(() => (state.searchText
-      ? `search?q=${encodeURIComponent(state.searchText)}&`
-      : 'all?'))}limit=${RESULT_LIMIT}&offset=${state.offset}${
+  const [issues] = createResource<Issue[], string>(
+    () => `${config.DASH_API_ENDPOINT}/issue/${
+      state.currentSearch
+        ? `search?q=${encodeURIComponent(state.currentSearch)}&`
+        : 'all?'
+    }limit=${RESULT_LIMIT}&offset=${state.offset}${
       state.project ? `&project=${state.project}` : ''
     }&sort=${state.sort}`,
     fetchJSON,
@@ -81,11 +85,6 @@ const IssuesPage: RouteComponent = () => {
     setState({ error });
   });
 
-  // This resource uses Suspense, not Switch, so it needs a separate error trigger
-  createEffect(() => {
-    if (issues.error) throw issues.error;
-  });
-
   createEffect(() => {
     document.title = 'Issues | TrackX';
   });
@@ -96,11 +95,10 @@ const IssuesPage: RouteComponent = () => {
     }),
   );
 
-  createEffect(() => {
-    const data = issues();
-
-    untrack(() => {
-      if (data) {
+  createEffect(
+    on(
+      issues,
+      (data) => {
         const resultsTotal = data[0]?.result_c || 0;
         const resultsFrom = state.offset;
         const resultsTo = state.offset + data.length;
@@ -112,9 +110,10 @@ const IssuesPage: RouteComponent = () => {
           resultsTo,
           resultsTotal,
         });
-      }
-    });
-  });
+      },
+      { defer: true },
+    ),
+  );
 
   function handlePrev() {
     if (!issues.loading) {
@@ -130,6 +129,7 @@ const IssuesPage: RouteComponent = () => {
   function cancelSearch() {
     setState({
       error: null,
+      currentSearch: '',
       searchText: '',
       sort: 'last_seen',
       offset: 0,
@@ -210,8 +210,9 @@ const IssuesPage: RouteComponent = () => {
 
                   setState({
                     error: null,
-                    offset: 0,
+                    currentSearch: self.value,
                     sort: 'rank',
+                    offset: 0,
                   });
 
                   setUrlParams((prev) => ({
@@ -219,22 +220,6 @@ const IssuesPage: RouteComponent = () => {
                     q: state.searchText,
                     sort: undefined,
                   }));
-
-                  // Updates to sort/offset already trigger resource fetch
-                  const shouldFetch = state.sort === 'rank' && state.offset === 0;
-
-                  if (shouldFetch) {
-                    // TODO: Better refetch error handling once createResource
-                    // ResourceActions types are improved
-                    //  ↳ https://github.com/solidjs/solid/blob/main/packages/solid/src/reactive/signal.ts#L410-L413
-                    (async () => {
-                      await refetch();
-                    })().catch((error: unknown) => {
-                      // eslint-disable-next-line no-console
-                      console.error(error);
-                      setState({ error });
-                    });
-                  }
 
                   // Dismiss mobile on-screen keybaord (without losing focus)
                   self.readOnly = true;
@@ -279,8 +264,8 @@ const IssuesPage: RouteComponent = () => {
               const project = event.currentTarget.value;
               setState({
                 error: null,
-                offset: 0, // reset pagination
                 project,
+                offset: 0, // reset pagination
               });
               setUrlParams((prev) => ({
                 ...prev,
@@ -306,8 +291,8 @@ const IssuesPage: RouteComponent = () => {
               const sort = event.currentTarget.value;
               setState({
                 error: null,
-                offset: 0, // reset pagination
                 sort,
+                offset: 0, // reset pagination
               });
               setUrlParams((prev) => ({
                 ...prev,
@@ -339,88 +324,91 @@ const IssuesPage: RouteComponent = () => {
         <NavButtons />
       </div>
 
-      <Suspense fallback={<Loading />}>
-        <table class="results-table mh-3 ns-mh0">
-          <thead>
-            <tr>
-              <th></th>
-              <th class="dfce">
-                Event<span class="dn ns-di">s</span>
-              </th>
-              <th class="dfce">
-                <span class="ns-dn">Sess</span>
-                <span class="dn ns-di">Sessions</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <For
-              each={issues()}
-              fallback={
-                <tr>
-                  <td class="gw3 lead tc">
-                    No issues{state.searchText ? ' match your search' : ''}
-                  </td>
-                </tr>
+      <table class="results-table mh-3 ns-mh0">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="dfce">
+              Event<span class="dn ns-di">s</span>
+            </th>
+            <th class="dfce">
+              <span class="ns-dn">Sess</span>
+              <span class="dn ns-di">Sessions</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <Switch fallback={<p class="danger">Failed to load issues</p>}>
+            <Match when={issues.error} children={renderErrorAlert} />
+            <Match when={issues.loading}>
+              <Loading />
+            </Match>
+            <Match when={issues().length === 0}>
+              <tr>
+                <td class="gw3 lead tc">
+                  No issues{state.currentSearch ? ' match your search' : ''}
+                </td>
+              </tr>
+            </Match>
+            <Match when={issues()}>
+              {(issuesData) => issuesData.map((row) => (
+                  <tr>
+                    <td>
+                      <div class="break clip">
+                        {(row.ignore || row.done) && (
+                          <span class="mr2 muted">
+                            {row.ignore && <span class="tag">ignored</span>}
+                            {row.done && <span class="tag">done</span>}
+                          </span>
+                        )}
+                        <a href={`/issues/${row.id}`}>
+                          <span textContent={row.name || 'Error'} />
+                          <span
+                            class="muted ml2 fwl"
+                            textContent={row.uri || '??'}
+                          />
+                        </a>
+                      </div>
+                      <div
+                        class="break clip"
+                        textContent={row.message || '<unknown>'}
+                      />
+                      <div>
+                        <small class="muted">
+                          <a
+                            href={`/projects/${row.project_name}`}
+                            class="muted fwn mr2"
+                          >
+                            {row.project_name}
+                          </a>{' '}
+                          <span class="wsn">
+                            {reltime(row.ts_last, true)} |{' '}
+                            {reltime(row.ts_first, true).replace('ago', 'old')}
+                          </span>
+                        </small>
+                      </div>
+                    </td>
+                    <td
+                      class="dfce"
+                      aria-label={row.event_c.toLocaleString()}
+                      data-tooltip
+                    >
+                      {compactNumber(row.event_c)}
+                    </td>
+                    <td
+                      class="dfce"
+                      aria-label={row.sess_c.toLocaleString()}
+                      data-tooltip
+                    >
+                      {compactNumber(row.sess_c)}
+                    </td>
+                  </tr>
+              ))
               }
-            >
-              {(row) => (
-                <tr>
-                  <td>
-                    <div class="break clip">
-                      {(row.ignore || row.done) && (
-                        <span class="mr2 muted">
-                          {row.ignore && <span class="tag">ignored</span>}
-                          {row.done && <span class="tag">done</span>}
-                        </span>
-                      )}
-                      <a href={`/issues/${row.id}`}>
-                        <span textContent={row.name || 'Error'} />
-                        <span
-                          class="muted ml2 fwl"
-                          textContent={row.uri || '??'}
-                        />
-                      </a>
-                    </div>
-                    <div
-                      class="break clip"
-                      textContent={row.message || '<unknown>'}
-                    />
-                    <div>
-                      <small class="muted">
-                        <a
-                          href={`/projects/${row.project_name}`}
-                          class="muted fwn mr2"
-                        >
-                          {row.project_name}
-                        </a>{' '}
-                        <span class="wsn">
-                          {reltime(row.ts_last, true)} |{' '}
-                          {reltime(row.ts_first, true).replace('ago', 'old')}
-                        </span>
-                      </small>
-                    </div>
-                  </td>
-                  <td
-                    class="dfce"
-                    aria-label={row.event_c.toLocaleString()}
-                    data-tooltip
-                  >
-                    {compactNumber(row.event_c)}
-                  </td>
-                  <td
-                    class="dfce"
-                    aria-label={row.sess_c.toLocaleString()}
-                    data-tooltip
-                  >
-                    {compactNumber(row.sess_c)}
-                  </td>
-                </tr>
-              )}
-            </For>
-          </tbody>
-        </table>
-      </Suspense>
+            </Match>
+          </Switch>
+        </tbody>
+      </table>
 
       <div class="df mt3">
         <div class="ml-auto">
