@@ -1,11 +1,9 @@
 name: ci
 on:
   push:
-    branches:
-      - master
+    branches: [master, dev]
   pull_request:
-    branches:
-      - master
+    branches: [master, dev]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,6 +19,7 @@ jobs:
       - run: pnpm run build
       - run: pnpm run test
       - name: Report coverage
+        if: ${{ github.repository_owner == 'maxmilton' }}
         run: |
           curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod +x ./cc-test-reporter
@@ -30,7 +29,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   # e2e:
   #   runs-on: ubuntu-latest
-  #   timeout-minutes: 5
+  #   timeout-minutes: 10
   #   steps:
   #     - uses: actions/checkout@v2
   #     - uses: actions/setup-node@v2
