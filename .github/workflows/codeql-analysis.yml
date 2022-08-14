@@ -1,19 +1,15 @@
 name: CodeQL
 on:
   push:
-    branches: [master]
+    branches: [master, dev]
   pull_request:
-    branches: [master]
+    branches: [master, dev]
   schedule:
     - cron: '28 6 * * 4'
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ['javascript']
     permissions:
       actions: read
       contents: read
@@ -24,7 +20,8 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: javascript
+          queries: security-extended,security-and-quality
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
       - name: Perform CodeQL Analysis
