@@ -29,7 +29,7 @@ module.exports = {
     },
   },
   rules: {
-    '@typescript-eslint/explicit-module-boundary-types': WARN,
+    '@typescript-eslint/explicit-module-boundary-types': ERROR,
     'import/no-relative-packages': OFF,
     'import/prefer-default-export': OFF,
     'no-void': OFF,
