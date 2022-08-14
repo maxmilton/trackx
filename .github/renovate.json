@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>maxmilton/renovate-config"],
-  "baseBranches": ["master", "dev"]
+  "baseBranches": ["master", "dev"],
+  "schedule": ["before 5am on Wednesday"]
 }
