@@ -9,6 +9,15 @@ import { Loading } from '../../../components/Loading';
 import { Tabs } from '../../../components/Tabs';
 import { config, fetchJSON } from '../../../utils';
 
+// FIXME: Rework this page.
+//  ↳ A high percent of the time users want the tracking + ping snippet, so
+//    that should be at the top.
+//  ↳ Simplify what's shown by default. Maybe have a "expand" button that will
+//    show more detailed instructions. Or maybe link to the docs which should
+//    have fully detailed instructions.
+//  ↳ Something like a "quick start guide" and "advanced" sections.
+//  ↳ It should probably at least mention the various clients.
+
 const ProjectInstallPage: RouteComponent = (props) => {
   const [project] = createResource<Project, string>(
     () => `${config.DASH_API_ENDPOINT}/project/${props.params.name}`,
