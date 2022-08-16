@@ -32,6 +32,12 @@ const pixel = Buffer.from(
   'base64',
 );
 
+// // transparent 1x1 pixel GIF (42 bytes)
+// const pixel = Buffer.from(
+//   'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+//   'base64',
+// );
+
 const existingSessionStmt = db
   .prepare('SELECT 1 FROM session WHERE id = ? AND project_id = ?')
   .pluck();

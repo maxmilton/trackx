@@ -18,13 +18,14 @@ export const CodeBlock: FlowComponent = (props) => {
       <button
         class="button button-copy"
         title="Copy"
-        onclick={() => {
+        onClick={() => {
           navigator.clipboard
             .writeText(ref.textContent || '')
             .then(() => {
               setCopied(true);
               window.setTimeout(setCopied, 2000);
             })
+            // eslint-disable-next-line no-console
             .catch(console.error);
         }}
       >
