@@ -56,7 +56,7 @@
       "text",
       "lcovonly"
     ],
-    "resolver": "./jest-resolver.js",
+    "resolver": "./jest-resolver.cjs",
     "testRegex": "\\.test\\.tsx?$",
     "transformIgnorePatterns": [
       "node_modules/(?!solid-js.*|.*(?<=.[tj]sx))$"

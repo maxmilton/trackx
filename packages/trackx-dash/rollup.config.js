@@ -150,7 +150,7 @@ export default [
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.XCSS_GLOBALS': JSON.stringify(
           // eslint-disable-next-line
-          getGlobals(require('./xcss.config.js')),
+          getGlobals(require('./xcss.config.cjs')),
         ),
         preventAssignment: true,
       }),
