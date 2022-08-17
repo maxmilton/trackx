@@ -234,6 +234,17 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                     {'<script>window.trackx&&trackx.ping();</script>'}
                   </CodeBlock>
 
+                  <p>
+                    In rare cases you can instead use an image tag. Place it
+                    just after your openning{' '}
+                    <code class="code-inline">{'<body>'}</code> tag. This form
+                    is not recommended as the request is synchronous (blocking).
+                  </p>
+
+                  <CodeBlock>
+                    {`<img src="${config.REPORT_API_BASE_URL}/${projectData.key}/ping" alt="" width="0" height="0" border="0" crossorigin />`}
+                  </CodeBlock>
+
                   <hr />
 
                   <p>
@@ -295,6 +306,8 @@ trackx.setup('${config.REPORT_API_BASE_URL}/${projectData.key}');`}
                   <p>
                     Another alternative is to use{' '}
                     <code class="code-inline">Navigator.sendBeacon()</code>.
+                    This is not recommended as some browsers and browser
+                    extensions may block the request.
                   </p>
 
                   <CodeBlock>
