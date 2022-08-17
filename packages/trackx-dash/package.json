@@ -31,7 +31,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-replace": "4.0.0",
     "ekscss": "0.0.13",
-    "esbuild": "0.15.2",
+    "esbuild": "0.15.5",
     "git-ref": "0.3.1",
     "rollup": "2.78.0",
     "rollup-plugin-ekscss": "0.0.10",
