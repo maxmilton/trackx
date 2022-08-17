@@ -105,7 +105,7 @@ importers:
       esbuild: 0.15.5
       rollup: 2.78.0
       rollup-plugin-dts: 4.2.2
-      rollup-plugin-esbuild: 4.9.2
+      rollup-plugin-esbuild: 4.9.3
       rollup-plugin-terser: 7.0.2
       trackx: .
       typescript: 4.7.4
@@ -120,7 +120,7 @@ importers:
       esbuild: 0.15.5
       rollup: 2.78.0
       rollup-plugin-dts: 4.2.2_nm5mlcuxlwr6samvke7b2fz27i
-      rollup-plugin-esbuild: 4.9.2_g2b53jqudjimruv6spqg4ieafm
+      rollup-plugin-esbuild: 4.9.3_g2b53jqudjimruv6spqg4ieafm
       rollup-plugin-terser: 7.0.2_rollup@2.78.0
       trackx: 'link:'
       typescript: 4.7.4
@@ -215,7 +215,7 @@ importers:
       git-ref: 0.3.1
       rollup: 2.78.0
       rollup-plugin-ekscss: 0.0.10
-      rollup-plugin-esbuild: 4.9.2
+      rollup-plugin-esbuild: 4.9.3
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.7.1
       solid-js: 1.4.8
@@ -244,7 +244,7 @@ importers:
       git-ref: 0.3.1
       rollup: 2.78.0
       rollup-plugin-ekscss: 0.0.10_77lucaqmqdrauxyekvrjna5724
-      rollup-plugin-esbuild: 4.9.2_g2b53jqudjimruv6spqg4ieafm
+      rollup-plugin-esbuild: 4.9.3_g2b53jqudjimruv6spqg4ieafm
       rollup-plugin-terser: 7.0.2_rollup@2.78.0
       rollup-plugin-visualizer: 5.7.1_rollup@2.78.0
 
@@ -5430,8 +5430,8 @@ packages:
       rollup: 2.78.0
     dev: true
 
-  /rollup-plugin-esbuild/4.9.2_g2b53jqudjimruv6spqg4ieafm:
-    resolution: {integrity: sha512-nGVRGEaGr9jbCmmE5CEkjHYFVGHqeUaRsRhzGUGcd+UEfR0pQaiyIlir7WJys4LA7gQd/lv204Lhi8or1DnaGQ==}
+  /rollup-plugin-esbuild/4.9.3_g2b53jqudjimruv6spqg4ieafm:
+    resolution: {integrity: sha512-bxfUNYTa9Tw/4kdFfT9gtidDtqXyRdCW11ctZM7D8houCCVqp5qHzQF7hhIr31rqMA0APbG47fgVbbCGXgM49Q==}
     engines: {node: '>=12'}
     peerDependencies:
       esbuild: '>=0.10.1'
