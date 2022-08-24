@@ -1,8 +1,9 @@
 #!/bin/bash
-#
-# Wrapper script to run the trackx-cli tool.
-
 set -Eeuo pipefail
+
+# Wrapper to run the trackx-cli tool.
+
+# TODO: Document this script and its use
 
 CONFIG_PATH=/opt/trackx/etc/trackx.config.js
 TRACKX_DB_DIR=/opt/trackx/var/db

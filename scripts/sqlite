@@ -1,19 +1,23 @@
 #!/bin/bash
-#
-# Wrapper script to enter an SQLite CLI session with the TrackX database.
-
-# TODO: Get database name from trackx.config.js
-# TODO: Document this script and its use
-
 set -Eeuo pipefail
 
+# Wrapper to enter an SQLite CLI session with the TrackX database.
+
+# TODO: Document this script and its use
+
 TRACKX_DB_DIR=/opt/trackx/var/db
-TRACKX_DB_FILE=trackx.db
 DOCKER_IMAGE=trackx-api
+
+db_path=$(
+  docker exec \
+    --user nodejs:nodejs \
+    trackx-api \
+    /usr/bin/node --eval="const config=require(process.env.CONFIG_PATH); console.log(require('path').resolve(config.ROOT_DIR, config.DB_PATH));"
+)
 
 docker run \
   --rm \
   --interactive \
   --tty \
-  --mount type=bind,src="$TRACKX_DB_DIR",dst=/data \
-  "$DOCKER_IMAGE" sqlite3 "/data/${TRACKX_DB_FILE}"
+  --mount type=bind,src="$TRACKX_DB_DIR",dst=/data/db \
+  "$DOCKER_IMAGE" sqlite3 "${db_path}"
