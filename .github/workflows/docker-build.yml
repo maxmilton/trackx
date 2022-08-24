@@ -1,12 +1,12 @@
 name: Docker build
 on:
   push:
-    branches:
-      - master
+    branches: [master, dev]
   pull_request:
-    branches:
-      - master
+    branches: [master, dev]
     paths:
+      - .github/workflows/docker-build.yml
+      - .github/workflows/test-docker.sh
       - packages/trackx-api/Dockerfile
       - scripts/build
 jobs:
