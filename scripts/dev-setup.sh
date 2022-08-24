@@ -1,8 +1,10 @@
 #!/bin/bash
-#
-# Set up the environment for development.
-
 set -Eeuo pipefail
+
+# Set up the environment for development:
+#  1. Install node dependencies.
+#  2. Run a build of all packages.
+#  3. Run trackx CLI install; set up and check the database.
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
