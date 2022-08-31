@@ -144,7 +144,7 @@ importers:
       source-map: 0.7.4
       source-map-support: 0.5.21
       totalist: 3.0.0
-      tough-cookie: 4.1.0
+      tough-cookie: 4.1.2
       trackx: workspace:*
       ua-parser-js: 1.0.2
       xxhash-addon: 2.0.1
@@ -158,7 +158,7 @@ importers:
       kleur: 4.1.5
       nanoid: 4.0.0
       polka: 1.0.0-next.22
-      tough-cookie: 4.1.0
+      tough-cookie: 4.1.2
       trackx: link:../trackx
       ua-parser-js: 1.0.2
       xxhash-addon: 2.0.1
@@ -5996,6 +5996,17 @@ packages:
       punycode: 2.1.1
       universalify: 0.2.0
       url-parse: 1.5.10
+    dev: true
+
+  /tough-cookie/4.1.2:
+    resolution: {integrity: sha512-G9fqXWoYFZgTc2z8Q5zaHy/vJMjm+WV0AkAeHxVCQiEB1b+dGvWzFW6QV07cY5jQ5gRkeid2qIkzkxUnmoQZUQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      psl: 1.9.0
+      punycode: 2.1.1
+      universalify: 0.2.0
+      url-parse: 1.5.10
+    dev: false
 
   /tr46/1.0.1:
     resolution: {integrity: sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==}
