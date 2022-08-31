@@ -23,7 +23,7 @@
     "@typescript-eslint/eslint-plugin": "5.34.0",
     "@typescript-eslint/parser": "5.34.0",
     "babel-preset-solid": "1.4.8",
-    "esbuild": "0.15.5",
+    "esbuild": "0.15.6",
     "eslint": "8.23.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
