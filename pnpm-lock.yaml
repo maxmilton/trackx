@@ -15,7 +15,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.36.1
       '@typescript-eslint/parser': 5.36.1
-      babel-preset-solid: 1.4.8
+      babel-preset-solid: 1.5.4
       esbuild: 0.15.6
       eslint: 8.23.0
       eslint-config-airbnb-base: 15.0.0
@@ -32,7 +32,7 @@ importers:
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
       prettier-plugin-sql: 0.12.0
-      solid-js: 1.4.8
+      solid-js: 1.5.4
       solid-testing-library: 0.3.0
       stylelint: 14.11.0
       stylelint-config-standard: 28.0.0
@@ -49,7 +49,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
       '@typescript-eslint/parser': 5.36.1_yqf6kl63nyoq5megxukfnom5rm
-      babel-preset-solid: 1.4.8_@babel+core@7.18.13
+      babel-preset-solid: 1.5.4_@babel+core@7.18.13
       esbuild: 0.15.6
       eslint: 8.23.0
       eslint-config-airbnb-base: 15.0.0_faomjyrlgqmwswvqymymzkxcqi
@@ -66,8 +66,8 @@ importers:
       prettier-plugin-pkg: 0.17.1_prettier@2.7.1
       prettier-plugin-sh: 0.12.8_prettier@2.7.1
       prettier-plugin-sql: 0.12.0_prettier@2.7.1
-      solid-js: 1.4.8
-      solid-testing-library: 0.3.0_solid-js@1.4.8
+      solid-js: 1.5.4
+      solid-testing-library: 0.3.0_solid-js@1.5.4
       stylelint: 14.11.0
       stylelint-config-standard: 28.0.0_stylelint@14.11.0
       typescript: 4.8.2
@@ -77,9 +77,9 @@ importers:
 
   packages/icons:
     specifiers:
-      solid-js: 1.4.8
+      solid-js: 1.5.4
     devDependencies:
-      solid-js: 1.4.8
+      solid-js: 1.5.4
 
   packages/reltime:
     specifiers: {}
@@ -218,15 +218,15 @@ importers:
       rollup-plugin-esbuild: 4.10.1
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.8.0
-      solid-js: 1.4.8
+      solid-js: 1.5.4
       trackx: workspace:*
       uplot: 1.6.22
     dependencies:
       '@ekscss/framework': 0.0.41_ekscss@0.0.13
-      '@maxmilton/solid-router': 0.3.1_solid-js@1.4.8
+      '@maxmilton/solid-router': 0.3.1_solid-js@1.5.4
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
-      solid-js: 1.4.8
+      solid-js: 1.5.4
       trackx: link:../trackx
       uplot: 1.6.22
     devDependencies:
@@ -1145,14 +1145,14 @@ packages:
       source-map: 0.7.4
     dev: true
 
-  /@maxmilton/solid-router/0.3.1_solid-js@1.4.8:
+  /@maxmilton/solid-router/0.3.1_solid-js@1.5.4:
     resolution: {integrity: sha512-Jmc1ZKiV9SJpdQ4k8cWKf6psK2lBHlgGLI3cNogAfEC2t6dp+qaIhAoYxWtSfV3FzaI3IAQfFz5cNsc6Az14hw==}
     peerDependencies:
       solid-js: ^1.1.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.1
-      solid-js: 1.4.8
+      solid-js: 1.5.4
     dev: false
 
   /@maxmilton/stylelint-config/0.0.10_stylelint@14.11.0:
@@ -2015,8 +2015,8 @@ packages:
       '@types/babel__traverse': 7.18.1
     dev: true
 
-  /babel-plugin-jsx-dom-expressions/0.33.14_@babel+core@7.18.13:
-    resolution: {integrity: sha512-91T8uEz6Wb42bUm5vxRBawY05fBHiwUxah/xWBimuWpH3nf7E0KJ0Wm/s8R7lxRIZzwGCILv1IBlUCqA50WOVw==}
+  /babel-plugin-jsx-dom-expressions/0.34.5_@babel+core@7.18.13:
+    resolution: {integrity: sha512-2smF8V/kd490yWqucLnWT9vQXBvCAx8Kf0wi2HD5LtO5VeLOArjn75oaaYnlazcyR/sdmef6WEsFG5Lnh5o/eA==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -2058,13 +2058,13 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.18.13
     dev: true
 
-  /babel-preset-solid/1.4.8_@babel+core@7.18.13:
-    resolution: {integrity: sha512-Qv1yoE7yIux68egUsUUEV26t7B0KLNyXKz1MTk89GJDc6mt+2s7+lDVr4tXa29PTZ/hXDTu2uLbEN/1OtmFFBg==}
+  /babel-preset-solid/1.5.4_@babel+core@7.18.13:
+    resolution: {integrity: sha512-pangM+KhBx8J6gRHiaRO4yD/J5gK3sydX+TIoC1TaYjxtVV78GIHRtg/HHtCAfg/iRQCJyiGR9TrN0brG8eDZA==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.18.13
-      babel-plugin-jsx-dom-expressions: 0.33.14_@babel+core@7.18.13
+      babel-plugin-jsx-dom-expressions: 0.34.5_@babel+core@7.18.13
     dev: true
 
   /balanced-match/1.0.2:
@@ -2397,6 +2397,9 @@ packages:
     dependencies:
       cssom: 0.3.8
     dev: true
+
+  /csstype/3.1.0:
+    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -5604,17 +5607,19 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js/1.4.8:
-    resolution: {integrity: sha512-XErZdnnYYXF7OwGSUAPcua2y5/ELB/c53zFCpWiEGqxTNoH1iQghzI8EsHJXk06sNn+Z/TGhb8bPDNNGSgimag==}
+  /solid-js/1.5.4:
+    resolution: {integrity: sha512-+65anSHhH27htkhP5LuC912fviMIckgc7/yN+WWrKhS9Kp3dvtDNl5/m4GWX1lpCvcubjShqJjGt16HET5z5Ig==}
+    dependencies:
+      csstype: 3.1.0
 
-  /solid-testing-library/0.3.0_solid-js@1.4.8:
+  /solid-testing-library/0.3.0_solid-js@1.5.4:
     resolution: {integrity: sha512-6NWVbySNVzyReBm2N6p3eF8bzxRZXHZTAmPix4vFWYol16QWVjNQsEUxvr+ZOutb0yuMZmNuGx3b6WIJYmjwMQ==}
     engines: {node: '>= 14'}
     peerDependencies:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 7.31.2
-      solid-js: 1.4.8
+      solid-js: 1.5.4
     dev: true
 
   /source-map-js/1.0.2:
