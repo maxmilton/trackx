@@ -381,6 +381,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                   <Show
                     when={state.validationError}
                     children={renderErrorAlert}
+                    keyed
                   />
 
                   <div class="mt4">
@@ -422,7 +423,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                 Generate new key
               </button>
 
-              <Show when={state.showConfirmNewKey}>
+              <Show when={state.showConfirmNewKey} keyed>
                 <Dialog onClose={() => setState({ showConfirmNewKey: false })}>
                   <h2 class="mt0">
                     Generate new key for <strong>{props.params.name}</strong>?
@@ -462,7 +463,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                 Delete project
               </button>
 
-              <Show when={state.showConfirmRemove}>
+              <Show when={state.showConfirmRemove} keyed>
                 <Dialog onClose={() => setState({ showConfirmRemove: false })}>
                   <h2 class="mt0">
                     Delete project <strong>{props.params.name}</strong>?

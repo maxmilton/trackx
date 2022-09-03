@@ -45,7 +45,7 @@ export const Nav: Component = () => {
         >
           <IconDotsVertical />
         </button>
-        <Show when={showSubnav()}>
+        <Show when={showSubnav()} keyed>
           <div id="subnav" class="pos-a r0">
             <NavLink href="/stats" class="nav-item">
               Stats
