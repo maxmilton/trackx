@@ -87,11 +87,11 @@ const StatsPage: RouteComponent = () => {
       <h1>Stats</h1>
 
       <Switch fallback={<p class="danger">Failed to load stats</p>}>
-        <Match when={stats.error} children={renderErrorAlert} />
+        <Match when={stats.error} children={renderErrorAlert} keyed />
         <Match when={stats.loading}>
           <Loading />
         </Match>
-        <Match when={stats()}>
+        <Match when={stats()} keyed>
           {(data) => (
             <div class="df f-col ns-f-row">
               <div class="m-mr4 l-mr5">
@@ -170,11 +170,12 @@ const StatsPage: RouteComponent = () => {
                         <Match
                           when={dbStats.error}
                           children={renderErrorAlert}
+                          keyed
                         />
                         <Match when={dbStats.loading}>
                           <Loading />
                         </Match>
-                        <Match when={dbStats()}>
+                        <Match when={dbStats()} keyed>
                           {(data2) => (
                             <>
                               <p class="wsn">

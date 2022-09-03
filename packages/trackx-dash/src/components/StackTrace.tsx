@@ -72,7 +72,7 @@ export const StackFrame: Component<StackFrameProps> = (props) => {
         </button>
       </div>
       {props.source && (
-        <Show when={expanded()}>
+        <Show when={expanded()} keyed>
           {/*
           // @ts-expect-error - FIXME! */}
           <ol class="frame-code code" start={props.start}>

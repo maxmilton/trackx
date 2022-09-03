@@ -60,11 +60,11 @@ const ProjectInstallPage: RouteComponent = (props) => {
       <h1>Install</h1>
 
       <Switch fallback={<p class="danger">Failed to load project</p>}>
-        <Match when={project.error} children={renderErrorAlert} />
+        <Match when={project.error} children={renderErrorAlert} keyed />
         <Match when={project.loading}>
           <Loading />
         </Match>
-        <Match when={project()}>
+        <Match when={project()} keyed>
           {(projectData) => (
             <>
               {/* <h2>TrackX Script Installation</h2> */}

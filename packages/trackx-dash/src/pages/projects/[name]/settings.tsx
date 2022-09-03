@@ -284,16 +284,16 @@ const ProjectSettingsPage: RouteComponent = (props) => {
         <span class="text fwm">Settings</span>
       </div>
 
-      <Show when={state.error} children={renderErrorAlert} />
+      <Show when={state.error} children={renderErrorAlert} keyed />
 
       <h1>Project Settings</h1>
 
       <Switch fallback={<p class="danger">Failed to load project</p>}>
-        <Match when={project.error} children={renderErrorAlert} />
+        <Match when={project.error} children={renderErrorAlert} keyed />
         <Match when={project.loading}>
           <Loading />
         </Match>
-        <Match when={project()}>
+        <Match when={project()} keyed>
           {/* TODO: projectData is never used since state is updated after
           data fetch... could this be implemented better? */}
           {(projectData) => (
@@ -381,6 +381,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                   <Show
                     when={state.validationError}
                     children={renderErrorAlert}
+                    keyed
                   />
 
                   <div class="mt4">
@@ -422,7 +423,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                 Generate new key
               </button>
 
-              <Show when={state.showConfirmNewKey}>
+              <Show when={state.showConfirmNewKey} keyed>
                 <Dialog onClose={() => setState({ showConfirmNewKey: false })}>
                   <h2 class="mt0">
                     Generate new key for <strong>{props.params.name}</strong>?
@@ -462,7 +463,7 @@ const ProjectSettingsPage: RouteComponent = (props) => {
                 Delete project
               </button>
 
-              <Show when={state.showConfirmRemove}>
+              <Show when={state.showConfirmRemove} keyed>
                 <Dialog onClose={() => setState({ showConfirmRemove: false })}>
                   <h2 class="mt0">
                     Delete project <strong>{props.params.name}</strong>?

@@ -178,7 +178,7 @@ const NewProjectPage: RouteComponent = () => {
         <span class="text fwm">New</span>
       </div>
 
-      <Show when={state.error} children={renderErrorAlert} />
+      <Show when={state.error} children={renderErrorAlert} keyed />
 
       <h1>Create New Project</h1>
 
@@ -261,7 +261,11 @@ const NewProjectPage: RouteComponent = () => {
             </label>
           </div>
 
-          <Show when={state.validationError} children={renderErrorAlert} />
+          <Show
+            when={state.validationError}
+            children={renderErrorAlert}
+            keyed
+          />
 
           <div class="mt4">
             <button

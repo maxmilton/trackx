@@ -135,11 +135,11 @@ const LogsPage: RouteComponent = () => {
       <h1>Logs</h1>
 
       <Switch fallback={<p class="danger">Failed to load logs</p>}>
-        <Match when={logs.error} children={renderErrorAlert} />
+        <Match when={logs.error} children={renderErrorAlert} keyed />
         <Match when={logs.loading}>
           <Loading />
         </Match>
-        <Match when={logs()}>
+        <Match when={logs()} keyed>
           {(logsData) => (
             <>
               <h2>Denied Event Requests</h2>
