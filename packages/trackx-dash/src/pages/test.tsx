@@ -136,7 +136,7 @@ interface TestPageState {
   showLoading: boolean;
 }
 
-export const TestPage: RouteComponent = () => {
+const TestPage: RouteComponent = () => {
   const date1 = new Date();
   const date2 = new Date(date1);
   const daysAgo = 7;
