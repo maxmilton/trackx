@@ -284,16 +284,16 @@ const ProjectSettingsPage: RouteComponent = (props) => {
         <span class="text fwm">Settings</span>
       </div>
 
-      <Show when={state.error} children={renderErrorAlert} />
+      <Show when={state.error} children={renderErrorAlert} keyed />
 
       <h1>Project Settings</h1>
 
       <Switch fallback={<p class="danger">Failed to load project</p>}>
-        <Match when={project.error} children={renderErrorAlert} />
+        <Match when={project.error} children={renderErrorAlert} keyed />
         <Match when={project.loading}>
           <Loading />
         </Match>
-        <Match when={project()}>
+        <Match when={project()} keyed>
           {/* TODO: projectData is never used since state is updated after
           data fetch... could this be implemented better? */}
           {(projectData) => (

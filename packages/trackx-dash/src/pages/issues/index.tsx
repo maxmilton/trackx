@@ -166,7 +166,7 @@ const IssuesPage: RouteComponent = () => {
     <div class="con">
       <h1>Issues</h1>
 
-      <Show when={state.error} children={renderErrorAlert} />
+      <Show when={state.error} children={renderErrorAlert} keyed />
 
       {/*
         TODO: Should we add a note mentioning search supports advanced query
@@ -339,7 +339,7 @@ const IssuesPage: RouteComponent = () => {
         </thead>
         <tbody>
           <Switch fallback={<p class="danger">Failed to load issues</p>}>
-            <Match when={issues.error} children={renderErrorAlert} />
+            <Match when={issues.error} children={renderErrorAlert} keyed />
             <Match when={issues.loading}>
               <Loading />
             </Match>
@@ -350,7 +350,7 @@ const IssuesPage: RouteComponent = () => {
                 </td>
               </tr>
             </Match>
-            <Match when={issues()}>
+            <Match when={issues()} keyed>
               {(issuesData) => issuesData.map((row) => (
                   <tr>
                     <td>

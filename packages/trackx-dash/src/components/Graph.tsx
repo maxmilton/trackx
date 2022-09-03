@@ -150,11 +150,11 @@ export const Sparkline: Component<SparklineProps> = (props) => {
 
   return (
     <Switch fallback={<p class="danger">Failed to load graph data</p>}>
-      <Match when={data.error} children={renderErrorAlert} />
+      <Match when={data.error} children={renderErrorAlert} keyed />
       <Match when={data.loading}>
         <Loading />
       </Match>
-      <Match when={data()}>
+      <Match when={data()} keyed>
         {(dataSet) => (
           <Graph
             data={dataSet}

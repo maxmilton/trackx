@@ -282,10 +282,10 @@ const IssuePage: RouteComponent = (props) => {
         <span class="text fwm" textContent={`#${props.params.id}`} />
       </div>
 
-      <Show when={state.error} children={renderErrorAlert} />
+      <Show when={state.error} children={renderErrorAlert} keyed />
 
       <Switch fallback={<p class="danger">Failed to load issue</p>}>
-        <Match when={issue.error} children={renderErrorAlert} />
+        <Match when={issue.error} children={renderErrorAlert} keyed />
         <Match when={issue.loading}>
           <Loading />
         </Match>
@@ -404,11 +404,11 @@ const IssuePage: RouteComponent = (props) => {
         <div class="issue-main w100">
           <div class="ns-card-body card mt3 mh-3 ns-mh0 pa3">
             <Switch fallback={<p class="danger">Failed to load event</p>}>
-              <Match when={event.error} children={renderErrorAlert} />
+              <Match when={event.error} children={renderErrorAlert} keyed />
               <Match when={event.loading}>
                 <Loading />
               </Match>
-              <Match when={event()}>
+              <Match when={event()} keyed>
                 {(eventData) => (
                   <>
                     <h2 class="mt0">

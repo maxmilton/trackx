@@ -305,11 +305,11 @@ const ProjectPage: RouteComponent = (props) => {
         </div>
 
         <Switch fallback={<p class="danger">Failed to load sessions</p>}>
-          <Match when={sessions.error} children={renderErrorAlert} />
+          <Match when={sessions.error} children={renderErrorAlert} keyed />
           <Match when={sessions.loading}>
             <Loading />
           </Match>
-          <Match when={sessions()}>
+          <Match when={sessions()} keyed>
             {(sessionsData) => (
               <>
                 <SessionPeriodInfo data={sessionsData.period} />
@@ -365,11 +365,11 @@ const ProjectPage: RouteComponent = (props) => {
       </div>
 
       <Switch fallback={<p class="danger">Failed to load project</p>}>
-        <Match when={project.error} children={renderErrorAlert} />
+        <Match when={project.error} children={renderErrorAlert} keyed />
         <Match when={project.loading}>
           <Loading />
         </Match>
-        <Match when={project()}>
+        <Match when={project()} keyed>
           {(projectData) => (
             <div class="l-df">
               <div class="card l-w50 mt3 mh-3 ns-mh0 l-mr3 pa3">

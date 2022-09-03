@@ -84,11 +84,11 @@ const ProjectsPage: RouteComponent = () => {
       </div>
 
       <Switch fallback={<p class="danger">Failed to load projects</p>}>
-        <Match when={projects.error} children={renderErrorAlert} />
+        <Match when={projects.error} children={renderErrorAlert} keyed />
         <Match when={projects.loading}>
           <Loading />
         </Match>
-        <Match when={projects()}>
+        <Match when={projects()} keyed>
           {(projectsData) => (
             <>
               <div class="mb3 tr">
