@@ -31,7 +31,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
-      prettier-plugin-sql: 0.12.0
+      prettier-plugin-sql: 0.12.1
       solid-js: 1.5.4
       solid-testing-library: 0.3.0
       stylelint: 14.11.0
@@ -65,7 +65,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-pkg: 0.17.1_prettier@2.7.1
       prettier-plugin-sh: 0.12.8_prettier@2.7.1
-      prettier-plugin-sql: 0.12.0_prettier@2.7.1
+      prettier-plugin-sql: 0.12.1_prettier@2.7.1
       solid-js: 1.5.4
       solid-testing-library: 0.3.0_solid-js@1.5.4
       stylelint: 14.11.0
@@ -5249,8 +5249,8 @@ packages:
       synckit: 0.8.4
     dev: true
 
-  /prettier-plugin-sql/0.12.0_prettier@2.7.1:
-    resolution: {integrity: sha512-n7gfwo32RiatbxgQTM8sFYyjvwD0ibL/0Eiluwjk4QYyqGazh1IhDaRl0yX344CTFsU7Zah1q9U7KBuY8/MjwA==}
+  /prettier-plugin-sql/0.12.1_prettier@2.7.1:
+    resolution: {integrity: sha512-2z0pMmQEC61Xywerw2FJFpEIaA9lJUjB5mj+9dfRU8HkU7iICFrIizpMjSSDMoGkhh5W+IRROVgLlgRdpphI7g==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
