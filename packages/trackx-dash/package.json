@@ -16,14 +16,14 @@
     "@maxmilton/solid-router": "0.3.2",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
-    "solid-js": "1.5.4",
+    "solid-js": "1.5.5",
     "trackx": "workspace:*",
     "uplot": "1.6.22"
   },
   "devDependencies": {
-    "@babel/core": "7.19.0",
+    "@babel/core": "7.19.1",
     "@ekscss/rollup-plugin-purgecss": "0.0.5",
-    "@maxmilton/rollup-plugin-css": "0.0.4",
+    "@maxmilton/rollup-plugin-css": "0.0.5",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-buble": "0.21.3",
     "@rollup/plugin-commonjs": "22.0.2",

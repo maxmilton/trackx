@@ -1,7 +1,6 @@
 // eslint-disable-next-line max-len
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, import/no-extraneous-dependencies, no-console, no-param-reassign, no-restricted-syntax, no-bitwise */
 
-import * as pcss from '@parcel/css';
 import esbuild from 'esbuild';
 import {
   decodeUTF8,
@@ -11,6 +10,7 @@ import {
 } from 'esbuild-minify-templates';
 import { xcss } from 'esbuild-plugin-ekscss';
 import { gitHash, isDirty } from 'git-ref';
+import * as lightningcss from 'lightningcss';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -150,6 +150,7 @@ const minifyCSS = {
         const outHTML = findOutputFile(result.outputFiles, '.html');
         const outJS = findOutputFile(result.outputFiles, '.js');
         const outCSS = findOutputFile(result.outputFiles, '.css');
+        const outCSSMap = findOutputFile(result.outputFiles, '.css.map');
 
         const purged = await new PurgeCSS().purge({
           content: [
@@ -157,13 +158,14 @@ const minifyCSS = {
             { extension: '.js', raw: decodeUTF8(outJS.file.contents) },
           ],
           css: [{ raw: decodeUTF8(outCSS.file.contents) }],
+          sourceMap: outCSSMap.index !== -1,
           safelist: ['html', 'body'],
         });
-        const minified = pcss.transform({
+        const minified = lightningcss.transform({
           filename: outCSS.file.path,
           code: Buffer.from(purged[0].css),
           minify: true,
-          sourceMap: dev,
+          sourceMap: outCSSMap.index !== -1,
           targets: {
             chrome: 60 << 16,
             edge: 79 << 16,
@@ -176,6 +178,11 @@ const minifyCSS = {
           console.error('CSS WARNING:', warning.message);
         }
 
+        if (outCSSMap.index !== -1 && minified.map) {
+          result.outputFiles[outCSSMap.index].contents = encodeUTF8(
+            minified.map.toString(),
+          );
+        }
         result.outputFiles[outCSS.index].contents = encodeUTF8(
           minified.code.toString(),
         );
