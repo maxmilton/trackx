@@ -251,7 +251,7 @@ importers:
   packages/trackx-login:
     specifiers:
       '@ekscss/framework': 0.0.41
-      '@parcel/css': 1.13.1
+      '@parcel/css': 1.14.0
       ekscss: 0.0.13
       esbuild: 0.15.7
       esbuild-minify-templates: 0.9.2
@@ -263,7 +263,7 @@ importers:
     dependencies:
       '@ekscss/framework': 0.0.41_ekscss@0.0.13
     devDependencies:
-      '@parcel/css': 1.13.1
+      '@parcel/css': 1.14.0
       ekscss: 0.0.13
       esbuild: 0.15.7
       esbuild-minify-templates: 0.9.2_esbuild@0.15.7
@@ -1340,6 +1340,13 @@ packages:
       '@parcel/css-linux-x64-gnu': 1.13.1
       '@parcel/css-linux-x64-musl': 1.13.1
       '@parcel/css-win32-x64-msvc': 1.13.1
+    dev: true
+
+  /@parcel/css/1.14.0:
+    resolution: {integrity: sha512-r5tJWe6NF6lesfPw1N3g7N7WUKpHqi2ONnw9wl5ccSGGIxkmgcPaPQxfvmhdjXvQnktSuIOR0HjQXVXu+/en/w==}
+    engines: {node: '>= 12.0.0'}
+    dependencies:
+      lightningcss: 1.15.1
     dev: true
 
   /@pkgr/utils/2.3.1:
@@ -4641,6 +4648,94 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /lightningcss-darwin-arm64/1.15.1:
+    resolution: {integrity: sha512-4bqe9OCWzj8gPgwzpDK7TPopIoKx9CQMPVN83/+T5LVLkh9sSS0ltZLjAFI399GIkC6idl6rguUQ5qPeq4yxsQ==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-darwin-x64/1.15.1:
+    resolution: {integrity: sha512-1W7kt2Nd0lPFkZ5VzieJfs/ePVADysM3FS33HcUUzktE52vWL2B6S4ntWibHj6Ccg/lDH5o6GiLcCYwpOPLHug==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm-gnueabihf/1.15.1:
+    resolution: {integrity: sha512-8FijfM4HGJPCQPB9nAaTjdOE2PGQYE66t1wvV+SR915dEePn4yyRdCBJitlas5B6aTAE2AMwEuEl1i/pVDmkGw==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm64-gnu/1.15.1:
+    resolution: {integrity: sha512-ZhCv3MlApRTIwszlNQ2t7FST7qK+M1iP6apTvOetPwDlzOMZ5dcH0a1453JPm4CwOSzHZ8079gnb5EqtU4+pjg==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm64-musl/1.15.1:
+    resolution: {integrity: sha512-cGhslFivvMLSIsesZbEaUurXRJMGUftHukiY5DjWtXkA2iIqqV7TyK3j6ZJPy76hlRKsjU/WO8CrabAvr6kmsw==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-x64-gnu/1.15.1:
+    resolution: {integrity: sha512-uVfUgRUjq7laAR9A027oqGPcq72Y/hPVEEqb9agWzNqYvZyT0VAqNxp9g2ncL//gOD1vTwQntcwDhrI5VE2PCw==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-x64-musl/1.15.1:
+    resolution: {integrity: sha512-n2cRPHxL57N+YMsBodF9HogieOicmlQVUCFM+RF0FOzayA8LdypacNWI3EDzbERWfkBAWtx2eLvV50DOJrkQdg==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-win32-x64-msvc/1.15.1:
+    resolution: {integrity: sha512-wHGJZnCmHU14cL3mmVNZm1yDz55m8EKxwPhACZTq+/QOvLMeIXQ4qLvNzdvtVL5KESPwz4hjYsYsSNCtpcTfOA==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss/1.15.1:
+    resolution: {integrity: sha512-d4fqKl8sqpdM27OsseAbKKxhD2otiu6stS7yWlm/DA7wOQAIDKMu/dke54cEN8ED19v9H2pEzMPGTsRfnq3Rdg==}
+    engines: {node: '>= 12.0.0'}
+    dependencies:
+      detect-libc: 1.0.3
+    optionalDependencies:
+      lightningcss-darwin-arm64: 1.15.1
+      lightningcss-darwin-x64: 1.15.1
+      lightningcss-linux-arm-gnueabihf: 1.15.1
+      lightningcss-linux-arm64-gnu: 1.15.1
+      lightningcss-linux-arm64-musl: 1.15.1
+      lightningcss-linux-x64-gnu: 1.15.1
+      lightningcss-linux-x64-musl: 1.15.1
+      lightningcss-win32-x64-msvc: 1.15.1
     dev: true
 
   /lines-and-columns/1.2.4:
