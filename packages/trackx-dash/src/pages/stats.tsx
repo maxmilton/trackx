@@ -116,6 +116,10 @@ const StatsPage: RouteComponent = () => {
                   <span class="muted">)</span>
                 </p>
                 <p>{data.project_c.toLocaleString()} projects</p>
+                <p>
+                  {data.dash_session_c.toLocaleString()} active dash session
+                  {data.dash_session_c === 1 ? '' : 's'}
+                </p>
 
                 <hr />
 
@@ -128,12 +132,12 @@ const StatsPage: RouteComponent = () => {
                     ).toLocaleString()}
                     data-tooltip
                   >
-                    API up since {reltime(Date.now() - data.api_uptime * 1000)}
+                    API uptime:{' '}
+                    {reltime(Date.now() - data.api_uptime * 1000).replace(
+                      'ago',
+                      '',
+                    )}
                   </span>
-                </p>
-                <p>
-                  {data.dash_session_c.toLocaleString()} active dash session
-                  {data.dash_session_c === 1 ? '' : 's'}
                 </p>
 
                 {process.env.ENABLE_DB_TABLE_STATS && (
