@@ -11,7 +11,7 @@
     "test": "TZ=UTC jest --coverage"
   },
   "devDependencies": {
-    "@babel/core": "7.19.1",
+    "@babel/core": "7.19.3",
     "@babel/plugin-transform-modules-commonjs": "7.18.6",
     "@babel/preset-typescript": "7.18.6",
     "@maxmilton/stylelint-config": "0.0.10",
