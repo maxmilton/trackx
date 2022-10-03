@@ -46,6 +46,7 @@ module.exports = {
     'unicorn/prefer-set-has': OFF,
     'unicorn/prefer-top-level-await': WARN,
     'unicorn/prevent-abbreviations': OFF,
+    'unicorn/switch-case-braces': [ERROR, 'avoid'],
   },
   overrides: [
     {
