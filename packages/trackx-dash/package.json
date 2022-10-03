@@ -16,7 +16,7 @@
     "@maxmilton/solid-router": "0.3.2",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
-    "solid-js": "1.5.6",
+    "solid-js": "1.5.7",
     "trackx": "workspace:*",
     "uplot": "1.6.22"
   },
@@ -31,7 +31,7 @@
     "@rollup/plugin-node-resolve": "14.1.0",
     "@rollup/plugin-replace": "4.0.0",
     "ekscss": "0.0.13",
-    "esbuild": "0.15.9",
+    "esbuild": "0.15.10",
     "git-ref": "0.3.1",
     "rollup": "2.79.1",
     "rollup-plugin-ekscss": "0.0.10",

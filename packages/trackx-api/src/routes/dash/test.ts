@@ -68,72 +68,59 @@ export const get: Middleware = async (req, res, next) => {
     logger.log('STARTING TEST ERROR');
 
     switch (type) {
-      case 'timeout': {
+      case 'timeout':
         setTimeout(() => {
           throw new TestError('Internal test exception setTimeout throw');
         }, 100);
         break;
-      }
-      case 'reject1': {
+      case 'reject1':
         void Promise.reject(
           new TestError('Internal test exception promise reject Error'),
         );
         break;
-      }
-      case 'reject2': {
+      case 'reject2':
         // eslint-disable-next-line prefer-promise-reject-errors
         void Promise.reject('Internal test exception promise reject string');
         break;
-      }
-      case 'reject3': {
+      case 'reject3':
         // eslint-disable-next-line prefer-promise-reject-errors
         void Promise.reject({ test: true });
         break;
-      }
-      case 'reject4': {
+      case 'reject4':
         // eslint-disable-next-line prefer-promise-reject-errors
         void Promise.reject(null);
         break;
-      }
-      case 'console1': {
+      case 'console1':
         // eslint-disable-next-line no-console
         console.error('Internal console error string');
         break;
-      }
-      case 'console2': {
+      case 'console2':
         // eslint-disable-next-line no-console
         console.error(new Error('Internal console error Error'));
         break;
-      }
-      case 'console3': {
+      case 'console3':
         // eslint-disable-next-line no-console
         console.error(null);
         break;
-      }
-      case 'logger1': {
+      case 'logger1':
         logger.error('Internal logger error string');
         break;
-      }
-      case 'logger2': {
+      case 'logger2':
         logger.error(new Error('Internal logger error Error'));
         break;
-      }
-      case 'logger3': {
+      case 'logger3':
         // @ts-expect-error - wrong type on purpose
         logger.error(null);
         break;
-      }
-      case 'throw': {
+      case 'throw':
         throw new TestError('Internal test exception throw Error');
-      }
-      default: {
+      default:
         for (let index = 0; index < countValue; index++) {
           sendEvent(new TestError('Internal test exception sendEvent'));
           if (index % (countValue / 10) === 0) logger.log(`${index}`);
           // eslint-disable-next-line no-await-in-loop
           await sleep(0);
         }
-      }
     }
 
     logger.log(`FINISHED TEST ERROR (${countValue} times)`);
