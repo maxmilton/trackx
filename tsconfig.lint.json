@@ -5,6 +5,7 @@
     "**/dist",
     "**/node_modules",
     "coverage",
+    "./packages/trackx/plugins",
     "./packages/trackx/compat.*",
     "./packages/trackx/default.*",
     "./packages/trackx/extended.*",

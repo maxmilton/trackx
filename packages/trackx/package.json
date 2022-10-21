@@ -39,6 +39,21 @@
       "require": "./node.js",
       "types": "./node.d.ts"
     },
+    "./plugins/details": {
+      "import": "./plugins/details.mjs",
+      "require": "./plugins/details.js",
+      "types": "./plugins/details.d.ts"
+    },
+    "./plugins/details-node": {
+      "import": "./plugins/details-node.mjs",
+      "require": "./plugins/details-node.js",
+      "types": "./plugins/details-node.d.ts"
+    },
+    "./plugins/browser": {
+      "import": "./plugins/browser.mjs",
+      "require": "./plugins/browser.js",
+      "types": "./plugins/browser.d.ts"
+    },
     "./types": "./types.ts",
     "./package.json": "./package.json"
   },
@@ -51,6 +66,7 @@
     "lite.*",
     "modern.*",
     "node.*",
+    "plugins",
     "types.ts"
   ],
   "keywords": [
@@ -66,7 +82,7 @@
   "scripts": {
     "build": "pnpm run prebuild && rollup -c",
     "dev": "rollup -c -w",
-    "prebuild": "rm -rf compat.* default.* extended.* lite.* modern.* node.* || true"
+    "prebuild": "rm -rf plugins compat.* default.* extended.* lite.* modern.* node.* || true"
   },
   "dependencies": {
     "@ungap/global-this": "^0.4.4"
