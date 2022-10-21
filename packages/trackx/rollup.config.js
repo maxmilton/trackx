@@ -231,6 +231,98 @@ export default [
       resolve(),
       esbuild({
         minify: !dev,
+        platform: 'node',
+        target: 'node8',
+      }),
+    ],
+  },
+
+  {
+    input: 'src/plugins/browser.ts',
+    output: [
+      {
+        file: 'plugins/browser.js',
+        format: 'iife',
+        sourcemap: true,
+        name: 'trackxBrowser',
+        esModule: false,
+      },
+      {
+        file: 'plugins/browser.mjs',
+        format: 'es',
+        sourcemap: true,
+      },
+    ],
+    external: ['trackx/types'],
+    plugins: [
+      commonjs(),
+      resolve(),
+      esbuild({
+        target: 'es2015',
+      }),
+      !dev
+        && terser({
+          compress: {
+            comparisons: false,
+          },
+        }),
+      buble(),
+    ],
+  },
+
+  {
+    input: 'src/plugins/details.ts',
+    output: [
+      {
+        file: 'plugins/details.js',
+        format: 'iife',
+        sourcemap: true,
+        name: 'trackxDetails',
+        esModule: false,
+      },
+      {
+        file: 'plugins/details.mjs',
+        format: 'es',
+        sourcemap: true,
+      },
+    ],
+    external: ['trackx/types'],
+    plugins: [
+      commonjs(),
+      resolve(),
+      esbuild({
+        target: 'es2015',
+      }),
+      !dev
+        && terser({
+          compress: {
+            comparisons: false,
+          },
+        }),
+      buble(),
+    ],
+  },
+  {
+    input: 'src/plugins/details.ts',
+    output: [
+      {
+        file: 'plugins/details-node.js',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: 'plugins/details-node.mjs',
+        format: 'es',
+        sourcemap: true,
+      },
+    ],
+    external: ['trackx/types'],
+    plugins: [
+      commonjs(),
+      resolve(),
+      esbuild({
+        minify: !dev,
+        platform: 'node',
         target: 'node8',
       }),
     ],
@@ -269,6 +361,21 @@ export default [
   !dev && {
     input: './src/node.ts',
     output: [{ file: 'node.d.ts', format: 'es' }],
+    external: ['trackx/types'],
+    plugins: [dts()],
+  },
+  !dev && {
+    input: './src/plugins/browser.ts',
+    output: [{ file: 'plugins/browser.d.ts', format: 'es' }],
+    external: ['trackx/types'],
+    plugins: [dts()],
+  },
+  !dev && {
+    input: './src/plugins/details.ts',
+    output: [
+      { file: 'plugins/details.d.ts', format: 'es' },
+      { file: 'plugins/details-node.d.ts', format: 'es' },
+    ],
     external: ['trackx/types'],
     plugins: [dts()],
   },
