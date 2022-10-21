@@ -1,6 +1,6 @@
 {
   "name": "trackx",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Simple JavaScript exception tracking",
   "repository": "maxmilton/trackx",
   "homepage": "https://docs.trackx.app",
