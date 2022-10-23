@@ -104,7 +104,7 @@ importers:
       '@ungap/global-this': ^0.4.4
       esbuild: 0.15.12
       rollup: 2.79.1
-      rollup-plugin-dts: 4.2.2
+      rollup-plugin-dts: 5.0.0
       rollup-plugin-esbuild: 4.10.1
       rollup-plugin-terser: 7.0.2
       trackx: .
@@ -119,7 +119,7 @@ importers:
       '@types/ungap__global-this': 0.3.1
       esbuild: 0.15.12
       rollup: 2.79.1
-      rollup-plugin-dts: 4.2.2_gypgyaqhine6mwjfvh7icfhviq
+      rollup-plugin-dts: 5.0.0_gypgyaqhine6mwjfvh7icfhviq
       rollup-plugin-esbuild: 4.10.1_lecm7whau5ub3cwxpurr6hs4em
       rollup-plugin-terser: 7.0.2_rollup@2.79.1
       trackx: 'link:'
@@ -4675,6 +4675,13 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
+  /magic-string/0.26.7:
+    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
+    engines: {node: '>=12'}
+    dependencies:
+      sourcemap-codec: 1.4.8
+    dev: true
+
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -5515,14 +5522,14 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup-plugin-dts/4.2.2_gypgyaqhine6mwjfvh7icfhviq:
-    resolution: {integrity: sha512-A3g6Rogyko/PXeKoUlkjxkP++8UDVpgA7C+Tdl77Xj4fgEaIjPSnxRmR53EzvoYy97VMVwLAOcWJudaVAuxneQ==}
-    engines: {node: '>=v12.22.11'}
+  /rollup-plugin-dts/5.0.0_gypgyaqhine6mwjfvh7icfhviq:
+    resolution: {integrity: sha512-OO8ayCvuJCKaQSShyVTARxGurVVk4ulzbuvz+0zFd1f93vlnWFU5pBMT7HFeS6uj7MvvZLx4kUAarGATSU1+Ng==}
+    engines: {node: '>=v14'}
     peerDependencies:
-      rollup: ^2.55
+      rollup: ^3.0.0
       typescript: ^4.1
     dependencies:
-      magic-string: 0.26.5
+      magic-string: 0.26.7
       rollup: 2.79.1
       typescript: 4.8.4
     optionalDependencies:
