@@ -146,7 +146,7 @@ importers:
       totalist: 3.0.0
       tough-cookie: 4.1.2
       trackx: workspace:*
-      ua-parser-js: 1.0.2
+      ua-parser-js: 1.0.32
       xxhash-addon: 2.0.1
     dependencies:
       '@polka/parse': 1.0.0-next.21
@@ -160,7 +160,7 @@ importers:
       polka: 1.0.0-next.22
       tough-cookie: 4.1.2
       trackx: link:../trackx
-      ua-parser-js: 1.0.2
+      ua-parser-js: 1.0.32
       xxhash-addon: 2.0.1
     devDependencies:
       '@types/better-sqlite3': 7.6.2
@@ -6243,8 +6243,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ua-parser-js/1.0.2:
-    resolution: {integrity: sha512-00y/AXhx0/SsnI51fTc0rLRmafiGOM4/O+ny10Ps7f+j/b8p/ZY11ytMgznXkOVo4GQ+KwQG5UQLkLGirsACRg==}
+  /ua-parser-js/1.0.32:
+    resolution: {integrity: sha512-dXVsz3M4j+5tTiovFVyVqssXBu5HM47//YSOeZ9fQkdDKkfzv2v3PP1jmH6FUyPW+yCSn7aBVK1fGGKNhowdDA==}
     dev: false
 
   /unbox-primitive/1.0.2:
