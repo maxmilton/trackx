@@ -1,17 +1,18 @@
-import buble from '@rollup/plugin-buble';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import dts from 'rollup-plugin-dts';
-import esbuild from 'rollup-plugin-esbuild';
-import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const buble = require('@rollup/plugin-buble').default;
+const commonjs = require('@rollup/plugin-commonjs').default;
+const resolve = require('@rollup/plugin-node-resolve').default;
+const replace = require('@rollup/plugin-replace').default;
+const dts = require('rollup-plugin-dts').default;
+const esbuild = require('rollup-plugin-esbuild').default;
+const { terser } = require('rollup-plugin-terser');
+const pkg = require('./package.json');
 
 const dev = !!process.env.ROLLUP_WATCH;
 
 /** @type {import('rollup').RollupOptions[]} */
-// @ts-expect-error - TODO: Remove once rollup fixes types
-export default [
+module.exports = [
   {
     input: 'src/default.ts',
     output: [

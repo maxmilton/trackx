@@ -1,21 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-var-requires */
 
-import { getGlobals } from '@ekscss/framework/utils';
-import purgecss from '@ekscss/rollup-plugin-purgecss';
-import css from '@maxmilton/rollup-plugin-css';
-import { babel } from '@rollup/plugin-babel';
-import buble from '@rollup/plugin-buble';
-import commonjs from '@rollup/plugin-commonjs';
-import html, { makeHtmlAttributes } from '@rollup/plugin-html';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import { gitHash, isDirty } from 'git-ref';
-import xcss from 'rollup-plugin-ekscss';
-import esbuild from 'rollup-plugin-esbuild';
-import { terser } from 'rollup-plugin-terser';
-import { visualizer } from 'rollup-plugin-visualizer';
-import pkg from './package.json';
-import * as config from './trackx.config.mjs';
+const { getGlobals } = require('@ekscss/framework/utils');
+const purgecss = require('@ekscss/rollup-plugin-purgecss').default;
+const css = require('@maxmilton/rollup-plugin-css').default;
+const { babel } = require('@rollup/plugin-babel');
+const buble = require('@rollup/plugin-buble').default;
+const commonjs = require('@rollup/plugin-commonjs').default;
+const { default: html, makeHtmlAttributes } = require('@rollup/plugin-html');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const replace = require('@rollup/plugin-replace').default;
+const { gitHash, isDirty } = require('git-ref');
+const xcss = require('rollup-plugin-ekscss').default;
+const esbuild = require('rollup-plugin-esbuild').default;
+const { terser } = require('rollup-plugin-terser');
+const { visualizer } = require('rollup-plugin-visualizer');
+const pkg = require('./package.json');
+const xcssConfig = require('./xcss.config.cjs');
+
+const config = import('./trackx.config.mjs');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -108,8 +110,7 @@ const htmlTemplate = ({
 };
 
 /** @type {import('rollup').RollupOptions[]} */
-// @ts-expect-error - TODO: Remove line once rollup types are fixed
-export default [
+module.exports = async () => [
   // Web app
   {
     input: { app: 'src/index.ts' },
@@ -127,7 +128,9 @@ export default [
       format: 'esm',
       name: 'app',
       freeze: false,
-      preferConst: true,
+      generatedCode: {
+        constBindings: true,
+      },
       sourcemap: true,
       plugins: [
         !dev
@@ -145,13 +148,11 @@ export default [
       replace({
         'process.env.APP_RELEASE': JSON.stringify(release),
         'process.env.ENABLE_DB_TABLE_STATS': JSON.stringify(
-          config.ENABLE_DB_TABLE_STATS,
+          // eslint-disable-next-line unicorn/no-await-expression-member
+          (await config).ENABLE_DB_TABLE_STATS,
         ),
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.XCSS_GLOBALS': JSON.stringify(
-          // eslint-disable-next-line
-          getGlobals(require('./xcss.config.cjs')),
-        ),
+        'process.env.XCSS_GLOBALS': JSON.stringify(getGlobals(xcssConfig)),
         preventAssignment: true,
       }),
       commonjs(),
