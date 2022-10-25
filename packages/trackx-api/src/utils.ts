@@ -1,6 +1,5 @@
 import type { Database } from 'better-sqlite3';
 import { diary, enable } from 'diary';
-import { sprintf } from 'diary/utils';
 import { dim, red, yellow } from 'kleur/colors';
 import { customAlphabet } from 'nanoid';
 import crypto from 'node:crypto';
@@ -8,6 +7,7 @@ import fs from 'node:fs';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Server, Socket } from 'node:net';
 import path from 'node:path';
+import { format } from 'node:util';
 import type { Polka, Request } from 'polka';
 import type { Cookie } from 'tough-cookie';
 import { sendEvent } from 'trackx/node';
@@ -106,46 +106,41 @@ export const logger = diary('', (event) => {
     if (event.level === 'log' || event.level === 'debug') return;
   }
 
-  if (event.level === 'error' || event.level === 'fatal') {
-    sendEvent(
-      event.error || {
-        name: event.name,
-        message: [event.message, ...event.extra],
-      },
-      {
+  let message: string;
+  const error = event.messages[0];
+
+  if (error instanceof Error && typeof error.stack !== 'undefined') {
+    const stack = error.stack.split('\n');
+    stack.shift();
+    message = `${error.message}\n${stack.join('\n')}`;
+
+    if (event.level === 'error' || event.level === 'fatal') {
+      sendEvent(error, {
         via: 'logger',
         level: event.level,
-        status: (event.error as AppError)?.status,
-        details: (event.error as AppError)?.details,
-      },
-    );
+        status: (error as AppError).status,
+        details: (error as AppError).details,
+        extra: event.messages.length > 1 ? event.messages.slice(1) : undefined,
+      });
+    }
+  } else {
+    message = format(...event.messages);
+
+    if (event.level === 'error' || event.level === 'fatal') {
+      sendEvent(new Error(message), {
+        via: 'logger',
+        level: event.level,
+      });
+    }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    switch (event.level) {
-      case 'fatal':
-      case 'error':
-        if (event.error instanceof Error && event.error.stack) {
-          // eslint-disable-next-line no-param-reassign
-          event.message += event.error.stack.slice(
-            event.error.stack.indexOf('\n'),
-          );
-        }
-        break;
-      case 'debug':
-        // eslint-disable-next-line no-param-reassign
-        event.message = dim(event.message);
-        break;
-      default:
-        break;
-    }
+  if (process.env.NODE_ENV !== 'production' && event.level === 'debug') {
+    message = dim(message);
   }
 
   // eslint-disable-next-line no-console
   console[event.level === 'fatal' ? 'error' : event.level](
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/restrict-plus-operands
-    sprintf(logLevel[event.level] + event.message, ...event.extra),
+    logLevel[event.level] + message,
   );
 });
 export const sessions = new Map<string, Cookie>();
