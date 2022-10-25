@@ -109,7 +109,6 @@ export const get: Middleware = async (req, res, next) => {
         logger.error(new Error('Internal logger error Error'));
         break;
       case 'logger3':
-        // @ts-expect-error - wrong type on purpose
         logger.error(null);
         break;
       case 'throw':

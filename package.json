@@ -97,6 +97,7 @@
       "**/node_modules/**"
     ],
     "rules": {
+      "import-notation": null,
       "function-no-unknown": null
     }
   }
