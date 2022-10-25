@@ -371,7 +371,7 @@ add_header Report-To '{"max_age":604800,"endpoints":[{"url":"${
 add_header NEL '{"max_age":604800,"report_to":"default"}' always;
 add_header Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                       currentTab() === 0
-                        ? " script-src 'self' https://cdn.jsdelivr.net;"
+                        ? " script-src 'self' https://cdn.jsdelivr.net 'report-sample';"
                         : ''
                     } report-uri ${config.REPORT_API_BASE_URL}/${
                       projectData.key
@@ -398,11 +398,11 @@ Header set Report-To '{"max_age":604800,"endpoints":[{"url":"${
 Header set NEL '{"max_age":604800,"report_to":"default"}'
 Header set Content-Security-Policy "default-src 'self' ${apiOriginUri};${
                       currentTab() === 0
-                        ? " script-src 'self' https://cdn.jsdelivr.net;"
+                        ? " script-src 'self' https://cdn.jsdelivr.net 'report-sample';"
                         : ''
                     } report-uri ${config.REPORT_API_BASE_URL}/${
                       projectData.key
-                    }/report;`}
+                    }/report;"`}
                   </CodeBlock>
                 </>
                 <>
@@ -427,7 +427,7 @@ Header set Content-Security-Policy "default-src 'self' ${apiOriginUri};${
       <add name="NEL" value="{\\"max_age\\":604800,\\"report_to\\":\\"default\\"}" />
       <add name="Content-Security-Policy" value="default-src 'self' ${apiOriginUri};${
         currentTab() === 0
-          ? " script-src 'self' https://cdn.jsdelivr.net;"
+          ? " script-src 'self' https://cdn.jsdelivr.net 'report-sample';"
           : ''
       } report-uri ${config.REPORT_API_BASE_URL}/${
         projectData.key
