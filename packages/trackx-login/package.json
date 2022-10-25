@@ -11,7 +11,7 @@
     "prebuild": "rm -rf ../trackx-dash/dist/login*"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.41"
+    "@ekscss/framework": "0.0.42"
   },
   "devDependencies": {
     "ekscss": "0.0.13",
