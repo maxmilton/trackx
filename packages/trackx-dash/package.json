@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/core": "7.19.6",
     "@ekscss/rollup-plugin-purgecss": "0.0.5",
-    "@maxmilton/rollup-plugin-css": "0.0.5",
+    "@maxmilton/rollup-plugin-css": "0.0.7",
     "@rollup/plugin-babel": "6.0.2",
     "@rollup/plugin-buble": "1.0.1",
     "@rollup/plugin-commonjs": "23.0.2",
