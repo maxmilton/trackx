@@ -17,6 +17,7 @@ const { visualizer } = require('rollup-plugin-visualizer');
 const pkg = require('./package.json');
 const xcssConfig = require('./xcss.config.cjs');
 
+const viz = !!process.env.BUNDLE_VIZ;
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
@@ -115,7 +116,7 @@ const htmlTemplate = ({
     .replace(/\n\s+/g, '\n'); // remove leading whitespace
 };
 
-/** @type {import('rollup').RollupOptions[]} */
+/** @type {()=>Promise< import('rollup').RollupOptions[]>} */
 module.exports = async () => [
   // Error tracking
   {
@@ -224,8 +225,7 @@ module.exports = async () => [
         // @ts-expect-error - bad upstream types
         template: htmlTemplate,
       }),
-      process.env.BUNDLE_VIZ
-        && visualizer({ filename: 'dist/viz.html', brotliSize: true }),
+      viz && visualizer({ filename: 'dist/viz.html', brotliSize: true }),
     ],
     watch,
   },
