@@ -259,6 +259,7 @@ importers:
       lightningcss: 1.16.0
       purgecss: 5.0.0
       terser: 5.15.1
+      totalist: 3.0.0
       trackx-dash: workspace:*
     dependencies:
       '@ekscss/framework': 0.0.42_ekscss@0.0.13
@@ -271,6 +272,7 @@ importers:
       lightningcss: 1.16.0
       purgecss: 5.0.0
       terser: 5.15.1
+      totalist: 3.0.0
       trackx-dash: link:../trackx-dash
 
 packages:

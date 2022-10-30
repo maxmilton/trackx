@@ -1,3 +1,7 @@
+// TODO: If we add more utils, split this file up to prevent everything getting
+// bundled into the app.js entry file (which should be as small as possible; it
+// should only check the session then redirect or load the app).
+
 import * as config from '../trackx.config.mjs';
 
 export * as config from '../trackx.config.mjs';

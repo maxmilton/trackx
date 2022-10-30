@@ -17,12 +17,10 @@ const { visualizer } = require('rollup-plugin-visualizer');
 const pkg = require('./package.json');
 const xcssConfig = require('./xcss.config.cjs');
 
-const config = import('./trackx.config.mjs');
-
+const viz = !!process.env.BUNDLE_VIZ;
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-const hash = gitHash();
-const release = `v${pkg.version}-${hash}${isDirty() ? '-dev' : ''}`;
+const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
 const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs'];
 
@@ -62,6 +60,9 @@ const watch = {
   clearScreen: false,
 };
 
+/** @type {string} */
+let trackxBundleFilename;
+
 /** @param {import('@rollup/plugin-html').RollupHtmlTemplateOptions} opts */
 const htmlTemplate = ({
   attributes, files, publicPath, title,
@@ -82,6 +83,12 @@ const htmlTemplate = ({
     })
     .join('\n');
 
+  if (!trackxBundleFilename) {
+    throw new Error(
+      'trackxBundleFilename not set, likely a build race condition!',
+    );
+  }
+
   return `
   <!doctype html>
   <html${makeHtmlAttributes(attributes.html)}>
@@ -96,7 +103,7 @@ const htmlTemplate = ({
     <meta name=color-scheme content=dark>
     <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
     ${links}
-    <script src=/trackx.js?${hash} crossorigin></script>
+    <script src=/${trackxBundleFilename}></script>
     ${scripts}
   </head>
   <body class=dark>
@@ -109,8 +116,41 @@ const htmlTemplate = ({
     .replace(/\n\s+/g, '\n'); // remove leading whitespace
 };
 
-/** @type {import('rollup').RollupOptions[]} */
+/** @type {()=>Promise< import('rollup').RollupOptions[]>} */
 module.exports = async () => [
+  // Error tracking
+  {
+    input: 'src/trackx.ts',
+    output: {
+      entryFileNames: dev ? '[name].js' : '[name]-[hash].js',
+      dir: 'dist',
+      format: 'iife',
+      sourcemap: true,
+      name: 'trackx',
+      esModule: false,
+    },
+    plugins: [
+      {
+        name: 'extract-bundle-name',
+        generateBundle(_options, bundle) {
+          [trackxBundleFilename] = Object.keys(bundle);
+        },
+      },
+      replace({
+        'process.env.APP_RELEASE': JSON.stringify(release),
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        preventAssignment: true,
+      }),
+      nodeResolve(),
+      esbuild({
+        target: ['es2015'],
+        minify: !dev,
+      }),
+      !dev && buble(),
+    ],
+    watch,
+  },
+
   // Web app
   {
     input: { app: 'src/index.ts' },
@@ -129,7 +169,20 @@ module.exports = async () => [
       name: 'app',
       freeze: false,
       generatedCode: {
+        preset: 'es2015',
         constBindings: true,
+      },
+      manualChunks: {
+        // Ensure app bundle is self-contained
+        app: ['./src/index'],
+        // Force all non-page content code into a single chunk
+        runtime: [
+          '@maxmilton/solid-router',
+          '@trackx/reltime',
+          'solid-js', // includes nested paths like solid-js/web and solid-js/store
+          './src/components/ErrorAlert',
+          './src/runtime',
+        ],
       },
       sourcemap: true,
       plugins: [
@@ -149,7 +202,7 @@ module.exports = async () => [
         'process.env.APP_RELEASE': JSON.stringify(release),
         'process.env.ENABLE_DB_TABLE_STATS': JSON.stringify(
           // eslint-disable-next-line unicorn/no-await-expression-member
-          (await config).ENABLE_DB_TABLE_STATS,
+          (await import('./trackx.config.mjs')).ENABLE_DB_TABLE_STATS,
         ),
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.XCSS_GLOBALS': JSON.stringify(getGlobals(xcssConfig)),
@@ -172,34 +225,7 @@ module.exports = async () => [
         // @ts-expect-error - bad upstream types
         template: htmlTemplate,
       }),
-      process.env.BUNDLE_VIZ
-        && visualizer({ filename: 'dist/viz.html', brotliSize: true }),
-    ],
-    watch,
-  },
-
-  // Error tracking
-  {
-    input: 'src/trackx.ts',
-    output: {
-      file: 'dist/trackx.js',
-      format: 'iife',
-      sourcemap: true,
-      name: 'trackx',
-      esModule: false,
-    },
-    plugins: [
-      replace({
-        'process.env.APP_RELEASE': JSON.stringify(release),
-        'process.env.NODE_ENV': JSON.stringify(mode),
-        preventAssignment: true,
-      }),
-      nodeResolve(),
-      esbuild({
-        target: ['es2015'],
-        minify: !dev,
-      }),
-      !dev && buble(),
+      viz && visualizer({ filename: 'dist/viz.html', brotliSize: true }),
     ],
     watch,
   },
