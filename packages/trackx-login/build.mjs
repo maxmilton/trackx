@@ -16,6 +16,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PurgeCSS } from 'purgecss';
 import * as terser from 'terser';
+import { totalist } from 'totalist';
 import * as config from '../trackx-dash/trackx.config.mjs';
 
 // Workaround for no json import in ESM yet
@@ -59,8 +60,9 @@ const analyzeMeta = {
  *
  * @param {string} jsPath
  * @param {string} cssPath
+ * @param {string} trackxJSPath
  */
-function makeHTML(jsPath, cssPath) {
+function makeHTML(jsPath, cssPath, trackxJSPath) {
   return `
   <!doctype html>
   <html lang=en>
@@ -76,7 +78,7 @@ function makeHTML(jsPath, cssPath) {
     <meta name=referrer content=origin>
     <link href=https://fonts.gstatic.com rel=preconnect crossorigin>
     <link href=/${cssPath} rel=stylesheet>
-    <script src=/trackx.js?${hash} crossorigin></script>
+    <script src=/${trackxJSPath}></script>
     <script src=/${jsPath} defer></script>
   </head>
   <body class=dark>
@@ -115,10 +117,22 @@ const buildHTML = {
       if (result.outputFiles) {
         const outJS = findOutputFile(result.outputFiles, '.js');
         const outCSS = findOutputFile(result.outputFiles, '.css');
+        let trackxBundlePath;
+
+        await totalist(distPath, (filePath) => {
+          if (/^trackx.*\.js$/.test(filePath)) {
+            trackxBundlePath = filePath;
+          }
+        });
+
+        if (!trackxBundlePath) {
+          throw new Error('Could not find trackx JS bundle');
+        }
 
         const html = makeHTML(
           path.relative(distPath, outJS.file.path),
           path.relative(distPath, outCSS.file.path),
+          trackxBundlePath,
         );
 
         result.outputFiles[result.outputFiles.length] = {
@@ -131,7 +145,7 @@ const buildHTML = {
       } else {
         await fs.writeFile(
           path.join(distPath, 'login.html'),
-          makeHTML('login.js', 'login.css'),
+          makeHTML('login.js', 'login.css', 'trackx.js'),
           'utf8',
         );
       }
