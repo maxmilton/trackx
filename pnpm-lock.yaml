@@ -28,7 +28,7 @@ importers:
       jest: 29.3.1
       jest-environment-jsdom: 29.3.1
       jest-resolve: 29.3.1
-      prettier: 2.7.1
+      prettier: 2.8.0
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
       prettier-plugin-sql: 0.12.1
@@ -62,10 +62,10 @@ importers:
       jest: 29.3.1_@types+node@18.11.9
       jest-environment-jsdom: 29.3.1
       jest-resolve: 29.3.1
-      prettier: 2.7.1
-      prettier-plugin-pkg: 0.17.1_prettier@2.7.1
-      prettier-plugin-sh: 0.12.8_prettier@2.7.1
-      prettier-plugin-sql: 0.12.1_prettier@2.7.1
+      prettier: 2.8.0
+      prettier-plugin-pkg: 0.17.1_prettier@2.8.0
+      prettier-plugin-sh: 0.12.8_prettier@2.8.0
+      prettier-plugin-sql: 0.12.1_prettier@2.8.0
       solid-js: 1.6.2
       solid-testing-library: 0.5.0_solid-js@1.6.2
       stylelint: 14.15.0
@@ -5430,41 +5430,41 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.17.1_prettier@2.7.1:
+  /prettier-plugin-pkg/0.17.1_prettier@2.8.0:
     resolution: {integrity: sha512-XPRRMQR5oseJXdfK8kQDj2LCV1UjmTuDlPbbJ8C2WLaATNhdvZLhQO0+NtWnRrQTP+erLR5cVxfcwyqF+3R8SA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
-      prettier: 2.7.1
+      prettier: 2.8.0
     dev: true
 
-  /prettier-plugin-sh/0.12.8_prettier@2.7.1:
+  /prettier-plugin-sh/0.12.8_prettier@2.8.0:
     resolution: {integrity: sha512-VOq8h2Gn5UzrCIKm4p/nAScXJbN09HdyFDknAcxt6Qu/tv/juu9bahxSrcnM9XWYA+Spz1F1ANJ4LhfwB7+Q1Q==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 2.7.1
+      prettier: 2.8.0
       sh-syntax: 0.3.7
       synckit: 0.8.4
     dev: true
 
-  /prettier-plugin-sql/0.12.1_prettier@2.7.1:
+  /prettier-plugin-sql/0.12.1_prettier@2.8.0:
     resolution: {integrity: sha512-2z0pMmQEC61Xywerw2FJFpEIaA9lJUjB5mj+9dfRU8HkU7iICFrIizpMjSSDMoGkhh5W+IRROVgLlgRdpphI7g==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       node-sql-parser: 4.5.1
-      prettier: 2.7.1
+      prettier: 2.8.0
       sql-formatter: 10.7.2
       tslib: 2.4.1
     dev: true
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
