@@ -97,7 +97,7 @@ importers:
   packages/trackx:
     specifiers:
       '@rollup/plugin-buble': 1.0.1
-      '@rollup/plugin-commonjs': 23.0.2
+      '@rollup/plugin-commonjs': 23.0.3
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
       '@types/ungap__global-this': 0.3.1
@@ -113,7 +113,7 @@ importers:
       '@ungap/global-this': 0.4.4
     devDependencies:
       '@rollup/plugin-buble': 1.0.1_rollup@3.5.1
-      '@rollup/plugin-commonjs': 23.0.2_rollup@3.5.1
+      '@rollup/plugin-commonjs': 23.0.3_rollup@3.5.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.5.1
       '@rollup/plugin-replace': 5.0.1_rollup@3.5.1
       '@types/ungap__global-this': 0.3.1
@@ -204,7 +204,7 @@ importers:
       '@maxmilton/solid-router': 0.3.2
       '@rollup/plugin-babel': 6.0.2
       '@rollup/plugin-buble': 1.0.1
-      '@rollup/plugin-commonjs': 23.0.2
+      '@rollup/plugin-commonjs': 23.0.3
       '@rollup/plugin-html': 1.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
@@ -235,7 +235,7 @@ importers:
       '@maxmilton/rollup-plugin-css': 0.0.7_rollup@3.5.1
       '@rollup/plugin-babel': 6.0.2_jq7ejmtxohag7dsrebvugbjt6q
       '@rollup/plugin-buble': 1.0.1_rollup@3.5.1
-      '@rollup/plugin-commonjs': 23.0.2_rollup@3.5.1
+      '@rollup/plugin-commonjs': 23.0.3_rollup@3.5.1
       '@rollup/plugin-html': 1.0.1_rollup@3.5.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.5.1
       '@rollup/plugin-replace': 5.0.1_rollup@3.5.1
@@ -1308,8 +1308,8 @@ packages:
       rollup: 3.5.1
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.2_rollup@3.5.1:
-    resolution: {integrity: sha512-e9ThuiRf93YlVxc4qNIurvv+Hp9dnD+4PjOqQs5vAYfcZ3+AXSrcdzXnVjWxcGQOa6KGJFcRZyUI3ktWLavFjg==}
+  /@rollup/plugin-commonjs/23.0.3_rollup@3.5.1:
+    resolution: {integrity: sha512-31HxrT5emGfTyIfAs1lDQHj6EfYxTXcwtX5pIIhq+B/xZBNIqQ179d/CkYxlpYmFCxT78AeU4M8aL8Iv/IBxFA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -5964,6 +5964,7 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: true
 
   /spdx-correct/3.1.1:
