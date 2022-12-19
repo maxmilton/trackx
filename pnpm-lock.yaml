@@ -254,7 +254,7 @@ importers:
       ekscss: 0.0.13
       esbuild: 0.16.9
       esbuild-minify-templates: 0.9.2
-      esbuild-plugin-ekscss: 0.0.12
+      esbuild-plugin-ekscss: 0.0.13
       git-ref: 0.3.1
       lightningcss: 1.17.1
       purgecss: 5.0.0
@@ -267,7 +267,7 @@ importers:
       ekscss: 0.0.13
       esbuild: 0.16.9
       esbuild-minify-templates: 0.9.2_esbuild@0.16.9
-      esbuild-plugin-ekscss: 0.0.12_xwnumvuqhrtxqtesaskdwyvdry
+      esbuild-plugin-ekscss: 0.0.13_xwnumvuqhrtxqtesaskdwyvdry
       git-ref: 0.3.1
       lightningcss: 1.17.1
       purgecss: 5.0.0
@@ -2882,11 +2882,11 @@ packages:
       meriyah: 4.3.3
     dev: true
 
-  /esbuild-plugin-ekscss/0.0.12_xwnumvuqhrtxqtesaskdwyvdry:
-    resolution: {integrity: sha512-mCJs50/o1vKIeGGWnSrz4/s7ZSVnoX1hB+Mxke8pkFeNo0N9Ci8uYDDFwOPU0jhJv/eVyw2q5qDrOwt0FtnJ4w==}
+  /esbuild-plugin-ekscss/0.0.13_xwnumvuqhrtxqtesaskdwyvdry:
+    resolution: {integrity: sha512-qG+EACWpTEBtlmjB63mjEnMwNZktDD/Dc1PaCNhDED7Out5h9YMK+wE/aNPmVd0NfK0mtKeZ2ay6r/aBN7zgbA==}
     peerDependencies:
       ekscss: ^0.0.13
-      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0
+      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0
     dependencies:
       ekscss: 0.0.13
       esbuild: 0.16.9
