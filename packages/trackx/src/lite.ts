@@ -56,8 +56,7 @@ export const setup = (endpoint: string): void => {
           type,
           uri: location.href,
           meta,
-          // TODO: Correctly type as EventPayload for type safety (but without extra bytes!)
-        } as EventPayload),
+        } satisfies EventPayload),
       });
     } catch {
       /* No op; no retry, no offline handling, no flood lock, etc. */
