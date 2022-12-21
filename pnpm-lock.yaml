@@ -97,7 +97,7 @@ importers:
   packages/trackx:
     specifiers:
       '@rollup/plugin-buble': 1.0.1
-      '@rollup/plugin-commonjs': 23.0.7
+      '@rollup/plugin-commonjs': 24.0.0
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
       '@types/ungap__global-this': 0.3.1
@@ -113,7 +113,7 @@ importers:
       '@ungap/global-this': 0.4.4
     devDependencies:
       '@rollup/plugin-buble': 1.0.1_rollup@3.7.5
-      '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.5
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.5
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.5
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.5
       '@types/ungap__global-this': 0.3.1
@@ -204,7 +204,7 @@ importers:
       '@maxmilton/solid-router': 0.3.2
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-buble': 1.0.1
-      '@rollup/plugin-commonjs': 23.0.7
+      '@rollup/plugin-commonjs': 24.0.0
       '@rollup/plugin-html': 1.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
@@ -235,7 +235,7 @@ importers:
       '@maxmilton/rollup-plugin-css': 0.0.7_rollup@3.7.5
       '@rollup/plugin-babel': 6.0.3_zrxplyvfi52whpdwd6wkjjeo5q
       '@rollup/plugin-buble': 1.0.1_rollup@3.7.5
-      '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.5
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.5
       '@rollup/plugin-html': 1.0.1_rollup@3.7.5
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.5
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.5
@@ -1421,8 +1421,8 @@ packages:
       rollup: 3.7.5
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.7_rollup@3.7.5:
-    resolution: {integrity: sha512-hsSD5Qzyuat/swzrExGG5l7EuIlPhwTsT7KwKbSCQzIcJWjRxiimi/0tyMYY2bByitNb3i1p+6JWEDGa0NvT0Q==}
+  /@rollup/plugin-commonjs/24.0.0_rollup@3.7.5:
+    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
