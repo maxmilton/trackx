@@ -47,7 +47,9 @@ export const get: Middleware = async (req, res, next) => {
 
     let countValue;
 
-    if (count !== undefined) {
+    if (count === undefined) {
+      countValue = 1;
+    } else {
       if (typeof count !== 'string') {
         throw new AppError('Invalid count', Status.UNPROCESSABLE_ENTITY);
       }
@@ -55,8 +57,6 @@ export const get: Middleware = async (req, res, next) => {
       if (!Number.isInteger(countValue) || countValue < 1) {
         throw new AppError('Invalid count', Status.UNPROCESSABLE_ENTITY);
       }
-    } else {
-      countValue = 1;
     }
 
     if (type !== undefined) {
