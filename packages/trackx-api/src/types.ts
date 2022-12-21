@@ -337,9 +337,10 @@ export interface Stats {
   daily_events: TimeSeriesData;
   daily_pings: TimeSeriesData;
   daily_dash: TimeSeriesData;
+  dash_session_c: number;
   api_v: string;
   api_uptime: number;
-  dash_session_c: number;
+  db_size: string
 }
 
 export type DBStatsTable = {
