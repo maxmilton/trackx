@@ -51,7 +51,7 @@ export const auto: OnErrorHandler = (payload, reason) => {
     // eslint-disable-next-line no-restricted-syntax, guard-for-in
     for (const key in reason) {
       const value = (reason as Record<string, unknown>)[key];
-      details[key] = typeof value === 'undefined' ? '[Undefined]' : value;
+      details[key] = value === undefined ? '[Undefined]' : value;
     }
     // eslint-disable-next-line no-param-reassign
     payload.meta.details = Object.keys(details).length > 0 ? decycle(details) : {};
