@@ -1,7 +1,7 @@
 import send from '@polka/send';
+import { Cookie } from '@trackx/cookie';
 import crypto from 'node:crypto';
 import type { Middleware } from 'polka';
-import { Cookie } from 'tough-cookie';
 import { deniedDash } from '../../db';
 import type { ReqBodyData, ReqQueryData } from '../../types';
 import {
@@ -68,10 +68,10 @@ export const post: Middleware = async (req, res, next) => {
       key: 'id',
       value: sessionId,
       expires: new Date(Date.now() + config.SESSION_TTL),
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
       path: '/api/dash/',
-      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      // httpOnly: true,
+      // sameSite: 'Strict',
     });
     sessions.set(sessionId, cookie);
 

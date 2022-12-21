@@ -1,5 +1,5 @@
+import { Cookie } from '@trackx/cookie';
 import type { Middleware, Request } from 'polka';
-import { Cookie } from 'tough-cookie';
 import { deniedDash } from '../../db';
 import type { ReqQueryData } from '../../types';
 import {
