@@ -1,6 +1,6 @@
 {
   "name": "@trackx/stack-trace-parser",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "description": "Parse a stack trace then enrich using its source map",
   "repository": "maxmilton/trackx",
