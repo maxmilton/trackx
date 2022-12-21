@@ -225,10 +225,14 @@ export const get: Middleware = async (req, res, next) => {
         `db;dur=${Math.round(t1 - t0)},fs;dur=${(t2 - t1).toFixed(2)}`,
       );
     } else {
+      const dbFile = fs.promises.stat(config.DB_PATH);
+      const dbWalFile = fs.promises.stat(`${config.DB_PATH}-wal`);
       data = getStats();
       data.dash_session_c = sessions.size;
       data.api_v = process.env.APP_RELEASE!;
       data.api_uptime = Math.floor(process.uptime());
+      // eslint-disable-next-line unicorn/no-await-expression-member
+      data.db_size = humanizeFileSize((await dbFile).size + (await dbWalFile).size);
     }
 
     send(res, Status.OK, data);

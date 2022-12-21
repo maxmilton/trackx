@@ -139,6 +139,7 @@ const StatsPage: RouteComponent = () => {
                     )}
                   </span>
                 </p>
+                <p>Database size: {data.db_size}</p>
 
                 {process.env.ENABLE_DB_TABLE_STATS && (
                   <div>
