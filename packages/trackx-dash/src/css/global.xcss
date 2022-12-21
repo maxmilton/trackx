@@ -1,6 +1,6 @@
 @media ${x.app.media.xs} {
   html {
-    font-size: 16px;
+    font-size: initial; // likely to be 16px
   }
 }
 

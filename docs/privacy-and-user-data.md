@@ -54,6 +54,25 @@ The number of sessions you see might not be what you expect. In TrackX sessions 
 
 TODO: Write me
 
+<!--
+TODO: Add expandable section here with an example of the hash construction with realistic inputs
+
+```
+XXH3 (
+  "Zpko0dtl" +
+  "https://docs.trackx.app" +
+  "132.250.17.201" +
+  "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+)
+```
+
+```sh
+echo -n 'Zpko0dtlhttps://docs.trackx.app132.250.17.201Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36' | xxhsum -H3 -
+
+# XXH3 (stdin) = 4a2d74a7cc34df38
+```
+-->
+
 - No cookies or other client-side storage mechanisms to identify users
 - Users are identified on the backend using hash of `salt`+`origin`+`ip`+`user-agent`
 - Error-free sessions are only tracked when you use the optional "ping" feature
