@@ -99,7 +99,7 @@ importers:
       '@rollup/plugin-buble': 1.0.1
       '@rollup/plugin-commonjs': 23.0.7
       '@rollup/plugin-node-resolve': 15.0.1
-      '@rollup/plugin-replace': 5.0.1
+      '@rollup/plugin-replace': 5.0.2
       '@types/ungap__global-this': 0.3.1
       '@ungap/global-this': ^0.4.4
       esbuild: 0.16.9
@@ -115,7 +115,7 @@ importers:
       '@rollup/plugin-buble': 1.0.1_rollup@3.7.5
       '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.5
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.5
-      '@rollup/plugin-replace': 5.0.1_rollup@3.7.5
+      '@rollup/plugin-replace': 5.0.2_rollup@3.7.5
       '@types/ungap__global-this': 0.3.1
       esbuild: 0.16.9
       rollup: 3.7.5
@@ -207,7 +207,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.7
       '@rollup/plugin-html': 1.0.1
       '@rollup/plugin-node-resolve': 15.0.1
-      '@rollup/plugin-replace': 5.0.1
+      '@rollup/plugin-replace': 5.0.2
       '@trackx/icons': workspace:*
       '@trackx/reltime': workspace:*
       ekscss: 0.0.13
@@ -238,7 +238,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.5
       '@rollup/plugin-html': 1.0.1_rollup@3.7.5
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.5
-      '@rollup/plugin-replace': 5.0.1_rollup@3.7.5
+      '@rollup/plugin-replace': 5.0.2_rollup@3.7.5
       ekscss: 0.0.13
       esbuild: 0.16.9
       git-ref: 0.3.1
@@ -1469,8 +1469,8 @@ packages:
       rollup: 3.7.5
     dev: true
 
-  /@rollup/plugin-replace/5.0.1_rollup@3.7.5:
-    resolution: {integrity: sha512-Z3MfsJ4CK17BfGrZgvrcp/l6WXoKb0kokULO+zt/7bmcyayokDaQ2K3eDJcRLCTAlp5FPI4/gz9MHAsosz4Rag==}
+  /@rollup/plugin-replace/5.0.2_rollup@3.7.5:
+    resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0
@@ -1479,7 +1479,7 @@ packages:
         optional: true
     dependencies:
       '@rollup/pluginutils': 5.0.2_rollup@3.7.5
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       rollup: 3.7.5
     dev: true
 
