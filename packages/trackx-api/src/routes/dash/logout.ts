@@ -1,10 +1,10 @@
 import send from '@polka/send';
+import { Cookie } from '@trackx/cookie';
 import type { Middleware } from 'polka';
-import { Cookie } from 'tough-cookie';
 import { deniedDash } from '../../db';
 import { logger, sessions, Status } from '../../utils';
 
-const unixEpoch = new Date('1970-01-01');
+const unixEpoch = new Date(0);
 
 // XXX: Validation is purposely limited (e.g., no query params check) in this
 // route as we want to allow logout as liberally as possible

@@ -14,7 +14,6 @@ const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 const external = [
   // from @trackx/api
   'better-sqlite3',
-  'psl', // tough-cookie dependency, massive size
   'source-map-support',
   'ua-parser-js', // massive size
   'xxhash-addon',

@@ -1,0 +1,19 @@
+{
+  "name": "@trackx/cookie",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Parse and serialize HTTP cookies, without the cruft and secure by default",
+  "repository": "maxmilton/trackx",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm run prebuild && node build.mjs && pnpm run postbuild",
+    "dev": "BUILD_WATCH=1 node build.mjs",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "prebuild": "rm -rf dist"
+  },
+  "dependencies": {}
+}

@@ -15,6 +15,7 @@
   "dependencies": {
     "@polka/parse": "1.0.0-next.21",
     "@polka/send": "1.0.0-next.15",
+    "@trackx/cookie": "workspace:*",
     "@trackx/http-status-codes": "workspace:*",
     "@trackx/stack-trace-parser": "workspace:*",
     "better-sqlite3": "7.6.2",
@@ -22,17 +23,14 @@
     "kleur": "4.1.5",
     "nanoid": "4.0.0",
     "polka": "1.0.0-next.22",
-    "tough-cookie": "4.1.2",
     "trackx": "workspace:*",
     "ua-parser-js": "1.0.32",
     "xxhash-addon": "2.0.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "7.6.3",
-    "@types/tough-cookie": "4.0.2",
     "@types/ua-parser-js": "0.7.36",
     "git-ref": "0.3.1",
-    "psl": "1.9.0",
     "source-map": "0.7.4",
     "source-map-support": "0.5.21",
     "totalist": "3.0.0"

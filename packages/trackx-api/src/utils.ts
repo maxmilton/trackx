@@ -1,3 +1,4 @@
+import type { Cookie } from '@trackx/cookie';
 import type { Database } from 'better-sqlite3';
 import { diary, enable } from 'diary';
 import { dim, red, yellow } from 'kleur/colors';
@@ -9,7 +10,6 @@ import type { Server, Socket } from 'node:net';
 import path from 'node:path';
 import { format } from 'node:util';
 import type { Polka, Request } from 'polka';
-import type { Cookie } from 'tough-cookie';
 import { sendEvent } from 'trackx/node';
 import { EventType, OnErrorHandler } from 'trackx/types';
 import UAParser from 'ua-parser-js';
