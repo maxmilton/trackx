@@ -78,13 +78,13 @@ export default function action(opts: CheckOptions): void {
     .prepare("INSERT INTO meta(k, v) VALUES('trackx-cli-check', 1)")
     .run();
 
-  if (dbWrite.changes !== 1) {
+  if (dbWrite.changes === 1) {
+    logger.info('Database write OK');
+    ok += 1;
+  } else {
     logger.error('Database write failed');
     process.exitCode = 1;
     errors += 1;
-  } else {
-    logger.info('Database write OK');
-    ok += 1;
   }
 
   const dbReadStmt = db
@@ -92,13 +92,13 @@ export default function action(opts: CheckOptions): void {
     .pluck();
   const dbRead1 = dbReadStmt.get() as number;
 
-  if (dbRead1 !== 1) {
+  if (dbRead1 === 1) {
+    logger.info('Database read OK');
+    ok += 1;
+  } else {
     logger.error('Database read failed');
     process.exitCode = 1;
     errors += 1;
-  } else {
-    logger.info('Database read OK');
-    ok += 1;
   }
 
   const dbDelete = db
@@ -123,17 +123,17 @@ export default function action(opts: CheckOptions): void {
       .pluck()
       .get() as 1 | undefined;
 
-    if (!shadowTable) {
+    if (shadowTable) {
+      logger.info(
+        'Config DB_COMPRESSION is enabled and event shadow table exists OK',
+      );
+      ok += 1;
+    } else {
       logger.error(
         'Config DB_COMPRESSION is enabled but the event shadow table does not exist',
       );
       process.exitCode = 1;
       errors += 1;
-    } else {
-      logger.info(
-        'Config DB_COMPRESSION is enabled and event shadow table exists OK',
-      );
-      ok += 1;
     }
 
     // TODO: Check the indexes on _event_zstd exist or else warn

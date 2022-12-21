@@ -145,7 +145,7 @@ export function getConfig(
   const rawConfig = require(CONFIG_PATH) as unknown;
   // Override config values with env vars
   for (const key of Object.keys(rawConfig as object)) {
-    if (typeof process.env[key] !== 'undefined') {
+    if (process.env[key] !== undefined) {
       // @ts-expect-error - unavoidable string indexing
       rawConfig[key] = process.env[key];
     }

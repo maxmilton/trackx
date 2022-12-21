@@ -1229,7 +1229,20 @@ const TestPage: RouteComponent = () => {
         <label for="mock-issue-project" class="label">
           Target project
         </label>
-        {!state.projects ? (
+        {state.projects ? (
+          <select
+            id="mock-issue-project"
+            class="select"
+            value={state.mockProjectId!}
+            onInput={(event) => {
+              setState({ mockProjectId: +event.currentTarget.value });
+            }}
+          >
+            <For each={state.projects}>
+              {(project) => <option value={project.id}>{project.name}</option>}
+            </For>
+          </select>
+        ) : (
           <button
             id="mock-issue-project"
             class="button"
@@ -1246,19 +1259,6 @@ const TestPage: RouteComponent = () => {
           >
             Fetch project list
           </button>
-        ) : (
-          <select
-            id="mock-issue-project"
-            class="select"
-            value={state.mockProjectId!}
-            onInput={(event) => {
-              setState({ mockProjectId: +event.currentTarget.value });
-            }}
-          >
-            <For each={state.projects}>
-              {(project) => <option value={project.id}>{project.name}</option>}
-            </For>
-          </select>
         )}
       </div>
 
@@ -1369,7 +1369,20 @@ COMMIT;`,
         <label for="mock-event-project" class="label">
           Target project
         </label>
-        {!state.projects ? (
+        {state.projects ? (
+          <select
+            id="mock-event-project"
+            class="select"
+            value={state.mockProjectId!}
+            onInput={(event) => {
+              setState({ mockProjectId: +event.currentTarget.value });
+            }}
+          >
+            <For each={state.projects}>
+              {(project) => <option value={project.id}>{project.name}</option>}
+            </For>
+          </select>
+        ) : (
           <button
             id="mock-event-project"
             class="button"
@@ -1386,19 +1399,6 @@ COMMIT;`,
           >
             Fetch project list
           </button>
-        ) : (
-          <select
-            id="mock-event-project"
-            class="select"
-            value={state.mockProjectId!}
-            onInput={(event) => {
-              setState({ mockProjectId: +event.currentTarget.value });
-            }}
-          >
-            <For each={state.projects}>
-              {(project) => <option value={project.id}>{project.name}</option>}
-            </For>
-          </select>
         )}
       </div>
 
@@ -1537,7 +1537,20 @@ COMMIT;`,
         <label for="mock-session-project" class="label">
           Target project
         </label>
-        {!state.projects ? (
+        {state.projects ? (
+          <select
+            id="mock-event-project"
+            class="select"
+            value={state.mockProjectId!}
+            onInput={(event) => {
+              setState({ mockProjectId: +event.currentTarget.value });
+            }}
+          >
+            <For each={state.projects}>
+              {(project) => <option value={project.id}>{project.name}</option>}
+            </For>
+          </select>
+        ) : (
           <button
             id="mock-session-project"
             class="button"
@@ -1554,19 +1567,6 @@ COMMIT;`,
           >
             Fetch project list
           </button>
-        ) : (
-          <select
-            id="mock-event-project"
-            class="select"
-            value={state.mockProjectId!}
-            onInput={(event) => {
-              setState({ mockProjectId: +event.currentTarget.value });
-            }}
-          >
-            <For each={state.projects}>
-              {(project) => <option value={project.id}>{project.name}</option>}
-            </For>
-          </select>
         )}
       </div>
 

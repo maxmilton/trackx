@@ -35,7 +35,7 @@ function adHocQuery(
   if (opts.expand) stmt.expand();
   if (opts.raw) stmt.raw();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return !stmt.reader ? stmt.run() : (opts.single ? stmt.get() : stmt.all());
+  return stmt.reader ? (opts.single ? stmt.get() : stmt.all()) : stmt.run();
 }
 
 export const options: Middleware = (_req, res) => {

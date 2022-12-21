@@ -114,7 +114,8 @@ export const Graph: Component<GraphProps> = (props) => {
         resizeObserver = new ResizeObserver(() => requestAnimationFrame(handleResize));
         resizeObserver.observe(ref);
       } else {
-        window.addEventListener('resize', handleResize);
+        // XXX: TypeScript incorrectly thinks window is not defined after the above check
+        (window as Window).addEventListener('resize', handleResize);
       }
     }
   });

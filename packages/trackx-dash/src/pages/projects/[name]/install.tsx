@@ -32,9 +32,9 @@ const ProjectInstallPage: RouteComponent = (props) => {
   });
 
   const apiOriginUri = new URL(
-    process.env.NODE_ENV !== 'production'
-      ? window.location.origin + config.REPORT_API_BASE_URL
-      : config.REPORT_API_BASE_URL,
+    process.env.NODE_ENV === 'production'
+      ? config.REPORT_API_BASE_URL
+      : window.location.origin + config.REPORT_API_BASE_URL,
   ).origin;
 
   // TODO: Add something like "see the docs for detailed install instructions

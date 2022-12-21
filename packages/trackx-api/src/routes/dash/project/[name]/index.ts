@@ -216,7 +216,7 @@ export const del: Middleware = (req, res, next) => {
 
     const body = req.body as ReqBodyData;
 
-    if (typeof body !== 'undefined') {
+    if (body !== undefined) {
       throw new AppError('Unexpected property', Status.BAD_REQUEST);
     }
 

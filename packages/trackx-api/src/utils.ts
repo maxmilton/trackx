@@ -71,7 +71,7 @@ export const config: TrackXAPIConfig = (() => {
   const rawConfig = require(CONFIG_PATH) as TrackXAPIConfig;
   // Override config values with env vars
   for (const key of Object.keys(rawConfig)) {
-    if (typeof process.env[key] !== 'undefined') {
+    if (process.env[key] !== undefined) {
       // @ts-expect-error - unavoidable string indexing
       rawConfig[key] = process.env[key];
     }
@@ -109,7 +109,7 @@ export const logger = diary('', (event) => {
   let message: string;
   const error = event.messages[0];
 
-  if (error instanceof Error && typeof error.stack !== 'undefined') {
+  if (error instanceof Error && error.stack !== undefined) {
     const stack = error.stack.split('\n');
     stack.shift();
     message = `${error.message}\n${stack.join('\n')}`;

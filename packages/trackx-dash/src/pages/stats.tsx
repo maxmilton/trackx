@@ -151,23 +151,7 @@ const StatsPage: RouteComponent = () => {
                     extremely slow on systems with slower storage devices
                       ↳ https://github.com/maxmilton/trackx/issues/158 */}
 
-                    {!dbStatsURL() ? (
-                      <>
-                        <div class="alert alert-warning">
-                          <strong>WARNING:</strong> Getting DB stats is slow!
-                        </div>
-                        <button
-                          class="button"
-                          onClick={() => {
-                            setDBStatsURL(
-                              `${config.DASH_API_ENDPOINT}/stats?type=db`,
-                            );
-                          }}
-                        >
-                          Get DB stats
-                        </button>
-                      </>
-                    ) : (
+                    {dbStatsURL() ? (
                       <Switch
                         fallback={<p class="danger">Failed to load DB stats</p>}
                       >
@@ -215,6 +199,22 @@ const StatsPage: RouteComponent = () => {
                           )}
                         </Match>
                       </Switch>
+                    ) : (
+                      <>
+                        <div class="alert alert-warning">
+                          <strong>WARNING:</strong> Getting DB stats is slow!
+                        </div>
+                        <button
+                          class="button"
+                          onClick={() => {
+                            setDBStatsURL(
+                              `${config.DASH_API_ENDPOINT}/stats?type=db`,
+                            );
+                          }}
+                        >
+                          Get DB stats
+                        </button>
+                      </>
                     )}
                   </div>
                 )}
