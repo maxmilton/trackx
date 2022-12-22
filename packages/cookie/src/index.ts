@@ -1,4 +1,4 @@
-interface CookieInit {
+export interface CookieInit {
   /**
    * The name of the cookie.
    */
