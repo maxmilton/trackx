@@ -1,4 +1,4 @@
-interface CookieOptions {
+interface CookieInit {
   key: string;
   value: string;
   /**
@@ -8,6 +8,12 @@ interface CookieOptions {
    * @default undefined
    */
   expires?: Date | undefined;
+  /** @deprecated Use `expires` instead. */
+  maxAge?: never;
+  /**
+   * @default undefined
+   */
+  domain?: string | undefined;
   /**
    * @default undefined
    */
@@ -38,6 +44,8 @@ export class Cookie {
    * Parse a Cookie HTTP header sent from a browser.
    *
    * Only a `key=value` pair is supported. No other attributes are parsed.
+   *
+   * No validation or decoding is performed on the key or value.
    */
   static parse(header: string): Cookie {
     // There should only be one part, but for safety, we break it up anyway
@@ -67,6 +75,8 @@ export class Cookie {
    */
   declare expires: Date | undefined;
 
+  declare domain: string | undefined;
+
   declare path: string | undefined;
 
   declare secure: boolean | undefined;
@@ -79,10 +89,11 @@ export class Cookie {
    */
   declare sameSite: 'Lax' | 'Strict' | 'None';
 
-  constructor(options: CookieOptions) {
+  constructor(options: CookieInit) {
     this.key = options.key;
     this.value = options.value;
     this.expires = options.expires;
+    this.domain = options.domain;
     this.path = options.path;
     this.secure = options.secure ?? true;
     this.httpOnly = options.httpOnly ?? true;
@@ -100,8 +111,12 @@ export class Cookie {
     const parts = [`${this.key}=${this.value}`];
 
     if (this.expires) {
-      // XXX: Expires is supiror to Max-Age because of wider browser support
+      // XXX: Expires is supiror to Max-Age because of wider browser support,
+      // is more explicit, and simple to implement.
       parts.push(`Expires=${this.expires.toUTCString()}`);
+    }
+    if (this.domain) {
+      parts.push(`Domain=${this.domain}`);
     }
     if (this.path) {
       parts.push(`Path=${this.path}`);
