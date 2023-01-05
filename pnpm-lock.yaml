@@ -216,7 +216,7 @@ importers:
       rollup-plugin-ekscss: 0.0.11
       rollup-plugin-esbuild: 5.0.0
       rollup-plugin-terser: 7.0.2
-      rollup-plugin-visualizer: 5.8.3
+      rollup-plugin-visualizer: 5.9.0
       solid-js: 1.6.6
       trackx: workspace:*
       uplot: 1.6.23
@@ -245,7 +245,7 @@ importers:
       rollup-plugin-ekscss: 0.0.11_ekscss@0.0.13+rollup@3.9.1
       rollup-plugin-esbuild: 5.0.0_2quxkyungzb4t3y6fnerqxxdya
       rollup-plugin-terser: 7.0.2_rollup@3.9.1
-      rollup-plugin-visualizer: 5.8.3_rollup@3.9.1
+      rollup-plugin-visualizer: 5.9.0_rollup@3.9.1
 
   packages/trackx-login:
     specifiers:
@@ -5653,8 +5653,8 @@ packages:
       terser: 5.16.1
     dev: true
 
-  /rollup-plugin-visualizer/5.8.3_rollup@3.9.1:
-    resolution: {integrity: sha512-QGJk4Bqe4AOat5AjipOh8esZH1nck5X2KFpf4VytUdSUuuuSwvIQZjMGgjcxe/zXexltqaXp5Vx1V3LmnQH15Q==}
+  /rollup-plugin-visualizer/5.9.0_rollup@3.9.1:
+    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -5664,6 +5664,7 @@ packages:
         optional: true
     dependencies:
       open: 8.4.0
+      picomatch: 2.3.1
       rollup: 3.9.1
       source-map: 0.7.4
       yargs: 17.6.2
