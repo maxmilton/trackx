@@ -1,4 +1,4 @@
-[![Build status](https://img.shields.io/github/workflow/status/maxmilton/trackx/ci)](https://github.com/maxmilton/trackx/actions)
+[![Build status](https://github.com/maxmilton/trackx/actions/workflows/ci.yml/badge.svg)](https://github.com/maxmilton/trackx/actions)
 [![Coverage status](https://img.shields.io/codeclimate/coverage/maxmilton/trackx)](https://codeclimate.com/github/maxmilton/trackx)
 [![Licence](https://img.shields.io/github/license/maxmilton/trackx.svg)](https://github.com/maxmilton/trackx/blob/master/LICENSE)
 
