@@ -15,7 +15,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.48.2
       '@typescript-eslint/parser': 5.48.2
-      babel-preset-solid: 1.6.7
+      babel-preset-solid: 1.6.9
       esbuild: 0.16.17
       eslint: 8.32.0
       eslint-config-airbnb-base: 15.0.0
@@ -32,7 +32,7 @@ importers:
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
       prettier-plugin-sql: 0.12.1
-      solid-js: 1.6.8
+      solid-js: 1.6.9
       solid-testing-library: 0.5.0
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0
@@ -49,7 +49,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
       '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
-      babel-preset-solid: 1.6.7_@babel+core@7.20.12
+      babel-preset-solid: 1.6.9_@babel+core@7.20.12
       esbuild: 0.16.17
       eslint: 8.32.0
       eslint-config-airbnb-base: 15.0.0_ps7hf4l2dvbuxvtusmrfhmzsba
@@ -66,8 +66,8 @@ importers:
       prettier-plugin-pkg: 0.17.1_prettier@2.8.3
       prettier-plugin-sh: 0.12.8_prettier@2.8.3
       prettier-plugin-sql: 0.12.1_prettier@2.8.3
-      solid-js: 1.6.8
-      solid-testing-library: 0.5.0_solid-js@1.6.8
+      solid-js: 1.6.9
+      solid-testing-library: 0.5.0_solid-js@1.6.9
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0_stylelint@14.16.1
       typescript: 4.9.4
@@ -80,9 +80,9 @@ importers:
 
   packages/icons:
     specifiers:
-      solid-js: 1.6.8
+      solid-js: 1.6.9
     devDependencies:
-      solid-js: 1.6.8
+      solid-js: 1.6.9
 
   packages/reltime:
     specifiers: {}
@@ -217,15 +217,15 @@ importers:
       rollup-plugin-esbuild: 5.0.0
       rollup-plugin-terser: 7.0.2
       rollup-plugin-visualizer: 5.9.0
-      solid-js: 1.6.8
+      solid-js: 1.6.9
       trackx: workspace:*
       uplot: 1.6.23
     dependencies:
       '@ekscss/framework': 0.0.43_ekscss@0.0.13
-      '@maxmilton/solid-router': 0.3.2_solid-js@1.6.8
+      '@maxmilton/solid-router': 0.3.2_solid-js@1.6.9
       '@trackx/icons': link:../icons
       '@trackx/reltime': link:../reltime
-      solid-js: 1.6.8
+      solid-js: 1.6.9
       trackx: link:../trackx
       uplot: 1.6.23
     devDependencies:
@@ -1333,14 +1333,14 @@ packages:
       source-map: 0.7.4
     dev: true
 
-  /@maxmilton/solid-router/0.3.2_solid-js@1.6.8:
+  /@maxmilton/solid-router/0.3.2_solid-js@1.6.9:
     resolution: {integrity: sha512-GngtpUCNq2e09dKvrvdmkyx8vIKSOMqjZs9B9iX7BdZpz0LUn8FN7BdkGd7x63zXUp0yWuUmzxVbZPj28YbLpw==}
     peerDependencies:
       solid-js: ^1.5.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.1
-      solid-js: 1.6.8
+      solid-js: 1.6.9
     dev: false
 
   /@maxmilton/stylelint-config/0.0.10_stylelint@14.16.1:
@@ -2229,8 +2229,8 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.12
     dev: true
 
-  /babel-preset-solid/1.6.7_@babel+core@7.20.12:
-    resolution: {integrity: sha512-OYPYPX0d1ncf5MGJ7rdb8V1u0BQDaoUAR6LAgR7Cm2hS/BgjGkznrcmpY00Y6RxmQq7n2ozW+hPl2w2k7/v4vg==}
+  /babel-preset-solid/1.6.9_@babel+core@7.20.12:
+    resolution: {integrity: sha512-Dz4xROTGtAZ2B9+79KYUzi/bhjNGsx+8c+AD3VO/Cg1CisM1qq29XsnkWrRJeTMMn3XZkAI/Bf5Rz37d/gvPVQ==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -5955,19 +5955,19 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js/1.6.8:
-    resolution: {integrity: sha512-+X5rf4bL3Il/LI2pn6O2d63D/KyG8Shxj3DM6violSPOhRgm5ln37Pq6uVDAvJcmsObOBeGOjXAwZvqwyZjisg==}
+  /solid-js/1.6.9:
+    resolution: {integrity: sha512-kV3fMmm+1C2J95c8eDOPKGfZHnuAkHUBLG4hX1Xu08bXeAIPqmxuz/QdH3B8SIdTp3EatBVIyA6RCes3hrGzpg==}
     dependencies:
       csstype: 3.1.1
 
-  /solid-testing-library/0.5.0_solid-js@1.6.8:
+  /solid-testing-library/0.5.0_solid-js@1.6.9:
     resolution: {integrity: sha512-vr4Ke9Dq3bUFLaXOcN8/IVn2e9Q37w4vdmoIOmFBIPs7iCJX9IxuC0IdQqK8nzBZMQqceijkfyCE3Qc407KmaA==}
     engines: {node: '>= 14'}
     peerDependencies:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 8.19.1
-      solid-js: 1.6.8
+      solid-js: 1.6.9
     dev: true
 
   /source-map-js/1.0.2:

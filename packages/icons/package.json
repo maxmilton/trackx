@@ -19,7 +19,7 @@
     "solid-js": "^1.0.0"
   },
   "devDependencies": {
-    "solid-js": "1.6.8"
+    "solid-js": "1.6.9"
   },
   "sideEffects": false
 }
