@@ -24,7 +24,7 @@
     "nanoid": "4.0.0",
     "polka": "1.0.0-next.22",
     "trackx": "workspace:*",
-    "ua-parser-js": "1.0.32",
+    "ua-parser-js": "1.0.33",
     "xxhash-addon": "2.0.1"
   },
   "devDependencies": {
