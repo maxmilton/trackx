@@ -100,7 +100,7 @@ importers:
   packages/trackx:
     specifiers:
       '@rollup/plugin-buble': 1.0.2
-      '@rollup/plugin-commonjs': 24.0.0
+      '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.2
       '@types/ungap__global-this': 0.3.1
@@ -116,7 +116,7 @@ importers:
       '@ungap/global-this': 0.4.4
     devDependencies:
       '@rollup/plugin-buble': 1.0.2_rollup@3.11.0
-      '@rollup/plugin-commonjs': 24.0.0_rollup@3.11.0
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.11.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.11.0
       '@rollup/plugin-replace': 5.0.2_rollup@3.11.0
       '@types/ungap__global-this': 0.3.1
@@ -203,7 +203,7 @@ importers:
       '@maxmilton/solid-router': 0.3.2
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-buble': 1.0.2
-      '@rollup/plugin-commonjs': 24.0.0
+      '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-html': 1.0.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.2
@@ -234,7 +234,7 @@ importers:
       '@maxmilton/rollup-plugin-css': 0.0.7_rollup@3.11.0
       '@rollup/plugin-babel': 6.0.3_cganfooubcmggtsd36skasa36m
       '@rollup/plugin-buble': 1.0.2_rollup@3.11.0
-      '@rollup/plugin-commonjs': 24.0.0_rollup@3.11.0
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.11.0
       '@rollup/plugin-html': 1.0.2_rollup@3.11.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.11.0
       '@rollup/plugin-replace': 5.0.2_rollup@3.11.0
@@ -1431,8 +1431,8 @@ packages:
       rollup: 3.11.0
     dev: true
 
-  /@rollup/plugin-commonjs/24.0.0_rollup@3.11.0:
-    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
+  /@rollup/plugin-commonjs/24.0.1_rollup@3.11.0:
+    resolution: {integrity: sha512-15LsiWRZk4eOGqvrJyu3z3DaBu5BhXIMeWnijSRvd8irrrg9SHpQ1pH+BUK4H6Z9wL9yOxZJMTLU+Au86XHxow==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
