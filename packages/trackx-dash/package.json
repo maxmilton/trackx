@@ -18,7 +18,7 @@
     "@trackx/reltime": "workspace:*",
     "solid-js": "1.6.9",
     "trackx": "workspace:*",
-    "uplot": "1.6.23"
+    "uplot": "1.6.24"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
