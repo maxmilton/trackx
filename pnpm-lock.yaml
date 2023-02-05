@@ -219,7 +219,7 @@ importers:
       rollup-plugin-visualizer: 5.9.0
       solid-js: 1.6.9
       trackx: workspace:*
-      uplot: 1.6.23
+      uplot: 1.6.24
     dependencies:
       '@ekscss/framework': 0.0.43_ekscss@0.0.13
       '@maxmilton/solid-router': 0.3.2_solid-js@1.6.9
@@ -227,7 +227,7 @@ importers:
       '@trackx/reltime': link:../reltime
       solid-js: 1.6.9
       trackx: link:../trackx
-      uplot: 1.6.23
+      uplot: 1.6.24
     devDependencies:
       '@babel/core': 7.20.12
       '@ekscss/rollup-plugin-purgecss': 0.0.5
@@ -6568,8 +6568,8 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /uplot/1.6.23:
-    resolution: {integrity: sha512-zERH8HUbHE6kYyAqfP58SYuESp9M5jphSrMjsyckAM0DJ8C39SEI19YrpVvTCTLZB5joFUBPOwueRnJCdV2OdQ==}
+  /uplot/1.6.24:
+    resolution: {integrity: sha512-WpH2BsrFrqxkMu+4XBvc0eCDsRBhzoq9crttYeSI0bfxpzR5YoSVzZXOKFVWcVC7sp/aDXrdDPbDZGCtck2PVg==}
     dev: false
 
   /uri-js/4.4.1:
