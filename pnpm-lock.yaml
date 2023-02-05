@@ -23,7 +23,7 @@ importers:
       eslint-plugin-import: 2.27.5
       eslint-plugin-jest: 27.2.1
       eslint-plugin-jsx-a11y: 6.7.1
-      eslint-plugin-security: 1.6.0
+      eslint-plugin-security: 1.7.1
       eslint-plugin-unicorn: 45.0.2
       jest: 29.4.1
       jest-environment-jsdom: 29.4.1
@@ -57,7 +57,7 @@ importers:
       eslint-plugin-import: 2.27.5_ufewo3pl5nnmz6lltvjrdi2hii
       eslint-plugin-jest: 27.2.1_mxgixfkotof7s3ejq6qsq3dgw4
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.33.0
-      eslint-plugin-security: 1.6.0
+      eslint-plugin-security: 1.7.1
       eslint-plugin-unicorn: 45.0.2_eslint@8.33.0
       jest: 29.4.1_@types+node@18.11.18
       jest-environment-jsdom: 29.4.1
@@ -3114,8 +3114,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /eslint-plugin-security/1.6.0:
-    resolution: {integrity: sha512-SGvyejbhW/dziRbzOroKX5bj8z/qtBOw7Q95C9CBbJQqBtFB2o4OxSM3MCO2u9noPp7B6DDaFGtXTx8ImPiO/A==}
+  /eslint-plugin-security/1.7.1:
+    resolution: {integrity: sha512-sMStceig8AFglhhT2LqlU5r+/fn9OwsA72O5bBuQVTssPCdQAOQzL+oMn/ZcpeUY6KcNfLJArgcrsSULNjYYdQ==}
     dependencies:
       safe-regex: 2.1.1
     dev: true
