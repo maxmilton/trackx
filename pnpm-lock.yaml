@@ -33,7 +33,7 @@ importers:
       prettier-plugin-sh: 0.12.8
       prettier-plugin-sql: 0.12.1
       solid-js: 1.6.9
-      solid-testing-library: 0.5.0
+      solid-testing-library: 0.5.1
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0
       typescript: 4.9.5
@@ -67,7 +67,7 @@ importers:
       prettier-plugin-sh: 0.12.8_prettier@2.8.3
       prettier-plugin-sql: 0.12.1_prettier@2.8.3
       solid-js: 1.6.9
-      solid-testing-library: 0.5.0_solid-js@1.6.9
+      solid-testing-library: 0.5.1_solid-js@1.6.9
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0_stylelint@14.16.1
       typescript: 4.9.5
@@ -6017,9 +6017,10 @@ packages:
     dependencies:
       csstype: 3.1.1
 
-  /solid-testing-library/0.5.0_solid-js@1.6.9:
-    resolution: {integrity: sha512-vr4Ke9Dq3bUFLaXOcN8/IVn2e9Q37w4vdmoIOmFBIPs7iCJX9IxuC0IdQqK8nzBZMQqceijkfyCE3Qc407KmaA==}
+  /solid-testing-library/0.5.1_solid-js@1.6.9:
+    resolution: {integrity: sha512-CfcCWsI5zIJz2zcyZQz2weq+6cCS5QrcmWeEmUEy03fElJ/BV5Ly4MMTsmwdOK803zY3wJP5pPf026C40VrE1Q==}
     engines: {node: '>= 14'}
+    deprecated: This package is now available at @solidjs/testing-library
     peerDependencies:
       solid-js: '>=1.0.0'
     dependencies:
