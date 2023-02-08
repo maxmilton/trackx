@@ -141,7 +141,7 @@ importers:
       diary: 0.4.3
       git-ref: 0.3.1
       kleur: 4.1.5
-      nanoid: 4.0.0
+      nanoid: 4.0.1
       polka: 1.0.0-next.22
       source-map: 0.7.4
       source-map-support: 0.5.21
@@ -158,7 +158,7 @@ importers:
       better-sqlite3: 7.6.2
       diary: 0.4.3
       kleur: 4.1.5
-      nanoid: 4.0.0
+      nanoid: 4.0.1
       polka: 1.0.0-next.22
       trackx: link:../trackx
       ua-parser-js: 1.0.33
@@ -4982,8 +4982,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid/4.0.0:
-    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+  /nanoid/4.0.1:
+    resolution: {integrity: sha512-udKGtCCUafD3nQtJg9wBhRP3KMbPglUsgV5JVsXhvyBs/oefqb4sqMEhKBBgqZncYowu58p1prsZQBYvAj/Gww==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
     dev: false
