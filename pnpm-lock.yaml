@@ -199,7 +199,7 @@ importers:
       '@babel/core': 7.20.12
       '@ekscss/framework': 0.0.43
       '@ekscss/rollup-plugin-purgecss': 0.0.5
-      '@maxmilton/rollup-plugin-css': 0.0.7
+      '@maxmilton/rollup-plugin-css': 0.0.8
       '@maxmilton/solid-router': 0.3.2
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-buble': 1.0.2
@@ -231,7 +231,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.12
       '@ekscss/rollup-plugin-purgecss': 0.0.5
-      '@maxmilton/rollup-plugin-css': 0.0.7_rollup@3.14.0
+      '@maxmilton/rollup-plugin-css': 0.0.8_rollup@3.14.0
       '@rollup/plugin-babel': 6.0.3_55vfdocqwgqdto4ii6d2bdjw5q
       '@rollup/plugin-buble': 1.0.2_rollup@3.14.0
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.14.0
@@ -1312,8 +1312,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@maxmilton/rollup-plugin-css/0.0.7_rollup@3.14.0:
-    resolution: {integrity: sha512-lhPX1YaUl4HS16ysThQCGEUUmAEsd95CuLIySvp9ziWE0m65w7ND/DJSzm2B9innw3mp6xyta5EqkjBMyJ/Q5Q==}
+  /@maxmilton/rollup-plugin-css/0.0.8_rollup@3.14.0:
+    resolution: {integrity: sha512-nzNSHtXTS33hqV1MwS0sKBBBrLk5iC8U/BZRHlTJvaxmCNfESD+9MuaF3cdzhlRICFYbKaw+W/SARbREfolkmQ==}
     peerDependencies:
       rollup: ^2.0.0 || ^3.0.0
     dependencies:
