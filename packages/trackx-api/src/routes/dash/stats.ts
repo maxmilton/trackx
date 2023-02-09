@@ -43,13 +43,13 @@ const getDailyPingsStmt = db
 const getDailyDashStmt = db
   .prepare('SELECT ts, c FROM daily_dash WHERE ts > ?')
   .raw();
-const getDailyDeniedEvents = db
+const getDailyDeniedEventsStmt = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'event'")
   .raw();
-const getDailyDeniedPings = db
+const getDailyDeniedPingsStmt = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'ping'")
   .raw();
-const getDailyDeniedDash = db
+const getDailyDeniedDashStmt = db
   .prepare("SELECT ts, c FROM daily_denied WHERE ts > ? AND type = 'dash'")
   .raw();
 
@@ -59,11 +59,11 @@ const getAllStatsData = db.transaction((ts: number) => ({
   event_c: getEventCountStmt.get(),
   project_c: getProjectCountStmt.get(),
   daily_events: getDailyEventsStmt.all(ts),
-  daily_events_denied: getDailyDeniedEvents.all(ts),
+  daily_events_denied: getDailyDeniedEventsStmt.all(ts),
   daily_pings: getDailyPingsStmt.all(ts),
-  daily_pings_denied: getDailyDeniedPings.all(ts),
+  daily_pings_denied: getDailyDeniedPingsStmt.all(ts),
   daily_dash: getDailyDashStmt.all(ts),
-  daily_dash_denied: getDailyDeniedDash.all(ts),
+  daily_dash_denied: getDailyDeniedDashStmt.all(ts),
 }));
 
 function remapGraphData(

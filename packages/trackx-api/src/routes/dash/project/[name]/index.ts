@@ -122,6 +122,7 @@ export const get: Middleware = (req, res, next) => {
   } catch (error) {
     logger.error(error);
     void next(error || new Error(error));
+    deniedDash();
   }
 };
 
@@ -197,6 +198,7 @@ export const put: Middleware = (req, res, next) => {
   } catch (error) {
     logger.error(error);
     void next(error || new Error(error));
+    deniedDash();
   }
 };
 
