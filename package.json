@@ -39,7 +39,7 @@
     "prettier-plugin-pkg": "0.17.1",
     "prettier-plugin-sh": "0.12.8",
     "prettier-plugin-sql": "0.12.1",
-    "solid-js": "1.6.10",
+    "solid-js": "1.6.11",
     "solid-testing-library": "0.5.1",
     "stylelint": "15.1.0",
     "stylelint-config-standard": "30.0.1",
