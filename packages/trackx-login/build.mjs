@@ -252,7 +252,8 @@ const minifyJS = {
   },
 };
 
-await esbuild.build({
+/** @type {esbuild.BuildOptions} */
+const esbuildConfig = {
   entryPoints: ['src/index.ts'],
   outfile: '../trackx-dash/dist/login.js',
   entryNames: dev ? '[name]' : '[name]-[hash]',
@@ -276,8 +277,14 @@ await esbuild.build({
   bundle: true,
   minify: !dev,
   sourcemap: true,
-  watch: !!process.env.BUILD_WATCH,
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
-});
+};
+
+if (process.env.BUILD_WATCH) {
+  const context = await esbuild.context(esbuildConfig);
+  await context.watch();
+} else {
+  await esbuild.build(esbuildConfig);
+}
