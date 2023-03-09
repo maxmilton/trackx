@@ -2,13 +2,20 @@
 
 import esbuild from 'esbuild';
 
-await esbuild.build({
+/** @type {esbuild.BuildOptions} */
+const esbuildConfig = {
   entryPoints: ['src/index.ts'],
   outfile: 'dist/index.js',
   platform: 'node',
   format: 'esm',
   bundle: true,
   sourcemap: true,
-  watch: !!process.env.BUILD_WATCH,
   logLevel: 'debug',
-});
+};
+
+if (process.env.BUILD_WATCH) {
+  const context = await esbuild.context(esbuildConfig);
+  await context.watch();
+} else {
+  await esbuild.build(esbuildConfig);
+}

@@ -2,18 +2,25 @@
 
 import esbuild from 'esbuild';
 
-const out = await esbuild.build({
+/** @type {esbuild.BuildOptions} */
+const esbuildConfig = {
   entryPoints: ['src/index.ts'],
   outfile: 'dist/index.js',
   platform: 'browser',
   format: 'esm',
   bundle: true,
   sourcemap: true,
-  watch: !!process.env.BUILD_WATCH,
   metafile: !process.env.BUILD_WATCH && process.stdout.isTTY,
   logLevel: 'debug',
-});
+};
 
-if (out.metafile) {
-  console.log(await esbuild.analyzeMetafile(out.metafile));
+if (process.env.BUILD_WATCH) {
+  const context = await esbuild.context(esbuildConfig);
+  await context.watch();
+} else {
+  const out = await esbuild.build(esbuildConfig);
+
+  if (out.metafile) {
+    console.log(await esbuild.analyzeMetafile(out.metafile));
+  }
 }
