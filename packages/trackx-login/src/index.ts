@@ -60,8 +60,11 @@ form.onsubmit = async (event) => {
     title.textContent = 'Error: ';
     alert.className = 'alert alert-danger';
     append(title, alert);
-    // Use simple Text node to remove potential XSS attack vector
-    append(new Text(String(error)), alert);
+    // Use simple Text node to mitigate potential XSS attack vector
+    append(
+      new Text((error instanceof Error && error.message) || String(error)),
+      alert,
+    );
     append(alert, feedback);
 
     submit.disabled = false;
