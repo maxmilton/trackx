@@ -257,7 +257,7 @@ importers:
       git-ref: 0.3.1
       lightningcss: 1.19.0
       purgecss: 5.0.0
-      terser: 5.16.5
+      terser: 5.16.6
       totalist: 3.0.0
       trackx-dash: workspace:*
     dependencies:
@@ -270,7 +270,7 @@ importers:
       git-ref: 0.3.1
       lightningcss: 1.19.0
       purgecss: 5.0.0
-      terser: 5.16.5
+      terser: 5.16.6
       totalist: 3.0.0
       trackx-dash: link:../trackx-dash
 
@@ -6338,6 +6338,17 @@ packages:
 
   /terser/5.16.5:
     resolution: {integrity: sha512-qcwfg4+RZa3YvlFh0qjifnzBHjKGNbtDo9yivMqMFDy9Q6FSaQWSB/j1xKhsoUFJIqDOM3TsN6D5xbrMrFcHbg==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      '@jridgewell/source-map': 0.3.2
+      acorn: 8.8.2
+      commander: 2.20.3
+      source-map-support: 0.5.21
+    dev: true
+
+  /terser/5.16.6:
+    resolution: {integrity: sha512-IBZ+ZQIA9sMaXmRZCUMDjNH0D5AQQfdn4WUjHL0+1lF4TP1IHRJbrhb6fNaXWikrYQTSkb7SLxkeXAiy1p7mbg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
