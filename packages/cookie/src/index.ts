@@ -81,7 +81,7 @@ export class Cookie {
       throw new Error('Invalid cookie header');
     }
 
-    if (process.env.NODE_ENV === 'development' && parts.length > 1) {
+    if (process.env.NODE_ENV !== 'production' && parts.length > 1) {
       throw new Error(
         `Cookie header contains unexpected parts: ${parts.slice(1).toString()}`,
       );
@@ -165,7 +165,7 @@ export class Cookie {
     this.httpOnly = options.httpOnly ?? true;
     this.sameSite = options.sameSite || 'Strict';
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'production') {
       // Check key and value contain only ASCII and no invalid characters
       if (
         !/^[\u0020-\u007E]*$/.test(this.key)
