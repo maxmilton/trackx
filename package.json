@@ -17,7 +17,7 @@
     "@maxmilton/stylelint-config": "0.0.12",
     "@testing-library/jest-dom": "5.16.5",
     "@types/babel__core": "7.20.0",
-    "@types/jest": "29.4.4",
+    "@types/jest": "29.5.0",
     "@types/node": "18.15.6",
     "@types/testing-library__jest-dom": "5.14.5",
     "@typescript-eslint/eslint-plugin": "5.56.0",
