@@ -7,7 +7,7 @@ importers:
       '@babel/core': 7.21.3
       '@babel/plugin-transform-modules-commonjs': 7.21.2
       '@babel/preset-typescript': 7.21.0
-      '@maxmilton/stylelint-config': 0.0.11
+      '@maxmilton/stylelint-config': 0.0.12
       '@testing-library/jest-dom': 5.16.5
       '@types/babel__core': 7.20.0
       '@types/jest': 29.4.4
@@ -41,7 +41,7 @@ importers:
       '@babel/core': 7.21.3
       '@babel/plugin-transform-modules-commonjs': 7.21.2_@babel+core@7.21.3
       '@babel/preset-typescript': 7.21.0_@babel+core@7.21.3
-      '@maxmilton/stylelint-config': 0.0.11_stylelint@15.2.0
+      '@maxmilton/stylelint-config': 0.0.12_stylelint@15.2.0
       '@testing-library/jest-dom': 5.16.5
       '@types/babel__core': 7.20.0
       '@types/jest': 29.4.4
@@ -1370,8 +1370,8 @@ packages:
       solid-js: 1.6.14
     dev: false
 
-  /@maxmilton/stylelint-config/0.0.11_stylelint@15.2.0:
-    resolution: {integrity: sha512-pTo5DAkxMJAcLGbJJVn/7n3IOGkBTimF9Bmh7S4GAEcro7lsJEDOU3uK0LHlxZ63IGwKiBhTt4ZEHIPRqNp51w==}
+  /@maxmilton/stylelint-config/0.0.12_stylelint@15.2.0:
+    resolution: {integrity: sha512-XYFRy7rP/+oDWdS70bhMZvx3f4S5oD62hH8GC9icWQpUtDUzGtuwUl+NVie1h7H7uTe25DAbsYwfIgCiBYp6Iw==}
     peerDependencies:
       stylelint: ^15.0.0
     dependencies:
