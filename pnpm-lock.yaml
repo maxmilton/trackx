@@ -10,7 +10,7 @@ importers:
       '@maxmilton/stylelint-config': 0.0.12
       '@testing-library/jest-dom': 5.16.5
       '@types/babel__core': 7.20.0
-      '@types/jest': 29.4.4
+      '@types/jest': 29.5.0
       '@types/node': 18.15.6
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.56.0
@@ -44,7 +44,7 @@ importers:
       '@maxmilton/stylelint-config': 0.0.12_stylelint@15.2.0
       '@testing-library/jest-dom': 5.16.5
       '@types/babel__core': 7.20.0
-      '@types/jest': 29.4.4
+      '@types/jest': 29.5.0
       '@types/node': 18.15.6
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.56.0_iskin7c6dxqunwflhstekcjqmq
@@ -1674,8 +1674,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/29.4.4:
-    resolution: {integrity: sha512-qezb65VIH7X1wobSnd6Lvdve7PXSyQRa3dljTkhTtDhi603RvHQCshSlJcuyMLHJpeHgY3NKwvDJWxMOOHxGDQ==}
+  /@types/jest/29.5.0:
+    resolution: {integrity: sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==}
     dependencies:
       expect: 29.5.0
       pretty-format: 29.5.0
@@ -1739,7 +1739,7 @@ packages:
   /@types/testing-library__jest-dom/5.14.5:
     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
     dependencies:
-      '@types/jest': 29.4.4
+      '@types/jest': 29.5.0
     dev: true
 
   /@types/tough-cookie/4.0.2:
