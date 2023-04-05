@@ -22,7 +22,7 @@
     "lightningcss": "1.19.0",
     "purgecss": "5.0.0",
     "terser": "5.16.8",
-    "totalist": "3.0.0",
+    "totalist": "3.0.1",
     "trackx-dash": "workspace:*"
   }
 }
