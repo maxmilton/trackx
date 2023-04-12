@@ -214,8 +214,8 @@ importers:
         version: 2.0.1
     devDependencies:
       '@types/better-sqlite3':
-        specifier: 7.6.3
-        version: 7.6.3
+        specifier: 7.6.4
+        version: 7.6.4
       '@types/ua-parser-js':
         specifier: 0.7.36
         version: 0.7.36
@@ -248,8 +248,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/better-sqlite3':
-        specifier: 7.6.3
-        version: 7.6.3
+        specifier: 7.6.4
+        version: 7.6.4
       '@types/punycode':
         specifier: 2.1.0
         version: 2.1.0
@@ -1740,8 +1740,8 @@ packages:
       '@babel/types': 7.21.4
     dev: true
 
-  /@types/better-sqlite3@7.6.3:
-    resolution: {integrity: sha512-YS64N9SNDT/NAvou3QNdzAu3E2om/W/0dhORimtPGLef+zSK5l1vDzfsWb4xgXOgfhtOI5ZDTRxnvRPb22AIVQ==}
+  /@types/better-sqlite3@7.6.4:
+    resolution: {integrity: sha512-dzrRZCYPXIXfSR1/surNbJ/grU3scTaygS0OMzjlGf71i9sc2fGyHPXXiXmEvNIoE0cGwsanEFMVJxPXmco9Eg==}
     dependencies:
       '@types/node': 18.15.11
     dev: true
