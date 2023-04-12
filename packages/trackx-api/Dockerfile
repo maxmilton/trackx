@@ -1,5 +1,5 @@
 # Install NPM modules including building node-gyp binaries e.g., better-sqlite3
-FROM debian:bullseye-slim@sha256:7acda01e55b086181a6fa596941503648e423091ca563258e2c1657d140355b1 AS install_deps
+FROM debian:bullseye-slim@sha256:b196bf018a85a43c3a9e77a187b107e9c3314a8d60d7af4eae5cca8b23d85d68 AS install_deps
 ENV SQLITE_TOOLS_URL https://www.sqlite.org/2022/sqlite-tools-linux-x86-3390200.zip
 ENV SQLITE_TOOLS_SHA3 8b5772985ec251c6c773e6e831f15e28ccbb31cd910285135ad998f1655b3a11
 RUN set -xe \
@@ -35,7 +35,7 @@ RUN set -xe \
   && pnpm install --prod --no-lockfile
 
 # Make release image
-FROM debian:bullseye-slim@sha256:7acda01e55b086181a6fa596941503648e423091ca563258e2c1657d140355b1
+FROM debian:bullseye-slim@sha256:b196bf018a85a43c3a9e77a187b107e9c3314a8d60d7af4eae5cca8b23d85d68
 ENV NODE_ENV production
 RUN set -xe \
   && groupadd -g 5063 -r nodejs \
