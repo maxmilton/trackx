@@ -189,8 +189,8 @@ importers:
         specifier: workspace:*
         version: link:../stack-trace-parser
       better-sqlite3:
-        specifier: 7.6.2
-        version: 7.6.2
+        specifier: 8.3.0
+        version: 8.3.0
       diary:
         specifier: 0.4.4
         version: 0.4.4
@@ -235,8 +235,8 @@ importers:
   packages/trackx-cli:
     dependencies:
       better-sqlite3:
-        specifier: 7.6.2
-        version: 7.6.2
+        specifier: 8.3.0
+        version: 8.3.0
       kleur:
         specifier: 4.1.5
         version: 4.1.5
@@ -2391,8 +2391,8 @@ packages:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
 
-  /better-sqlite3@7.6.2:
-    resolution: {integrity: sha512-S5zIU1Hink2AH4xPsN0W43T1/AJ5jrPh7Oy07ocuW/AKYYY02GWzz9NH0nbSMn/gw6fDZ5jZ1QsHt1BXAwJ6Lg==}
+  /better-sqlite3@8.3.0:
+    resolution: {integrity: sha512-JTmvBZL/JLTc+3Msbvq6gK6elbU9/wVMqiudplHrVJpr7sVMR9KJrNhZAbW+RhXKlpMcuEhYkdcHa3TXKNXQ1w==}
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
