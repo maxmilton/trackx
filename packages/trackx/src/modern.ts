@@ -34,7 +34,7 @@ const FAIL_LIMIT = 20;
 const RETRY_LIMIT = 4;
 const TIMEOUT_MS = 60_000; // 60 seconds
 
-const storage: LocalStorage = localStorage;
+const storage: LocalStorage = globalThis.localStorage;
 const listen = globalThis.addEventListener;
 const oldConsoleError = console.error;
 
