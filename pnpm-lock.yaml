@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 importers:
 
@@ -266,8 +270,8 @@ importers:
   packages/trackx-dash:
     dependencies:
       '@ekscss/framework':
-        specifier: 0.0.43
-        version: 0.0.43(ekscss@0.0.13)
+        specifier: 0.0.45
+        version: 0.0.45(ekscss@0.0.14)
       '@maxmilton/solid-router':
         specifier: 0.3.2
         version: 0.3.2(solid-js@1.6.15)
@@ -315,8 +319,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2(rollup@3.21.2)
       ekscss:
-        specifier: 0.0.13
-        version: 0.0.13
+        specifier: 0.0.14
+        version: 0.0.14
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -327,8 +331,8 @@ importers:
         specifier: 3.21.2
         version: 3.21.2
       rollup-plugin-ekscss:
-        specifier: 0.0.11
-        version: 0.0.11(ekscss@0.0.13)(rollup@3.21.2)
+        specifier: 0.0.12
+        version: 0.0.12(ekscss@0.0.14)(rollup@3.21.2)
       rollup-plugin-esbuild:
         specifier: 5.0.0
         version: 5.0.0(esbuild@0.17.18)(rollup@3.21.2)
@@ -342,12 +346,12 @@ importers:
   packages/trackx-login:
     dependencies:
       '@ekscss/framework':
-        specifier: 0.0.43
-        version: 0.0.43(ekscss@0.0.13)
+        specifier: 0.0.45
+        version: 0.0.45(ekscss@0.0.14)
     devDependencies:
       ekscss:
-        specifier: 0.0.13
-        version: 0.0.13
+        specifier: 0.0.14
+        version: 0.0.14
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -355,8 +359,8 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(esbuild@0.17.18)
       esbuild-plugin-ekscss:
-        specifier: 0.0.13
-        version: 0.0.13(ekscss@0.0.13)(esbuild@0.17.18)
+        specifier: 0.0.14
+        version: 0.0.14(ekscss@0.0.14)(esbuild@0.17.18)
       git-ref:
         specifier: 0.3.1
         version: 0.3.1
@@ -878,49 +882,49 @@ packages:
       postcss-selector-parser: 6.0.12
     dev: true
 
-  /@ekscss/framework@0.0.43(ekscss@0.0.13):
-    resolution: {integrity: sha512-CUN0M9CtlzNjMfW+qbJbYSkkpIFzxlg+oUVSez7sreAb4poW42ArqjW3/D3WiVxSYqr4rrFLF7066Ei0z/hOVQ==}
+  /@ekscss/framework@0.0.45(ekscss@0.0.14):
+    resolution: {integrity: sha512-IuFMH3q1QGy3yjum1KDbHKn2J9rzLT1UpST7MogmqY6V1pngl4O5BH0+4eRmjC7lgBW+hLVcik4rJSjs13Swdg==}
     peerDependencies:
-      ekscss: ^0.0.13
+      ekscss: ^0.0.14
     peerDependenciesMeta:
       ekscss:
         optional: true
     dependencies:
-      '@ekscss/plugin-apply': 0.0.9(ekscss@0.0.13)
-      '@ekscss/plugin-import': 0.0.9(ekscss@0.0.13)
-      '@ekscss/plugin-prefix': 0.0.8(ekscss@0.0.13)
+      '@ekscss/plugin-apply': 0.0.10(ekscss@0.0.14)
+      '@ekscss/plugin-import': 0.0.10(ekscss@0.0.14)
+      '@ekscss/plugin-prefix': 0.0.9(ekscss@0.0.14)
       color: 4.2.3
       cssremedy: github.com/jensimmons/cssremedy/af14bf3
       dset: 3.1.2
-      ekscss: 0.0.13
-      stylis: 4.1.4
+      ekscss: 0.0.14
+      stylis: 4.2.0
     dev: false
 
-  /@ekscss/plugin-apply@0.0.9(ekscss@0.0.13):
-    resolution: {integrity: sha512-0xwxtr/58ZxkYcaCs/76cE/qz19eJjazHb7MGV7hvlTJj2vOwI1YN+/63jz1RS8jmcstFjy5Kexhrpswmrq9/A==}
+  /@ekscss/plugin-apply@0.0.10(ekscss@0.0.14):
+    resolution: {integrity: sha512-F8WzEFA++u3gOaj4FZAlBW9FBcY4bfD6ywJWB9H3W1QAcbPnRpyj5bzXiy5RDeS5JC95ioGWJqh+iOY7t6IRZw==}
     peerDependencies:
-      ekscss: ^0.0.13
+      ekscss: ^0.0.14
     dependencies:
-      ekscss: 0.0.13
-      stylis: 4.1.4
+      ekscss: 0.0.14
+      stylis: 4.2.0
     dev: false
 
-  /@ekscss/plugin-import@0.0.9(ekscss@0.0.13):
-    resolution: {integrity: sha512-LE3C4YRZfJEj4B++t+uLvAaFoTw9jTrbZ8T5/dDUWOADvMz2lysJIp4eeFYfFEX0Mvj2NFFA0rLqVhJ3iJaPBQ==}
+  /@ekscss/plugin-import@0.0.10(ekscss@0.0.14):
+    resolution: {integrity: sha512-/nd5P8L4hOll/yGwcPx5pKmt2t5xBdHrXW7nXBmQkF3soinToz6/pfkYAzOB09EXiIPza2JcUZz/Ou/auYP+qA==}
     peerDependencies:
-      ekscss: ^0.0.13
+      ekscss: ^0.0.14
     dependencies:
-      ekscss: 0.0.13
-      stylis: 4.1.4
+      ekscss: 0.0.14
+      stylis: 4.2.0
     dev: false
 
-  /@ekscss/plugin-prefix@0.0.8(ekscss@0.0.13):
-    resolution: {integrity: sha512-oEU1hSYyE4MgcQK66j0HC3EACZRIqDRVywpljqii1xbzaGq/wsrU2Jpp1juRBpyvHmzqdO1XJD9jL5Uhz0pWHA==}
+  /@ekscss/plugin-prefix@0.0.9(ekscss@0.0.14):
+    resolution: {integrity: sha512-8q0PWqNNUwVRJefD6FHpK73PBOT3/AuLoBh4g+C65gkbu0geV1onhpIJTLF0Ck5OCvc16Pb+HSbNj6fR68jHMw==}
     peerDependencies:
-      ekscss: ^0.0.13
+      ekscss: ^0.0.14
     dependencies:
-      ekscss: 0.0.13
-      stylis: 4.1.4
+      ekscss: 0.0.14
+      stylis: 4.2.0
     dev: false
 
   /@ekscss/rollup-plugin-purgecss@0.0.5:
@@ -1836,8 +1840,8 @@ packages:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
     dev: true
 
-  /@types/stylis@4.0.2:
-    resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
+  /@types/stylis@4.2.0:
+    resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
 
   /@types/testing-library__jest-dom@5.14.5:
     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
@@ -2913,12 +2917,12 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /ekscss@0.0.13:
-    resolution: {integrity: sha512-vn04jyRhoC+Q4eCmENJV+XUc8SjpAYZnMgb7eTf2IXeux6Gxq3+vfbEbkfiCHhn8vKKFyVpTD5dN2446PdWIyg==}
+  /ekscss@0.0.14:
+    resolution: {integrity: sha512-EZOk71OgK5UEpp/XTPgPJ+/TCnwQS0Jn2oFmVfLMOKJuvtM4S27Y/Ovhspn1JhwSx6ZdtqZrHoim0sYYqiIvUg==}
     dependencies:
-      '@types/stylis': 4.0.2
+      '@types/stylis': 4.2.0
       source-map: 0.8.0-beta.0
-      stylis: 4.1.4
+      stylis: 4.2.0
 
   /electron-to-chromium@1.4.378:
     resolution: {integrity: sha512-RfCD26kGStl6+XalfX3DGgt3z2DNwJS5DKRHCpkPq5T/PqpZMPB1moSRXuK9xhkt/sF57LlpzJgNoYl7mO7Z6w==}
@@ -3049,13 +3053,13 @@ packages:
       meriyah: 4.3.5
     dev: true
 
-  /esbuild-plugin-ekscss@0.0.13(ekscss@0.0.13)(esbuild@0.17.18):
-    resolution: {integrity: sha512-qG+EACWpTEBtlmjB63mjEnMwNZktDD/Dc1PaCNhDED7Out5h9YMK+wE/aNPmVd0NfK0mtKeZ2ay6r/aBN7zgbA==}
+  /esbuild-plugin-ekscss@0.0.14(ekscss@0.0.14)(esbuild@0.17.18):
+    resolution: {integrity: sha512-GxQOB/5qXvoq2dRUbEKj+TbMw2SCXi8jiqoOkm0MigyYfRAmzgQildmEEhZXx7CiOGfUUp+RRNo7V9WvmgEjiQ==}
     peerDependencies:
-      ekscss: ^0.0.13
-      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0
+      ekscss: ^0.0.14
+      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0 || ^0.17.0
     dependencies:
-      ekscss: 0.0.13
+      ekscss: 0.0.14
       esbuild: 0.17.18
       joycon: 3.1.1
     dev: true
@@ -5845,14 +5849,14 @@ packages:
       '@babel/code-frame': 7.21.4
     dev: true
 
-  /rollup-plugin-ekscss@0.0.11(ekscss@0.0.13)(rollup@3.21.2):
-    resolution: {integrity: sha512-75N55EspmwQkPYQJdVxxKkZr/wnBeaOI/57dI26+vLvrvGaC2tnI85rbif2dFDRfwzfs5GwqG1LGeqHlMNK5Mw==}
+  /rollup-plugin-ekscss@0.0.12(ekscss@0.0.14)(rollup@3.21.2):
+    resolution: {integrity: sha512-xyWVFBa2WOwSFtgyQWCENMQ4nO9unsfv+v+qhnLihB07vfpPEerJeFTJ9LT13mhJAzSNIMdooq9de+IBq2kHpg==}
     peerDependencies:
-      ekscss: ^0.0.13
+      ekscss: ^0.0.14
       rollup: ^2.0.0 || ^3.0.0
     dependencies:
       '@rollup/pluginutils': 5.0.2(rollup@3.21.2)
-      ekscss: 0.0.13
+      ekscss: 0.0.14
       joycon: 3.1.1
       rollup: 3.21.2
     dev: true
@@ -6321,8 +6325,8 @@ packages:
       - supports-color
     dev: true
 
-  /stylis@4.1.4:
-    resolution: {integrity: sha512-USf5pszRYwuE6hg9by0OkKChkQYEXfkeTtm0xKw+jqQhwyjCVLdYyMBK7R+n7dhzsblAWJnGxju4vxq5eH20GQ==}
+  /stylis@4.2.0:
+    resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
