@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -294,8 +298,8 @@ importers:
         specifier: 0.0.5
         version: 0.0.5
       '@maxmilton/rollup-plugin-css':
-        specifier: 0.0.8
-        version: 0.0.8(rollup@3.21.2)
+        specifier: 0.0.11
+        version: 0.0.11(rollup@3.21.2)
       '@rollup/plugin-babel':
         specifier: 6.0.3
         version: 6.0.3(@babel/core@7.21.5)(@types/babel__core@7.20.0)(rollup@3.21.2)
@@ -1455,8 +1459,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@maxmilton/rollup-plugin-css@0.0.8(rollup@3.21.2):
-    resolution: {integrity: sha512-nzNSHtXTS33hqV1MwS0sKBBBrLk5iC8U/BZRHlTJvaxmCNfESD+9MuaF3cdzhlRICFYbKaw+W/SARbREfolkmQ==}
+  /@maxmilton/rollup-plugin-css@0.0.11(rollup@3.21.2):
+    resolution: {integrity: sha512-G/pSUHxo5DTkMSgumLmV3c1rfhIG1utgy9PfiOfk06k4e5uBjinaWsqOfo4w4ZXim2QHBsVCnp1pADlWkYISHQ==}
     peerDependencies:
       rollup: ^2.0.0 || ^3.0.0
     dependencies:
