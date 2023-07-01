@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -220,8 +224,8 @@ importers:
         specifier: 0.7.36
         version: 0.7.36
       git-ref:
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 0.4.0
+        version: 0.4.0
       source-map:
         specifier: 0.7.4
         version: 0.7.4
@@ -254,8 +258,8 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
       git-ref:
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 0.4.0
+        version: 0.4.0
       mri:
         specifier: 1.2.0
         version: 1.2.0
@@ -321,8 +325,8 @@ importers:
         specifier: 0.17.18
         version: 0.17.18
       git-ref:
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 0.4.0
+        version: 0.4.0
       rollup:
         specifier: 3.21.2
         version: 3.21.2
@@ -358,8 +362,8 @@ importers:
         specifier: 0.0.13
         version: 0.0.13(ekscss@0.0.13)(esbuild@0.17.18)
       git-ref:
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 0.4.0
+        version: 0.4.0
       lightningcss:
         specifier: 1.20.0
         version: 1.20.0
@@ -3628,8 +3632,8 @@ packages:
       get-intrinsic: 1.2.0
     dev: true
 
-  /git-ref@0.3.1:
-    resolution: {integrity: sha512-7H67HP83c8F/j9GcBsL9yT0FwOWpAVHTZ/TRj89PzTQbSmmsdgM+3yn+Id+ii0RmG7W4IG0f/pNb1bGGj/hgUw==}
+  /git-ref@0.4.0:
+    resolution: {integrity: sha512-Kwa828HJQbeq6lxqA4dEran8GimWU2MF6yak4M/Q5KO85yBre08g7GmnqrtGN43nNwfyCVhvzB3y/epZlLu5Mw==}
     dev: true
 
   /github-from-package@0.0.0:

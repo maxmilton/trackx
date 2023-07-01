@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "7.6.3",
     "@types/punycode": "2.1.0",
-    "git-ref": "0.3.1",
+    "git-ref": "0.4.0",
     "mri": "1.2.0",
     "source-map-support": "0.5.21"
   }

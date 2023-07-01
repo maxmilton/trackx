@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "7.6.3",
     "@types/ua-parser-js": "0.7.36",
-    "git-ref": "0.3.1",
+    "git-ref": "0.4.0",
     "source-map": "0.7.4",
     "source-map-support": "0.5.21",
     "totalist": "3.0.1"
