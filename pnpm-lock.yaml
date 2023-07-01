@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -352,8 +356,8 @@ importers:
         specifier: 0.17.18
         version: 0.17.18
       esbuild-minify-templates:
-        specifier: 0.10.0
-        version: 0.10.0(esbuild@0.17.18)
+        specifier: 0.11.0
+        version: 0.11.0(esbuild@0.17.18)
       esbuild-plugin-ekscss:
         specifier: 0.0.13
         version: 0.0.13(ekscss@0.0.13)(esbuild@0.17.18)
@@ -3036,17 +3040,17 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
-  /esbuild-minify-templates@0.10.0(esbuild@0.17.18):
-    resolution: {integrity: sha512-VEDDgKwRsHVeL/VbJXaoA6heccsvb48iGg4mG2jY/oA+j5ohtaQ/Klm556F7JlbN/L79YovTEPbCffLL/sr83g==}
+  /esbuild-minify-templates@0.11.0(esbuild@0.17.18):
+    resolution: {integrity: sha512-RME7hcigbbFjQXW5eVrI4a83r21qLAwi5pFL5KYNfHdpN6qMyB9BzkeQ/n7P6IcZu06E1LdF0XpDeS/8/E3D3w==}
     engines: {node: '>= 12'}
     peerDependencies:
-      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0 || ^0.17.0
+      esbuild: '>=0.13.0 <1.0.0'
     dependencies:
       '@ampproject/remapping': 2.2.1
       astray: 1.1.1
       esbuild: 0.17.18
-      magic-string: 0.27.0
-      meriyah: 4.3.5
+      magic-string: 0.30.0
+      meriyah: 4.3.7
     dev: true
 
   /esbuild-plugin-ekscss@0.0.13(ekscss@0.0.13)(esbuild@0.17.18):
@@ -5027,8 +5031,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /meriyah@4.3.5:
-    resolution: {integrity: sha512-oCOuzPtD4udAYnvxIi4Rp99nEHJWHtAFHEFmS27hQuDNjxTQ39Z/hQ9uWW+ZgJjCmpi0nRo7wwciT7rtQE31Bw==}
+  /meriyah@4.3.7:
+    resolution: {integrity: sha512-JAlSOUqFU/rmLy2CEdZO5hN5E5dyUj1f4AlRR4GCQMjfobvd5lcm9JLkrqq0MgVaLQ/Zur590A+0RyUZhj0b5A==}
     engines: {node: '>=10.4.0'}
     dev: true
 
