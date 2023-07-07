@@ -41,7 +41,7 @@
     "prettier-plugin-sql": "0.14.0",
     "solid-js": "1.6.15",
     "solid-testing-library": "0.5.1",
-    "stylelint": "15.2.0",
+    "stylelint": "15.10.1",
     "stylelint-config-standard": "30.0.1",
     "typescript": "4.9.5"
   },
