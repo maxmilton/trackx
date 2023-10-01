@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -201,8 +205,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       polka:
-        specifier: 1.0.0-next.22
-        version: 1.0.0-next.22
+        specifier: 1.0.0-next.23
+        version: 1.0.0-next.23
       trackx:
         specifier: workspace:*
         version: link:../trackx
@@ -5412,8 +5416,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /polka@1.0.0-next.22:
-    resolution: {integrity: sha512-a7tsZy5gFbJr0aUltZS97xCkbPglXuD67AMvTyZX7BTDBH384FWf0ZQF6rPvdutSxnO1vUlXM2zSLf5tCKk5RA==}
+  /polka@1.0.0-next.23:
+    resolution: {integrity: sha512-19z2ny2aGdx+dns3icsQy6G7sWe0Dg7QTqSGE4B010EFbxvGzjjn37gBBjM8T0K2p6rthZ6+oXoBF3DcFceOPA==}
     engines: {node: '>=8'}
     dependencies:
       '@polka/url': 1.0.0-next.21
