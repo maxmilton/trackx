@@ -13,7 +13,7 @@
     "serve": "node --report-on-fatalerror --inspect -r source-map-support/register dist/server.js"
   },
   "dependencies": {
-    "@polka/parse": "1.0.0-next.21",
+    "@polka/parse": "1.0.0-next.23",
     "@polka/send": "1.0.0-next.15",
     "@trackx/cookie": "workspace:*",
     "@trackx/http-status-codes": "workspace:*",
