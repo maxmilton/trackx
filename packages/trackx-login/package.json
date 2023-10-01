@@ -19,7 +19,7 @@
     "esbuild-minify-templates": "0.10.0",
     "esbuild-plugin-ekscss": "0.0.13",
     "git-ref": "0.3.1",
-    "lightningcss": "1.20.0",
+    "lightningcss": "1.22.0",
     "purgecss": "5.0.0",
     "terser": "5.17.1",
     "totalist": "3.0.1",
