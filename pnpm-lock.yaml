@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -14,8 +18,8 @@ importers:
         specifier: 7.21.5
         version: 7.21.5(@babel/core@7.21.5)
       '@maxmilton/stylelint-config':
-        specifier: 0.0.12
-        version: 0.0.12(postcss@8.4.23)(stylelint@15.2.0)
+        specifier: 0.0.13
+        version: 0.0.13(postcss@8.4.23)(stylelint@15.2.0)
       '@testing-library/jest-dom':
         specifier: 5.16.5
         version: 5.16.5
@@ -1476,12 +1480,12 @@ packages:
       solid-js: 1.6.15
     dev: false
 
-  /@maxmilton/stylelint-config@0.0.12(postcss@8.4.23)(stylelint@15.2.0):
-    resolution: {integrity: sha512-XYFRy7rP/+oDWdS70bhMZvx3f4S5oD62hH8GC9icWQpUtDUzGtuwUl+NVie1h7H7uTe25DAbsYwfIgCiBYp6Iw==}
+  /@maxmilton/stylelint-config@0.0.13(postcss@8.4.23)(stylelint@15.2.0):
+    resolution: {integrity: sha512-1UFVayUlOVG7WPeOxoGruLNN8hOrP9vKHrxulmg2409bOrFI94Ey3MLLUruFul/epEza82848Dfu1MrofVUvIg==}
     peerDependencies:
       stylelint: ^15.0.0
     dependencies:
-      postcss-ekscss: 0.0.6(postcss@8.4.23)
+      postcss-ekscss: 0.0.9(postcss@8.4.23)
       stylelint: 15.2.0
       stylelint-order: 6.0.3(stylelint@15.2.0)
     transitivePeerDependencies:
@@ -5420,8 +5424,8 @@ packages:
       trouter: 3.2.1
     dev: false
 
-  /postcss-ekscss@0.0.6(postcss@8.4.23):
-    resolution: {integrity: sha512-SJojjYn7pZsAfptKwat4g3wdlwAAaHsZ4yuegQSIM/mXcu7mgK7Qb26ChmY6exSBdJLU6Ylbd8AoWM2iEFOXYw==}
+  /postcss-ekscss@0.0.9(postcss@8.4.23):
+    resolution: {integrity: sha512-qYC2Py28QE0flqoXYZ+fENKvHS067/9u9EGUToyEw6yDS0E4rZcsWej9uVC9GXlSUAaFmg9/oBE5xLpiA8OPKQ==}
     peerDependencies:
       postcss: ^8.0.0
     peerDependenciesMeta:
