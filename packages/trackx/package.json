@@ -88,7 +88,7 @@
     "@ungap/global-this": "^0.4.4"
   },
   "devDependencies": {
-    "@rollup/plugin-buble": "1.0.2",
+    "@rollup/plugin-buble": "1.0.3",
     "@rollup/plugin-commonjs": "24.1.0",
     "@rollup/plugin-node-resolve": "15.0.2",
     "@rollup/plugin-replace": "5.0.2",
