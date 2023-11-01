@@ -29,7 +29,7 @@
     "@rollup/plugin-commonjs": "24.1.0",
     "@rollup/plugin-html": "1.0.2",
     "@rollup/plugin-node-resolve": "15.0.2",
-    "@rollup/plugin-replace": "5.0.2",
+    "@rollup/plugin-replace": "5.0.5",
     "ekscss": "0.0.13",
     "esbuild": "0.17.18",
     "git-ref": "0.3.1",
