@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -147,8 +151,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2(rollup@3.21.2)
       '@types/ungap__global-this':
-        specifier: 0.3.1
-        version: 0.3.1
+        specifier: 0.3.2
+        version: 0.3.2
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -1853,8 +1857,8 @@ packages:
     resolution: {integrity: sha512-N1rW+njavs70y2cApeIw1vLMYXRwfBy+7trgavGuuTfOd7j1Yh7QTRc/yqsPl6ncokt72ZXuxEU0PiCp9bSwNQ==}
     dev: true
 
-  /@types/ungap__global-this@0.3.1:
-    resolution: {integrity: sha512-+/DsiV4CxXl6ZWefwHZDXSe1Slitz21tom38qPCaG0DYCS1NnDPIQDTKcmQ/tvK/edJUKkmuIDBJbmKDiB0r/g==}
+  /@types/ungap__global-this@0.3.2:
+    resolution: {integrity: sha512-xiJbYgAr3UvV+Hd/ENVf/EOSI1K2+yY0Ata9lkFg3o4ndJjNVVx+BJyHjLJ/AZitx92/GL5VXiptvEw+0IpV7g==}
     dev: true
 
   /@types/yargs-parser@21.0.0:
