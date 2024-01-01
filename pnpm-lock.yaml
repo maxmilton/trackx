@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -177,8 +181,8 @@ importers:
         specifier: 1.0.0-next.21
         version: 1.0.0-next.21
       '@polka/send':
-        specifier: 1.0.0-next.15
-        version: 1.0.0-next.15
+        specifier: 1.0.0-next.24
+        version: 1.0.0-next.24
       '@trackx/cookie':
         specifier: workspace:*
         version: link:../cookie
@@ -1525,8 +1529,8 @@ packages:
     resolution: {integrity: sha512-W/CYZdzRQspOKYnsPIgNCucsr7WcHkkM7eoJprppMak5FBcGKPAbSZOhdlQFu6VkY0H2pLVW//cGeUVsZzEbDw==}
     dev: false
 
-  /@polka/send@1.0.0-next.15:
-    resolution: {integrity: sha512-esR7W5PrLIo9tJqI59gotUHQOQHhYG1hsT3Vn/PPhOoL/LDDSbNHXBN/TtOA4Puhq7rFJwzP3WdtJeekfn/64g==}
+  /@polka/send@1.0.0-next.24:
+    resolution: {integrity: sha512-ZCRgg0wnjDaNT9qDZTn7V7owAQBezadDHGjWmKXnoyId3cLozHeDi/ovsfu1JAYgZgyN4kb1OH+ouIqM4ksrBw==}
     engines: {node: '>=6'}
     dev: false
 
