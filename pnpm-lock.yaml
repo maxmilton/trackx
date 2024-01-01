@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -174,8 +178,8 @@ importers:
   packages/trackx-api:
     dependencies:
       '@polka/parse':
-        specifier: 1.0.0-next.21
-        version: 1.0.0-next.21
+        specifier: 1.0.0-next.24
+        version: 1.0.0-next.24
       '@polka/send':
         specifier: 1.0.0-next.15
         version: 1.0.0-next.15
@@ -1521,8 +1525,8 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /@polka/parse@1.0.0-next.21:
-    resolution: {integrity: sha512-W/CYZdzRQspOKYnsPIgNCucsr7WcHkkM7eoJprppMak5FBcGKPAbSZOhdlQFu6VkY0H2pLVW//cGeUVsZzEbDw==}
+  /@polka/parse@1.0.0-next.24:
+    resolution: {integrity: sha512-Bn4Om1TA7iBrN93IttmEqqFu5gDMptSDmtbZoOr58OxCenm+6MvVlFxKP0vFvogOiycMiFDupAkNyhi3yM5PMQ==}
     dev: false
 
   /@polka/send@1.0.0-next.15:
