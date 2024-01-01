@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -336,8 +340,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(rollup@3.21.2)
       rollup-plugin-visualizer:
-        specifier: 5.9.0
-        version: 5.9.0(rollup@3.21.2)
+        specifier: 5.12.0
+        version: 5.12.0(rollup@3.21.2)
 
   packages/trackx-login:
     dependencies:
@@ -5888,12 +5892,12 @@ packages:
       terser: 5.17.1
     dev: true
 
-  /rollup-plugin-visualizer@5.9.0(rollup@3.21.2):
-    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
+  /rollup-plugin-visualizer@5.12.0(rollup@3.21.2):
+    resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
-      rollup: 2.x || 3.x
+      rollup: 2.x || 3.x || 4.x
     peerDependenciesMeta:
       rollup:
         optional: true
