@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -192,8 +196,8 @@ importers:
         specifier: 7.6.2
         version: 7.6.2
       diary:
-        specifier: 0.4.4
-        version: 0.4.4
+        specifier: 0.4.5
+        version: 0.4.5
       kleur:
         specifier: 4.1.5
         version: 4.1.5
@@ -2863,8 +2867,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /diary@0.4.4:
-    resolution: {integrity: sha512-CTIivFihV6Y0gik2Y9HIOoB9hnUEPej5z4lkSMkmGBZSdUhjfYB7qtLVCHWr0g2RwtR98prF8aFdUaeth0kVgg==}
+  /diary@0.4.5:
+    resolution: {integrity: sha512-dUtG/AVG5bt9Mi+23TgTvjZ0NDJaszjs1GpYooM5cbEzk2xoqdvxCOlVw0xkenQXZw/DFxp23tj5VkP6YmlRmw==}
     dev: false
 
   /diff-sequences@29.4.3:

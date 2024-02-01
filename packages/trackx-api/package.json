@@ -19,7 +19,7 @@
     "@trackx/http-status-codes": "workspace:*",
     "@trackx/stack-trace-parser": "workspace:*",
     "better-sqlite3": "7.6.2",
-    "diary": "0.4.4",
+    "diary": "0.4.5",
     "kleur": "4.1.5",
     "nanoid": "4.0.2",
     "polka": "1.0.0-next.22",
