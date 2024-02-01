@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -284,8 +288,8 @@ importers:
         specifier: workspace:*
         version: link:../trackx
       uplot:
-        specifier: 1.6.24
-        version: 1.6.24
+        specifier: 1.6.30
+        version: 1.6.30
     devDependencies:
       '@babel/core':
         specifier: 7.21.5
@@ -6634,8 +6638,8 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /uplot@1.6.24:
-    resolution: {integrity: sha512-WpH2BsrFrqxkMu+4XBvc0eCDsRBhzoq9crttYeSI0bfxpzR5YoSVzZXOKFVWcVC7sp/aDXrdDPbDZGCtck2PVg==}
+  /uplot@1.6.30:
+    resolution: {integrity: sha512-48oVVRALM/128ttW19F2a2xobc2WfGdJ0VJFX00099CfqbCTuML7L2OrTKxNzeFP34eo1+yJbqFSoFAp2u28/Q==}
     dev: false
 
   /uri-js@4.4.1:
