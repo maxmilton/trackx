@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -38,8 +42,8 @@ importers:
         specifier: 5.59.1
         version: 5.59.1(eslint@8.39.0)(typescript@4.9.5)
       babel-preset-solid:
-        specifier: 1.6.13
-        version: 1.6.13(@babel/core@7.21.5)
+        specifier: 1.8.12
+        version: 1.8.12(@babel/core@7.21.5)
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -89,11 +93,11 @@ importers:
         specifier: 0.14.0
         version: 0.14.0(prettier@2.8.8)
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.8.12
+        version: 1.8.12
       solid-testing-library:
         specifier: 0.5.1
-        version: 0.5.1(solid-js@1.6.15)
+        version: 0.5.1(solid-js@1.8.12)
       stylelint:
         specifier: 15.2.0
         version: 15.2.0
@@ -111,8 +115,8 @@ importers:
   packages/icons:
     devDependencies:
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.8.12
+        version: 1.8.12
 
   packages/reltime: {}
 
@@ -270,7 +274,7 @@ importers:
         version: 0.0.43(ekscss@0.0.13)
       '@maxmilton/solid-router':
         specifier: 0.3.2
-        version: 0.3.2(solid-js@1.6.15)
+        version: 0.3.2(solid-js@1.8.12)
       '@trackx/icons':
         specifier: workspace:*
         version: link:../icons
@@ -278,8 +282,8 @@ importers:
         specifier: workspace:*
         version: link:../reltime
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.8.12
+        version: 1.8.12
       trackx:
         specifier: workspace:*
         version: link:../trackx
@@ -1466,14 +1470,14 @@ packages:
       source-map: 0.7.4
     dev: true
 
-  /@maxmilton/solid-router@0.3.2(solid-js@1.6.15):
+  /@maxmilton/solid-router@0.3.2(solid-js@1.8.12):
     resolution: {integrity: sha512-GngtpUCNq2e09dKvrvdmkyx8vIKSOMqjZs9B9iX7BdZpz0LUn8FN7BdkGd7x63zXUp0yWuUmzxVbZPj28YbLpw==}
     peerDependencies:
       solid-js: ^1.5.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.1
-      solid-js: 1.6.15
+      solid-js: 1.8.12
     dev: false
 
   /@maxmilton/stylelint-config@0.0.12(postcss@8.4.23)(stylelint@15.2.0):
@@ -2323,8 +2327,8 @@ packages:
       '@types/babel__traverse': 7.18.5
     dev: true
 
-  /babel-plugin-jsx-dom-expressions@0.35.23(@babel/core@7.21.5):
-    resolution: {integrity: sha512-KaBiZPm2riB5jyRUy5BVaz8TkKcyAx2frePOG2lj5vbYsBpZHIknQkUU/csWr+EeV75h/mRHIOzLo2mX4Dxq3g==}
+  /babel-plugin-jsx-dom-expressions@0.37.16(@babel/core@7.21.5):
+    resolution: {integrity: sha512-ItMD16axbk+FqVb9vIbc7AOpNowy46VaSUHaMYPn+erPGpMCxsahQ1Iv+qhPMthjxtn5ROVMZ5AJtQvzjxjiNA==}
     peerDependencies:
       '@babel/core': ^7.20.12
     dependencies:
@@ -2367,13 +2371,13 @@ packages:
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.21.5)
     dev: true
 
-  /babel-preset-solid@1.6.13(@babel/core@7.21.5):
-    resolution: {integrity: sha512-W78rLK4xv48k2Jb/VFynu42oCQufcDYFz6gmhMYslKy/PJCfNxdp85QCg1wTcrmCoPQK2TcHMVcL8nVvvTBHxQ==}
+  /babel-preset-solid@1.8.12(@babel/core@7.21.5):
+    resolution: {integrity: sha512-Fx1dYokeRwouWqjLkdobA6qvTAPxFSEU2c5PlkfJjlNyONlSMJQPaX0Bae5pc+5/LNteb9BseOp4UHwQu6VC9Q==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.21.5
-      babel-plugin-jsx-dom-expressions: 0.35.23(@babel/core@7.21.5)
+      babel-plugin-jsx-dom-expressions: 0.37.16(@babel/core@7.21.5)
     dev: true
 
   /balanced-match@1.0.2:
@@ -5977,6 +5981,18 @@ packages:
       randombytes: 2.1.0
     dev: true
 
+  /seroval-plugins@1.0.4(seroval@1.0.4):
+    resolution: {integrity: sha512-DQ2IK6oQVvy8k+c2V5x5YCtUa/GGGsUwUBNN9UqohrZ0rWdUapBFpNMYP1bCyRHoxOJjdKGl+dieacFIpU/i1A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      seroval: ^1.0
+    dependencies:
+      seroval: 1.0.4
+
+  /seroval@1.0.4:
+    resolution: {integrity: sha512-qQs/N+KfJu83rmszFQaTxcoJoPn6KNUruX4KmnmyD0oZkUoiNvJ1rpdYKDf4YHM05k+HOgCxa3yvf15QbVijGg==}
+    engines: {node: '>=10'}
+
   /sh-syntax@0.3.7:
     resolution: {integrity: sha512-xIB/uRniZ9urxAuXp1Ouh/BKSI1VK8RSqfwGj7cV57HvGrFo3vHdJfv8Tdp/cVcxJgXQTkmHr5mG5rqJW8r4wQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -6049,12 +6065,14 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js@1.6.15:
-    resolution: {integrity: sha512-xEuMUIdDf4YRFT4i3XEJCNg4Y21lZiWWPSEqj0R3UnLLpENGJVXkqpmbIyRU5CuMImKPIEu5CYgmFKL7Npfe1A==}
+  /solid-js@1.8.12:
+    resolution: {integrity: sha512-sLE/i6M9FSWlov3a2pTC5ISzanH2aKwqXTZj+bbFt4SUrVb4iGEa7fpILBMOxsQjkv3eXqEk6JVLlogOdTe0UQ==}
     dependencies:
       csstype: 3.1.2
+      seroval: 1.0.4
+      seroval-plugins: 1.0.4(seroval@1.0.4)
 
-  /solid-testing-library@0.5.1(solid-js@1.6.15):
+  /solid-testing-library@0.5.1(solid-js@1.8.12):
     resolution: {integrity: sha512-CfcCWsI5zIJz2zcyZQz2weq+6cCS5QrcmWeEmUEy03fElJ/BV5Ly4MMTsmwdOK803zY3wJP5pPf026C40VrE1Q==}
     engines: {node: '>= 14'}
     deprecated: This package is now available at @solidjs/testing-library
@@ -6062,7 +6080,7 @@ packages:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 8.20.0
-      solid-js: 1.6.15
+      solid-js: 1.8.12
     dev: true
 
   /source-map-js@1.0.2:

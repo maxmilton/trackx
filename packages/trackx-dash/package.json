@@ -16,7 +16,7 @@
     "@maxmilton/solid-router": "0.3.2",
     "@trackx/icons": "workspace:*",
     "@trackx/reltime": "workspace:*",
-    "solid-js": "1.6.15",
+    "solid-js": "1.8.12",
     "trackx": "workspace:*",
     "uplot": "1.6.24"
   },
