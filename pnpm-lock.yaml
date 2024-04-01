@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -29,8 +33,8 @@ importers:
         specifier: 18.16.3
         version: 18.16.3
       '@types/testing-library__jest-dom':
-        specifier: 5.14.5
-        version: 5.14.5
+        specifier: 6.0.0
+        version: 6.0.0
       '@typescript-eslint/eslint-plugin':
         specifier: 5.59.1
         version: 5.59.1(@typescript-eslint/parser@5.59.1)(eslint@8.39.0)(typescript@4.9.5)
@@ -1843,6 +1847,13 @@ packages:
     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
     dependencies:
       '@types/jest': 29.5.1
+    dev: true
+
+  /@types/testing-library__jest-dom@6.0.0:
+    resolution: {integrity: sha512-bnreXCgus6IIadyHNlN/oI5FfX4dWgvGhOPvpr7zzCYDGAPIfvyIoAozMBINmhmsVuqV0cncejF2y5KC7ScqOg==}
+    deprecated: This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed.
+    dependencies:
+      '@testing-library/jest-dom': 5.16.5
     dev: true
 
   /@types/tough-cookie@4.0.2:
