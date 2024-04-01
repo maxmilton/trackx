@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -146,6 +150,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: 5.0.2
         version: 5.0.2(rollup@3.21.2)
+      '@rollup/plugin-terser':
+        specifier: 0.1.0
+        version: 0.1.0(rollup@3.21.2)
       '@types/ungap__global-this':
         specifier: 0.3.1
         version: 0.3.1
@@ -161,9 +168,6 @@ importers:
       rollup-plugin-esbuild:
         specifier: 5.0.0
         version: 5.0.0(esbuild@0.17.18)(rollup@3.21.2)
-      rollup-plugin-terser:
-        specifier: 7.0.2
-        version: 7.0.2(rollup@3.21.2)
       trackx:
         specifier: .
         version: 'link:'
@@ -314,6 +318,9 @@ importers:
       '@rollup/plugin-replace':
         specifier: 5.0.2
         version: 5.0.2(rollup@3.21.2)
+      '@rollup/plugin-terser':
+        specifier: 0.1.0
+        version: 0.1.0(rollup@3.21.2)
       ekscss:
         specifier: 0.0.13
         version: 0.0.13
@@ -332,9 +339,6 @@ importers:
       rollup-plugin-esbuild:
         specifier: 5.0.0
         version: 5.0.0(esbuild@0.17.18)(rollup@3.21.2)
-      rollup-plugin-terser:
-        specifier: 7.0.2
-        version: 7.0.2(rollup@3.21.2)
       rollup-plugin-visualizer:
         specifier: 5.9.0
         version: 5.9.0(rollup@3.21.2)
@@ -1629,6 +1633,19 @@ packages:
       '@rollup/pluginutils': 5.0.2(rollup@3.21.2)
       magic-string: 0.27.0
       rollup: 3.21.2
+    dev: true
+
+  /@rollup/plugin-terser@0.1.0(rollup@3.21.2):
+    resolution: {integrity: sha512-N2KK+qUfHX2hBzVzM41UWGLrEmcjVC37spC8R3c9mt3oEDFKh3N2e12/lLp9aVSt86veR0TQiCNQXrm8C6aiUQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.x || ^3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 3.21.2
+      terser: 5.17.1
     dev: true
 
   /@rollup/pluginutils@4.2.1:
@@ -4595,15 +4612,6 @@ packages:
       string-length: 4.0.2
     dev: true
 
-  /jest-worker@26.6.2:
-    resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
-    engines: {node: '>= 10.13.0'}
-    dependencies:
-      '@types/node': 18.16.3
-      merge-stream: 2.0.0
-      supports-color: 7.2.0
-    dev: true
-
   /jest-worker@29.5.0:
     resolution: {integrity: sha512-NcrQnevGoSp4b5kg+akIpthoAFHxPBcb5P6mYPY0fUNT+sSvmtu6jlkEle3anczUKIKEbMxFimk9oTP/tpIPgA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -5640,12 +5648,6 @@ packages:
       ret: 0.1.15
     dev: true
 
-  /randombytes@2.1.0:
-    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
-    dependencies:
-      safe-buffer: 5.2.1
-    dev: true
-
   /rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
@@ -5875,19 +5877,6 @@ packages:
       - supports-color
     dev: true
 
-  /rollup-plugin-terser@7.0.2(rollup@3.21.2):
-    resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
-    peerDependencies:
-      rollup: ^2.0.0
-    dependencies:
-      '@babel/code-frame': 7.21.4
-      jest-worker: 26.6.2
-      rollup: 3.21.2
-      serialize-javascript: 4.0.0
-      terser: 5.17.1
-    dev: true
-
   /rollup-plugin-visualizer@5.9.0(rollup@3.21.2):
     resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
     engines: {node: '>=14'}
@@ -5928,6 +5917,7 @@ packages:
 
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
+    dev: false
 
   /safe-regex-test@1.0.0:
     resolution: {integrity: sha512-JBUUzyOgEwXQY1NuPtvcj/qcBDbDmEvWufhlnXZIm75DEHp+afM1r1ujJpJsV/gSM4t59tpDyPi1sd6ZaPFfsA==}
@@ -5970,12 +5960,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-
-  /serialize-javascript@4.0.0:
-    resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
-    dependencies:
-      randombytes: 2.1.0
-    dev: true
 
   /sh-syntax@0.3.7:
     resolution: {integrity: sha512-xIB/uRniZ9urxAuXp1Ouh/BKSI1VK8RSqfwGj7cV57HvGrFo3vHdJfv8Tdp/cVcxJgXQTkmHr5mG5rqJW8r4wQ==}
