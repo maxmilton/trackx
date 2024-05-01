@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -62,8 +66,8 @@ importers:
         specifier: 6.7.1
         version: 6.7.1(eslint@8.39.0)
       eslint-plugin-security:
-        specifier: 1.7.1
-        version: 1.7.1
+        specifier: 3.0.0
+        version: 3.0.0
       eslint-plugin-unicorn:
         specifier: 46.0.0
         version: 46.0.0(eslint@8.39.0)
@@ -3272,8 +3276,9 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /eslint-plugin-security@1.7.1:
-    resolution: {integrity: sha512-sMStceig8AFglhhT2LqlU5r+/fn9OwsA72O5bBuQVTssPCdQAOQzL+oMn/ZcpeUY6KcNfLJArgcrsSULNjYYdQ==}
+  /eslint-plugin-security@3.0.0:
+    resolution: {integrity: sha512-2Ij7PkmXIF2cKwoVkEgemwoXbOnxg5UfdhdcpNxZwJxC/10dbsdhHISrTyJ/n8DUkt3yiN6P1ywEgcMGjIwHIw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dependencies:
       safe-regex: 2.1.1
     dev: true
