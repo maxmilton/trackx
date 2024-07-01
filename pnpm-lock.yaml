@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -144,8 +148,8 @@ importers:
         specifier: 15.0.2
         version: 15.0.2(rollup@3.21.2)
       '@rollup/plugin-replace':
-        specifier: 5.0.2
-        version: 5.0.2(rollup@3.21.2)
+        specifier: 5.0.7
+        version: 5.0.7(rollup@3.21.2)
       '@types/ungap__global-this':
         specifier: 0.3.1
         version: 0.3.1
@@ -312,8 +316,8 @@ importers:
         specifier: 15.0.2
         version: 15.0.2(rollup@3.21.2)
       '@rollup/plugin-replace':
-        specifier: 5.0.2
-        version: 5.0.2(rollup@3.21.2)
+        specifier: 5.0.7
+        version: 5.0.7(rollup@3.21.2)
       ekscss:
         specifier: 0.0.13
         version: 0.0.13
@@ -1617,17 +1621,17 @@ packages:
       rollup: 3.21.2
     dev: true
 
-  /@rollup/plugin-replace@5.0.2(rollup@3.21.2):
-    resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
+  /@rollup/plugin-replace@5.0.7(rollup@3.21.2):
+    resolution: {integrity: sha512-PqxSfuorkHz/SPpyngLyg5GCEkOcee9M1bkxiVDr41Pd61mqP1PLOoDPbpl44SB2mQGKwV/In74gqQmGITOhEQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
     dependencies:
       '@rollup/pluginutils': 5.0.2(rollup@3.21.2)
-      magic-string: 0.27.0
+      magic-string: 0.30.10
       rollup: 3.21.2
     dev: true
 
@@ -4965,6 +4969,12 @@ packages:
   /magic-string@0.30.0:
     resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
     engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /magic-string@0.30.10:
+    resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
