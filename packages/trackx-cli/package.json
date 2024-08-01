@@ -25,7 +25,7 @@
     "sade": "1.8.1"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "7.6.3",
+    "@types/better-sqlite3": "7.6.11",
     "@types/punycode": "2.1.0",
     "git-ref": "0.3.1",
     "mri": "1.2.0",
