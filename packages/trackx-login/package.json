@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "ekscss": "0.0.13",
-    "esbuild": "0.17.18",
+    "esbuild": "0.23.0",
     "esbuild-minify-templates": "0.10.0",
     "esbuild-plugin-ekscss": "0.0.13",
     "git-ref": "0.3.1",
