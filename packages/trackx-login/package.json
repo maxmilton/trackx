@@ -11,13 +11,13 @@
     "prebuild": "rm -rf ../trackx-dash/dist/login*"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.43"
+    "@ekscss/framework": "0.0.50"
   },
   "devDependencies": {
-    "ekscss": "0.0.13",
+    "ekscss": "0.0.18",
     "esbuild": "0.17.18",
     "esbuild-minify-templates": "0.10.0",
-    "esbuild-plugin-ekscss": "0.0.13",
+    "esbuild-plugin-ekscss": "0.0.19",
     "git-ref": "0.3.1",
     "lightningcss": "1.20.0",
     "purgecss": "5.0.0",
