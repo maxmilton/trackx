@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -38,8 +42,8 @@ importers:
         specifier: 5.59.1
         version: 5.59.1(eslint@8.39.0)(typescript@4.9.5)
       babel-preset-solid:
-        specifier: 1.6.13
-        version: 1.6.13(@babel/core@7.21.5)
+        specifier: 1.9.2
+        version: 1.9.2(@babel/core@7.21.5)
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -89,11 +93,11 @@ importers:
         specifier: 0.14.0
         version: 0.14.0(prettier@2.8.8)
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.9.2
+        version: 1.9.2
       solid-testing-library:
         specifier: 0.5.1
-        version: 0.5.1(solid-js@1.6.15)
+        version: 0.5.1(solid-js@1.9.2)
       stylelint:
         specifier: 15.2.0
         version: 15.2.0
@@ -111,8 +115,8 @@ importers:
   packages/icons:
     devDependencies:
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.9.2
+        version: 1.9.2
 
   packages/reltime: {}
 
@@ -270,7 +274,7 @@ importers:
         version: 0.0.43(ekscss@0.0.13)
       '@maxmilton/solid-router':
         specifier: 0.3.2
-        version: 0.3.2(solid-js@1.6.15)
+        version: 0.3.2(solid-js@1.9.2)
       '@trackx/icons':
         specifier: workspace:*
         version: link:../icons
@@ -278,8 +282,8 @@ importers:
         specifier: workspace:*
         version: link:../reltime
       solid-js:
-        specifier: 1.6.15
-        version: 1.6.15
+        specifier: 1.9.2
+        version: 1.9.2
       trackx:
         specifier: workspace:*
         version: link:../trackx
@@ -1350,6 +1354,13 @@ packages:
       '@sinclair/typebox': 0.25.24
     dev: true
 
+  /@jest/schemas@29.6.3:
+    resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      '@sinclair/typebox': 0.27.8
+    dev: true
+
   /@jest/source-map@29.4.3:
     resolution: {integrity: sha512-qyt/mb6rLyd9j1jUts4EQncvS6Yy3PM9HghnNv86QBlV+zdL2inCdK1tuVlL+J+lpiw2BI67qXOrX3UurBqQ1w==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -1466,14 +1477,14 @@ packages:
       source-map: 0.7.4
     dev: true
 
-  /@maxmilton/solid-router@0.3.2(solid-js@1.6.15):
+  /@maxmilton/solid-router@0.3.2(solid-js@1.9.2):
     resolution: {integrity: sha512-GngtpUCNq2e09dKvrvdmkyx8vIKSOMqjZs9B9iX7BdZpz0LUn8FN7BdkGd7x63zXUp0yWuUmzxVbZPj28YbLpw==}
     peerDependencies:
       solid-js: ^1.5.0
     dependencies:
       qss: 2.0.3
       regexparam: 2.0.1
-      solid-js: 1.6.15
+      solid-js: 1.9.2
     dev: false
 
   /@maxmilton/stylelint-config@0.0.12(postcss@8.4.23)(stylelint@15.2.0):
@@ -1656,6 +1667,10 @@ packages:
 
   /@sinclair/typebox@0.25.24:
     resolution: {integrity: sha512-XJfwUVUKDHF5ugKwIcxEgc9k8b7HbznCp6eUfWgu710hMPNIO4aw4/zB5RogDQz8nd6gyCDpU9O/m6qYEWY6yQ==}
+    dev: true
+
+  /@sinclair/typebox@0.27.8:
+    resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
   /@sinonjs/commons@2.0.0:
@@ -2323,8 +2338,8 @@ packages:
       '@types/babel__traverse': 7.18.5
     dev: true
 
-  /babel-plugin-jsx-dom-expressions@0.35.23(@babel/core@7.21.5):
-    resolution: {integrity: sha512-KaBiZPm2riB5jyRUy5BVaz8TkKcyAx2frePOG2lj5vbYsBpZHIknQkUU/csWr+EeV75h/mRHIOzLo2mX4Dxq3g==}
+  /babel-plugin-jsx-dom-expressions@0.39.2(@babel/core@7.21.5):
+    resolution: {integrity: sha512-rCkSYFuLl5/XD+BXjZk1XxFAsIBgNe9WZ7xBHjQV1dBliI64kO+EWktAD3b6Bj/SXk+LpVXFyMVydhnI35svWQ==}
     peerDependencies:
       '@babel/core': ^7.20.12
     dependencies:
@@ -2333,6 +2348,8 @@ packages:
       '@babel/plugin-syntax-jsx': 7.21.4(@babel/core@7.21.5)
       '@babel/types': 7.21.5
       html-entities: 2.3.3
+      jest-diff: 29.7.0
+      parse5: 7.1.2
       validate-html-nesting: 1.2.2
     dev: true
 
@@ -2367,13 +2384,13 @@ packages:
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.21.5)
     dev: true
 
-  /babel-preset-solid@1.6.13(@babel/core@7.21.5):
-    resolution: {integrity: sha512-W78rLK4xv48k2Jb/VFynu42oCQufcDYFz6gmhMYslKy/PJCfNxdp85QCg1wTcrmCoPQK2TcHMVcL8nVvvTBHxQ==}
+  /babel-preset-solid@1.9.2(@babel/core@7.21.5):
+    resolution: {integrity: sha512-rWx968GIDghgFStRDQaoqelGspEm9rgPci/yNzNPFlkzMqHaL2yob+t7BbzyqZw5b9/llkzjqUNIOybT9Z9mcg==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.21.5
-      babel-plugin-jsx-dom-expressions: 0.35.23(@babel/core@7.21.5)
+      babel-plugin-jsx-dom-expressions: 0.39.2(@babel/core@7.21.5)
     dev: true
 
   /balanced-match@1.0.2:
@@ -2869,6 +2886,11 @@ packages:
 
   /diff-sequences@29.4.3:
     resolution: {integrity: sha512-ofrBgwpPhCD85kMKtE9RYFFq6OC1A89oW2vvgWZNCwxrUpRUILopY7lsYyMDSjc8g6U6aiO0Qubg6r4Wgt5ZnA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dev: true
+
+  /diff-sequences@29.6.3:
+    resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dev: true
 
@@ -4306,6 +4328,16 @@ packages:
       pretty-format: 29.5.0
     dev: true
 
+  /jest-diff@29.7.0:
+    resolution: {integrity: sha512-LMIgiIrhigmPrs03JHpxUh2yISK3vLFPkAodPeo0+BuF7wA2FoQbkEg1u8gBYBThncu7e1oEDUfIXVuTqLRUjw==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      chalk: 4.1.2
+      diff-sequences: 29.6.3
+      jest-get-type: 29.6.3
+      pretty-format: 29.7.0
+    dev: true
+
   /jest-docblock@29.4.3:
     resolution: {integrity: sha512-fzdTftThczeSD9nZ3fzA/4KkHtnmllawWrXO69vtI+L9WjEIuXWs4AmyME7lN5hU7dB0sHhuPfcKofRsUb/2Fg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -4361,6 +4393,11 @@ packages:
 
   /jest-get-type@29.4.3:
     resolution: {integrity: sha512-J5Xez4nRRMjk8emnTpWrlkyb9pfRQQanDrvWHhsR1+VUfbwxi30eVcZFlcdGInRibU4G5LwHXpI7IRHU0CY+gg==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dev: true
+
+  /jest-get-type@29.6.3:
+    resolution: {integrity: sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dev: true
 
@@ -5563,6 +5600,15 @@ packages:
       react-is: 18.2.0
     dev: true
 
+  /pretty-format@29.7.0:
+    resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    dependencies:
+      '@jest/schemas': 29.6.3
+      ansi-styles: 5.2.0
+      react-is: 18.2.0
+    dev: true
+
   /prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
     engines: {node: '>= 6'}
@@ -5977,6 +6023,18 @@ packages:
       randombytes: 2.1.0
     dev: true
 
+  /seroval-plugins@1.1.1(seroval@1.1.1):
+    resolution: {integrity: sha512-qNSy1+nUj7hsCOon7AO4wdAIo9P0jrzAMp18XhiOzA6/uO5TKtP7ScozVJ8T293oRIvi5wyCHSM4TrJo/c/GJA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      seroval: ^1.0
+    dependencies:
+      seroval: 1.1.1
+
+  /seroval@1.1.1:
+    resolution: {integrity: sha512-rqEO6FZk8mv7Hyv4UCj3FD3b6Waqft605TLfsCe/BiaylRpyyMC0b+uA5TJKawX3KzMrdi3wsLbCaLplrQmBvQ==}
+    engines: {node: '>=10'}
+
   /sh-syntax@0.3.7:
     resolution: {integrity: sha512-xIB/uRniZ9urxAuXp1Ouh/BKSI1VK8RSqfwGj7cV57HvGrFo3vHdJfv8Tdp/cVcxJgXQTkmHr5mG5rqJW8r4wQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -6049,12 +6107,14 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
-  /solid-js@1.6.15:
-    resolution: {integrity: sha512-xEuMUIdDf4YRFT4i3XEJCNg4Y21lZiWWPSEqj0R3UnLLpENGJVXkqpmbIyRU5CuMImKPIEu5CYgmFKL7Npfe1A==}
+  /solid-js@1.9.2:
+    resolution: {integrity: sha512-fe/K03nV+kMFJYhAOE8AIQHcGxB4rMIEoEyrulbtmf217NffbbwBqJnJI4ovt16e+kaIt0czE2WA7mP/pYN9yg==}
     dependencies:
       csstype: 3.1.2
+      seroval: 1.1.1
+      seroval-plugins: 1.1.1(seroval@1.1.1)
 
-  /solid-testing-library@0.5.1(solid-js@1.6.15):
+  /solid-testing-library@0.5.1(solid-js@1.9.2):
     resolution: {integrity: sha512-CfcCWsI5zIJz2zcyZQz2weq+6cCS5QrcmWeEmUEy03fElJ/BV5Ly4MMTsmwdOK803zY3wJP5pPf026C40VrE1Q==}
     engines: {node: '>= 14'}
     deprecated: This package is now available at @solidjs/testing-library
@@ -6062,7 +6122,7 @@ packages:
       solid-js: '>=1.0.0'
     dependencies:
       '@testing-library/dom': 8.20.0
-      solid-js: 1.6.15
+      solid-js: 1.9.2
     dev: true
 
   /source-map-js@1.0.2:
