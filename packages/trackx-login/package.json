@@ -21,7 +21,7 @@
     "git-ref": "0.3.1",
     "lightningcss": "1.20.0",
     "purgecss": "5.0.0",
-    "terser": "5.17.1",
+    "terser": "5.37.0",
     "totalist": "3.0.1",
     "trackx-dash": "workspace:*"
   }
