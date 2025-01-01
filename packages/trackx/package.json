@@ -90,7 +90,7 @@
   "devDependencies": {
     "@rollup/plugin-buble": "1.0.2",
     "@rollup/plugin-commonjs": "24.1.0",
-    "@rollup/plugin-node-resolve": "15.0.2",
+    "@rollup/plugin-node-resolve": "16.0.0",
     "@rollup/plugin-replace": "5.0.2",
     "@types/ungap__global-this": "0.3.1",
     "esbuild": "0.17.18",
