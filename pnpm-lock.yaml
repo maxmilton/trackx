@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -214,8 +218,8 @@ importers:
         version: 2.0.1
     devDependencies:
       '@types/better-sqlite3':
-        specifier: 7.6.3
-        version: 7.6.3
+        specifier: 7.6.13
+        version: 7.6.13
       '@types/ua-parser-js':
         specifier: 0.7.36
         version: 0.7.36
@@ -248,8 +252,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/better-sqlite3':
-        specifier: 7.6.3
-        version: 7.6.3
+        specifier: 7.6.13
+        version: 7.6.13
       '@types/punycode':
         specifier: 2.1.0
         version: 2.1.0
@@ -1737,8 +1741,8 @@ packages:
       '@babel/types': 7.21.5
     dev: true
 
-  /@types/better-sqlite3@7.6.3:
-    resolution: {integrity: sha512-YS64N9SNDT/NAvou3QNdzAu3E2om/W/0dhORimtPGLef+zSK5l1vDzfsWb4xgXOgfhtOI5ZDTRxnvRPb22AIVQ==}
+  /@types/better-sqlite3@7.6.13:
+    resolution: {integrity: sha512-NMv9ASNARoKksWtsq/SHakpYAYnhBrQgGD8zkLYk/jaK8jUGn08CfEdTRgYhMypUQAfzSP8W6gNLe0q19/t4VA==}
     dependencies:
       '@types/node': 18.16.3
     dev: true
