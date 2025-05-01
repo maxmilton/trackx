@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -98,8 +102,8 @@ importers:
         specifier: 15.2.0
         version: 15.2.0
       stylelint-config-standard:
-        specifier: 30.0.1
-        version: 30.0.1(stylelint@15.2.0)
+        specifier: 38.0.0
+        version: 38.0.0(stylelint@15.2.0)
       typescript:
         specifier: 4.9.5
         version: 4.9.5
@@ -6243,21 +6247,23 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /stylelint-config-recommended@10.0.1(stylelint@15.2.0):
-    resolution: {integrity: sha512-TQ4xQ48tW4QSlODcti7pgSRqBZcUaBzuh0jPpfiMhwJKBPkqzTIAU+IrSWL/7BgXlOM90DjB7YaNgFpx8QWhuA==}
+  /stylelint-config-recommended@16.0.0(stylelint@15.2.0):
+    resolution: {integrity: sha512-4RSmPjQegF34wNcK1e1O3Uz91HN8P1aFdFzio90wNK9mjgAI19u5vsU868cVZboKzCaa5XbpvtTzAAGQAxpcXA==}
+    engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^15.0.0
+      stylelint: ^16.16.0
     dependencies:
       stylelint: 15.2.0
     dev: true
 
-  /stylelint-config-standard@30.0.1(stylelint@15.2.0):
-    resolution: {integrity: sha512-NbeHOmpRQhjZh5XB1B/S4MLRWvz4xxAxeDBjzl0tY2xEcayNhLbaRGF0ZQzq+DQZLCcPpOHeS2Ru1ydbkhkmLg==}
+  /stylelint-config-standard@38.0.0(stylelint@15.2.0):
+    resolution: {integrity: sha512-uj3JIX+dpFseqd/DJx8Gy3PcRAJhlEZ2IrlFOc4LUxBX/PNMEQ198x7LCOE2Q5oT9Vw8nyc4CIL78xSqPr6iag==}
+    engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^15.0.0
+      stylelint: ^16.18.0
     dependencies:
       stylelint: 15.2.0
-      stylelint-config-recommended: 10.0.1(stylelint@15.2.0)
+      stylelint-config-recommended: 16.0.0(stylelint@15.2.0)
     dev: true
 
   /stylelint-order@6.0.3(stylelint@15.2.0):
