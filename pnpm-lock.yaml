@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -38,8 +42,8 @@ importers:
         specifier: 5.59.1
         version: 5.59.1(eslint@8.39.0)(typescript@4.9.5)
       babel-preset-solid:
-        specifier: 1.6.13
-        version: 1.6.13(@babel/core@7.21.5)
+        specifier: 1.9.6
+        version: 1.9.6(@babel/core@7.21.5)
       esbuild:
         specifier: 0.17.18
         version: 0.17.18
@@ -2323,8 +2327,8 @@ packages:
       '@types/babel__traverse': 7.18.5
     dev: true
 
-  /babel-plugin-jsx-dom-expressions@0.35.23(@babel/core@7.21.5):
-    resolution: {integrity: sha512-KaBiZPm2riB5jyRUy5BVaz8TkKcyAx2frePOG2lj5vbYsBpZHIknQkUU/csWr+EeV75h/mRHIOzLo2mX4Dxq3g==}
+  /babel-plugin-jsx-dom-expressions@0.39.8(@babel/core@7.21.5):
+    resolution: {integrity: sha512-/MVOIIjonylDXnrWmG23ZX82m9mtKATsVHB7zYlPfDR9Vdd/NBE48if+wv27bSkBtyO7EPMUlcUc4J63QwuACQ==}
     peerDependencies:
       '@babel/core': ^7.20.12
     dependencies:
@@ -2333,6 +2337,7 @@ packages:
       '@babel/plugin-syntax-jsx': 7.21.4(@babel/core@7.21.5)
       '@babel/types': 7.21.5
       html-entities: 2.3.3
+      parse5: 7.1.2
       validate-html-nesting: 1.2.2
     dev: true
 
@@ -2367,13 +2372,13 @@ packages:
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.21.5)
     dev: true
 
-  /babel-preset-solid@1.6.13(@babel/core@7.21.5):
-    resolution: {integrity: sha512-W78rLK4xv48k2Jb/VFynu42oCQufcDYFz6gmhMYslKy/PJCfNxdp85QCg1wTcrmCoPQK2TcHMVcL8nVvvTBHxQ==}
+  /babel-preset-solid@1.9.6(@babel/core@7.21.5):
+    resolution: {integrity: sha512-HXTK9f93QxoH8dYn1M2mJdOlWgMsR88Lg/ul6QCZGkNTktjTE5HAf93YxQumHoCudLEtZrU1cFCMFOVho6GqFg==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.21.5
-      babel-plugin-jsx-dom-expressions: 0.35.23(@babel/core@7.21.5)
+      babel-plugin-jsx-dom-expressions: 0.39.8(@babel/core@7.21.5)
     dev: true
 
   /balanced-match@1.0.2:
