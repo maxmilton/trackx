@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -352,8 +356,8 @@ importers:
         specifier: 0.17.18
         version: 0.17.18
       esbuild-minify-templates:
-        specifier: 0.10.0
-        version: 0.10.0(esbuild@0.17.18)
+        specifier: 0.11.1
+        version: 0.11.1(esbuild@0.17.18)
       esbuild-plugin-ekscss:
         specifier: 0.0.13
         version: 0.0.13(ekscss@0.0.13)(esbuild@0.17.18)
@@ -388,6 +392,14 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
+    dev: true
+
+  /@ampproject/remapping@2.3.0:
+    resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.8
+      '@jridgewell/trace-mapping': 0.3.25
     dev: true
 
   /@babel/code-frame@7.21.4:
@@ -1423,6 +1435,15 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
     dev: true
 
+  /@jridgewell/gen-mapping@0.3.8:
+    resolution: {integrity: sha512-imAbBGkb+ebQyxKgzv5Hu2nmROxoDOXHh80evxdoXNOrvAnVx7zimzc1Oo5h9RlfV4vPXaE2iM5pOFbvOCClWA==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      '@jridgewell/set-array': 1.2.1
+      '@jridgewell/sourcemap-codec': 1.4.15
+      '@jridgewell/trace-mapping': 0.3.25
+    dev: true
+
   /@jridgewell/resolve-uri@3.1.0:
     resolution: {integrity: sha512-F2msla3tad+Mfht5cJq7LSXcdudKTWCVYUgw6pLFOOHSTtZlj6SWNYAp+AhuqLmWdBO2X5hPrLcu8cVP8fy28w==}
     engines: {node: '>=6.0.0'}
@@ -1430,6 +1451,11 @@ packages:
 
   /@jridgewell/set-array@1.1.2:
     resolution: {integrity: sha512-xnkseuNADM0gt2bs+BvhO0p78Mk762YnZdsuzFV018NoG1Sj1SCQvpSqa7XUaTam5vAGasABV9qXASMKnFMwMw==}
+    engines: {node: '>=6.0.0'}
+    dev: true
+
+  /@jridgewell/set-array@1.2.1:
+    resolution: {integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==}
     engines: {node: '>=6.0.0'}
     dev: true
 
@@ -1448,11 +1474,22 @@ packages:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
     dev: true
 
+  /@jridgewell/sourcemap-codec@1.5.0:
+    resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
+    dev: true
+
   /@jridgewell/trace-mapping@0.3.18:
     resolution: {integrity: sha512-w+niJYzMHdd7USdiH2U6869nqhD2nbfZXND5Yp93qIbEmnDNk7PD48o+YchRVpzMU7M6jVCbenTR7PA1FLQ9pA==}
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
+
+  /@jridgewell/trace-mapping@0.3.25:
+    resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+    dependencies:
+      '@jridgewell/resolve-uri': 3.1.0
+      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /@maxmilton/rollup-plugin-css@0.0.8(rollup@3.21.2):
@@ -3036,17 +3073,17 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
-  /esbuild-minify-templates@0.10.0(esbuild@0.17.18):
-    resolution: {integrity: sha512-VEDDgKwRsHVeL/VbJXaoA6heccsvb48iGg4mG2jY/oA+j5ohtaQ/Klm556F7JlbN/L79YovTEPbCffLL/sr83g==}
+  /esbuild-minify-templates@0.11.1(esbuild@0.17.18):
+    resolution: {integrity: sha512-Yum4Mk7/OFyYh2fFsgKjwvk4piOtkkzixf3TFzOAp+CXbcdkJlHHhxYhXcl2JD4E/rFtQefNV7fr5BBepPoGKQ==}
     engines: {node: '>= 12'}
     peerDependencies:
-      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0 || ^0.17.0
+      esbuild: '>=0.13.0 <1.0.0'
     dependencies:
-      '@ampproject/remapping': 2.2.1
+      '@ampproject/remapping': 2.3.0
       astray: 1.1.1
       esbuild: 0.17.18
-      magic-string: 0.27.0
-      meriyah: 4.3.5
+      magic-string: 0.30.17
+      meriyah: 6.0.6
     dev: true
 
   /esbuild-plugin-ekscss@0.0.13(ekscss@0.0.13)(esbuild@0.17.18):
@@ -4969,6 +5006,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /magic-string@0.30.17:
+    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+    dev: true
+
   /make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -5027,9 +5070,9 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /meriyah@4.3.5:
-    resolution: {integrity: sha512-oCOuzPtD4udAYnvxIi4Rp99nEHJWHtAFHEFmS27hQuDNjxTQ39Z/hQ9uWW+ZgJjCmpi0nRo7wwciT7rtQE31Bw==}
-    engines: {node: '>=10.4.0'}
+  /meriyah@6.0.6:
+    resolution: {integrity: sha512-jXJ2Hn1sLcge9QypNdZwbl/GqF5Qdc46TJA20g9KFa4ZnxQx74bDlJ3RfdaFhUIU3yN0lAcP99EH/XPPAcYcHA==}
+    engines: {node: '>=18.0.0'}
     dev: true
 
   /micromatch@4.0.5:
