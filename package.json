@@ -14,7 +14,7 @@
     "@babel/core": "7.21.5",
     "@babel/plugin-transform-modules-commonjs": "7.21.5",
     "@babel/preset-typescript": "7.21.5",
-    "@maxmilton/stylelint-config": "0.0.12",
+    "@maxmilton/stylelint-config": "0.3.0",
     "@testing-library/jest-dom": "5.16.5",
     "@types/babel__core": "7.20.0",
     "@types/jest": "29.5.1",

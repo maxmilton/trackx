@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -14,8 +18,8 @@ importers:
         specifier: 7.21.5
         version: 7.21.5(@babel/core@7.21.5)
       '@maxmilton/stylelint-config':
-        specifier: 0.0.12
-        version: 0.0.12(postcss@8.4.23)(stylelint@15.2.0)
+        specifier: 0.3.0
+        version: 0.3.0(postcss@8.4.23)(stylelint@15.2.0)
       '@testing-library/jest-dom':
         specifier: 5.16.5
         version: 5.16.5
@@ -1476,14 +1480,14 @@ packages:
       solid-js: 1.6.15
     dev: false
 
-  /@maxmilton/stylelint-config@0.0.12(postcss@8.4.23)(stylelint@15.2.0):
-    resolution: {integrity: sha512-XYFRy7rP/+oDWdS70bhMZvx3f4S5oD62hH8GC9icWQpUtDUzGtuwUl+NVie1h7H7uTe25DAbsYwfIgCiBYp6Iw==}
+  /@maxmilton/stylelint-config@0.3.0(postcss@8.4.23)(stylelint@15.2.0):
+    resolution: {integrity: sha512-qLZcVH4Tj5JNtlNTJjHNWc4FhNcxFQt6hJtqHNhemgfz9Mp16oPA/f3g201sORTTwGG/3ap65sUFtVdHvaDFfA==}
     peerDependencies:
-      stylelint: ^15.0.0
+      stylelint: ^16.18.0
     dependencies:
-      postcss-ekscss: 0.0.6(postcss@8.4.23)
+      postcss-ekscss: 0.0.12(postcss@8.4.23)
       stylelint: 15.2.0
-      stylelint-order: 6.0.3(stylelint@15.2.0)
+      stylelint-order: 7.0.0(stylelint@15.2.0)
     transitivePeerDependencies:
       - postcss
     dev: true
@@ -5116,6 +5120,12 @@ packages:
     resolution: {integrity: sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==}
     dev: true
 
+  /nanoid@3.3.11:
+    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: true
+
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -5390,6 +5400,10 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
 
+  /picocolors@1.1.1:
+    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+    dev: true
+
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -5420,8 +5434,8 @@ packages:
       trouter: 3.2.1
     dev: false
 
-  /postcss-ekscss@0.0.6(postcss@8.4.23):
-    resolution: {integrity: sha512-SJojjYn7pZsAfptKwat4g3wdlwAAaHsZ4yuegQSIM/mXcu7mgK7Qb26ChmY6exSBdJLU6Ylbd8AoWM2iEFOXYw==}
+  /postcss-ekscss@0.0.12(postcss@8.4.23):
+    resolution: {integrity: sha512-XYW5apq1JlD2FtBFlIaGmpS1VKCyhNRaL4u51tlSTenkFOG59QJ85oAQof2vIQkEquttjgGOzpmUxuw+GHbJZQ==}
     peerDependencies:
       postcss: ^8.0.0
     peerDependenciesMeta:
@@ -5456,12 +5470,12 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-sorting@8.0.2(postcss@8.4.23):
-    resolution: {integrity: sha512-M9dkSrmU00t/jK7rF6BZSZauA5MAaBW4i5EnJXspMwt4iqTh/L9j6fgMnbElEOfyRyfLfVbIHj/R52zHzAPe1Q==}
+  /postcss-sorting@9.1.0(postcss@8.5.4):
+    resolution: {integrity: sha512-Mn8KJ45HNNG6JBpBizXcyf6LqY/qyqetGcou/nprDnFwBFBLGj0j/sNKV2lj2KMOVOwdXu14aEzqJv8CIV6e8g==}
     peerDependencies:
       postcss: ^8.4.20
     dependencies:
-      postcss: 8.4.23
+      postcss: 8.5.4
     dev: true
 
   /postcss-value-parser@4.2.0:
@@ -5475,6 +5489,15 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
+
+  /postcss@8.5.4:
+    resolution: {integrity: sha512-QSa9EBe+uwlGTFmHsPKokv3B/oEMQZxfqW0QqNCyhpa6mB1afzulwn8hihglqAb2pOw+BJgNlmXQ8la2VeHB7w==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.11
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
     dev: true
 
   /prebuild-install@7.1.1:
@@ -6070,6 +6093,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /source-map-support@0.5.13:
     resolution: {integrity: sha512-SHSKFHadjVA5oR4PPqhtAVdcBWwRYVd6g6cAXnIbRiIwc2EhPrTuKUBdSLvlEKyIP3GCf89fltvcZiP9MMFA1w==}
     dependencies:
@@ -6260,13 +6288,14 @@ packages:
       stylelint-config-recommended: 10.0.1(stylelint@15.2.0)
     dev: true
 
-  /stylelint-order@6.0.3(stylelint@15.2.0):
-    resolution: {integrity: sha512-1j1lOb4EU/6w49qZeT2SQVJXm0Ht+Qnq9GMfUa3pMwoyojIWfuA+JUDmoR97Bht1RLn4ei0xtLGy87M7d29B1w==}
+  /stylelint-order@7.0.0(stylelint@15.2.0):
+    resolution: {integrity: sha512-rSWxx0KscYfxU02wEskKXES9lkRzuuONMMNkZ7SUc6uiF3tDKm7e+sE0Ax/SBlG4TUf1sp1R6f3/SlsPGmzthg==}
+    engines: {node: '>=20.19.0'}
     peerDependencies:
-      stylelint: ^14.0.0 || ^15.0.0
+      stylelint: ^16.18.0
     dependencies:
-      postcss: 8.4.23
-      postcss-sorting: 8.0.2(postcss@8.4.23)
+      postcss: 8.5.4
+      postcss-sorting: 9.1.0(postcss@8.5.4)
       stylelint: 15.2.0
     dev: true
 
