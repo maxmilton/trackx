@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -336,8 +340,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(rollup@3.21.2)
       rollup-plugin-visualizer:
-        specifier: 5.9.0
-        version: 5.9.0(rollup@3.21.2)
+        specifier: 6.0.1
+        version: 6.0.1(rollup@3.21.2)
 
   packages/trackx-login:
     dependencies:
@@ -5395,6 +5399,11 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /picomatch@4.0.2:
+    resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
+    engines: {node: '>=12'}
+    dev: true
+
   /pirates@4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
     engines: {node: '>= 6'}
@@ -5888,18 +5897,21 @@ packages:
       terser: 5.17.1
     dev: true
 
-  /rollup-plugin-visualizer@5.9.0(rollup@3.21.2):
-    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
-    engines: {node: '>=14'}
+  /rollup-plugin-visualizer@6.0.1(rollup@3.21.2):
+    resolution: {integrity: sha512-NjlGElvLXCSZSAi3gNRZbfX3qlQbQcJ9TW97c5JpqfVwMhttj9YwEdPwcvbKj91RnMX2PWAjonvSEv6UEYtnRQ==}
+    engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
-      rollup: 2.x || 3.x
+      rolldown: 1.x
+      rollup: 2.x || 3.x || 4.x
     peerDependenciesMeta:
+      rolldown:
+        optional: true
       rollup:
         optional: true
     dependencies:
       open: 8.4.2
-      picomatch: 2.3.1
+      picomatch: 4.0.2
       rollup: 3.21.2
       source-map: 0.7.4
       yargs: 17.7.2
